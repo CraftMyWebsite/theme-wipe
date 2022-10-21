@@ -12,4 +12,6 @@ View::loadInclude($includes, "styles");
 
 <?= /* @var string $content */ $content ?>
 
-<?php View::loadInclude($includes, "afterScript"); include_once("includes/footer.inc.php"); ?>
+<?php View::loadInclude($includes, "afterScript");
+include_once("includes/footer.inc.php");
+?>
