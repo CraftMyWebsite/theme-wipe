@@ -24,6 +24,8 @@ use CMW\Utils\View;/*
 
     <!--MODIFIER LORS DE L'APPEL EN PROD-->
     <link rel="stylesheet" href="/dev/assets/css/style.css">
+    <!--PROD DEFINIR LA SOURCE-->
+    <script src="/dev/assets/js/flowbite.js"></script>
 
     <script src="https://kit.fontawesome.com/eced519d56.js" crossorigin="anonymous"></script>
 
