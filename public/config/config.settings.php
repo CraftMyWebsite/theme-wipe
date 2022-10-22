@@ -11,8 +11,3 @@
 
 <?php
 
-return [
-    "primaryColor" => "#4BD6FC",
-    "secondaryColor" => "#AE4BFC",
-    "backgroundColor" => "#757575"
-];
