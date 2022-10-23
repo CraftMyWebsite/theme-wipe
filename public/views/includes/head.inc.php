@@ -32,7 +32,7 @@ use CMW\Utils\Utils;
     View::loadInclude($includes, "beforeScript", "styles");
     ?>
 
-
+    <script src="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/js/flowbite.js"></script>
     <script src="https://kit.fontawesome.com/eced519d56.js" crossorigin="anonymous"></script>
 
 </head>
