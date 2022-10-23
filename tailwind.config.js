@@ -4,7 +4,9 @@ module.exports = {
     './dev/**/*.{php,html,js}',
   ],
   theme: {
-    extend: {},
+    extend: {
+
+    },
   },
   plugins: [
     require('flowbite/plugin')

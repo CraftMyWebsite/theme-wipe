@@ -31,8 +31,8 @@ $description = "Description de votre page"; ?>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Mot de passe</label>
                         <div class="flex">
-                            <input type="password" name="login_password" placeholder="••••••••" class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg block w-full p-2.5" required>
-                            <div class="p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800"><i class="fa fa-eye-slash" aria-hidden="true"></i></div>
+                            <input type="password" name="login_password" id="passwordInput" placeholder="••••••••" class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg block w-full p-2.5" required>
+                            <div onclick="showPassword()" class="cursor-pointer p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800"><i class="fa fa-eye-slash" aria-hidden="true"></i></div>
                         </div>
                     </div>
                     <div class="flex justify-between">
@@ -49,7 +49,7 @@ $description = "Description de votre page"; ?>
                 <div class="flex flex-no-wrap justify-center items-center py-4">
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                     <div class="px-10 w-auto">
-                        <h2 class="font-medium">Se connecter avec</h2>
+                        <p class="font-medium">Se connecter avec</p>
                     </div>
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 </div>
@@ -73,3 +73,13 @@ $description = "Description de votre page"; ?>
     </div>
 
 
+<script>
+	function showPassword() {
+		var x = document.getElementById("passwordInput");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	}
+</script>
