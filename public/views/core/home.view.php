@@ -1,13 +1,17 @@
+<?php
+use CMW\Utils\Utils;
+use CMW\Model\Core\ThemeModel;
+?>
 <!-- HERO -->
 <section class="bg-gray-800 relative text-white">
     <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/bg.webp" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-40 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
-                <p class="font-medium mb-2 text-blue-600 uppercase">Bienvenue !<!--TODO : Option editable dans les config du theme--></p>
-                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl">CraftMyWebsite 2.0<!--TODO : Récupération du titre du site--></h1>
-                <p class="font-light mb-6 text-xl">Une super description pour votre serveur<!--TODO : Option editable dans les config du theme--></p>
-                <a href="#" class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">play.nom.fr <!--TODO : Option editable dans les config du theme--></a>
+                <p class="font-medium mb-2 text-blue-600 uppercase"><?= ThemeModel::fetchConfigValue('hero_title') ?></p>
+                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= Utils::getSiteName()?></h1>
+                <p class="font-light mb-6 text-xl"><?= ThemeModel::fetchConfigValue('hero_description') ?></p>
+                <a href="<?= ThemeModel::fetchConfigValue('hero_button_link') ?>" class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none"><?= ThemeModel::fetchConfigValue('hero_button_text') ?></a>
             </div>
         </div>
     </div>
@@ -18,7 +22,7 @@
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase">Fonctionnalités<!--TODO : Option editable dans les config du theme--></h2>
+            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('feature_section_title') ?></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
@@ -28,8 +32,8 @@
                 <div class="bg-gray-100 p-4">
                     <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/bread.webp" class="mb-3 mx-auto" alt="Vous devez upload bread.webp depuis votre panel !" width="160" height="160"/>
                     <div>
-                        <h3 class="text-center  font-bold text-2xl text-gray-900">Communauté<!--TODO : Option editable dans les config du theme--></h3>
-                        <p class="mt-2 mb-4">Amet minim mollit non deserunt ullamco est sit aliqua<!--TODO : Option editable dans les config du theme--></p>
+                        <h3 class="text-center  font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_1') ?></h3>
+                        <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_1') ?></p>
                     </div>
                 </div>
             </div>
@@ -37,8 +41,8 @@
                 <div class="bg-gray-100 p-4">
                     <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/potion.webp" class="mb-3 mx-auto" alt="Vous devez upload potion.webp depuis votre panel !" width="160" height="160">
                     <div>
-                        <h3 class="text-center font-bold text-2xl text-gray-900">Kathryn Murphy<!--TODO : Option editable dans les config du theme--></h3>
-                        <p class="mt-2 mb-4">Amet minim mollit non deserunt ullamco est sit aliqua dolor <!--TODO : Option editable dans les config du theme--></p>
+                        <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_2') ?></h3>
+                        <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_2') ?></p>
                     </div>
                 </div>
             </div>
@@ -46,8 +50,8 @@
                 <div class="bg-gray-100 p-4">
                     <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/craftingtable.webp" class="mb-3 mx-auto" alt="Vous devez upload craftingtable.webp depuis votre panel !" width="160" height="160">
                     <div>
-                        <h3 class="text-center font-bold text-2xl text-gray-900">Darrell Steward<!--TODO : Option editable dans les config du theme--></h3>
-                            <p class="mt-2 mb-4">Amet minim mollit non deserunt ullamco est sit aliqua dolor <!--TODO : Option editable dans les config du theme--></p>
+                        <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_3') ?></h3>
+                            <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_3') ?></p>
                     </div>
                 </div>
             </div>
