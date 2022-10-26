@@ -13,7 +13,7 @@ $description = "Profil de " . $user->getUsername(); ?>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
-                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl">Votre profile</h1>
+                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl">Votre profil</h1>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@ $description = "Profil de " . $user->getUsername(); ?>
     <div class="flex flex-no-wrap justify-center items-center pt-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase">Vous nous quitter ?</h2>
+            <h2 class="font-semibold text-2xl uppercase">Vous nous quittez ?</h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
