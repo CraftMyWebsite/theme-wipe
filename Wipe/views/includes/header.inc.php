@@ -20,20 +20,20 @@ use CMW\Model\Users\UsersModel;
                     <ul class="py-1 text-sm text-gray-700" aria-labelledby="multiLevelDropdownButton">
                         <?php if (UsersController::isAdminLogged()) : ?>
                         <li>
-                            <a href="cmw-admin" target="_blank" class="block py-2 px-4 hover:bg-gray-100"><i class="fa-solid fa-screwdriver-wrench"></i> Administration</a>
+                            <a href="/cmw-admin" target="_blank" class="block py-2 px-4 hover:bg-gray-100"><i class="fa-solid fa-screwdriver-wrench"></i> Administration</a>
                         </li>
                         <?php endif; ?>
                         <li>
-                            <a href="profile" class="block py-2 px-4 hover:bg-gray-100"><i class="fa-regular fa-address-card"></i> Profile</a>
+                            <a href="/profile" class="block py-2 px-4 hover:bg-gray-100"><i class="fa-regular fa-address-card"></i> Profil</a>
                         </li>
                     </ul>
                     <div class="py-1">
-                        <a href="logout" class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
+                        <a href="/logout" class="block py-2 px-4 text-sm text-red-700 hover:bg-gray-100"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
                     </div>
                 </div>
             </ul>
 <?php else: ?>
-            <a href="login" class="md:bg-white bg-blue-700 md:hover:bg-gray-200 hover:bg-blue-800 text-white md:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Connexion</a>
+            <a href="/login" class="md:bg-white bg-blue-700 md:hover:bg-gray-200 hover:bg-blue-800 text-white md:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Connexion</a>
             <a href="register" class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 ">S'inscrire</a>
             <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-cta" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>

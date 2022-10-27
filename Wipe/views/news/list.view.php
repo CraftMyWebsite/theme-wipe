@@ -3,11 +3,11 @@ $title = "News";
 $description = "Affichage de toutes vos news";
 use CMW\Model\Core\ThemeModel;
 $newsList = $newsModel->getSomeNews(ThemeModel::fetchConfigValue('news_page_number_display'), 'DESC');
+use CMW\Controller\Users\UsersController;
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <!--PROD DEFINIR LA SOURCE-->
-    <img src="/dev/img/bg.webp" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/bg.webp" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -38,15 +38,28 @@ $newsList = $newsModel->getSomeNews(ThemeModel::fetchConfigValue('news_page_numb
                         <p class="mb-3"><?= $news->getDescription() ?></p>
                         <div class="mt-6 flex justify-between">
                             <a href="news/<?= $news->getSlug() ?>" class="font-bold hover:text-blue-700 text-gray-900 text-sm">Lire la suite <i class="fa-solid fa-caret-right"></i></a>
+
+
                             <div class="cursor-pointer">
-                                <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                    
+                                <span data-tooltip-target="<?php if ($news->getLikes()->userCanLike()) {echo "tooltip-liked";} else {echo "tooltip-like";} ?>">
+                                <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
                                     <?php if ($news->getLikes()->userCanLike()): ?>
-                                        <a href="#"><i class="fa-solid fa-heart"></i></a>
-                                    <?php else: ?>
-                                        <a href="<?= $news->getLikes()->getSendLike() ?>"><i class="fa-regular fa-heart"></i></a>
+                                    <a href="#"><i class="fa-solid fa-heart"></i></a>
+                                    <div id="tooltip-liked" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                                        <?php if(UsersController::isUserLogged()) {echo "Vous aimez déjà !";} else {echo "Connectez-vous pour aimé !";} ?>
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                    <?php else: ?> 
+                                    <a href="<?= $news->getLikes()->getSendLike() ?>"><i class="fa-regular fa-heart"></i></a>
+                                    <div id="tooltip-like" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                                        Merci pour votre soutien !
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
                                     <?php endif; ?>
                                 </span>
+                                </span>
                             </div>
+
                         </div>
                     </div>
                 </div>

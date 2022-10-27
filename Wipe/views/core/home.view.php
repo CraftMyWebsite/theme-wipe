@@ -3,6 +3,7 @@ use CMW\Utils\Utils;
 use CMW\Model\Core\ThemeModel;
 use CMW\Controller\Core\SecurityController;
 use CMW\Utils\SecurityService;
+use CMW\Controller\Users\UsersController;
 
 /*NEWS BASIC NEED*/
 use CMW\Model\News\NewsModel;
@@ -104,12 +105,22 @@ use CMW\Model\Contact\ContactModel;
                         <div class="mt-6 flex justify-between">
                             <a href="news/<?= $news->getSlug() ?>" class="font-bold hover:text-blue-700 text-gray-900 text-sm">Lire la suite <i class="fa-solid fa-caret-right"></i></a>
                             <div class="cursor-pointer">
-                                <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                    
+                                <span data-tooltip-target="<?php if ($news->getLikes()->userCanLike()) {echo "tooltip-liked";} else {echo "tooltip-like";} ?>">
+                                <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
                                     <?php if ($news->getLikes()->userCanLike()): ?>
-                                        <a href="#"><i class="fa-solid fa-heart"></i></a>
-                                    <?php else: ?>
-                                        <a href="<?= $news->getLikes()->getSendLike() ?>"><i class="fa-regular fa-heart"></i></a>
+                                    <a href="#"><i class="fa-solid fa-heart"></i></a>
+                                    <div id="tooltip-liked" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                                        <?php if(UsersController::isUserLogged()) {echo "Vous aimez déjà !";} else {echo "Connectez-vous pour aimé !";} ?>
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                    <?php else: ?> 
+                                    <a href="<?= $news->getLikes()->getSendLike() ?>"><i class="fa-regular fa-heart"></i></a>
+                                    <div id="tooltip-like" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                                        Merci pour votre soutien !
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
                                     <?php endif; ?>
+                                </span>
                                 </span>
                             </div>
                         </div>
