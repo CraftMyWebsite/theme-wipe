@@ -31,7 +31,7 @@ use CMW\Controller\Users\UsersController;
                     </div>
                     <div class="px-8 py-6 w-full md:w-7/12 lg:w-full xl:w-7/12">
                         <div class="mb-3">
-                            <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs uppercase"><?= $news->getDateCreated() ?></div>
+                            <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs"><?= $news->getDateCreated() ?></div>
                         </div>
                         <h3 class="font-bold leading-tight mb-3 text-gray-900 text-xl">
                             <a href="news/<?= $news->getSlug() ?>" class="hover:text-blue-600"><?= $news->getTitle() ?></a></h3>
