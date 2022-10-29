@@ -1,11 +1,12 @@
 <?php
-
+use CMW\Model\Core\ThemeModel;
 use CMW\Controller\Core\SecurityController;
 use CMW\Manager\Lang\LangManager;
 use CMW\Utils\SecurityService;
 
-$title = "Inscription";
-$description = "Description de votre page"; ?>
+use CMW\Utils\Utils;
+$title = Utils::getSiteName() . ' - Inscription';
+$description = 'Inscrivez-vous sur ' . Utils::getSiteName(); ?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->
@@ -19,7 +20,7 @@ $description = "Description de votre page"; ?>
     </div>
 </section>
 
-
+<?php if(ThemeModel::fetchConfigValue('header_allow_register_button')): ?>
 <div class="mx-auto relative p-4 w-full max-w-md h-full md:h-auto mb-6 mt-6">
     <div class="relative bg-white rounded-lg shadow">
         <div class="py-6 px-6 lg:px-8">
@@ -76,7 +77,15 @@ $description = "Description de votre page"; ?>
         </div>
     </div>
 </div>
-
+<?php else: ?>
+<div class="mx-auto relative p-4 w-full max-w-md h-full md:h-auto mb-6 mt-6">
+    <div class="relative bg-white rounded-lg shadow">
+        <div class="py-6 px-6 lg:px-8">
+            <?= ThemeModel::fetchConfigValue('global_no_register_message') ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
 <script>
 function showPassword() {
   var x = document.getElementById("passwordInput");
