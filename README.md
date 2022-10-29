@@ -12,7 +12,7 @@ https://craftmywebsite.fr/
 ## Important !
 Le dossier /dev n'est pas à utiliser en prod !
 
-Le dossier /public est prêt à être utiliser dans CMW2.* 
+Le dossier /Wipe est prêt à être utiliser dans CMW2.* 
 
 ## ATTENTION !
 Il est impératif de renommer le dossier public par le nom du thème inscrit dans info.json
