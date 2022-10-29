@@ -19,4 +19,11 @@
     h5 {
         font-size: 1em;
     }
+    pre {
+        background-color: #544242;
+        color: white;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 10px;
+    }
 }
