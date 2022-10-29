@@ -4,8 +4,10 @@
 
 use CMW\Utils\SecurityService;
 
-$title = "Profil - " . $user->getUsername();
-$description = "Profil de " . $user->getUsername(); ?>
+use CMW\Utils\Utils;
+$title = Utils::getSiteName() . ' - Profil - ' . $user->getUsername();
+$description = 'Profil de  ' . $user->getUsername(); 
+?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->

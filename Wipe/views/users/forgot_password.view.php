@@ -2,7 +2,10 @@
 
 use CMW\Manager\Lang\LangManager;
 use CMW\Utils\SecurityService;
-
+use CMW\Utils\Utils;
+/*TITRE ET DESCRIPTION*/
+$title = Utils::getSiteName() . ' - Mot de passe oublié';
+$description = "C'est pas très bien d'oublié son mot de passe ...";
 ?>
 <div class="card">
     <div class="card-body login-card-body">

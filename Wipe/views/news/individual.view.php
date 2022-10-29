@@ -1,9 +1,7 @@
 <?php
+use CMW\Utils\Utils;
 /* @var \CMW\Entity\News\NewsEntity $news */
-
-$title = "News - " . $news->getTitle();
-$description = "Affichage de la news " . $news->getTitle();
-
+use CMW\Model\Core\ThemeModel;
 use CMW\Controller\Core\SecurityController;
 use CMW\Utils\SecurityService;
 use CMW\Controller\Users\UsersController;
@@ -11,6 +9,9 @@ use CMW\Controller\Users\UsersController;
 use CMW\Entity\Users\UserEntity;
 use CMW\Entity\Users\UserPictureEntity;
 use CMW\Model\Users\UsersModel;
+/*TITRE ET DESCRIPTION*/
+$title = Utils::getSiteName() . ' - '. ThemeModel::fetchConfigValue('news_title') . ' - '. $news->getTitle();
+$description = ThemeModel::fetchConfigValue('news_description');
 ?>
 <section class="bg-gray-800 relative text-white">
     <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/bg.webp" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>

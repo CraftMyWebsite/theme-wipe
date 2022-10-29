@@ -2,9 +2,9 @@
 
 use CMW\Controller\Core\SecurityController;
 use CMW\Utils\SecurityService;
-
-$title = "Connexion";
-$description = "Description de votre page"; ?>
+use CMW\Utils\Utils;
+$title = Utils::getSiteName() . ' - Connexion';
+$description = 'Connectez-vous sur ' . Utils::getSiteName(); ?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->

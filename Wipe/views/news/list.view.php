@@ -1,9 +1,11 @@
 <?php
-$title = "News";
-$description = "Affichage de toutes vos news";
+use CMW\Utils\Utils;
 use CMW\Model\Core\ThemeModel;
 $newsList = $newsModel->getSomeNews(ThemeModel::fetchConfigValue('news_page_number_display'), 'DESC');
 use CMW\Controller\Users\UsersController;
+/*TITRE ET DESCRIPTION*/
+$title = Utils::getSiteName() . ' - '. ThemeModel::fetchConfigValue('news_title');
+$description = ThemeModel::fetchConfigValue('news_description');
 ?>
 
 <section class="bg-gray-800 relative text-white">

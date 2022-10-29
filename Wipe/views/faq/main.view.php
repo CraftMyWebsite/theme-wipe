@@ -3,6 +3,10 @@ use CMW\Controller\Core\SecurityController;
 use CMW\Utils\SecurityService;
 use CMW\Model\Contact\ContactModel;
 use CMW\Model\Core\ThemeModel;
+use CMW\Utils\Utils;
+/*TITRE ET DESCRIPTION*/
+$title = Utils::getSiteName() . ' - '. ThemeModel::fetchConfigValue('faq_title');
+$description = ThemeModel::fetchConfigValue('faq_description');
 ?>
 
 <section class="bg-gray-800 relative text-white">
@@ -17,7 +21,8 @@ use CMW\Model\Core\ThemeModel;
 </section>
 
 <section class="px-2 md:px-24 xl:px-48 2xl:px-72 py-6">
-    <div class="lg:grid lg:grid-cols-3 gap-6">
+    <div class="<?php if(ThemeModel::fetchConfigValue('faq_display_form')): {echo "lg:grid lg:grid-cols-3 gap-6";} endif ?>">
+        <?php if(ThemeModel::fetchConfigValue('faq_display_form')): ?>
             <div class="container mx-auto rounded-md shadow-lg p-8">
                 <div class="flex flex-no-wrap justify-center items-center py-4">
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
@@ -67,6 +72,7 @@ use CMW\Model\Core\ThemeModel;
             </div>
         </form>
             </div>
+            <?php endif; ?>
         <div class="col-span-2">
             <div class="container mx-auto rounded-md shadow-lg p-8">
                 <div class="flex flex-no-wrap justify-center items-center py-4">

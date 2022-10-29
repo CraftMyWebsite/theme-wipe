@@ -12,6 +12,10 @@ $newsList = $newsList->getSomeNews( ThemeModel::fetchConfigValue('news_number_di
 
 /*CONTACT BASIC NEDD*/
 use CMW\Model\Contact\ContactModel;
+
+/*TITRE ET DESCRIPTION*/
+$title = Utils::getSiteName() . ' - '. ThemeModel::fetchConfigValue('home_title');
+$description = Utils::getSiteDescription();
 ?>
 <!-- HERO -->
 <section class="bg-gray-800 relative text-white">
