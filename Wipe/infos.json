@@ -1,8 +1,19 @@
 {
   "author": "Zomb",
-  "authors": ["Zomb", "Zomb"],
+  "authors": ["Zomb", "Teyir"],
   "name": "Wipe",
   "version": "0.0.1",
   "cmwVersion": "2.0",
-  "packages": ["core", "menus", "pages", "users"]
+  "packages": [
+    "core", 
+    "menus", 
+    "pages", 
+    "users", 
+    "news", 
+    "contact", 
+    "faq", 
+    "votes", 
+    "wiki",
+    "forum"
+  ]
 }
