@@ -42,13 +42,13 @@ $description = ThemeModel::fetchConfigValue('news_description');
                         <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
                         <?php if ($news->getLikes()->userCanLike()): ?>
                             <a href="#"><i class="fa-solid fa-heart"></i></a>
-                            <div id="tooltip-liked" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                            <div id="tooltip-liked" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
                         <?php if(UsersController::isUserLogged()) {echo "Vous aimez déjà !";} else {echo "Connectez-vous pour aimé !";} ?>
                             <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         <?php else: ?> 
                             <a href="<?= $news->getLikes()->getSendLike() ?>"><i class="fa-regular fa-heart"></i></a>
-                                <div id="tooltip-like" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                                <div id="tooltip-like" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
                                         Merci pour votre soutien !
                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
@@ -97,13 +97,13 @@ $description = ThemeModel::fetchConfigValue('news_description');
                                 <span class="text-base"><?= $comment->getLikes()->getTotal() ?>                               
                                     <?php if ($comment->userCanLike()): ?>
                                     <a href="#"><i class="fa-solid fa-heart"></i></a>
-                                    <div id="tooltip-liked" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                                    <div id="tooltip-liked" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
                                         <?php if(UsersController::isUserLogged()) {echo "Vous aimez déjà !";} else {echo "Connectez-vous pour aimé !";} ?>
                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                     </div>
                                     <?php else: ?> 
                                     <a href="<?= $comment->getSendLike() ?>"><i class="fa-regular fa-heart"></i></a>
-                                    <div id="tooltip-like" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                                    <div id="tooltip-like" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
                                         Merci pour votre soutien !
                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                     </div>

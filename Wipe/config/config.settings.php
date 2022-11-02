@@ -13,7 +13,7 @@
 
 return [
    /* - - - - - - - - 
-       - - HEADER - -
+       - - HEADER & GLOBAL - -
     - - - - - - - - - */
     "header_active_title" => "true",
     "header_active_logo" => "true",

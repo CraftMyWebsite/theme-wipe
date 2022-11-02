@@ -84,7 +84,15 @@ use CMW\Model\Votes\VotesConfigModel;
                     <div class="form-group">
                     <label for="hero_button_link">Message d'inscription désactiver :</label>
                         <input style="width: 50%;" type="text" id="global_no_register_message" name="global_no_register_message" value="<?= ThemeModel::fetchConfigValue('global_no_register_message') ?>">
-                </div>
+                    </div>
+                    <h4>Logo du site :</h4>
+                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/logo.webp" class="mr-3 h-6 sm:h-9" alt="Vous devez upload logo.webp depuis votre panel !">
+                    <div class="input-group col">
+                        <div class="custom-file " style="width: 30px;">
+                            <input type="file" class="custom-file-input" id="Logo" accept=".webp" name="Logo">
+                            <label class="custom-file-label" for="Logo">Définissez votre logo.</label>
+                        </div>
+                    </div>
         </div>
 
 
@@ -123,6 +131,12 @@ use CMW\Model\Votes\VotesConfigModel;
                                 <input type="text" id="hero_button_link" name="hero_button_link" value="<?= ThemeModel::fetchConfigValue('hero_button_link') ?>">
                             </div>
                         </div>
+                            <div class="input-group col">
+                                <div class="custom-file " style="width: 30px;">
+                                    <input type="file" class="custom-file-input" id="Logo" accept=".webp" name="Logo">
+                                    <label class="custom-file-label" for="Logo">Définissez l'image. (bg.webp)</label>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 </section>
@@ -141,7 +155,13 @@ use CMW\Model\Votes\VotesConfigModel;
                 <div class="text-center">
                     <div class="row">
                         <div class="col">
-                            <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/bread.webp" class="mb-3 mx-auto" alt="Vous devez upload bread.webp depuis votre panel !" width="160" height="160"/>
+                            <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature1.webp" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
+                            <div class="input-group col">
+                                <div class="custom-file " style="width: 30px;">
+                                    <input type="file" class="custom-file-input" id="Logo" accept=".webp" name="Logo">
+                                    <label class="custom-file-label" for="Logo">Définissez l'image (feature1.webp).</label>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <input type="text" id="feature_title_1" name="feature_title_1" value="<?= ThemeModel::fetchConfigValue('feature_title_1') ?>">
                             </div>
@@ -150,7 +170,13 @@ use CMW\Model\Votes\VotesConfigModel;
                             </div>
                         </div>
                         <div class="col">
-                            <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/potion.webp" class="mb-3 mx-auto" alt="Vous devez upload potion.webp depuis votre panel !" width="160" height="160">
+                            <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature2.webp" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
+                            <div class="input-group col">
+                                <div class="custom-file " style="width: 30px;">
+                                    <input type="file" class="custom-file-input" id="Logo" accept=".webp" name="Logo">
+                                    <label class="custom-file-label" for="Logo">Définissez l'image (feature2.webp).</label>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <input type="text" id="feature_title_2" name="feature_title_2" value="<?= ThemeModel::fetchConfigValue('feature_title_2') ?>">
                             </div>
@@ -159,7 +185,13 @@ use CMW\Model\Votes\VotesConfigModel;
                             </div>
                         </div>
                         <div class="col">
-                            <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/craftingtable.webp" class="mb-3 mx-auto" alt="Vous devez upload craftingtable.webp depuis votre panel !" width="160" height="160">
+                            <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature3.webp" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
+                            <div class="input-group col">
+                                <div class="custom-file " style="width: 30px;">
+                                    <input type="file" class="custom-file-input" id="Logo" accept=".webp" name="Logo">
+                                    <label class="custom-file-label" for="Logo">Définissez l'image. (feature3.webp)</label>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <input type="text" id="feature_title_3" name="feature_title_3" value="<?= ThemeModel::fetchConfigValue('feature_title_3') ?>">
                             </div>

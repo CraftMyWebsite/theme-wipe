@@ -67,24 +67,6 @@ use CMW\Model\Core\ThemeModel;
                 <li>
                     <a href="/vote" class="cursor-pointer block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" aria-current="page">Votes</a>
                 </li>
-                <li id="multiLevelDropdownButton" data-dropdown-toggle="dropdown" class="cursor-pointer block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" >Test</li>
-                <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
-                    <ul class="py-1 text-sm text-gray-700" aria-labelledby="multiLevelDropdownButton">
-                        <li>
-                            <button id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start" type="button" class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100">Sous menu<svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button>
-                            <div id="doubleDropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(10px, 300px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="right-start">
-                                <ul class="py-1 text-sm text-gray-700" aria-labelledby="doubleDropdownButton">
-                                    <li>
-                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100">Ok !</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#" class="block py-2 px-4 hover:bg-gray-100">Ok !</a>
-                        </li>
-                    </ul>
-                </div>
             </ul>
         </div>
     </div>

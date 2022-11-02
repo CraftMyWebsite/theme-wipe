@@ -110,10 +110,18 @@
                         <div class="mb-3">
                             <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs uppercase">Dev en cours</div>
                         </div>
-                        <h3 class="font-bold leading-tight mb-3 text-gray-900 text-xl">
+                        <h3 class="font-bold leading-tight mb-3 text-gray-900 text-xl lg:px-6">
                             <a href="#" class="hover:text-blue-600">I 🤯 Front !</a></h3>
                         <p class="mb-3">Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse duis deserunt mollit....</p>
                         <a href="#" class="font-bold hover:text-blue-700 text-gray-900 text-sm">Lire la suite <i class="fa-solid fa-caret-right"></i></a>
+                        <div class="hidden lg:inline-block lg:pl-3 ">
+                            <button data-tooltip-target="tooltip-left" data-tooltip-placement="left" type="button" class="mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Tooltip left</button>
+                            <div id="tooltip-left" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                Tooltip on left
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

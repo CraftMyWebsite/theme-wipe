@@ -45,7 +45,7 @@ $description = Utils::getSiteDescription();
         <div class="flex flex-wrap -mx-4  justify-center">
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/bread.webp" class="mb-3 mx-auto" alt="Vous devez upload bread.webp depuis votre panel !" width="160" height="160"/>
+                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature1.webp" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
                     <div>
                         <h3 class="text-center  font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_1') ?></h3>
                         <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_1') ?></p>
@@ -54,7 +54,7 @@ $description = Utils::getSiteDescription();
             </div>
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/potion.webp" class="mb-3 mx-auto" alt="Vous devez upload potion.webp depuis votre panel !" width="160" height="160">
+                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature2.webp" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
                     <div>
                         <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_2') ?></h3>
                         <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_2') ?></p>
@@ -63,7 +63,7 @@ $description = Utils::getSiteDescription();
             </div>
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/craftingtable.webp" class="mb-3 mx-auto" alt="Vous devez upload craftingtable.webp depuis votre panel !" width="160" height="160">
+                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature3.webp" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
                     <div>
                         <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_3') ?></h3>
                             <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_3') ?></p>
@@ -113,13 +113,13 @@ $description = Utils::getSiteDescription();
                                 <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
                                     <?php if ($news->getLikes()->userCanLike()): ?>
                                     <a href="#"><i class="fa-solid fa-heart"></i></a>
-                                    <div id="tooltip-liked" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                                    <div id="tooltip-liked" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
                                         <?php if(UsersController::isUserLogged()) {echo "Vous aimez déjà !";} else {echo "Connectez-vous pour aimé !";} ?>
                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                     </div>
                                     <?php else: ?> 
                                     <a href="<?= $news->getLikes()->getSendLike() ?>"><i class="fa-regular fa-heart"></i></a>
-                                    <div id="tooltip-like" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                                    <div id="tooltip-like" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
                                         Merci pour votre soutien !
                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                     </div>
