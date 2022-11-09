@@ -1,6 +1,5 @@
-# cmw.fr-front
+# Wipe
 
-Site craftmywebsite 2.0 
 
 Fonctionne sous le Framework Tailwindcss.
 
