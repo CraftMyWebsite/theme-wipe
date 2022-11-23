@@ -11,7 +11,7 @@ use CMW\Model\Core\ThemeModel;
     <div class="container flex flex-wrap justify-between items-center mx-auto">
         <a href="/" class="flex items-center">
             <?php if(ThemeModel::fetchConfigValue('header_active_logo')): ?>
-                <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/logo.webp" class="mr-3 h-6 sm:h-9" alt="Vous devez upload logo.webp depuis votre panel !">
+                <img src="<?= ThemeModel::fetchImageLink("header_img_logo") ?>" class="mr-3 h-6 sm:h-9" alt="Vous devez upload logo.webp depuis votre panel !">
             <?php endif; ?>
             <?php if(ThemeModel::fetchConfigValue('header_active_title')): ?>
             <span class="self-center md:text-xl font-semibold whitespace-nowrap"><?= Utils::getSiteName()?></span>

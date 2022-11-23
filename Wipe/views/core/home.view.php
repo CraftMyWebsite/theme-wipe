@@ -19,7 +19,7 @@ $description = Utils::getSiteDescription();
 ?>
 <!-- HERO -->
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/bg.webp" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-40 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -45,7 +45,7 @@ $description = Utils::getSiteDescription();
         <div class="flex flex-wrap -mx-4  justify-center">
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature1.webp" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
+                    <img src="<?= ThemeModel::fetchImageLink("feature_img_1") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
                     <div>
                         <h3 class="text-center  font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_1') ?></h3>
                         <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_1') ?></p>
@@ -54,7 +54,7 @@ $description = Utils::getSiteDescription();
             </div>
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature2.webp" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
+                    <img src="<?= ThemeModel::fetchImageLink("feature_img_2") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
                     <div>
                         <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_2') ?></h3>
                         <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_2') ?></p>
@@ -63,7 +63,7 @@ $description = Utils::getSiteDescription();
             </div>
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature3.webp" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
+                    <img src="<?= ThemeModel::fetchImageLink("feature_img_3") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
                     <div>
                         <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_3') ?></h3>
                             <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_3') ?></p>
