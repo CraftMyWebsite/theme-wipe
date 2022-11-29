@@ -9,7 +9,7 @@ use CMW\Utils\Utils;
             <img src="/dev/img/grass.webp" class="mr-3 h-6 sm:h-9" alt="Vous devez upload logo.webp depuis votre panel !">
             <span class="self-center md:text-xl font-semibold whitespace-nowrap">A supprimer<?/*= Utils::getSiteName()*/?></span>
         </a>
-        <div class="flex md:order-2">
+        <div class=" hidden flex md:order-2">
             <a href="login" class="md:bg-white bg-blue-700 md:hover:bg-gray-200 hover:bg-blue-800 text-white md:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Connexion</a>
             <a href="register" class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 ">S'inscrire</a>
             <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-cta" aria-expanded="false">
