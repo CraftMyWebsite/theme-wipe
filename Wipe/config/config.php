@@ -1,4 +1,4 @@
-<?php use CMW\Utils\Utils;use CMW\Manager\Lang\LangManager;use CMW\Model\Core\ThemeModel;use CMW\Utils\SecurityService;use CMW\Model\Votes\VotesConfigModel;use CMW\Model\Core\CoreModel;?>
+<?php use CMW\Controller\Core\ThemeController; use CMW\Utils\Utils;use CMW\Manager\Lang\LangManager;use CMW\Model\Core\ThemeModel;use CMW\Utils\SecurityService;use CMW\Model\Votes\VotesConfigModel;use CMW\Model\Core\CoreModel;?>
 <!-------------->
 <!--Navigation-->
 <!-------------->
@@ -43,10 +43,11 @@
                                 <label class="form-check-label" for="header_active_logo"><h6>Logo : <i data-bs-toggle="tooltip" title="Vous pouvez l'afficher ou le masqué" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
                             </div>
                             <div class="text-center ">
-                                <img class="w-25 border" src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/logo.webp" alt="Image introuvable !">
+                                <img class="w-25" src="<?= ThemeModel::fetchImageLink("header_img_logo") ?>" alt="Image introuvable !">
                             </div>
-                            <input class="mt-2 form-control form-control-sm" type="file" id="formFile">
-                            <div class="form-check form-switch mt-4">
+                            <input class="mt-2 form-control form-control-sm" type="file" id="header_img_logo" name="header_img_logo" accept="png,jpg,jpeg,webp,svg,gif">
+                            <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
+                            <div class="form-check form-switch mt-2">
                                 <input class="form-check-input" type="checkbox" value="1" name="header_active_title" id="header_active_title" <?= ThemeModel::fetchConfigValue('header_active_title') ? 'checked' : '' ?>>
                                 <label class="form-check-label" for="header_active_title"><h6>Titre : <i data-bs-toggle="tooltip" title="Vous pouvez l'afficher ou le masqué" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
                             </div>
@@ -98,11 +99,11 @@
                 <div class="card-body">
                     <h6>En tête :</h6>
                     <h6>Images :</h6>
-                    <input class="mt-2 form-control form-control-sm" type="file" name="Logo">
-                    <label class="custom-file-label" for="Logo">Définissez l'image.</label>
+                    <input class="mt-2 form-control form-control-sm" type="file" id="hero_img_bg" name="hero_img_bg" accept="png,jpg,jpeg,webp,svg,gif">
+                    <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
                     <h6>Réglages :</h6>
                     <section class="bg-gray-800 position-relative text-white">
-                        <img width="1080" height="720" src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/bg.webp" class="position-absolute h-full inset-0 object-center object-cover w-full" style="width: 100%; height: 100%; object-fit: cover;" alt="Vous devez upload bg.webp depuis votre panel !"/>
+                        <img width="1080" height="720" src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="position-absolute h-full inset-0 object-center object-cover w-full" style="width: 100%; height: 100%; object-fit: cover;" alt="Vous devez upload bg.webp depuis votre panel !"/>
                             <div class="container mx-auto position-relative">
                                 <div class="flex flex-wrap p-3">
                                     <div class="mx-auto text-center w-full lg:w-8/12">
@@ -139,10 +140,11 @@
                         <div class="col card me-2">
                             <label>Image :</label>
                             <div class="text-center">
-                                <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature1.webp" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
+                                <img src="<?= ThemeModel::fetchImageLink("feature_img_1") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
                             </div>
                             <div class="form-group">
-                                <input class="mt-2 form-control form-control-sm" type="file" name="Logo">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="feature_img_1" name="feature_img_1" accept="png,jpg,jpeg,webp,svg,gif">
+                                <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
                             </div>
                             <div class="form-group">
                                 <label>Titre :</label>
@@ -156,10 +158,11 @@
                         <div class="col card me-2">
                             <label>Image :</label>
                             <div class="text-center">
-                                <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature2.webp" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
+                                <img src="<?= ThemeModel::fetchImageLink("feature_img_2") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
                             </div>
                             <div class="form-group">
-                                <input class="mt-2 form-control form-control-sm" type="file" name="Logo">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="feature_img_2" name="feature_img_2" accept="png,jpg,jpeg,webp,svg,gif">
+                                <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
                             </div>
                             <div class="form-group">
                                 <label>Titre :</label>
@@ -173,10 +176,11 @@
                         <div class="col card me-2">
                             <label>Image :</label>
                             <div class="text-center">
-                                <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/feature3.webp" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
+                                <img src="<?= ThemeModel::fetchImageLink("feature_img_3") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
                             </div>
                             <div class="form-group">
-                                <input class="mt-2 form-control form-control-sm" type="file" name="Logo">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="feature_img_3" name="feature_img_3" accept="png,jpg,jpeg,webp,svg,gif">
+                                <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
                             </div>
                             <div class="form-group">
                                 <label>Titre :</label>

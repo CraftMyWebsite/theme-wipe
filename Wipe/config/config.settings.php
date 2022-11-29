@@ -1,14 +1,3 @@
-<!--
-
-    THIS FILE IS VERY IMPORTANT, HERE YOU CAN SAVE ALL THE FORM INPUT SETTINGS FOR THE DATABASE
-
-    HOW TO USE THIS FILE :
-
-        "primaryColor" -> This is the input name and the config_name (for the database)
-            "#4BD6FC" -> This is the `primaryColor` default value, this value was override with the user config (database saved)
-
--->
-
 <?php
 
 return [
@@ -17,6 +6,7 @@ return [
     - - - - - - - - - */
     "header_active_title" => "1",
     "header_active_logo" => "1",
+    "header_img_logo" => "config/default/img/logo.webp",
     "header_allow_register_button" => "1",
     "header_allow_login_button" => "1",
     "global_no_register_message" => "Nous somme désolé mais les inscriptions sont pour le moment désactiver.",
@@ -31,13 +21,17 @@ return [
     "hero_description" => "Une super description pour mon serveur !",
     "hero_button_text" => "Texte du bouton",
     "hero_button_link" => "#",
+    "hero_img_bg" => "config/default/img/bg.webp",
     /*FEATURE SECTION*/
     "feature_section_active" => "1",
     "feature_section_title" => "Fonctionnalités",
+    "feature_img_1" => "config/default/img/feature1.webp",
     "feature_title_1" => "Communauté",
     "feature_description_1" => "Amet minim mollit non deserunt ullamco est sit aliqua",
+    "feature_img_2" => "config/default/img/feature2.webp",
     "feature_title_2" => "Savoir faire",
     "feature_description_2" => "Amet minim mollit non deserunt ullamco est sit aliqua",
+    "feature_img_3" => "config/default/img/feature3.webp",
     "feature_title_3" => "Réactif",
     "feature_description_3" => "Amet minim mollit non deserunt ullamco est sit aliqua",
     /*NEWS SECTION*/
