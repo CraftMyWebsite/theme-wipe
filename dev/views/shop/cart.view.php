@@ -13,7 +13,7 @@
 <section class="bg-white rounded-lg shadow my-8 sm:mx-12 lg:mx-72">
     <div class="container p-4">
 
-        <div class="grid grid-cols-4 gap-6">
+        <div class="xl:grid grid-cols-4 gap-6">
 
             <div class="col-span-3">
                 <div class="overflow-x-auto relative shadow-md sm:rounded-lg h-fit">
@@ -40,18 +40,17 @@
                         </tr>
                         </thead>
                         <tbody class="text-center">
-                        <tr class="bg-white border-b dark:bg-gray-800">
+                        <tr class="bg-white border-b dark:bg-gray-800 mx-auto">
                             <td class="p-4 w-32">
-                                <img class="rounded-lg"
-                                     src="https://i.notretemps.com/2000x1125/smart/2022/10/07/pains.jpg" alt="Panier">
+                                <img class="rounded-lg" src="https://i.notretemps.com/2000x1125/smart/2022/10/07/pains.jpg" alt="Panier">
                             </td>
                             <td class="py-4 px-6 font-semibold text-gray-900">
                                 Du pain
                             </td>
                             <td class="py-4 px-6 text-center">
-                                <input type="number" id="quantity"
-                                       class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1"
-                                       placeholder="1" required>
+                                <div class="flex justify-center">
+                                    <input type="number" id="quantity" class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1" value="1" required>
+                                </div>
                             </td>
                             <td class="py-4 px-6 text-gray-900">
                                 15,00€
@@ -85,7 +84,7 @@
             </div>
 
 
-            <div class="h-fit shadow-md">
+            <div class="h-fit rounded-lg shadow-md mt-4 lg:mt-0">
                 <div class="font-medium text-sm rounded-t-lg bg-gray-50 py-3 px-2">
                     <h5 class="text-black">Total panier</h5>
                 </div>

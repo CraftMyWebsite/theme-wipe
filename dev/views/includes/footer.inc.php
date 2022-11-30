@@ -1,4 +1,4 @@
-<div class="border-t-2 text-sm">
+<div class="border-t-2 text-sm mt-auto">
     <div class="flex flex-wrap  items-center">
         <div class="px-6 py-6 md:flex-1">
             <p>Copyright © 2022 - Site créer par CraftMyWebsite.fr pour <!--TODO : Récupération du titre du site--></p>
