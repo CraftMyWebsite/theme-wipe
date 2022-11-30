@@ -147,7 +147,7 @@
   </span>
             <!-- Buttons -->
             <div class="inline-flex mt-2 xs:mt-0">
-                <button class="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <button class="px-4 py-2 text-sm font-medium bg-gray-50 border-l border-t border-b border-gray-300 rounded-l hover:bg-gray-200">
                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                          xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -155,7 +155,7 @@
                               clip-rule="evenodd"></path>
                     </svg>
                 </button>
-                <button class="px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <button class="px-4 py-2 text-sm font-medium bg-gray-50 border border-gray-300 rounded-r hover:bg-gray-200">
                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                          xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
