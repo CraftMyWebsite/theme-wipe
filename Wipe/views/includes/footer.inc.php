@@ -6,7 +6,7 @@ use CMW\Model\Core\ThemeModel;
 /** @var CoreController $core */
 /**@var  array $includes*/?>
 
-<div class="border-t-2 text-sm">
+<div class="border-t-2 text-sm mt-auto">
     <div class="flex flex-wrap  items-center">
         <div class="px-6 py-6 md:flex-1">
             <p>Copyright © <?= ThemeModel::fetchConfigValue('footer_year') ?><br>Par <b><a href="https://craftmywebsite.fr/" target="_blank">CraftMyWebsite</a></b> pour <b><?= Utils::getSiteName()?></b></p>

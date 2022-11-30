@@ -37,5 +37,5 @@ use CMW\Utils\Utils;
 
 </head>
 
-<body>
+<body class="flex flex-col min-h-screen">
 <?= $core->cmwWarn() ?>
