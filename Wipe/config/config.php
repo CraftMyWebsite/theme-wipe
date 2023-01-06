@@ -62,7 +62,7 @@
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <div class="form-check form-switch mt-4">
-                                    <input class="form-check-input" type="checkbox" value="1" name="header_allow_login_button" id="header_allow_login_button" <?= ThemeModel::fetchConfigValue('header_allow_login_button') ? 'checked' : '' ?>>
+                                    <input class="form-check-input" type="checkbox" value="1" id="header_allow_login_button" name="header_allow_login_button" <?= ThemeModel::fetchConfigValue('header_allow_login_button') ? 'checked' : '' ?>>
                                     <label class="form-check-label" for="header_allow_login_button"><h6>Connexion <i data-bs-toggle="tooltip" title="Désactive le bouton de connexion mais vous avez toujours accès à la page" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
                                 </div>
                             </div>

@@ -3,7 +3,7 @@
 /* @var \CMW\Entity\Users\UserEntity $user */
 
 use CMW\Utils\SecurityService;
-
+use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Utils;
 $title = Utils::getSiteName() . ' - Profil - ' . $user->getUsername();
 $description = 'Profil de  ' . $user->getUsername(); 
@@ -11,7 +11,7 @@ $description = 'Profil de  ' . $user->getUsername();
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->
-    <img src="<?= getenv("PATH_SUBFOLDER") ?>public/uploads/Wipe/bg.webp" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
