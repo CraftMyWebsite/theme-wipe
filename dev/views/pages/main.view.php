@@ -22,7 +22,7 @@ $description = "Description de votre page";*/
     </div>
 </section>
 
-    <section class="bg-white rounded-lg shadow my-8 mx-2 lg:mx-72">
+    <section class="bg-white rounded-lg shadow my-8 mx-2 lg:mx-72 mt-8 mb-8">
             <div class="container p-4">
                 <?/*= $page->getConverted()*/ ?>
             </div>
