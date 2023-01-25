@@ -497,6 +497,31 @@
         </div>
         <div class="card-in-card mt-4">
             <div class="card-body">
+                <h4>Conditions general :</h4>
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <h6>Titre de section :</h6>
+                        <input type="text" class="form-control" id="footer_title_condition" name="footer_title_condition" value="<?= ThemeModel::fetchConfigValue('footer_title_condition') ?>" required>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" value="1" id="footer_active_condition" name="footer_active_condition" <?= ThemeModel::fetchConfigValue('footer_active_condition') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="footer_active_condition"><h6>Afficher dans le footer</h6></label>
+                            </div>
+                    </div>
+                    <div class="col-12 col-lg-6 mt-2">
+                        <h6>Condition General d'Utilisation :</h6>
+                        <input type="text" class="form-control" id="footer_desc_condition_use" name="footer_desc_condition_use" value="<?= ThemeModel::fetchConfigValue('footer_desc_condition_use') ?>" required>
+                    </div>
+                    <div class="col-12 col-lg-6 mt-2">
+                        <h6>Condition General de Vente :</h6>
+                        <input type="text" class="form-control" id="footer_desc_condition_sale" name="footer_desc_condition_sale" value="<?= ThemeModel::fetchConfigValue('footer_desc_condition_sale') ?>" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-in-card mt-4">
+            <div class="card-body">
                 <h4>Icônes :</h4>
                 <p>Retrouvez les incônes ici : <a href="https://fontawesome.com/search?o=r&m=free" target="_blank">FontAwesome (gratuit)</a></p>
                 <div class="row">

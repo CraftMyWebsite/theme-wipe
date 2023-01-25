@@ -10,8 +10,17 @@ use CMW\Model\Core\ThemeModel;
     <div class="flex flex-wrap  items-center">
         <div class="px-6 py-6 md:flex-1">
             <p>Copyright © <?= ThemeModel::fetchConfigValue('footer_year') ?><br>Par <b><a href="https://craftmywebsite.fr/" target="_blank">CraftMyWebsite</a></b> pour <b><?= Utils::getSiteName()?></b></p>
-            <p class="hidden">Credit thème : PinglsDzn - Z0mblard</p>
+            <p class="hidden">Credit thème : Z0mblard</p>
         </div>
+        <?php if(ThemeModel::fetchConfigValue('footer_active_condition')): ?>
+        <div class="px-6 py-6 md:flex-1">
+            <p><?= ThemeModel::fetchConfigValue('footer_title_condition') ?><br>
+                <b><a href="/cgu"><?= ThemeModel::fetchConfigValue('footer_desc_condition_use') ?></a></b>
+                 / 
+                 <b><a href="/cgv"><?= ThemeModel::fetchConfigValue('footer_desc_condition_sale') ?></a></b>
+             </p>
+        </div>
+        <?php endif; ?>
         <div class="px-4 py-2 w-full sm:w-auto">
             <div class="flex-wrap inline-flex space-x-3">
                 <?php if(ThemeModel::fetchConfigValue('footer_active_facebook')): ?>

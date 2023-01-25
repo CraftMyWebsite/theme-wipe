@@ -101,7 +101,7 @@ return [
     /* - - - - - - - - 
        - - FOOTER - -
     - - - - - - - - - */
-    "footer_year" => "2022",
+    "footer_year" => "2023",
     "footer_open_link_new_tab" => "1",
 
     "footer_link_facebook" => "#",
@@ -119,4 +119,9 @@ return [
     "footer_link_discord" => "#",
     "footer_icon_discord" => "fa-brands fa-discord",
     "footer_active_discord" => "1",
+
+    "footer_title_condition" => "Conditions",
+    "footer_desc_condition_use" => "CGU",
+    "footer_desc_condition_sale" => "CGV",
+    "footer_active_condition" => "1",
 ];
