@@ -1,4 +1,4 @@
-<?php use CMW\Controller\Core\ThemeController; use CMW\Utils\Utils;use CMW\Manager\Lang\LangManager;use CMW\Model\Core\ThemeModel;use CMW\Utils\SecurityService;use CMW\Model\Votes\VotesConfigModel;use CMW\Model\Core\CoreModel;?>
+<?php use CMW\Controller\Core\ThemeController; use CMW\Utils\Utils;use CMW\Manager\Lang\LangManager;use CMW\Model\Core\ThemeModel;use CMW\Manager\Security\SecurityManager;use CMW\Model\Votes\VotesConfigModel;use CMW\Model\Core\CoreModel;?>
 <!-------------->
 <!--Navigation-->
 <!-------------->

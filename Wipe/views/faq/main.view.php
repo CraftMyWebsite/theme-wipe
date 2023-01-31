@@ -1,6 +1,6 @@
 <?php 
 use CMW\Controller\Core\SecurityController;
-use CMW\Utils\SecurityService;
+use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Contact\ContactModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Utils;
@@ -32,7 +32,7 @@ $description = ThemeModel::fetchConfigValue('faq_description');
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 </div>
             <form action="contact" method="post" class="">
-            <?php (new SecurityService())->insertHiddenToken() ?>
+            <?php (new SecurityManager())->insertHiddenToken() ?>
             <div class="flex flex-wrap -mx-4 mb-4">
                 <div class="px-4 w-full md:w-6/12 lg:w-6/12">
                     <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Votre mail :</label>

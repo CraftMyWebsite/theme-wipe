@@ -3,7 +3,7 @@ use CMW\Utils\Utils;
 /* @var \CMW\Entity\News\NewsEntity $news */
 use CMW\Model\Core\ThemeModel;
 use CMW\Controller\Core\SecurityController;
-use CMW\Utils\SecurityService;
+use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
 
 use CMW\Entity\Users\UserEntity;
@@ -118,7 +118,7 @@ $description = ThemeModel::fetchConfigValue('news_description');
         </div>
 <?php endforeach; ?>   
         <form method="post" action="<?= $news->sendComments() ?>" class="">
-            <?php (new SecurityService())->insertHiddenToken() ?>
+            <?php (new SecurityManager())->insertHiddenToken() ?>
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Votre commentaire :</label>
             <textarea name="comments" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Bonjour," required></textarea>
             <div class="text-center mt-4">

@@ -1,6 +1,6 @@
 <?php 
 use CMW\Controller\Core\SecurityController;
-use CMW\Utils\SecurityService;
+use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Contact\ContactModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Utils;

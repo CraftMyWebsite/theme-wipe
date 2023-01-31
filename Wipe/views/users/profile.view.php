@@ -2,7 +2,7 @@
 
 /* @var \CMW\Entity\Users\UserEntity $user */
 
-use CMW\Utils\SecurityService;
+use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Utils;
 $title = Utils::getSiteName() . ' - Profil - ' . $user->getUsername();
@@ -35,7 +35,7 @@ $description = 'Profil de  ' . $user->getUsername();
         <div>
             <p class="text-center uppercase font-bold">Informations personnel</p>
             <form class="space-y-6" action="profile/update" method="post">
-                <?php (new SecurityService())->insertHiddenToken() ?>
+                <?php (new SecurityManager())->insertHiddenToken() ?>
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Votre mail</label>
                     <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="<?= $user->getMail() ?>" required>
@@ -71,7 +71,7 @@ $description = 'Profil de  ' . $user->getUsername();
 
             <div>
                 <form action="" method="post" enctype="multipart/form-data">
-                    <?php (new SecurityService())->insertHiddenToken() ?>
+                    <?php (new SecurityManager())->insertHiddenToken() ?>
                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Changer votre image :</label>
                     <div class="flex">
                         <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-l-lg border border-gray-300 cursor-pointer focus:outline-none" type="file" id="pictureProfile" name="pictureProfile" accept=".png, .jpg, .jpeg, .webp, .gif" required>

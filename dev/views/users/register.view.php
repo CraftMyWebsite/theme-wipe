@@ -2,7 +2,7 @@
 
 /*ACTIVER EN PROD :
 use CMW\Manager\Lang\LangManager;
-use CMW\Utils\SecurityService;
+use CMW\Manager\Security\SecurityManager;
 */
 $title = "Inscription";
 $description = "Description de votre page"; ?>
@@ -24,7 +24,7 @@ $description = "Description de votre page"; ?>
     <div class="relative bg-white rounded-lg shadow">
         <div class="py-6 px-6 lg:px-8">
             <form class="space-y-6" action="" method="post">
-                <?php /* ACTIVER EN PROD : (new SecurityService())->insertHiddenToken()*/ ?>
+                <?php /* ACTIVER EN PROD : (new SecurityManager())->insertHiddenToken()*/ ?>
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Mail</label>
                     <input name="register_email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="<?php /*ACTIVER EN PROD : LangManager::translate("users.users.mail")*/ ?>" required>

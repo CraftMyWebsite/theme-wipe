@@ -1,7 +1,7 @@
 <?php
 use CMW\Model\Core\ThemeModel;
 use CMW\Controller\Core\SecurityController;
-use CMW\Utils\SecurityService;
+use CMW\Manager\Security\SecurityManager;
 use CMW\Utils\Utils;
 $title = Utils::getSiteName() . ' - Connexion';
 $description = 'Connectez-vous sur ' . Utils::getSiteName(); ?>
@@ -23,7 +23,7 @@ $description = 'Connectez-vous sur ' . Utils::getSiteName(); ?>
         <div class="relative bg-white rounded-lg shadow">
             <div class="py-6 px-6 lg:px-8">
                 <form class="space-y-6" action="" method="post">
-                    <?php (new SecurityService())->insertHiddenToken() ?>
+                    <?php (new SecurityManager())->insertHiddenToken() ?>
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mail</label>
                         <input name="login_email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="mail@craftmywebsite.fr" required>

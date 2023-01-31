@@ -1,7 +1,7 @@
 <?php
 
 use CMW\Controller\Core\SecurityController;
-use CMW\Utils\SecurityService;
+use CMW\Manager\Security\SecurityManager;
 
 $title = "Contactez-nous";
 $description = "Contactez-nous dès maintenant"; ?>
@@ -14,7 +14,7 @@ $description = "Contactez-nous dès maintenant"; ?>
     <!-- CONTACT FORM -->
 
     <form action="" method="post">
-        <?php (new SecurityService())->insertHiddenToken() ?>
+        <?php (new SecurityManager())->insertHiddenToken() ?>
         <label>
             email
             <input type="email" name="email" required>
