@@ -2,13 +2,18 @@
 use CMW\Utils\Utils;
 use CMW\Model\Core\ThemeModel;
 use CMW\Controller\Core\SecurityController;
-use CMW\Utils\SecurityService;
+use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
 
+
+/*Check installed package*/
+use CMW\Controller\Core\PackageController;
 /*NEWS BASIC NEED*/
-use CMW\Model\News\NewsModel;
-$newsList = new NewsModel();
-$newsList = $newsList->getSomeNews( ThemeModel::fetchConfigValue('news_number_display'), 'DESC');
+use CMW\Model\News\NewsModel as newsModel;
+if (PackageController::isInstalled("news")) {
+    $newsList = new newsModel;
+    $newsList = $newsList->getSomeNews( ThemeModel::fetchConfigValue('news_number_display'));
+}
 
 /*CONTACT BASIC NEDD*/
 use CMW\Model\Contact\ContactModel;
@@ -77,6 +82,7 @@ $description = Utils::getSiteDescription();
 
 
 <!-- News -->
+<?php if (PackageController::isInstalled("news")): ?>
 <?php if(ThemeModel::fetchConfigValue('news_section_active')): ?>
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
@@ -135,6 +141,28 @@ $description = Utils::getSiteDescription();
     </div>
 </section>
 <?php endif; ?>
+<?php else: ?>
+    <?php if (UsersController::isAdminLogged()) : ?>
+        <section class="py-8">
+            <section class="py-8">
+            <div class="flex flex-no-wrap justify-center items-center py-4">
+                <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+                <div class="px-10 w-auto">
+                    <h2 class="font-semibold text-2xl uppercase">News package not detected</h2>
+                </div>
+                <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+            </div>
+                <div class="container my-8 mx-2 xl:mx-72 relative">
+                    <div class="px-4">
+                        <p>Installer le package News pour beneficier de cette fonctionnalité sur votre page d'accueil.</br>
+                        Ce message ne s'affiche que si vous êtes administrateur !</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+    <?php endif; ?>
+<?php endif; ?>
+
 
 <!-- Personnalisé 1 -->
 <?php if(ThemeModel::fetchConfigValue('custom_section_active_1')): ?>
@@ -202,7 +230,7 @@ $description = Utils::getSiteDescription();
     </div>
     <div class="container mx-auto px-4 xl:px-72">
         <form action="contact" method="post" class="rounded-md shadow-lg p-8">
-            <?php (new SecurityService())->insertHiddenToken() ?>
+            <?php (new SecurityManager())->insertHiddenToken() ?>
             <div class="flex flex-wrap -mx-4 mb-4">
                 <div class="px-4 w-full md:w-6/12 lg:w-6/12">
                     <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Votre mail :</label>
