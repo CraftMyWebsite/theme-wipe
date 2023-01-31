@@ -9,7 +9,7 @@ use CMW\Controller\Users\UsersController;
 /*Check installed package*/
 use CMW\Controller\Core\PackageController;
 /*NEWS BASIC NEED*/
-use CMW\Model\News\NewsModel as newsModel;
+use CMW\Model\News\NewsModel;
 if (PackageController::isInstalled("news")) {
     $newsList = new newsModel;
     $newsList = $newsList->getSomeNews( ThemeModel::fetchConfigValue('news_number_display'));
