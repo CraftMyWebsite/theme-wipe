@@ -127,7 +127,7 @@
                 <a href="#">
                     <div class="rounded-t border-t border-l border-r border-gray-200 p-4">
                         <img class="mx-auto h-48"
-                             src="https://static.lexpress.fr/medias_11483/w_2048,h_1146,c_crop,x_0,y_0/w_1000,h_563,c_fill,g_north/v1494863617/baguette-pain-boulangerie_5879711.jpg">
+                             src="https://resize.elle.fr/article/var/plain_site/storage/images/elle-a-table/les-dossiers-de-la-redaction/news-de-la-redaction/pain-le-vrai-du-faux-des-boulangers-4081383/97919875-2-fre-FR/Pain-le-vrai-du-faux-des-boulangers.jpg">
                         <h4 class="text-center">Du pain.</h4>
                         <div class="flex justify-center">
                             <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
