@@ -1,4 +1,4 @@
-<?php use CMW\Controller\Core\ThemeController; use CMW\Utils\Utils;use CMW\Manager\Lang\LangManager;use CMW\Model\Core\ThemeModel;use CMW\Manager\Security\SecurityManager;use CMW\Model\Votes\VotesConfigModel;use CMW\Model\Core\CoreModel;?>
+<?php use CMW\Controller\Core\ThemeController; use CMW\Utils\Utils;use CMW\Manager\Lang\LangManager;use CMW\Model\Core\ThemeModel;use CMW\Utils\SecurityService;use CMW\Model\Votes\VotesConfigModel;use CMW\Model\Core\CoreModel;?>
 <!-------------->
 <!--Navigation-->
 <!-------------->
@@ -45,7 +45,7 @@
                             <div class="text-center ">
                                 <img class="w-25" src="<?= ThemeModel::fetchImageLink("header_img_logo") ?>" alt="Image introuvable !">
                             </div>
-                            <input class="mt-2 form-control form-control-sm" type="file" id="header_img_logo" name="header_img_logo" accept="png,jpg,jpeg,webp,svg,gif">
+                            <input class="mt-2 form-control form-control-sm" type="file" id="header_img_logo" name="header_img_logo" accept=".png, .jpg, .jpeg, .webp, .gif">
                             <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
                             <div class="form-check form-switch mt-2">
                                 <input class="form-check-input" type="checkbox" value="1" name="header_active_title" id="header_active_title" <?= ThemeModel::fetchConfigValue('header_active_title') ? 'checked' : '' ?>>
