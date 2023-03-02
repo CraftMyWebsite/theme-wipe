@@ -224,6 +224,7 @@ $description = Utils::getSiteDescription();
 <?php endif; ?>
 
 <!-- Contact -->
+<?php if (PackageController::isInstalled("contact")): ?>
 <?php if(ThemeModel::fetchConfigValue('contact_section_active')): ?>
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
@@ -276,4 +277,30 @@ $description = Utils::getSiteDescription();
         </form>
     </div>
 </section>
+<?php endif; ?>
+<?php else: ?>
+    <?php if (UsersController::isAdminLogged()) : ?>
+        <section class="py-8">
+            <div class="container mx-auto px-4 relative">
+                <div id="alert-additional-content-4" class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800" role="alert">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        <span class="sr-only">Info</span>
+                        <h3 class="text-lg font-medium">Vous n'utilisez pas le package Contact</h3>
+                    </div>
+                    <div class="mt-2 mb-4 text-sm">
+                        Le thème Wipe prend en charge le package Contact, pour le moment vous ne l'utilisez pas, installez le si vous voulez en bénéficier.<br>Seuls les administrateurs voient ce message !
+                    </div>
+                    <div class="flex">
+                        <a href="/cmw-admin" target="_blank" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
+                            <p><i class="fa-solid fa-download"></i> Installer le package</p>
+                        </a>
+                        <button type="button" class="text-yellow-800 bg-transparent border border-yellow-800 hover:bg-yellow-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-yellow-300 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-gray-800 dark:focus:ring-yellow-800" data-dismiss-target="#alert-additional-content-4" aria-label="Close">
+                            <p><i class="fa-solid fa-eye-slash"></i> Masquer</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
 <?php endif; ?>
