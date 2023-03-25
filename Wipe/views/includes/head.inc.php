@@ -26,7 +26,7 @@ use CMW\Utils\Utils;
     <link rel="stylesheet" type="text/css"
           href="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/css/style.css">
 
-    <?= Images::getFaviconInclude() ?>
+    <?= ImagesManager::getFaviconInclude() ?>
 
     <?php
     View::loadInclude($includes, "beforeScript", "styles");
