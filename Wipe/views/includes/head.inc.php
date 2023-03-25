@@ -1,7 +1,7 @@
 <?php
 use CMW\Controller\Core\CoreController;
 use CMW\Model\Core\ThemeModel;
-use CMW\Utils\Images;
+use CMW\Manager\Uploads\ImagesManager;
 use CMW\Utils\View;
 use CMW\Utils\Utils;
 
