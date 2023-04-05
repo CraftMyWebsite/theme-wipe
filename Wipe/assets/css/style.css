@@ -103,13 +103,7 @@ strong {
 2. Correct the odd `em` font sizing in all browsers.
 */
 
-code,
-kbd,
-samp,
-pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
-  font-size: 1em; /* 2 */
-}
+
 
 /*
 Add the correct font size in all browsers.
@@ -956,13 +950,7 @@ h4 {
 h5 {
         font-size: 1em;
     }
-pre {
-        background-color: #544242;
-        color: white;
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 10px;
-    }
+
 .sr-only {
   position: absolute;
   width: 1px;

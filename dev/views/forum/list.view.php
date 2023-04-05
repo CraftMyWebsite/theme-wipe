@@ -4,7 +4,7 @@
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
-                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl">Forum</h1>
+                <h1 class="font-bold mb-4 text-2xl md:text-6xl">Forum</h1>
             </div>
         </div>
     </div>
@@ -17,10 +17,10 @@
 
         <div class="w-full shadow-market mb-16">
             <div class="flex py-4 bg-gray-100">
-                <div class="md:w-[55%] px-4 font-pop font-extrabold text-cmw-pink">Contenus importants</div>
-                <div class="hidden md:block w-[10%] font-pop font-extrabold text-center">Topics</div>
-                <div class="hidden md:block w-[10%] font-pop font-extrabold text-center">Messages</div>
-                <div class="hidden md:block w-[25%] font-pop font-extrabold text-center">Dernier messages</div>
+                <div class="md:w-[55%] px-4 font-bold text-cmw-pink">Contenus importants</div>
+                <div class="hidden md:block w-[10%] font-pop font-bold text-center">Topics</div>
+                <div class="hidden md:block w-[10%] font-pop font-bold text-center">Messages</div>
+                <div class="hidden md:block w-[25%] font-pop font-bold text-center">Dernier messages</div>
             </div>
 
             <div class="flex py-6 border-t border-cmw-black">
@@ -30,7 +30,7 @@
                             <i class="text-h4 fa-solid fa-comment"></i>
                         </div>
                         <div class="ml-4">
-                            <div class="font-extrabold font-pop">
+                            <div class="font-bold font-pop">
                                 Informations <span class="badge badge-success"> <i class="fa-solid fa-hand-sparkles mr-2"></i>NEW</span>
                             </div>
                             <div>
@@ -68,7 +68,7 @@
                             <i class="text-h4 fa-solid fa-comment"></i>
                         </div>
                         <div class="ml-4">
-                            <div class="font-extrabold font-pop">
+                            <div class="font-bold font-pop">
                                 Recrutement CMW [ON]
                             </div>
                             <div>
@@ -106,7 +106,7 @@
                             <i class="text-h4 fa-solid fa-comment"></i>
                         </div>
                         <div class="ml-4">
-                            <div class="font-extrabold font-pop">
+                            <div class="font-bold font-pop">
                                 Mise a jour de CraftMyWebsite
                             </div>
                             <div>
@@ -145,10 +145,10 @@
 
         <div class="w-full shadow-market mb-16">
             <div class="flex py-4 bg-gray-100">
-                <div class="md:w-[55%] px-4 font-pop font-extrabold text-cmw-pink">Zone communautaire</div>
-                <div class="hidden md:block w-[10%] font-pop font-extrabold text-center">Topics</div>
-                <div class="hidden md:block w-[10%] font-pop font-extrabold text-center">Messages</div>
-                <div class="hidden md:block w-[25%] font-pop font-extrabold text-center">Dernier messages</div>
+                <div class="md:w-[55%] px-4 font-pop font-bold text-cmw-pink">Zone communautaire</div>
+                <div class="hidden md:block w-[10%] font-pop font-bold text-center">Topics</div>
+                <div class="hidden md:block w-[10%] font-pop font-bold text-center">Messages</div>
+                <div class="hidden md:block w-[25%] font-pop font-bold text-center">Dernier messages</div>
             </div>
 
             <div class="flex py-6 border-t border-cmw-black">
@@ -158,7 +158,7 @@
                             <i class="text-h4 fa-solid fa-comment"></i>
                         </div>
                         <div class="ml-4">
-                            <div class="font-extrabold font-pop">
+                            <div class="font-bold font-pop">
                                 Suggestions / Boite à idées
                             </div>
                             <div>
@@ -196,7 +196,7 @@
                             <i class="text-h4 fa-solid fa-comment"></i>
                         </div>
                         <div class="ml-4">
-                            <div class="font-extrabold font-pop">
+                            <div class="font-bold font-pop">
                                 Report de site hors-la-loi
                             </div>
                             <div>
@@ -238,10 +238,10 @@
 
         <div class="w-full shadow-market mb-16">
             <div class="flex py-4 bg-gray-100">
-                <div class="md:w-[55%] px-4 font-pop font-extrabold text-cmw-pink">Entraide</div>
-                <div class="hidden md:block w-[10%] font-pop font-extrabold text-center">Topics</div>
-                <div class="hidden md:block w-[10%] font-pop font-extrabold text-center">Messages</div>
-                <div class="hidden md:block w-[25%] font-pop font-extrabold text-center">Dernier messages</div>
+                <div class="md:w-[55%] px-4 font-pop font-bold text-cmw-pink">Entraide</div>
+                <div class="hidden md:block w-[10%] font-pop font-bold text-center">Topics</div>
+                <div class="hidden md:block w-[10%] font-pop font-bold text-center">Messages</div>
+                <div class="hidden md:block w-[25%] font-pop font-bold text-center">Dernier messages</div>
             </div>
 
             <div class="flex py-6 border-t border-cmw-black">
@@ -251,7 +251,7 @@
                             <i class="text-h4 fa-solid fa-comment"></i>
                         </div>
                         <div class="ml-4">
-                            <div class="font-extrabold font-pop">
+                            <div class="font-bold font-pop">
                                 Vos Tutoriels
                             </div>
                             <div>
@@ -289,7 +289,7 @@
                             <i class="text-h4 fa-solid fa-comment"></i>
                         </div>
                         <div class="ml-4">
-                            <div class="font-extrabold font-pop">
+                            <div class="font-bold font-pop">
                                 Support
                             </div>
                             <div>

@@ -4,7 +4,7 @@
 /* @var \CMW\Model\Pages\PagesModel $pages */
 /* @var \CMW\Controller\CoreController $core */
 /* @var \CMW\Controller\Menus\MenusController $menu */
-
+use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Utils;
 $title = Utils::getSiteName() . ' - '. ucfirst($page->getTitle());
 $description = 'Visitez notre page ' . ucfirst($page->getTitle());
