@@ -24,7 +24,7 @@ use CMW\Utils\Utils;
 
     <!-- Theme style -->
     <link rel="stylesheet" type="text/css" href="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/css/style.css">
-    <link rel="stylesheet" href="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/css/fontawesome/all.min.css">
+    <link rel="stylesheet" href="<?= getenv("PATH_SUBFOLDER") ?>admin/resources/vendors/fontawesome-free/css/fa-all.min.css">
 
     <?= ImagesManager::getFaviconInclude() ?>
 
