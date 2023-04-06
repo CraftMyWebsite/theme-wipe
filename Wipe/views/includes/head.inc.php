@@ -23,8 +23,8 @@ use CMW\Utils\Utils;
 
 
     <!-- Theme style -->
-    <link rel="stylesheet" type="text/css"
-          href="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/css/style.css">
+    <link rel="stylesheet" href="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/css/fontawesome/all.min.css">
 
     <?= ImagesManager::getFaviconInclude() ?>
 
@@ -33,7 +33,7 @@ use CMW\Utils\Utils;
     ?>
 
     <script src="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/js/flowbite.js"></script>
-    <script src="https://kit.fontawesome.com/eced519d56.js" crossorigin="anonymous"></script>
+
 
 </head>
 
