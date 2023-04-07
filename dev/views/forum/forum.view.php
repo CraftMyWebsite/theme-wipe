@@ -101,8 +101,8 @@
             <div class="relative flex py-2 border-t bg-gray-50 hover:bg-gray-100">
                 <div class="md:w-[55%] px-5 relative">
                     <a class="flex flex-wrap hover:text-blue-800" href="subforum.php">
-                        <div class="w-12 shadow-xl">
-                            <img src="https://randomuser.me/api/portraits/women/33.jpg" />
+                        <div class="w-12 h-12 shadow-xl">
+                            <img style="object-fit: fill; max-height: 48px; max-width: 48px" width="48px" height="48px" src="https://voyza.fr/public/uploads/users/oTFhgvOIwBy657uDEaW2kizf.png" />
                         </div>
                         <div class="ml-4">
                             <p>Je suis un fifou qui fait un super</p>
@@ -110,11 +110,15 @@
                             </p>
                         </div>
                         <div class="absolute top-0 right-0">
-                            <i data-tooltip-target="tooltip-pined" class="fa-solid fa-thumbtack fa-sm text-red-600"></i>
-                            <div id="tooltip-pined" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                            <i data-tooltip-target="tooltip-important" class="fa-solid fa-triangle-exclamation fa-sm text-orange-500 ml-2"></i>
+                            <div id="tooltip-important" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                                 Important
                             </div>
-                            <i data-tooltip-target="tooltip-closed" class="fa-solid fa-lock fa-sm text-yellow-300 ml-6"></i>
+                            <i data-tooltip-target="tooltip-pined" class="fa-solid fa-thumbtack fa-sm text-red-600 ml-2"></i>
+                            <div id="tooltip-pined" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                Épinglé
+                            </div>
+                            <i data-tooltip-target="tooltip-closed" class="fa-solid fa-lock fa-sm text-yellow-300 ml-2"></i>
                             <div id="tooltip-closed" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                                 Fermé
                             </div>

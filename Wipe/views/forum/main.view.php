@@ -53,7 +53,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                         <h3 class="text-lg font-medium">Il n'existe pour le moment aucun forum</h3>
                     </div>
                     <div class="mt-2 mb-4 text-sm">
-                        Revenez un peu plus tard nos administrateurs travaille actuellement dessus !
+                        Revenez un peu plus tard nos administrateurs travaillent actuellement dessus !
                     </div>
                 </div>
             </div>

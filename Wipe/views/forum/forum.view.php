@@ -2,7 +2,7 @@
 
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Utils;
-
+use CMW\Controller\Users\UsersController;
 $title = "Titre de la page";
 $description = "Description de votre page";
 ?>
@@ -19,7 +19,7 @@ $description = "Description de votre page";
 </section>
 
 
-<!-- Il faut gérer ceci ! 
+<!-- Il faut gérer ceci !
         <section class="py-8 ">
             <div class="container mx-auto px-4 relative">
                 <div id="alert-additional-content-4" class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800" role="alert">
@@ -66,34 +66,208 @@ $description = "Description de votre page";
 </section>
 
 
-
-
-
+<section class="lg:grid grid-cols-4 gap-6 my-8 sm:mx-12 2xl:mx-72 ">
+    <div class="lg:col-span-3 h-fit">
 
 
 <?php if ($forumModel->hasSubForums($forum->getId())): ?>
-    <h1>Sous-Forums</h1>
-    <div class="container">
-        <?php foreach ($forumModel->getForumByParent($forum->getId(), true) as $forumEntity): ?>
-            <h3><?= $forumEntity->getId() . ". " . $forumEntity->getName() ?></h3>
-            <a href="/<?= $forumEntity->getLink() ?>">Aller vers ce Forum</a>
-        <?php endforeach; ?>
-    </div>
+        <div class="w-full shadow-md mb-10">
+            <div class="flex py-4 bg-gray-100">
+                <div class="md:w-[55%] px-4 font-bold">Sous-Forums</div>
+                <div class="hidden md:block w-[10%] font-bold text-center">Topics</div>
+                <div class="hidden md:block w-[10%] font-bold text-center">Messages</div>
+                <div class="hidden md:block w-[25%] font-bold text-center">Dernier messages</div>
+            </div>
+
+            <?php foreach ($forumModel->getForumByParent($forum->getId(), true) as $forumEntity): ?>
+            <div class="flex py-6 border-t bg-gray-50 hover:bg-gray-100">
+                <div class="md:w-[55%] px-5">
+                    <a class="flex" href="/<?= $forumEntity->getLink() ?>">
+                        <div class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
+                            <?= $forumEntity->getId() . ". " . $forumEntity->getFontAwesomeIcon("fa-xl") ?>
+                        </div>
+                        <div class="ml-4">
+                            <div class="font-bold">
+                                <?= $forumEntity->getId() . ". " . $forumEntity->getName() ?>
+                            </div>
+                            <div>
+                                <?= $forumEntity->getId() . ". " . $forumEntity->getDescription() ?>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="hidden md:block w-[10%] text-center my-auto"><?= $forumModel->countTopicInForum($forumEntity->getId()) ?></div>
+                <div class="hidden md:inline-block w-[10%] text-center my-auto">NA</div>
+                <!--Dernier message-->
+                <div class="hidden md:block w-[25%] my-auto">
+                    <div class="flex text-sm">
+                        <a href="#">
+                            <div tabindex="0" class="avatar w-10">
+                                <div class="w-fit rounded-full ">
+                                    <img src="https://placeimg.com/80/80/people" />
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="ml-2">
+                                <div class="">Vous</div>
+                                <div>Mardi 09 Juin, 19:42</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
 <?php endif ?>
-<h1>Topics</h1>
-<div class="container">
-    <a href="<?= $forum->getSlug() ?>/add" class="btn">Ajouter un topic</a>
+
+
+
+        <div class="w-full shadow-md mb-10">
+            <div class="flex py-4 bg-gray-100">
+                <div class="md:w-[55%] px-4 font-bold">Topics</div>
+                <div class="hidden md:block w-[10%] font-bold text-center">Affichages</div>
+                <div class="hidden md:block w-[10%] font-bold text-center">Réponses</div>
+                <div class="hidden md:block w-[25%] font-bold text-center">Dernier messages</div>
+            </div>
+
+
+    
     <?php foreach ($topicModel->getTopicByForum($forum->getId()) as $topic): ?>
+            <div class="relative flex py-2 border-t bg-gray-50 hover:bg-gray-100">
+                <div class="md:w-[55%] px-5 relative">
+                    <a class="flex flex-wrap hover:text-blue-800" href="/<?= $topic->getLink() ?>">
+                        <div class="w-12 h-12 shadow-xl">
+                            <img style="object-fit: fill; max-height: 48px; max-width: 48px" width="48px" height="48px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
+                        </div>
+                        <div class="ml-4">
+                            <p><?= $topic->getName() ?></p>
+                            <p><span class="font-medium"><?= $topic->getUser()->getUsername() ?></span> <span class="text-sm">le <?= $topic->getCreated() ?></span></p>
+                            </p>
+                        </div>
+                        <div class="absolute top-0 right-0">
+                            <?= $topic->isImportant() ? "
+                            <i data-tooltip-target='tooltip-important' class='fa-solid fa-triangle-exclamation fa-sm text-orange-500'></i>
+                            <div id='tooltip-important' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
+                                Important
+                            </div>
+                            " : "" ?>
+                            <?= $topic->isPinned() ? "
+                            <i data-tooltip-target='tooltip-pined' class='fa-solid fa-thumbtack fa-sm text-red-600 ml-2'></i>
+                            <div id='tooltip-pined' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
+                                Épinglé
+                            </div>
+                             " : "" ?>
+                            <?= $topic->isDisallowReplies() ? "
+                            <i data-tooltip-target='tooltip-closed' class='fa-solid fa-lock fa-sm text-yellow-300 ml-2'></i>
+                            <div id='tooltip-closed' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
+                                Fermé
+                            </div>
+                             " : "" ?>
+                        </div>
+                    </a>
+                </div>
+                <div class="hidden md:block w-[10%] text-center my-auto">NA</div>
+                <div class="hidden md:inline-block w-[10%] text-center my-auto">NA</div>
+                <!--Dernier message-->
+                <div class="hidden md:block w-[25%] my-auto">
+                    <div class="flex text-sm">
+                        <a href="#">
+                            <div tabindex="0" class="avatar w-10">
+                                <div class="w-fit">
+                                    <img src="https://randomuser.me/api/portraits/women/33.jpg" />
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="ml-2">
+                                <div class="">Vous</div>
+                                <div>Mardi 09 Juin, 19:42</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <?php if (UsersController::isAdminLogged()) : ?>
+                <!------------------
+                 -- ADMIN SECTION --
+                -------------------->
+                <i data-modal-target="defaultModal-<?= $topic->getId() ?>" data-modal-toggle="defaultModal-<?= $topic->getId() ?>" data-tooltip-target="tooltip-admin" class="absolute right-1 top-3 fa-solid fa-lg fa-screwdriver-wrench text-blue-800 ml-6 "></i>
+                <div id="tooltip-admin" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                    Administration du topic
+                </div>
+                <!------------------
+                 --- ADMIN MODAL ---
+                -------------------->
+                <div id="defaultModal-<?= $topic->getId() ?>" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                    <div class="relative w-full h-full max-w-2xl md:h-auto">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <!-- Modal header -->
+                            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                    Gestion de <?= $topic->getName() ?>
+                                </h3>
+                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal-<?= $topic->getId() ?>">
+                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="p-4">
+                                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Déplacer vers</label>
+                                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected>Ne pas déplacer</option>
+                                    <option>Un autre topic</option>
+                                </select>
 
-        <h3 <?= $topic->isImportant() ? " style='color: red'" : "" ?>>
-            <?= $topic->getId() . ". " . $topic->getName() ?> <?= $topic->isPinned() ? " - épinglé" : "" ?>
-        </h3>
-        <p><?= $topic->getCreated() ?> ----- <?= $topic->getUpdate() ?></p>
-        <a href="/<?= $topic->getLink() ?>">Aller vers ce Topic</a>
-        =>
-        <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getPinnedLink() ?>">
-            <?= $topic->isPinned() ? " Désépingler ce topic" : " Épingler ce topic" ?>
-        </a>
+
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="flex justify-between p-6 space-x-2 border-t border-gray-200 rounded-b">
+                                <button type="button" class="text-gray-700 border-2 border-red-700 hover:border-red-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-trash fa-lg"></i> Corbeille</button>
+                                <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getPinnedLink() ?>" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-thumbtack text-red-600 fa-lg"></i><?= $topic->isPinned() ? " Désépingler" : " Épingler" ?></a>
+                                <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getDisallowRepliesLink() ?>" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-lock text-yellow-300 fa-lg"></i><?= $topic->isDisallowReplies() ? " Ouvrir" : " Clore" ?></a>
+                                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">Valider</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+            </div>
     <?php endforeach; ?>
-</div>
 
+
+
+
+
+
+        </div>
+    </div>
+
+
+    <div class="h-fit">
+        <div class="text-center mb-4">
+            <a href="<?= $forum->getSlug() ?>/add" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-pen-to-square"></i> Créer un topic</a>
+        </div>
+
+        <div class="w-full shadow-md mb-6">
+            <div class="flex py-4 bg-gray-100 border-b">
+                <div class="px-4 font-bold">Widgets 1</div>
+            </div>
+
+            <div class="px-2 py-4">
+                <p>Des trucs cool</p>
+            </div>
+        </div>
+
+        <div class="w-full shadow-md mb-6">
+            <div class="flex py-4 bg-gray-100 border-b">
+                <div class="px-4 font-bold">Widgets 2</div>
+            </div>
+
+            <div class="px-2 py-4">
+                <p>D'autres trucs cool</p>
+            </div>
+        </div>
+    </div>
+</section>
