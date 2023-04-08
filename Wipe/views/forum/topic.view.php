@@ -74,67 +74,178 @@ $description = "Description de votre page";
 
 
 
-    <section>
-        <div class="container">
-            <h2><?= "{$topic->getId()}. {$topic->getName()}" ?></h2>
-            <p>
-                <?= $topic->getContent() ?>
-            </p>
-        </div>
-        <div class="container">
-            <h3>Réponses :</h3>
-            <?php if (!$responseModel->countResponseInTopic($topic->getId())): ?>
-                <h4 style="text-align: center">Aucune réponse...</h4>
+<section class="my-8 sm:mx-12 2xl:mx-72">
+    <div class="rounded-md shadow-lg p-8">
+        <section>
+            <div class="flex justify-between">
+                <h4><?= $topic->getName() ?></h4>
+                <div class="">
+                    <i data-tooltip-target="tooltip-important" class="fa-solid fa-triangle-exclamation text-orange-500 ml-4"></i>
+                    <div id="tooltip-important" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                        Important
+                    </div>
+                    <i data-tooltip-target="tooltip-pined" class="fa-solid fa-thumbtack text-red-600 ml-4"></i>
+                    <div id="tooltip-pined" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                        Épinglé
+                    </div>
+                    <i data-tooltip-target="tooltip-closed" class="fa-solid fa-lock text-yellow-300 ml-4"></i>
+                    <div id="tooltip-closed" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                        Fermé
+                    </div>
+                </div>
+            </div>
+
+            <p><small>Discussion dans crée par <?= $topic->getUser()->getUserName() ?>, le <?= $topic->getCreated() ?></small></p>
+            <?php if ($topic->getTags() === []): ?>
+            <p><small>Ce topic ne possède pas de tags</small></p>
+            <?php else: ?>
+                <p><small>Tags :</small> 
+                <?php foreach ($topic->getTags() as $tag): ?>
+                        <small><span class="px-1 bg-gray-200 rounded mr-1"><?= $tag->getContent() ?></span></small>
+                <?php endforeach; ?>
+                </p>
             <?php endif; ?>
-            <?php foreach ($responseModel->getResponseByTopic($topic->getId()) as $response) : ?>
-                <h4><?= $response->getContent() ?></h4>
-                <span><?= $response->getUser()->getUsername() ?></span>
-                <span><?= $response->getCreated() ?></span>
-                <span><?= $response->getUpdate() ?></span>
+
+        </section>
+
+        <section class="border mt-4">
+            <div class="flex justify-between bg-gray-200 p-2">
+                <p><?= $topic->getCreated() ?></p>
+                <p>#1</p>
+            </div>
+            <div class="lg:grid grid-cols-5">
+                <div class="p-4 text-center ">
+                    <div class="bg-gray-100 p-2">
+                        <div class="w-36 h-36 mx-auto border">
+                            <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
+                        </div>
+                    </div>
+                    <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getUserName() ?></h5>
+                    <div class="bg-gray-100 pb-1">
+                        <p><small>Grade forum NA</small></p>
+                    </div>
+                    <div class="px-4 pb-2 bg-gray-100">
+                        <div class="border">
+                            <div class="grid grid-cols-3">
+                                <div>
+                                    <p><i class="fa-solid fa-comments fa-xs text-gray-600"></i></p>
+                                    <p><small>NA</small></p>
+                                </div>
+                                <div>
+                                    <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
+                                    <p><small>NA</small></p>
+                                </div>
+                                <div>
+                                    <p><i class="fa-solid fa-trophy fa-xs text-gray-600"></i></p>
+                                    <p><small>NA</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-4 py-4 pr-2">
+                    <div class="border p-2 h-fit">
+                        <?= $topic->getContent() ?>
+                        <div class="flex justify-between mt-4">
+                            <p><small><?= $topic->getUser()->getUserName() ?>, <?= $topic->getCreated() ?></small></p>
+                            <p>#1</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <?php if (!$responseModel->countResponseInTopic($topic->getId())): ?>
+    <h4 style="text-align: center">Soyez le premier à répondre !</h4>
+<?php endif; ?>
+<?php foreach ($responseModel->getResponseByTopic($topic->getId()) as $response) : ?>
+<section class="border mt-4">
+            <div class="flex justify-between bg-gray-200 p-2">
+                <p><?= $response->getCreated() ?></p>
+                <p>#1</p>
+            </div>
+            <div class="lg:grid grid-cols-5">
+                <div class="p-4 text-center ">
+                    <div class="bg-gray-100 p-2">
+                        <div class="w-36 h-36 mx-auto border">
+                            <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $response->getUser()->getUserPicture()->getImageName() ?>" />
+                        </div>
+                    </div>
+                    <h5 class="font-semibold bg-gray-200"><?= $response->getUser()->getUsername() ?></h5>
+                    <div class="bg-gray-100 pb-1">
+                        <p><small>Grade forum NA</small></p>
+                    </div>
+                    <div class="px-4 pb-2 bg-gray-100">
+                        <div class="border">
+                            <div class="grid grid-cols-3">
+                                <div>
+                                    <p><i class="fa-solid fa-comments fa-xs text-gray-600"></i></p>
+                                    <p><small>NA</small></p>
+                                </div>
+                                <div>
+                                    <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
+                                    <p><small>NA</small></p>
+                                </div>
+                                <div>
+                                    <p><i class="fa-solid fa-trophy fa-xs text-gray-600"></i></p>
+                                    <p><small>NA</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-4 py-4 pr-2">
+                    <div class="border p-2 h-fit">
+                        <?= $response->getContent() ?>
+                        <div class="flex justify-between mt-4">
+                            <p><small><?= $response->getUser()->getUserName() ?>, <?= $response->getCreated() ?></small></p>
+                            <p>#1</p>
+                        </div>
+                    </div>
+                </div>
                 <?php if ($response->isSelfReply()): ?>
                     <a href="<?= $response->deleteLink() ?>">Supprimer ma réponse</a>
                 <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
-        <hr>
-    </section>
+            </div>
+        </section>
+<?php endforeach; ?>
+
+
 
 <?php if($topic->isDisallowReplies()): ?>
 
     <section>
-        Les réponses sont désactivés sur ce topic.
+        Ce topic est clos
     </section>
 
 <?php else: ?>
-
-    <section>
-        <form action="" method="post">
-            <?php (new SecurityManager())->insertHiddenToken() ?>
-            <label style="display:block;" for="topicResponse">Votre réponse : </label>
-            <input hidden type="text" name="topicId" value="<?= $topic->getId() ?>">
-            <textarea required name="topicResponse" id="summernote-1" cols="30" rows="10"></textarea>
-            <input type="submit" value="Envoyer !">
-        </form>
-    </section>
-
-<?php endif; ?>
-
-<?php if ($topic->getTags() === []): ?>
-
-    <div class="container" style="margin-top: 25px">
-        <h5>Ce topic ne possède pas de tags</h5>
+        <section class="border mt-4">
+            <div class="bg-gray-200 p-2">
+                <p><b>Répondre à ce topic :</b></p>
+            </div>
+            <div class="lg:grid grid-cols-5">
+                <div class="p-4 text-center ">
+                        <div class="bg-gray-100 pt-2">
+                            <div class="w-36 h-36 mx-auto border">
+                                <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
+                            </div>
+                            <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getUserName() ?></h5>
+                        </div>
+                    </div>
+                    <div class="col-span-4 py-4 pr-2">
+                        <div class="h-fit">
+                            <form action="" method="post">
+                            <?php (new SecurityManager())->insertHiddenToken() ?>
+                                <input hidden type="text" name="topicId" value="<?= $topic->getId() ?>">
+                                <textarea class="w-full" name="topicResponse" id="summernote-1" required></textarea>
+                            <div class="flex justify-end mt-2">
+                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5"><i class="fa-solid fa-reply"></i> Poster ma réponse</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
     </div>
-
-<?php else: ?>
-
-    <div class="container" style="margin-top: 25px">
-        Voici les tags de ce topic:
-
-        <ul>
-            <?php foreach ($topic->getTags() as $tag): ?>
-                <li>#<?= $tag->getContent() ?></li>
-            <?php endforeach; ?>
-        </ul>
-
-    </div>
+</section>
 <?php endif; ?>

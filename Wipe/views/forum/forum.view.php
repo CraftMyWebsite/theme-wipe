@@ -167,7 +167,7 @@ $description = "Description de votre page";
                         </div>
                     </a>
                 </div>
-                <div class="hidden md:block w-[10%] text-center my-auto">NA</div>
+                <div class="hidden md:block w-[10%] text-center my-auto"><?= $responseModel->countResponseInTopic($topic->getId()) ?></div>
                 <div class="hidden md:inline-block w-[10%] text-center my-auto">NA</div>
                 <!--Dernier message-->
                 <div class="hidden md:block w-[25%] my-auto">
@@ -191,7 +191,7 @@ $description = "Description de votre page";
                 <!------------------
                  -- ADMIN SECTION --
                 -------------------->
-                <i data-modal-target="defaultModal-<?= $topic->getId() ?>" data-modal-toggle="defaultModal-<?= $topic->getId() ?>" data-tooltip-target="tooltip-admin" class="absolute right-1 top-3 fa-solid fa-lg fa-screwdriver-wrench text-blue-800 ml-6 "></i>
+                <i data-modal-target="defaultModal-<?= $topic->getId() ?>" data-modal-toggle="defaultModal-<?= $topic->getId() ?>" data-tooltip-target="tooltip-admin" class="absolute right-1 top-8 fa-solid fa-lg fa-screwdriver-wrench text-blue-800 ml-6 "></i>
                 <div id="tooltip-admin" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                     Administration du topic
                 </div>
@@ -246,10 +246,11 @@ $description = "Description de votre page";
 
 
     <div class="h-fit">
+        <?php if(UsersController::isUserLogged()): ?>
         <div class="text-center mb-4">
             <a href="<?= $forum->getSlug() ?>/add" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-pen-to-square"></i> Créer un topic</a>
         </div>
-
+        <?php endif; ?>
         <div class="w-full shadow-md mb-6">
             <div class="flex py-4 bg-gray-100 border-b">
                 <div class="px-4 font-bold">Widgets 1</div>
