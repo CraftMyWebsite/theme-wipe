@@ -105,7 +105,7 @@
                             <img style="object-fit: fill; max-height: 48px; max-width: 48px" width="48px" height="48px" src="https://voyza.fr/public/uploads/users/oTFhgvOIwBy657uDEaW2kizf.png" />
                         </div>
                         <div class="ml-4">
-                            <p>Je suis un fifou qui fait un super</p>
+                            <p>Bonsoir !</p>
                             <p><span class="font-medium">Zomb</span> <span class="text-sm">le </span></p>
                             </p>
                         </div>
@@ -149,7 +149,7 @@
                 <!------------------
                  -- ADMIN SECTION --
                 -------------------->
-                <i data-modal-target="defaultModal" data-modal-toggle="defaultModal" data-tooltip-target="tooltip-admin" class="absolute right-1 top-3 fa-solid fa-lg fa-screwdriver-wrench text-blue-800 ml-6 "></i>
+                <i data-modal-target="defaultModal" data-modal-toggle="defaultModal" data-tooltip-target="tooltip-admin" class="absolute right-1 top-8 fa-solid fa-lg fa-screwdriver-wrench text-blue-800 ml-6 "></i>
                 <div id="tooltip-admin" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                     Administration du topic
                 </div>
@@ -180,13 +180,20 @@
                                 </select>
 
 
+                                    <h6 class="font-semibold mt-4">Marquer comme :</h6>
+                                    <ul class="ml-3">
+                                        <li class="mb-2"><a class="hover:text-blue-600 cursor-pointer"><i class="fa-solid fa-triangle-exclamation text-orange-500 fa-lg"></i> Important</a></li>
+                                        <li class="mb-2"><a class="hover:text-blue-600 cursor-pointer"><i class="fa-solid fa-thumbtack text-red-600 fa-lg"></i> Épingler</a></li>
+                                        <li class="mb-2"><a class="hover:text-blue-600 cursor-pointer"><i class="fa-solid fa-lock text-yellow-300 fa-lg"></i> Fermer</a></li>
+                                    </ul>
+
+
+
                             </div>
                             <!-- Modal footer -->
                             <div class="flex justify-between p-6 space-x-2 border-t border-gray-200 rounded-b">
-                                <button type="button" class="text-gray-700 border-2 border-red-700 hover:border-red-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-trash fa-lg"></i> Corbeille</button>
-                                <button type="button" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-thumbtack text-red-600 fa-lg"></i> Épingler</button>
-                                <button type="button" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-lock text-yellow-300 fa-lg"></i> Clore</button>
-                                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">Valider</button>
+                                <button type="button" class="text-gray-700 border-2 border-red-700 hover:border-red-800 font-medium rounded-md text-sm p-1"><i class="fa-solid fa-trash fa-lg"></i> Supprimer</button>
+                                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm p-1">Valider</button>
                             </div>
                         </div>
                     </div>
