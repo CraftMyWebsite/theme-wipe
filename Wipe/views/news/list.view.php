@@ -27,7 +27,7 @@ $description = ThemeModel::fetchConfigValue('news_description');
                         <div class="h-full relative">
                             <img src="<?= $news->getImageLink() ?>" class="h-full w-full" style="object-fit: fill;" alt="..."/>
                             <div class="absolute bg-blue-600 font-semibold leading-tight left-0 ml-3 mt-3 px-3 py-2 text-center text-white top-0">
-                                <div class="text-sm"><?= $news->getAuthor()->getUsername() ?></div>
+                                <div class="text-sm"><?= $news->getAuthor()->getPseudo() ?></div>
                             </div>
                         </div>
                     </div>

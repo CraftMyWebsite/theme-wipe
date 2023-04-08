@@ -87,7 +87,7 @@ $description = ThemeModel::fetchConfigValue('faq_description');
                     <div class="flex flex-wrap justify-between">
                         <div class="font-medium">- <?= $faq->getQuestion() ?> :</div>
                         <?php if(ThemeModel::fetchConfigValue('faq_display_autor')): ?>
-                        <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs"><?= $faq->getAuthor()->getUsername() ?></div>
+                        <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs"><?= $faq->getAuthor()->getPseudo() ?></div>
                         <?php endif; ?>
                     </div>
                     <div class="ml-4"><?= $faq->getResponse() ?></div>

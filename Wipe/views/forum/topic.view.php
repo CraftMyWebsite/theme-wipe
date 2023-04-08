@@ -95,7 +95,7 @@ $description = "Description de votre page";
                 </div>
             </div>
 
-            <p><small>Discussion dans crée par <?= $topic->getUser()->getUserName() ?>, le <?= $topic->getCreated() ?></small></p>
+            <p><small>Discussion dans crée par <?= $topic->getUser()->getPseudo() ?>, le <?= $topic->getCreated() ?></small></p>
             <?php if ($topic->getTags() === []): ?>
             <p><small>Ce topic ne possède pas de tags</small></p>
             <?php else: ?>
@@ -120,7 +120,7 @@ $description = "Description de votre page";
                             <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
                         </div>
                     </div>
-                    <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getUserName() ?></h5>
+                    <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
                     <div class="bg-gray-100 pb-1">
                         <p><small>Grade forum NA</small></p>
                     </div>
@@ -147,7 +147,7 @@ $description = "Description de votre page";
                     <div class="border p-2 h-fit">
                         <?= $topic->getContent() ?>
                         <div class="flex justify-between mt-4">
-                            <p><small><?= $topic->getUser()->getUserName() ?>, <?= $topic->getCreated() ?></small></p>
+                            <p><small><?= $topic->getUser()->getPseudo() ?>, <?= $topic->getCreated() ?></small></p>
                             <p>#1</p>
                         </div>
                     </div>
@@ -171,7 +171,7 @@ $description = "Description de votre page";
                             <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $response->getUser()->getUserPicture()->getImageName() ?>" />
                         </div>
                     </div>
-                    <h5 class="font-semibold bg-gray-200"><?= $response->getUser()->getUsername() ?></h5>
+                    <h5 class="font-semibold bg-gray-200"><?= $response->getUser()->getPseudo() ?></h5>
                     <div class="bg-gray-100 pb-1">
                         <p><small>Grade forum NA</small></p>
                     </div>
@@ -198,7 +198,7 @@ $description = "Description de votre page";
                     <div class="border p-2 h-fit">
                         <?= $response->getContent() ?>
                         <div class="flex justify-between mt-4">
-                            <p><small><?= $response->getUser()->getUserName() ?>, <?= $response->getCreated() ?></small></p>
+                            <p><small><?= $response->getUser()->getPseudo() ?>, <?= $response->getCreated() ?></small></p>
                             <p>#1</p>
                         </div>
                     </div>
@@ -229,7 +229,7 @@ $description = "Description de votre page";
                             <div class="w-36 h-36 mx-auto border">
                                 <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
                             </div>
-                            <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getUserName() ?></h5>
+                            <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
                         </div>
                     </div>
                     <div class="col-span-4 py-4 pr-2">

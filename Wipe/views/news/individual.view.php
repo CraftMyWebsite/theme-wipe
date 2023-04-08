@@ -31,7 +31,7 @@ $description = ThemeModel::fetchConfigValue('news_description');
             <div>
                 <img class="mx-auto rounded-lg" src="<?= $news->getImageLink() ?>" height="90%" width="90%" alt="...">
                 <div class="text-center mt-2">
-                    <?= $news->getAuthor()->getUsername() ?>
+                    <?= $news->getAuthor()->getPseudo() ?>
                 </div>
                 <div class="text-center mt-2">
                     <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs"><?= $news->getDateCreated() ?></div>
@@ -86,7 +86,7 @@ $description = ThemeModel::fetchConfigValue('news_description');
             <div class="col-span-4 px-4 md:px-0">
 
                 <div class="flex justify-between">
-                    <div class="font-medium"><?= $comment->getUser()->getUsername() ?> :</div>
+                    <div class="font-medium"><?= $comment->getUser()->getPseudo() ?> :</div>
                     <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs uppercase"><?= $comment->getDate() ?></div>
                 </div>
 

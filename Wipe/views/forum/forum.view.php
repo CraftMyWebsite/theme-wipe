@@ -142,7 +142,7 @@ $description = "Description de votre page";
                         </div>
                         <div class="ml-4">
                             <p><?= $topic->getName() ?></p>
-                            <p><span class="font-medium"><?= $topic->getUser()->getUsername() ?></span> <span class="text-sm">le <?= $topic->getCreated() ?></span></p>
+                            <p><span class="font-medium"><?= $topic->getUser()->getPseudo() ?></span> <span class="text-sm">le <?= $topic->getCreated() ?></span></p>
                             </p>
                         </div>
                         <div class="absolute top-0 right-0">

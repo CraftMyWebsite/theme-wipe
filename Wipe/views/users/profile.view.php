@@ -5,8 +5,8 @@
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Utils;
-$title = Utils::getSiteName() . ' - Profil - ' . $user->getUsername();
-$description = 'Profil de  ' . $user->getUsername(); 
+$title = Utils::getSiteName() . ' - Profil - ' . $user->getPseudo();
+$description = 'Profil de  ' . $user->getPseudo(); 
 ?>
 
 <section class="bg-gray-800 relative text-white">
@@ -25,7 +25,7 @@ $description = 'Profil de  ' . $user->getUsername();
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= $user->getUsername() ?></h2>
+            <h2 class="font-semibold text-2xl uppercase"><?= $user->getPseudo() ?></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
@@ -42,7 +42,7 @@ $description = 'Profil de  ' . $user->getUsername();
                 </div>
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Pseudo / Nom d'affichage</label>
-                    <input type="text" name="pseudo" id="pseudo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="<?= $user->getUsername() ?>" required>
+                    <input type="text" name="pseudo" id="pseudo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="<?= $user->getPseudo() ?>" required>
                 </div>
                 <div>
                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Mot de passe</label>
@@ -65,7 +65,7 @@ $description = 'Profil de  ' . $user->getUsername();
                 <?php if (!is_null($user->getUserPicture()?->getImageName())): ?>
                 <!--RECUPERER L'iMAGE-->
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Votre image :</label>
-                <img class="mx-auto rounded-lg border border-gray-300 shadow-xl" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $user->getUserPicture()->getImageName() ?>" height="50%" width="50%" alt="Image de profil de <?= $user->getUsername() ?>">
+                <img class="mx-auto rounded-lg border border-gray-300 shadow-xl" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $user->getUserPicture()->getImageName() ?>" height="50%" width="50%" alt="Image de profil de <?= $user->getPseudo() ?>">
                 <?php endif; ?>
             </div>
 
