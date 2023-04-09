@@ -70,7 +70,7 @@ $description = "Description de votre page";
     <div class="lg:col-span-3 h-fit">
 
 
-<?php if ($forumModel->getForumByParent($forum->getId(), true)): ?>
+<?php if ($forumModel->getSubforumByForum($forum->getId(), true)): ?>
         <div class="w-full shadow-md mb-10">
             <div class="flex py-4 bg-gray-100">
                 <div class="md:w-[55%] px-4 font-bold">Sous-Forums</div>
@@ -79,7 +79,7 @@ $description = "Description de votre page";
                 <div class="hidden md:block w-[25%] font-bold text-center">Dernier messages</div>
             </div>
 
-            <?php foreach ($forumModel->getForumByParent($forum->getId(), true) as $forumEntity): ?>
+            <?php foreach ($forumModel->getSubforumByForum($forum->getId(), true) as $forumEntity): ?>
             <div class="flex py-6 border-t bg-gray-50 hover:bg-gray-100">
                 <div class="md:w-[55%] px-5">
                     <a class="flex" href="/<?= $forumEntity->getLink() ?>">

@@ -96,7 +96,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                 <div class="hidden md:block w-[10%] font-bold text-center">Messages</div>
                 <div class="hidden md:block w-[25%] font-bold text-center">Dernier messages</div>
             </div>
-            <?php foreach ($forumModel->getForumByParent($category->getId()) as $forumObj): ?>
+            <?php foreach ($forumModel->getForumByCat($category->getId()) as $forumObj): ?>
             <div class="flex py-6 border-t  hover:bg-gray-50">
                 <div class="md:w-[55%] px-5">
                     <a class="flex" href="/<?= $forumObj->getLink() ?>">
