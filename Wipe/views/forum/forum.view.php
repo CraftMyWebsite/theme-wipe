@@ -167,8 +167,8 @@ $description = "Description de votre page";
                         </div>
                     </a>
                 </div>
-                <div class="hidden md:block w-[10%] text-center my-auto"><?= $responseModel->countResponseInTopic($topic->getId()) ?></div>
-                <div class="hidden md:inline-block w-[10%] text-center my-auto">NA</div>
+                <div class="hidden md:block w-[10%] text-center my-auto">NA</div>
+                <div class="hidden md:inline-block w-[10%] text-center my-auto"><?= $responseModel->countResponseInTopic($topic->getId()) ?></div>
                 <!--Dernier message-->
                 <div class="hidden md:block w-[25%] my-auto">
                     <div class="flex text-sm">
@@ -226,6 +226,7 @@ $description = "Description de votre page";
                             <div class="flex justify-between p-6 space-x-2 border-t border-gray-200 rounded-b">
                                 <button type="button" class="text-gray-700 border-2 border-red-700 hover:border-red-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-trash fa-lg"></i> Corbeille</button>
                                 <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getPinnedLink() ?>" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-thumbtack text-red-600 fa-lg"></i><?= $topic->isPinned() ? " Désépingler" : " Épingler" ?></a>
+                                <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getIsImportantLink() ?>" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-triangle-exclamation text-orange-500 fa-lg"></i><?= $topic->isImportant() ? " Non important" : " Important" ?></a>
                                 <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getDisallowRepliesLink() ?>" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-lock text-yellow-300 fa-lg"></i><?= $topic->isDisallowReplies() ? " Ouvrir" : " Clore" ?></a>
                                 <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">Valider</button>
                             </div>
