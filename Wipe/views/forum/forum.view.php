@@ -1,5 +1,5 @@
 <?php
-
+use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Utils;
 use CMW\Controller\Users\UsersController;
@@ -214,6 +214,41 @@ $description = "Description de votre page";
                             </div>
                             <!-- Modal body -->
                             <div class="p-4">
+
+<form id="modal-<?= $topic->getId() ?>" action="<?= $forum->getSlug() ?>/adminedit" method="post">
+    <?php (new SecurityManager())->insertHiddenToken() ?>
+
+<input type="text" name="topicId" hidden  value="<?= $topic->getId() ?>">
+<input type="text" name="name"  value="<?= $topic->getName() ?>">
+<input type="text" name="tags"  value="<?php foreach ($topic->getTags() as $tag) { echo "" . $tag->getContent() . "," ;} ?>">
+
+<div class="flex justify-between">
+                        <div class="flex ml-3 space-x-4">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input name="important" value="1" id="important-<?= $topic->getId() ?>" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" <?= $topic->isImportant() ? 'checked' : '' ?>>
+                                </div>
+                                <label for="important-<?= $topic->getId() ?>" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-triangle-exclamation text-orange-500 fa-sm"></i> Important</label>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input name="pin" id="pin-<?= $topic->getId() ?>" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" <?= $topic->isPinned() ? 'checked' : '' ?>>
+                                </div>
+                                <label for="pin-<?= $topic->getId() ?>" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-thumbtack text-red-600 fa-sm"></i> Épingler</label>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input name="disallow_replies" value="1" id="closed-<?= $topic->getId() ?>" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" <?= $topic->isDisallowReplies() ? 'checked' : '' ?>>
+                                </div>
+                                <label for="closed-<?= $topic->getId() ?>" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-lock text-yellow-300 fa-sm"></i> Fermer</label>
+                            </div>
+                        </div>
+                    </div>
+</form>
+
+
+
+
                                 <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Déplacer vers</label>
                                 <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected>Ne pas déplacer</option>
@@ -228,7 +263,7 @@ $description = "Description de votre page";
                                 <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getPinnedLink() ?>" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-thumbtack text-red-600 fa-lg"></i><?= $topic->isPinned() ? " Désépingler" : " Épingler" ?></a>
                                 <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getIsImportantLink() ?>" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-triangle-exclamation text-orange-500 fa-lg"></i><?= $topic->isImportant() ? " Non important" : " Important" ?></a>
                                 <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getDisallowRepliesLink() ?>" class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i class="fa-solid fa-lock text-yellow-300 fa-lg"></i><?= $topic->isDisallowReplies() ? " Ouvrir" : " Clore" ?></a>
-                                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">Valider</button>
+                                <button type="submit" form="modal-<?= $topic->getId() ?>" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">Valider</button>
                             </div>
                         </div>
                     </div>
