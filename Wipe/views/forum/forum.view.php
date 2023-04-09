@@ -70,7 +70,7 @@ $description = "Description de votre page";
     <div class="lg:col-span-3 h-fit">
 
 
-<?php if ($forumModel->hasSubForums($forum->getId())): ?>
+<?php if ($forumModel->getForumByParent($forum->getId(), true)): ?>
         <div class="w-full shadow-md mb-10">
             <div class="flex py-4 bg-gray-100">
                 <div class="md:w-[55%] px-4 font-bold">Sous-Forums</div>
@@ -84,14 +84,14 @@ $description = "Description de votre page";
                 <div class="md:w-[55%] px-5">
                     <a class="flex" href="/<?= $forumEntity->getLink() ?>">
                         <div class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
-                            <?= $forumEntity->getId() . ". " . $forumEntity->getFontAwesomeIcon("fa-xl") ?>
+                            <?= $forumEntity->getFontAwesomeIcon("fa-xl") ?>
                         </div>
                         <div class="ml-4">
                             <div class="font-bold">
-                                <?= $forumEntity->getId() . ". " . $forumEntity->getName() ?>
+                                <?= $forumEntity->getName() ?>
                             </div>
                             <div>
-                                <?= $forumEntity->getId() . ". " . $forumEntity->getDescription() ?>
+                                <?= $forumEntity->getDescription() ?>
                             </div>
                         </div>
                     </a>
