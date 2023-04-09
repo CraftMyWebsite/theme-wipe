@@ -65,9 +65,9 @@ $description = "Description de votre page";
                             </div>
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
-                                    <input id="pin" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" >
+                                    <input name="pin" id="pin" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" >
                                 </div>
-                                <label for="pin" class="ml-2 text-sm font-medium text-red-500"><i class="fa-solid fa-thumbtack text-red-600 fa-sm"></i> Épingler</label>
+                                <label for="pin" class="ml-2 text-sm font-medium text-gray-900"><i class="fa-solid fa-thumbtack text-red-600 fa-sm"></i> Épingler</label>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
