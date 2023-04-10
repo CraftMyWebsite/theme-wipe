@@ -110,10 +110,10 @@ $description = Utils::getSiteDescription();
                             <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs"><?= $news->getDateCreated() ?></div>
                         </div>
                         <h3 class="font-bold leading-tight mb-3 text-gray-900 text-xl">
-                            <a href="news/<?= $news->getSlug() ?>" class="hover:text-blue-600"><?= $news->getTitle() ?></a></h3>
+                            <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" class="hover:text-blue-600"><?= $news->getTitle() ?></a></h3>
                         <p class="mb-3"><?= $news->getDescription() ?></p>
                         <div class="mt-6 flex justify-between">
-                            <a href="news/<?= $news->getSlug() ?>" class="font-bold hover:text-blue-700 text-gray-900 text-sm">Lire la suite <i class="fa-solid fa-caret-right"></i></a>
+                            <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" class="font-bold hover:text-blue-700 text-gray-900 text-sm">Lire la suite <i class="fa-solid fa-caret-right"></i></a>
                             <div class="cursor-pointer">
                                 <span data-tooltip-target="<?php if ($news->getLikes()->userCanLike()) {echo "tooltip-liked";} else {echo "tooltip-like";} ?>">
                                 <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
@@ -155,7 +155,7 @@ $description = Utils::getSiteDescription();
                         Le thème Wipe prend en charge le package News, pour le moment vous ne l'utilisez pas, installez le si vous voulez en bénéficier.<br>Seuls les administrateurs voient ce message !
                     </div>
                     <div class="flex">
-                        <a href="/cmw-admin" target="_blank" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
+                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>cmw-admin" target="_blank" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
                             <p><i class="fa-solid fa-download"></i> Installer le package</p>
                         </a>
                         <button type="button" class="text-yellow-800 bg-transparent border border-yellow-800 hover:bg-yellow-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-yellow-300 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-gray-800 dark:focus:ring-yellow-800" data-dismiss-target="#alert-additional-content-4" aria-label="Close">
@@ -292,7 +292,7 @@ $description = Utils::getSiteDescription();
                         Le thème Wipe prend en charge le package Contact, pour le moment vous ne l'utilisez pas, installez le si vous voulez en bénéficier.<br>Seuls les administrateurs voient ce message !
                     </div>
                     <div class="flex">
-                        <a href="/cmw-admin" target="_blank" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
+                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>cmw-admin" target="_blank" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
                             <p><i class="fa-solid fa-download"></i> Installer le package</p>
                         </a>
                         <button type="button" class="text-yellow-800 bg-transparent border border-yellow-800 hover:bg-yellow-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-yellow-300 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-gray-800 dark:focus:ring-yellow-800" data-dismiss-target="#alert-additional-content-4" aria-label="Close">

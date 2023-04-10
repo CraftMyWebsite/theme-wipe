@@ -15,9 +15,9 @@ use CMW\Model\Core\ThemeModel;
         <?php if(ThemeModel::fetchConfigValue('footer_active_condition')): ?>
         <div class="px-6 py-6 md:flex-1">
             <p><?= ThemeModel::fetchConfigValue('footer_title_condition') ?><br>
-                <b><a href="/cgu"><?= ThemeModel::fetchConfigValue('footer_desc_condition_use') ?></a></b>
+                <b><a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>cgu"><?= ThemeModel::fetchConfigValue('footer_desc_condition_use') ?></a></b>
                  / 
-                 <b><a href="/cgv"><?= ThemeModel::fetchConfigValue('footer_desc_condition_sale') ?></a></b>
+                 <b><a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>cgv"><?= ThemeModel::fetchConfigValue('footer_desc_condition_sale') ?></a></b>
              </p>
         </div>
         <?php endif; ?>

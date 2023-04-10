@@ -28,10 +28,10 @@ $description = "C'est pas très bien d'oublié son mot de passe ...";
             </div>
         </form>
         <p class="mt-3 mb-1">
-            <a href="/login"><?= LangManager::translate("users.login.signin") ?></a>
+            <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>login"><?= LangManager::translate("users.login.signin") ?></a>
         </p>
         <p class="mb-0">
-            <a href="/register" class="text-center"><?= LangManager::translate("users.login.register") ?></a>
+            <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>register" class="text-center"><?= LangManager::translate("users.login.register") ?></a>
         </p>
     </div>
 

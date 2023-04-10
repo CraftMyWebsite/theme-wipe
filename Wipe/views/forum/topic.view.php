@@ -43,20 +43,20 @@ $description = "Description de votre page";
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="/forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                    <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         Accueil
                     </a>
                 </li>
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="/forum/f/" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Je sais pas</a>
+                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum/f/" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Je sais pas</a>
                     </div>
                 </li>
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="/<?= $topic->getLink() ?>" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $topic->getName() ?></a>
+                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?><?= $topic->getLink() ?>" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $topic->getName() ?></a>
                     </div>
                 </li>
             </ol>

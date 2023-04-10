@@ -42,14 +42,14 @@ $description = "Description de votre page";
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="/forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                    <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         Accueil
                     </a>
                 </li>
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="/forum/f/<?= $forum->getSlug() ?>" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $forum->getName() ?></a>
+                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum/f/<?= $forum->getSlug() ?>" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $forum->getName() ?></a>
                     </div>
                 </li>
             </ol>
@@ -82,7 +82,7 @@ $description = "Description de votre page";
             <?php foreach ($forumModel->getSubforumByForum($forum->getId(), true) as $forumEntity): ?>
             <div class="flex py-6 border-t bg-gray-50 hover:bg-gray-100">
                 <div class="md:w-[55%] px-5">
-                    <a class="flex" href="/<?= $forumEntity->getLink() ?>">
+                    <a class="flex" href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?><?= $forumEntity->getLink() ?>">
                         <div class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
                             <?= $forumEntity->getFontAwesomeIcon("fa-xl") ?>
                         </div>
@@ -136,7 +136,7 @@ $description = "Description de votre page";
     <?php foreach ($topicModel->getTopicByForum($forum->getId()) as $topic): ?>
             <div class="relative flex py-2 border-t bg-gray-50 hover:bg-gray-100">
                 <div class="md:w-[55%] px-5 relative">
-                    <a class="flex flex-wrap hover:text-blue-800" href="/<?= $topic->getLink() ?>">
+                    <a class="flex flex-wrap hover:text-blue-800" href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?><?= $topic->getLink() ?>">
                         <div class="w-12 h-12 shadow-xl">
                             <img style="object-fit: fill; max-height: 48px; max-width: 48px" width="48px" height="48px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
                         </div>

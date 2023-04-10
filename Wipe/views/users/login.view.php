@@ -68,7 +68,7 @@ $description = 'Connectez-vous sur ' . Utils::getSiteName(); ?>
                             <i class="fa-xl fa-brands fa-google"></i></a>
                     </div>
                 </div>
-                <label class="block text-sm text-gray-900 mt-4">Pas encore de comtpe, <a href="register" class="text-blue-500">s'enregistrer</a></label>
+                <label class="block text-sm text-gray-900 mt-4">Pas encore de comtpe, <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>register" class="text-blue-500">s'enregistrer</a></label>
             </div>
         </div>
     </div>

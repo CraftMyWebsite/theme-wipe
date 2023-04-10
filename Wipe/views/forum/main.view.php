@@ -33,7 +33,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                         Rendez-vous dans le panel d'administration pour commencer à l'utiliser<br>Seuls les administrateurs voient ce message !
                     </div>
                     <div class="flex">
-                        <a href="/cmw-admin/forum/manage" target="_blank" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
+                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>cmw-admin/forum/manage" target="_blank" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
                             <p><i class="fa-solid fa-gears"></i> Gestion du forum</p>
                         </a>
                         <button type="button" class="text-yellow-800 bg-transparent border border-yellow-800 hover:bg-yellow-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-yellow-300 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-gray-800 dark:focus:ring-yellow-800" data-dismiss-target="#alert-additional-content-4" aria-label="Close">
@@ -66,7 +66,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="/forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                    <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         Accueil
                     </a>
                 </li>
@@ -99,7 +99,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
             <?php foreach ($forumModel->getForumByCat($category->getId()) as $forumObj): ?>
             <div class="flex py-6 border-t  hover:bg-gray-50">
                 <div class="md:w-[55%] px-5">
-                    <a class="flex" href="/<?= $forumObj->getLink() ?>">
+                    <a class="flex" href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?><?= $forumObj->getLink() ?>">
                         <div class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
                             <?= $forumObj->getFontAwesomeIcon("fa-xl") ?>
                         </div>

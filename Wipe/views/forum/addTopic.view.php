@@ -25,14 +25,14 @@ $description = "Description de votre page";
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="/forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                    <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         Accueil
                     </a>
                 </li>
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="/forum/f/<?= $forum->getSlug() ?>" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $forum->getName() ?></a>
+                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum/f/<?= $forum->getSlug() ?>" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $forum->getName() ?></a>
                     </div>
                 </li>
             </ol>
@@ -233,7 +233,7 @@ $description = "Description de votre page";
                     <div class="mt-2 mb-4 text-sm">
                         Vous devez vous connecter pour pouvoir poster un nouveau topic !
                         <div class="flex mt-2">
-                        <a href="/login" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center">
+                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>login" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center">
                             <p>Connexion</p>
                         </a>
                     </div>
