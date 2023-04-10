@@ -136,8 +136,9 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
             </div>
             <?php endforeach; ?>
         </div>
+        <?php endforeach; ?>
     </div>
-<?php endforeach; ?>
+
 
 
     <div class="h-fit">
