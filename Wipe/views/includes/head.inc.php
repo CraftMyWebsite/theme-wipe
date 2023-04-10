@@ -2,7 +2,7 @@
 use CMW\Controller\Core\CoreController;
 use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Uploads\ImagesManager;
-use CMW\Utils\View;
+use CMW\Manager\Views\View;
 use CMW\Utils\Utils;
 
 /* @var \CMW\Controller\Core\CoreController $core */
