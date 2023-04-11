@@ -114,7 +114,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                     </a>
                 </div>
                 <div class="hidden md:block w-[10%] text-center my-auto"><?= $forumModel->countTopicInForum($forumObj->getId()) ?></div>
-                <div class="hidden md:inline-block w-[10%] text-center my-auto">NA</div>
+                <div class="hidden md:inline-block w-[10%] text-center my-auto"><?= $forumModel->countMessagesInForum($forumObj->getId()) ?></div>
                 <!--Dernier message-->
                 <div class="hidden md:block w-[25%] my-auto">
                     <div class="flex text-sm">

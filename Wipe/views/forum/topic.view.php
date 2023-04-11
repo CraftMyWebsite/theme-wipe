@@ -118,7 +118,6 @@ $description = "Description de votre page";
         <section class="border mt-4">
             <div class="flex justify-between bg-gray-200 p-2">
                 <p><?= $topic->getCreated() ?></p>
-                <p>#1</p>
             </div>
             <div class="lg:grid grid-cols-5">
                 <div class="p-4 text-center ">
@@ -155,7 +154,6 @@ $description = "Description de votre page";
                         <?= $topic->getContent() ?>
                         <div class="flex justify-between mt-4">
                             <p><small><?= $topic->getUser()->getPseudo() ?>, <?= $topic->getCreated() ?></small></p>
-                            <p>#1</p>
                         </div>
                     </div>
                 </div>
@@ -166,7 +164,7 @@ $description = "Description de votre page";
 <section class="border mt-4">
             <div class="flex justify-between bg-gray-200 p-2">
                 <p><?= $response->getCreated() ?></p>
-                <p>#1</p>
+                <h5 class=""><?= $response->isTopicAuthor() ? "Auteur du topic" : "" ?></h5>
             </div>
             <div class="lg:grid grid-cols-5">
                 <div class="p-4 text-center ">
@@ -203,7 +201,6 @@ $description = "Description de votre page";
                         <?= $response->getContent() ?>
                         <div class="flex justify-between mt-4">
                             <p><small><?= $response->getUser()->getPseudo() ?>, <?= $response->getCreated() ?></small></p>
-                            <p>#1</p>
                         </div>
                     </div>
 

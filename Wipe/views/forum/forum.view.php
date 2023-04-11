@@ -97,7 +97,7 @@ $description = "Description de votre page";
                     </a>
                 </div>
                 <div class="hidden md:block w-[10%] text-center my-auto"><?= $forumModel->countTopicInForum($forumEntity->getId()) ?></div>
-                <div class="hidden md:inline-block w-[10%] text-center my-auto">NA</div>
+                <div class="hidden md:inline-block w-[10%] text-center my-auto"><?= $forumModel->countMessagesInForum($forumEntity->getId()) ?></div>
                 <!--Dernier message-->
                 <div class="hidden md:block w-[25%] my-auto">
                     <div class="flex text-sm">
@@ -181,8 +181,8 @@ $description = "Description de votre page";
                         </a>
                         <a href="#">
                             <div class="ml-2">
-                                <div class="">Vous</div>
-                                <div>Mardi 09 Juin, 19:42</div>
+                                <div class=""><?= $topic->getLastMessageUserInTopic(); ?></div>
+                                <div><?= $topic->getLastMessageDateInTopic(); ?></div>
                             </div>
                         </a>
                     </div>
