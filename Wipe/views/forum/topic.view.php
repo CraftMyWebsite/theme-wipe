@@ -135,7 +135,7 @@ $description = "Description de votre page";
                             <div class="grid grid-cols-3">
                                 <div>
                                     <p><i class="fa-solid fa-comments fa-xs text-gray-600"></i></p>
-                                    <p><small>NA</small></p>
+                                    <p><small><?= $responseModel->countResponseByUser($topic->getUser()->getId()) ?></small></p>
                                 </div>
                                 <div>
                                     <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
@@ -182,7 +182,7 @@ $description = "Description de votre page";
                             <div class="grid grid-cols-3">
                                 <div>
                                     <p><i class="fa-solid fa-comments fa-xs text-gray-600"></i></p>
-                                    <p><small>NA</small></p>
+                                    <p><small><?= $responseModel->countResponseByUser($response->getUser()->getId()) ?></small></p>
                                 </div>
                                 <div>
                                     <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
