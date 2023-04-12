@@ -316,10 +316,10 @@ $description = "Description de votre page";
                                     </div>
                                     <!-- Modal footer -->
                                     <div class="flex justify-between p-6 space-x-2 border-t border-gray-200 rounded-b">
-                                        <button type="button"
+                                        <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->trashLink() ?>"
                                                 class="text-gray-700 border-2 border-red-700 hover:border-red-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
                                             <i class="fa-solid fa-trash fa-lg"></i> Corbeille
-                                        </button>
+                                        </a>
                                         <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getPinnedLink() ?>"
                                            class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i
                                                     class="fa-solid fa-thumbtack text-red-600 fa-lg"></i><?= $topic->isPinned() ? " Désépingler" : " Épingler" ?>
