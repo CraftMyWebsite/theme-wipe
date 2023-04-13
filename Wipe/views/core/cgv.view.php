@@ -22,10 +22,10 @@ $description = ThemeModel::fetchConfigValue('faq_description');
 
 <section class="bg-white rounded-lg shadow mt-8 mx-2 lg:mx-72">
     <div class="container p-4">
-        <?= $cgv->getConditionContent() ?>
+        <?= $cgv->getContent() ?>
     </div>
 </section>
 
 <div class="mb-8 mt-2 lg:mx-72">
-    <p>Écrit par <b><?= $cgv->getConditionAuthor()->getPseudo() ?></b>, mis à jours le <?= $cgv->getConditionUpdate() ?></p>
+    <p>Écrit par <b><?= $cgv->getLastEditor()->getPseudo() ?></b>, mis à jours le <?= $cgv->getUpdate() ?></p>
 </div>
