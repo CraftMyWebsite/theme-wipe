@@ -156,6 +156,32 @@ $description = "Description de votre page";
                             <p><small><?= $topic->getUser()->getPseudo() ?>, <?= $topic->getCreated() ?></small></p>
                         </div>
                     </div>
+
+                    <div class="flex justify-end p-1">
+                        <?php if ($topic->isSelfTopic()): ?>
+                            <a href="<?= $topic->editTopicLink() ?>">
+                                <i data-tooltip-target="tooltip-edittopic" class="fa-solid fa-edit text-blue-500 ml-4"></i>
+                                <div id="tooltip-edittopic" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                    Éditer ma réponse
+                                </div>
+                            </a>
+                        <?php endif; ?>
+                        <?php if (UsersController::isUserLogged() && !$topic->isSelfTopic()): ?>
+                        <div class="ml-4">
+                            0 <i data-tooltip-target="tooltip-like" class="fa-solid fa-thumbs-up"></i>
+                            <div id="tooltip-like" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                Like
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            0 <i data-tooltip-target="tooltip-dislike" class="fa-solid fa-thumbs-down"></i>
+                            <div id="tooltip-dislike" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                Dislike
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+
                 </div>
             </div>
         </section>
