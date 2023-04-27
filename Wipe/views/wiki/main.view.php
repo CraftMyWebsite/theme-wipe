@@ -19,6 +19,24 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
 <section class="px-2 md:px-24 xl:px-48 2xl:px-72 py-6">
     <div class="lg:grid lg:grid-cols-4 gap-6">
 
+<div class="container mx-auto rounded-md shadow-lg p-4 h-fit">
+            <div class="flex flex-no-wrap justify-center items-center py-4 -mb-6">
+                <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+                <div class="px-10 w-auto">
+                    <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('wiki_menu_title') ?></h2>
+                </div>
+                <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+            </div>
+            <?php foreach ($categories as $categorie): ?>
+            <div class="font-medium text-gray-500 mt-6 cursor-default"><?php if(ThemeModel::fetchConfigValue('wiki_display_categorie_icon')): ?><i class="<?= $categorie->getIcon() ?>"></i><?php endif; ?> <?= $categorie->getName() ?></div>
+            <?php foreach ($categorie?->getArticles() as $menuArticle): ?>
+                <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") . "wiki/" . $categorie->getSlug() . "/" . $menuArticle->getSlug() ?>">
+                    <div class="pl-2 py-1 mt-1 cursor-pointer rounded hover:bg-gray-200"><?php if(ThemeModel::fetchConfigValue('wiki_display_article_categorie_icon')): ?><i class="<?= $menuArticle->getIcon() ?>"></i><?php endif; ?> <?= $menuArticle->getTitle() ?></div>
+                </a>
+            <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
+
         <div class="col-span-3 mt-4 lg:mt-0">
             <div class="container mx-auto rounded-md shadow-lg py-4 px-8">
                 <?php if($article !== null): ?>
@@ -67,23 +85,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
             </div>
         </div>
         
-        <div class="container mx-auto rounded-md shadow-lg p-4 h-fit">
-            <div class="flex flex-no-wrap justify-center items-center py-4 -mb-6">
-                <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
-                <div class="px-10 w-auto">
-                    <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('wiki_menu_title') ?></h2>
-                </div>
-                <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
-            </div>
-            <?php foreach ($categories as $categorie): ?>
-            <div class="font-medium text-gray-500 mt-6 cursor-default"><?php if(ThemeModel::fetchConfigValue('wiki_display_categorie_icon')): ?><i class="<?= $categorie->getIcon() ?>"></i><?php endif; ?> <?= $categorie->getName() ?></div>
-            <?php foreach ($categorie?->getArticles() as $article): ?>
-                <a href="<?= getenv("PATH_SUBFOLDER") . "wiki/" . $categorie->getSlug() . "/" . $article->getSlug() ?>">
-                    <div class="pl-2 py-1 mt-1 cursor-pointer rounded hover:bg-gray-200"><?php if(ThemeModel::fetchConfigValue('wiki_display_article_categorie_icon')): ?><i class="<?= $article->getIcon() ?>"></i><?php endif; ?> <?= $article->getTitle() ?></div>
-                </a>
-            <?php endforeach; ?>
-            <?php endforeach; ?>
-        </div>
+        
     </div>
 </section>
 
