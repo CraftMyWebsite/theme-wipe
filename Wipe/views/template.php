@@ -1,7 +1,7 @@
 <?php use CMW\Manager\Views\View;
 
-include_once("includes/head.inc.php");
-include_once("includes/header.inc.php");
+include_once("Includes/head.inc.php");
+include_once("Includes/header.inc.php");
 
 
 /* INCLUDE SCRIPTS / STYLES*/
@@ -13,5 +13,5 @@ View::loadInclude($includes, "styles");
 <?= /* @var string $content */ $content ?>
 
 <?php
-include_once("includes/footer.inc.php");
+include_once("Includes/footer.inc.php");
 ?>

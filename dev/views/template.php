@@ -8,7 +8,7 @@ include_once("includes/header.inc.php");
 
 <!-- En prod (Appeler le content ici)-->
 <?php
-include_once("forum/topic.view.php");
+include_once("core/home.view.php");
 ?>
 
 

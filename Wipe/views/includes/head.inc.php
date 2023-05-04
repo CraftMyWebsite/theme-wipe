@@ -23,8 +23,8 @@ use CMW\Utils\Utils;
 
 
     <!-- Theme style -->
-    <link rel="stylesheet" type="text/css" href="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/css/style.css">
-    <link rel="stylesheet" href="<?= getenv("PATH_SUBFOLDER") ?>admin/resources/vendors/fontawesome-free/css/fa-all.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= getenv("PATH_SUBFOLDER") ?>Public/Themes/Wipe/Assets/Css/style.css">
+    <link rel="stylesheet" href="<?= getenv("PATH_SUBFOLDER") ?>Admin/Resources/Vendors/Fontawesome-free/Css/fa-all.min.css">
 
     <?= ImagesManager::getFaviconInclude() ?>
 
@@ -32,7 +32,7 @@ use CMW\Utils\Utils;
     View::loadInclude($includes, "beforeScript", "styles");
     ?>
 
-    <script src="<?= getenv("PATH_SUBFOLDER") ?>public/themes/Wipe/assets/js/flowbite.js"></script>
+    <script src="<?= getenv("PATH_SUBFOLDER") ?>Public/Themes/Wipe/Assets/Js/flowbite.js"></script>
 
 
 </head>
