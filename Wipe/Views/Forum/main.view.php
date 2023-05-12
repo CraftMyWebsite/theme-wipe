@@ -2,6 +2,7 @@
 
 use CMW\Controller\Users\UsersController;
 use CMW\Controller\Users\UsersSettingsController;
+use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 

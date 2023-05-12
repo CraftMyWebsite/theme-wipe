@@ -80,7 +80,7 @@ $description = "Description de votre page";
                         </div>
                     </div>
                     <label for="summernote-1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenue<span class="text-red-500">*</span> :</label>
-                    <textarea name="content" id="summernote-1" class="w-full" required><?= $topic->getContent() ?></textarea>
+                    <textarea name="content" id="summernote-1" class="w-full"><?= $topic->getContent() ?></textarea>
                 </div>
             </div>
 
