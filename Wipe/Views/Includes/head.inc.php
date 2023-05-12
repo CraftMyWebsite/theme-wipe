@@ -1,9 +1,7 @@
 <?php
-use CMW\Controller\Core\CoreController;
-use CMW\Model\Core\ThemeModel;
+use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Uploads\ImagesManager;
 use CMW\Manager\Views\View;
-use CMW\Utils\Utils;
 
 /* @var \CMW\Controller\Core\CoreController $core */
 /* @var string $title */
@@ -23,8 +21,8 @@ use CMW\Utils\Utils;
 
 
     <!-- Theme style -->
-    <link rel="stylesheet" type="text/css" href="<?= getenv("PATH_SUBFOLDER") ?>Public/Themes/Wipe/Assets/Css/style.css">
-    <link rel="stylesheet" href="<?= getenv("PATH_SUBFOLDER") ?>Admin/Resources/Vendors/Fontawesome-free/Css/fa-all.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Themes/Wipe/Assets/Css/style.css">
+    <link rel="stylesheet" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Admin/Resources/Vendors/Fontawesome-free/Css/fa-all.min.css">
 
     <?= ImagesManager::getFaviconInclude() ?>
 
@@ -32,7 +30,7 @@ use CMW\Utils\Utils;
     View::loadInclude($includes, "beforeScript", "styles");
     ?>
 
-    <script src="<?= getenv("PATH_SUBFOLDER") ?>Public/Themes/Wipe/Assets/Js/flowbite.js"></script>
+    <script src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Themes/Wipe/Assets/Js/flowbite.js"></script>
 
 
 </head>

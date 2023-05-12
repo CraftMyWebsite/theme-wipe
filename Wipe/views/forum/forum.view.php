@@ -2,10 +2,9 @@
 
 use CMW\Controller\Users\UsersController;
 use CMW\Controller\Users\UsersSettingsController;
+use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
-use CMW\Model\Users\UsersModel;
-use CMW\Utils\Utils;
 
 /* @var \CMW\Model\Forum\ForumModel $forumModel */
 /* @var \CMW\Model\Forum\TopicModel $topicModel */
@@ -59,7 +58,7 @@ $description = "Description de votre page";
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum"
+                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum"
                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         Accueil
                     </a>
@@ -67,7 +66,7 @@ $description = "Description de votre page";
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum/f/<?= $forum->getSlug() ?>"
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum/f/<?= $forum->getSlug() ?>"
                            class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $forum->getName() ?></a>
                     </div>
                 </li>
@@ -106,7 +105,7 @@ $description = "Description de votre page";
                     <div class="flex py-6 border-t bg-gray-50 hover:bg-gray-100">
                         <div class="md:w-[55%] px-5">
                             <a class="flex"
-                               href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?><?= $forumEntity->getLink() ?>">
+                               href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $forumEntity->getLink() ?>">
                                 <div class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
                                     <?= $forumEntity->getFontAwesomeIcon("fa-xl") ?>
                                 </div>
@@ -159,11 +158,11 @@ $description = "Description de votre page";
                 <div class="relative flex py-2 border-t bg-gray-50 hover:bg-gray-100">
                     <div class="md:w-[55%] px-5 relative">
                         <a class="flex flex-wrap hover:text-blue-800"
-                           href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?><?= $topic->getLink() ?>">
+                           href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getLink() ?>">
                             <div class="w-12 h-12 shadow-xl">
                                 <img style="object-fit: fill; max-height: 48px; max-width: 48px" width="48px"
                                      height="48px"
-                                     src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
+                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
                             </div>
                             <div class="ml-4">
                                 <p><?= $topic->getName() ?></p>
@@ -316,19 +315,19 @@ $description = "Description de votre page";
                                     </div>
                                     <!-- Modal footer -->
                                     <div class="flex justify-between p-6 space-x-2 border-t border-gray-200 rounded-b">
-                                        <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->trashLink() ?>"
+                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->trashLink() ?>"
                                                 class="text-gray-700 border-2 border-red-700 hover:border-red-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
                                             <i class="fa-solid fa-trash fa-lg"></i> Corbeille
                                         </a>
-                                        <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getPinnedLink() ?>"
+                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getPinnedLink() ?>"
                                            class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i
                                                     class="fa-solid fa-thumbtack text-red-600 fa-lg"></i><?= $topic->isPinned() ? " Désépingler" : " Épingler" ?>
                                         </a>
-                                        <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getIsImportantLink() ?>"
+                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getIsImportantLink() ?>"
                                            class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i
                                                     class="fa-solid fa-triangle-exclamation text-orange-500 fa-lg"></i><?= $topic->isImportant() ? " Non important" : " Important" ?>
                                         </a>
-                                        <a href="<?= Utils::getEnv()->getValue('PATH_SUBFOLDER') ?><?= $topic->getDisallowRepliesLink() ?>"
+                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getDisallowRepliesLink() ?>"
                                            class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i
                                                     class="fa-solid fa-lock text-yellow-300 fa-lg"></i><?= $topic->isDisallowReplies() ? " Ouvrir" : " Clore" ?>
                                         </a>

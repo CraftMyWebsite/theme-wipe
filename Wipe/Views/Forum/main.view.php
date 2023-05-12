@@ -3,11 +3,11 @@
 use CMW\Controller\Users\UsersController;
 use CMW\Controller\Users\UsersSettingsController;
 use CMW\Model\Core\ThemeModel;
-use CMW\Utils\Utils;
+use CMW\Utils\Website;
 
 /** @var \CMW\Model\Forum\ForumModel $forumModel */
 /** @var \CMW\Model\Forum\CategoryModel $categoryModel */
-$title = Utils::getSiteName() . ' - ' . ThemeModel::fetchConfigValue('wiki_title');
+$title = Website::getName() . ' - ' . ThemeModel::fetchConfigValue('wiki_title');
 $description = ThemeModel::fetchConfigValue('wiki_description');
 ?>
 
@@ -46,7 +46,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                         administrateurs voient ce message !
                     </div>
                     <div class="flex">
-                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>cmw-admin/forum/manage"
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>cmw-admin/forum/manage"
                            target="_blank" type="button"
                            class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
                             <p><i class="fa-solid fa-gears"></i> Gestion du forum</p>
@@ -90,7 +90,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
-                        <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>forum"
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum"
                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                             Accueil
                         </a>
@@ -128,7 +128,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                         <div class="flex py-6 border-t  hover:bg-gray-50">
                             <div class="md:w-[55%] px-5">
                                 <a class="flex"
-                                   href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?><?= $forumObj->getLink() ?>">
+                                   href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $forumObj->getLink() ?>">
                                     <div class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
                                         <?= $forumObj->getFontAwesomeIcon("fa-xl") ?>
                                     </div>

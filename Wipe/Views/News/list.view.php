@@ -1,10 +1,13 @@
 <?php
-use CMW\Utils\Utils;
+
+use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 $newsList = $newsModel->getSomeNews(ThemeModel::fetchConfigValue('news_page_number_display'), 'DESC');
 use CMW\Controller\Users\UsersController;
+use CMW\Utils\Website;
+
 /*TITRE ET DESCRIPTION*/
-$title = Utils::getSiteName() . ' - '. ThemeModel::fetchConfigValue('news_title');
+$title = Website::getName() . ' - '. ThemeModel::fetchConfigValue('news_title');
 $description = ThemeModel::fetchConfigValue('news_description');
 ?>
 
@@ -36,10 +39,10 @@ $description = ThemeModel::fetchConfigValue('news_description');
                             <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs"><?= $news->getDateCreated() ?></div>
                         </div>
                         <h3 class="font-bold leading-tight mb-3 text-gray-900 text-xl">
-                            <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" class="hover:text-blue-600"><?= $news->getTitle() ?></a></h3>
+                            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" class="hover:text-blue-600"><?= $news->getTitle() ?></a></h3>
                         <p class="mb-3"><?= $news->getDescription() ?></p>
                         <div class="mt-6 flex justify-between">
-                            <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" class="font-bold hover:text-blue-700 text-gray-900 text-sm">Lire la suite <i class="fa-solid fa-caret-right"></i></a>
+                            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" class="font-bold hover:text-blue-700 text-gray-900 text-sm">Lire la suite <i class="fa-solid fa-caret-right"></i></a>
 
 
                             <div class="cursor-pointer">

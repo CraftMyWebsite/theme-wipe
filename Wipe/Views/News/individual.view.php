@@ -1,16 +1,15 @@
 <?php
+
+use CMW\Manager\Env\EnvManager;
 use CMW\Utils\Utils;
 /* @var \CMW\Entity\News\NewsEntity $news */
 use CMW\Model\Core\ThemeModel;
-use CMW\Controller\Core\SecurityController;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
+use CMW\Utils\Website;
 
-use CMW\Entity\Users\UserEntity;
-use CMW\Entity\Users\UserPictureEntity;
-use CMW\Model\Users\UsersModel;
 /*TITRE ET DESCRIPTION*/
-$title = Utils::getSiteName() . ' - '. ThemeModel::fetchConfigValue('news_title') . ' - '. $news->getTitle();
+$title = Website::getName() . ' - '. ThemeModel::fetchConfigValue('news_title') . ' - '. $news->getTitle();
 $description = ThemeModel::fetchConfigValue('news_description');
 ?>
 <section class="bg-gray-800 relative text-white">
@@ -58,7 +57,7 @@ $description = ThemeModel::fetchConfigValue('news_description');
                     </div>
                 </div>
                 <div class="text-center">
-                <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>news" class="text-blue-600">< Revenir aux news</a>
+                <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news" class="text-blue-600">< Revenir aux news</a>
                 </div>
             </div>
             <div class="md:hidden mt-4 border"></div>
@@ -125,7 +124,7 @@ $description = ThemeModel::fetchConfigValue('news_description');
                 <?php if(UsersController::isUserLogged()): ?>
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Commenter <i class="fa-solid fa-comments"></i></i></button>
                 <?php else: ?> 
-                <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Commenter <i class="fa-solid fa-comments"></i></i></a>
+                <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Commenter <i class="fa-solid fa-comments"></i></i></a>
                 <?php endif; ?>
             </div>
         </form>
