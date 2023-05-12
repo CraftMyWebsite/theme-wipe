@@ -1,5 +1,6 @@
 <?php
-use CMW\Utils\Utils;
+
+use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 $title = "Page introuvable";
 $description = "Erreur";
@@ -19,5 +20,5 @@ $description = "Erreur";
 <div class="relative w-full text-center">
     <h1 class="text-gray-600 font-extrabold" style="font-size: 12rem">{errorCode}</h1>
     <p>La page que vous demandez n'existe pas ou n'existe plus !</p>
-    <p>Vous pouvez toujours <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>" class="text-blue-500">retourner à l'accueil.</a></p>
+    <p>Vous pouvez toujours <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>" class="text-blue-500">retourner à l'accueil.</a></p>
 </div>

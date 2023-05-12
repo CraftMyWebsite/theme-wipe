@@ -1,11 +1,10 @@
 <?php 
-use CMW\Controller\Core\SecurityController;
-use CMW\Manager\Security\SecurityManager;
+
 use CMW\Model\Contact\ContactModel;
 use CMW\Model\Core\ThemeModel;
-use CMW\Utils\Utils;
+use CMW\Utils\Website;
 /*TITRE ET DESCRIPTION*/
-$title = Utils::getSiteName() . ' - '. ThemeModel::fetchConfigValue('faq_title');
+$title = Website::getName() . ' - '. ThemeModel::fetchConfigValue('faq_title');
 $description = ThemeModel::fetchConfigValue('faq_description');
 ?>
 

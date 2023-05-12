@@ -2,10 +2,12 @@
 
 /* @var \CMW\Entity\Users\UserEntity $user */
 
+use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
-use CMW\Utils\Utils;
-$title = Utils::getSiteName() . ' - Profil - ' . $user->getPseudo();
+use CMW\Utils\Website;
+
+$title = Website::getName() . ' - Profil - ' . $user->getPseudo();
 $description = 'Profil de  ' . $user->getPseudo(); 
 ?>
 
@@ -65,7 +67,7 @@ $description = 'Profil de  ' . $user->getPseudo();
                 <?php if (!is_null($user->getUserPicture()?->getImageName())): ?>
                 <!--RECUPERER L'iMAGE-->
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Votre image :</label>
-                <img class="mx-auto rounded-lg border border-gray-300 shadow-xl" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $user->getUserPicture()->getImageName() ?>" height="50%" width="50%" alt="Image de profil de <?= $user->getPseudo() ?>">
+                <img class="mx-auto rounded-lg border border-gray-300 shadow-xl" src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>public/uploads/users/<?= $user->getUserPicture()->getImageName() ?>" height="50%" width="50%" alt="Image de profil de <?= $user->getPseudo() ?>">
                 <?php endif; ?>
             </div>
 
@@ -95,7 +97,7 @@ $description = 'Profil de  ' . $user->getPseudo();
     </div>
     <div class="pt-2 pb-6 text-center">
         <p class="mb-2">Nous somme triste de vous voir partir !</p>
-        <a href="<?= getenv('PATH_SUBFOLDER') ?>profile/delete/<?= $user->getId() ?>" class="mb-4 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Supprimer mon compte</a>
+        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>profile/delete/<?= $user->getId() ?>" class="mb-4 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Supprimer mon compte</a>
     </div>
 
 </div>

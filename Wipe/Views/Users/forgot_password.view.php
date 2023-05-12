@@ -1,10 +1,12 @@
 <?php
 
+use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Lang\LangManager;
 use CMW\Manager\Security\SecurityManager;
-use CMW\Utils\Utils;
+use CMW\Utils\Website;
+
 /*TITRE ET DESCRIPTION*/
-$title = Utils::getSiteName() . ' - Mot de passe oublié';
+$title = Website::getName() . ' - Mot de passe oublié';
 $description = "C'est pas très bien d'oublié son mot de passe ...";
 ?>
 <div class="card">
@@ -28,10 +30,10 @@ $description = "C'est pas très bien d'oublié son mot de passe ...";
             </div>
         </form>
         <p class="mt-3 mb-1">
-            <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>login"><?= LangManager::translate("users.login.signin") ?></a>
+            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login"><?= LangManager::translate("users.login.signin") ?></a>
         </p>
         <p class="mb-0">
-            <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>register" class="text-center"><?= LangManager::translate("users.login.register") ?></a>
+            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>register" class="text-center"><?= LangManager::translate("users.login.register") ?></a>
         </p>
     </div>
 

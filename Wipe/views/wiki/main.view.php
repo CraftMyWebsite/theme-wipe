@@ -1,8 +1,10 @@
-<?php 
+<?php
+
+use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
-/*TITRE ET DESCRIPTION*/
-use CMW\Utils\Utils;
-$title = Utils::getSiteName() . ' - '. ThemeModel::fetchConfigValue('wiki_title');
+use CMW\Utils\Website;
+
+$title = Website::getName() . ' - '. ThemeModel::fetchConfigValue('wiki_title');
 $description = ThemeModel::fetchConfigValue('wiki_description');
 ?>
 <section class="bg-gray-800 relative text-white">
@@ -30,7 +32,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
             <?php foreach ($categories as $categorie): ?>
             <div class="font-medium text-gray-500 mt-6 cursor-default"><?php if(ThemeModel::fetchConfigValue('wiki_display_categorie_icon')): ?><i class="<?= $categorie->getIcon() ?>"></i><?php endif; ?> <?= $categorie->getName() ?></div>
             <?php foreach ($categorie?->getArticles() as $menuArticle): ?>
-                <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") . "wiki/" . $categorie->getSlug() . "/" . $menuArticle->getSlug() ?>">
+                <a href="<?=   EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "wiki/" . $categorie->getSlug() . "/" . $menuArticle->getSlug() ?>">
                     <div class="pl-2 py-1 mt-1 cursor-pointer rounded hover:bg-gray-200"><?php if(ThemeModel::fetchConfigValue('wiki_display_article_categorie_icon')): ?><i class="<?= $menuArticle->getIcon() ?>"></i><?php endif; ?> <?= $menuArticle->getTitle() ?></div>
                 </a>
             <?php endforeach; ?>

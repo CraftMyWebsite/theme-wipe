@@ -5,8 +5,9 @@
 /* @var \CMW\Controller\CoreController $core */
 /* @var \CMW\Controller\Menus\MenusController $menu */
 use CMW\Model\Core\ThemeModel;
-use CMW\Utils\Utils;
-$title = Utils::getSiteName() . ' - '. ucfirst($page->getTitle());
+use CMW\Utils\Website;
+
+$title = Website::getName() . ' - '. ucfirst($page->getTitle());
 $description = 'Visitez notre page ' . ucfirst($page->getTitle());
 ?>
 

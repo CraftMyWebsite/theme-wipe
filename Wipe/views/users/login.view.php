@@ -1,10 +1,13 @@
 <?php
+
+use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Controller\Core\SecurityController;
 use CMW\Manager\Security\SecurityManager;
-use CMW\Utils\Utils;
-$title = Utils::getSiteName() . ' - Connexion';
-$description = 'Connectez-vous sur ' . Utils::getSiteName(); ?>
+use CMW\Utils\Website;
+
+$title = Website::getName() . ' - Connexion';
+$description = 'Connectez-vous sur ' . Website::getName(); ?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->
@@ -68,7 +71,7 @@ $description = 'Connectez-vous sur ' . Utils::getSiteName(); ?>
                             <i class="fa-xl fa-brands fa-google"></i></a>
                     </div>
                 </div>
-                <label class="block text-sm text-gray-900 mt-4">Pas encore de comtpe, <a href="<?= Utils::getEnv()->getValue("PATH_SUBFOLDER") ?>register" class="text-blue-500">s'enregistrer</a></label>
+                <label class="block text-sm text-gray-900 mt-4">Pas encore de comtpe, <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>register" class="text-blue-500">s'enregistrer</a></label>
             </div>
         </div>
     </div>
