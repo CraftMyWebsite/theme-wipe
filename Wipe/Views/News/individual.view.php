@@ -119,7 +119,7 @@ $description = ThemeModel::fetchConfigValue('news_description');
         <form method="post" action="<?= $news->sendComments() ?>" class="">
             <?php (new SecurityManager())->insertHiddenToken() ?>
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Votre commentaire :</label>
-            <textarea name="comments" id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Bonjour," required></textarea>
+            <textarea name="comments" id="message" rows="4" class="tinymce block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Bonjour," required></textarea>
             <div class="text-center mt-4">
                 <?php if(UsersController::isUserLogged()): ?>
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Commenter <i class="fa-solid fa-comments"></i></i></button>

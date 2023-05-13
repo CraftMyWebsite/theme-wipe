@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <h6>Message d'inscription désactiver :</h6>
-                            <textarea name="global_no_register_message" id="summernote-1"><?= ThemeModel::fetchConfigValue('global_no_register_message') ?></textarea>
+                            <textarea name="global_no_register_message" class="tinymce"><?= ThemeModel::fetchConfigValue('global_no_register_message') ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -228,7 +228,7 @@
                     <label>Titre de la section :</label>
                     <input type="text" class="form-control" name="custom_section_title_1" value="<?= ThemeModel::fetchConfigValue('custom_section_title_1') ?>" required>
                     <label>Contenue :</label>
-                    <textarea name="custom_section_content_1" id="summernote-2"><?= ThemeModel::fetchConfigValue('custom_section_content_1') ?></textarea>
+                    <textarea name="custom_section_content_1" class="tinymce"><?= ThemeModel::fetchConfigValue('custom_section_content_1') ?></textarea>
                 </div>
             </div>
             <!--CUSTOM 2-->
@@ -241,7 +241,7 @@
                     <label>Titre de la section :</label>
                     <input type="text" class="form-control" name="custom_section_title_2" value="<?= ThemeModel::fetchConfigValue('custom_section_title_2') ?>" required>
                     <label>Contenue :</label>
-                    <textarea name="custom_section_content_2" id="summernote-3"><?= ThemeModel::fetchConfigValue('custom_section_content_2') ?></textarea>
+                    <textarea name="custom_section_content_2" class="tinymce"><?= ThemeModel::fetchConfigValue('custom_section_content_2') ?></textarea>
                 </div>
             </div>
             <!--CUSTOM 3-->
@@ -254,7 +254,7 @@
                     <label>Titre de la section :</label>
                     <input type="text" class="form-control" name="custom_section_title_3" value="<?= ThemeModel::fetchConfigValue('custom_section_title_3') ?>" required>
                     <label>Contenue :</label>
-                    <textarea name="custom_section_content_3" id="summernote-4"><?= ThemeModel::fetchConfigValue('custom_section_content_3') ?></textarea>
+                    <textarea name="custom_section_content_3" class="tinymce"><?= ThemeModel::fetchConfigValue('custom_section_content_3') ?></textarea>
                 </div>
             </div>
         <!--CONTACT-->
