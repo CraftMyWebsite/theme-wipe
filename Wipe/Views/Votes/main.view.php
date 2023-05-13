@@ -2,11 +2,10 @@
 
 use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
-use CMW\Entity\Users\UserEntity;
-use CMW\Entity\Users\UserPictureEntity;
-use CMW\Utils\Utils;
+use CMW\Utils\Website;
+
 /*TITRE ET DESCRIPTION*/
-$title = Utils::getSiteName() . ' - '. ThemeModel::fetchConfigValue('vote_title');
+$title = Website::getName() . ' - '. ThemeModel::fetchConfigValue('vote_title');
 $description = ThemeModel::fetchConfigValue('vote_description');
 ?>
 <section class="bg-gray-800 relative text-white">
@@ -51,7 +50,7 @@ $description = ThemeModel::fetchConfigValue('vote_description');
                     <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs "><i class="fa-solid fa-clock-rotate-left"></i> <?= $site->getTimeFormatted() ?></div>
                 </div>
                 <div class="flex flex-wrap justify-between">
-                    <div class="mt-2 py-2 font-medium">Récompense : <span class="font-bold">500 points</span></div>
+                    <div class="mt-2 py-2 font-medium">Récompense : <span class="font-bold"><?= $site->getRewards()?->getTitle() ?></span></div>
                     <div class="pt-4 pb-2">
                         <a onclick="sendVote('<?= $site->getSiteId() ?>')" type="button" rel="noopener noreferrer" class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2">Voter <i class="fa-solid fa-award"></i></a>
                     </div>
