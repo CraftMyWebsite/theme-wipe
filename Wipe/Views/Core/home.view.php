@@ -84,7 +84,7 @@ $description = Website::getDescription();
 
 
 <!-- News -->
-<?php if (PackageController::isInstalled("news")): ?>
+<?php if (PackageController::isInstalled("News")): ?>
 <?php if(ThemeModel::fetchConfigValue('news_section_active')): ?>
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
@@ -226,7 +226,7 @@ $description = Website::getDescription();
 <?php endif; ?>
 
 <!-- Contact -->
-<?php if (PackageController::isInstalled("contact")): ?>
+<?php if (PackageController::isInstalled("Contact")): ?>
 <?php if(ThemeModel::fetchConfigValue('contact_section_active')): ?>
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">

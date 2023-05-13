@@ -162,7 +162,7 @@ $description = "Description de votre page";
                             <div class="w-12 h-12 shadow-xl">
                                 <img style="object-fit: fill; max-height: 48px; max-width: 48px" width="48px"
                                      height="48px"
-                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
+                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
                             </div>
                             <div class="ml-4">
                                 <p><?= $topic->getName() ?></p>

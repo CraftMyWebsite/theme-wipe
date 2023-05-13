@@ -67,7 +67,7 @@ $description = 'Profil de  ' . $user->getPseudo();
                 <?php if (!is_null($user->getUserPicture()?->getImageName())): ?>
                 <!--RECUPERER L'iMAGE-->
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Votre image :</label>
-                <img class="mx-auto rounded-lg border border-gray-300 shadow-xl" src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>public/uploads/users/<?= $user->getUserPicture()->getImageName() ?>" height="50%" width="50%" alt="Image de profil de <?= $user->getPseudo() ?>">
+                <img class="mx-auto rounded-lg border border-gray-300 shadow-xl" src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $user->getUserPicture()->getImageName() ?>" height="50%" width="50%" alt="Image de profil de <?= $user->getPseudo() ?>">
                 <?php endif; ?>
             </div>
 
