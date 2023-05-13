@@ -9,22 +9,22 @@
     <li class="nav-item" role="presentation">
         <a class="nav-link" id="setting2-tab" data-bs-toggle="tab" href="#setting2" role="tab" aria-selected="false">Accueil</a>
     </li>
-    <?php if (PackageController::isInstalled("news")): ?>
+    <?php if (PackageController::isInstalled("News")): ?>
     <li class="nav-item" role="presentation">
         <a class="nav-link" id="setting3-tab" data-bs-toggle="tab" href="#setting3" role="tab" aria-selected="false">News</a>
     </li>
     <?php endif; ?>
-    <?php if (PackageController::isInstalled("faq")): ?>
+    <?php if (PackageController::isInstalled("Faq")): ?>
     <li class="nav-item" role="presentation">
         <a class="nav-link" id="setting4-tab" data-bs-toggle="tab" href="#setting4" role="tab" aria-selected="false">F.A.Q</a>
     </li>
     <?php endif; ?>
-    <?php if (PackageController::isInstalled("votes")): ?>
+    <?php if (PackageController::isInstalled("Votes")): ?>
     <li class="nav-item" role="presentation">
         <a class="nav-link" id="setting5-tab" data-bs-toggle="tab" href="#setting5" role="tab" aria-selected="false">Votes</a>
     </li>
     <?php endif; ?>
-    <?php if (PackageController::isInstalled("wiki")): ?>
+    <?php if (PackageController::isInstalled("Wiki")): ?>
     <li class="nav-item" role="presentation">
         <a class="nav-link" id="setting6-tab" data-bs-toggle="tab" href="#setting6" role="tab" aria-selected="false">Wiki</a>
     </li>
@@ -202,7 +202,7 @@
                 </div>
             </div>
                 <!--NEWS-->
-                <?php if (PackageController::isInstalled("news")): ?>
+                <?php if (PackageController::isInstalled("News")): ?>
             <div class="card-in-card mt-4">
                 <div class="card-body">
                     <div class="form-check form-switch">
@@ -270,7 +270,7 @@
         </div>
     </div>
     <!---NEWS---->
-    <?php if (PackageController::isInstalled("news")): ?>
+    <?php if (PackageController::isInstalled("News")): ?>
     <div class="tab-pane fade py-2" id="setting3" role="tabpanel" aria-labelledby="setting3-tab">
         <div class="card-in-card">
             <div class="card-body">
@@ -309,7 +309,7 @@
     </div>
     <?php endif; ?>
     <!---FAQ---->
-    <?php if (PackageController::isInstalled("faq")): ?>
+    <?php if (PackageController::isInstalled("Faq")): ?>
     <div class="tab-pane fade py-2" id="setting4" role="tabpanel" aria-labelledby="setting4-tab">
         <div class="card-in-card">
             <div class="card-body">
@@ -366,7 +366,7 @@
     </div>
     <?php endif; ?>
     <!---VOTES---->
-    <?php if (PackageController::isInstalled("votes")): ?>
+    <?php if (PackageController::isInstalled("Votes")): ?>
     <div class="tab-pane fade py-2" id="setting5" role="tabpanel" aria-labelledby="setting5-tab">
         <div class="card-in-card">
             <div class="card-body">
@@ -421,7 +421,7 @@
     </div>
     <?php endif; ?>
     <!---WIKI---->
-    <?php if (PackageController::isInstalled("wiki")): ?>
+    <?php if (PackageController::isInstalled("Wiki")): ?>
     <div class="tab-pane fade py-2" id="setting6" role="tabpanel" aria-labelledby="setting6-tab">
         <div class="card-in-card">
             <div class="card-body">
