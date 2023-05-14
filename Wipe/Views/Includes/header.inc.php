@@ -3,10 +3,11 @@
 
 use CMW\Manager\Env\EnvManager;
 use CMW\Controller\Users\UsersController;
+use CMW\Model\Core\MenusModel;
 use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
-
+$menus = MenusModel::getInstance()->getMenus();
 ?>
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
@@ -53,28 +54,21 @@ use CMW\Utils\Website;
         </div>
         <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="navbar-cta">
             <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
-                <li>
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>" class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" aria-current="page">Accueil</a>
-                </li>
-                <li>
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news" class="cursor-pointer block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" aria-current="page">News</a>
-                </li>
-                <li>
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>faq" class="cursor-pointer block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" aria-current="page">F.A.Q</a>
-                </li>
-                <li>
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>wiki" class="cursor-pointer block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" aria-current="page">Wiki</a>
-                </li>
-                <li>
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>vote" class="cursor-pointer block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" aria-current="page">Votes</a>
-                </li>
-                <li>
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="cursor-pointer block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" aria-current="page">Forum</a>
-                </li>
+                <?php foreach ($menus as $menu): ?>
+
+                    <?php if ($menu->isUserAllowed()): ?>
+                        <li>
+                            <a href="<?= $menu->getUrl() ?>" <?= !$menu->isTargetBlank() ?: "target='_blank'" ?> class="cursor-pointer block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"><?= $menu->getName() ?></a>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </ul>
         </div>
     </div>
 </nav>
+
+
+
 
 
 
