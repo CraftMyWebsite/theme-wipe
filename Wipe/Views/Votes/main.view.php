@@ -43,7 +43,6 @@ $description = ThemeModel::fetchConfigValue('vote_description');
             <?php else: ?>
             <!-- LIST SITES -->
             <?php foreach ($sites as $site): ?>
-            <a href="<?= $site->getUrl() ?>"target="_BLANK">
             <div class="rounded-md shadow-lg p-2 mb-4">
                 <div class="flex flex-wrap justify-between">
                     <div class="font-medium"><?= $site->getTitle() ?></div>
@@ -56,7 +55,6 @@ $description = ThemeModel::fetchConfigValue('vote_description');
                     </div>
                 </div>
             </div>
-            </a>
             <?php endforeach; ?>
             <?php endif; ?>
 
