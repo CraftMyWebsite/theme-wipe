@@ -26,7 +26,7 @@ $description = "Description de votre page";
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
                     <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                        Accueil
+                        <?= ThemeModel::fetchConfigValue('forum_breadcrumb_home') ?>
                     </a>
                 </li>
                 <li>

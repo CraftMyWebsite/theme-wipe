@@ -5,6 +5,7 @@ use CMW\Controller\Users\UsersSettingsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
+use CMW\Model\Users\UsersModel;
 
 /* @var \CMW\Model\Forum\ForumModel $forumModel */
 /* @var \CMW\Model\Forum\TopicModel $topicModel */
@@ -29,7 +30,7 @@ $description = "Description de votre page";
     </div>
 </section>
 
-
+<!--
 <section class="py-8 ">
     <div class="container mx-auto px-4 relative">
         <div id="alert-additional-content-4"
@@ -51,7 +52,7 @@ $description = "Description de votre page";
         </div>
     </div>
 </section>
-
+-->
 
 <section class="lg:grid grid-cols-4 gap-6 sm:mx-12 2xl:mx-72 pt-8">
     <div class="col-span-3">
@@ -60,7 +61,7 @@ $description = "Description de votre page";
                 <li class="inline-flex items-center">
                     <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum"
                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                        Accueil
+                        <?= ThemeModel::fetchConfigValue('forum_breadcrumb_home') ?>
                     </a>
                 </li>
                 <li>
@@ -75,30 +76,29 @@ $description = "Description de votre page";
     </div>
     <form>
         <div class="flex">
-            <div class="relative w-full">
-                <input type="search" id="search-dropdown"
-                       class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                       placeholder="Rechercher">
-                <button type="submit"
-                        class="absolute top-0 right-0 p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                    <i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+            <?php if (UsersController::isUserLogged()): ?>
+                <div class="text-center mb-4">
+                    <a href="<?= $forum->getSlug() ?>/add"
+                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i
+                            class="<?= ThemeModel::fetchConfigValue('forum_btn_create_topic_icon') ?>"></i> <?= ThemeModel::fetchConfigValue('forum_btn_create_topic') ?></a>
+                </div>
+            <?php endif; ?>
         </div>
     </form>
 </section>
 
 
-<section class="lg:grid grid-cols-4 gap-6 my-8 sm:mx-12 2xl:mx-72 ">
+<section class="<?php if(ThemeModel::fetchConfigValue('forum_use_widgets')): ?>lg:grid <?php endif; ?> grid-cols-4 gap-6 my-8 sm:mx-12 2xl:mx-72 ">
     <div class="lg:col-span-3 h-fit">
 
 
         <?php if ($forumModel->getSubforumByForum($forum->getId(), true)): ?>
             <div class="w-full shadow-md mb-10">
                 <div class="flex py-4 bg-gray-100">
-                    <div class="md:w-[55%] px-4 font-bold">Sous-Forums</div>
-                    <div class="hidden md:block w-[10%] font-bold text-center">Topics</div>
-                    <div class="hidden md:block w-[10%] font-bold text-center">Messages</div>
-                    <div class="hidden md:block w-[25%] font-bold text-center">Dernier messages</div>
+                    <div class="md:w-[55%] px-4 font-bold"><?= ThemeModel::fetchConfigValue('forum_sub_forum') ?></div>
+                    <div class="hidden md:block w-[10%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_topics') ?></div>
+                    <div class="hidden md:block w-[10%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_message') ?></div>
+                    <div class="hidden md:block w-[25%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_last_message') ?></div>
                 </div>
 
                 <?php foreach ($forumModel->getSubforumByForum($forum->getId(), true) as $forumEntity): ?>
@@ -127,14 +127,14 @@ $description = "Description de votre page";
                                 <a href="#">
                                     <div tabindex="0" class="avatar w-10">
                                         <div class="w-fit rounded-full ">
-                                            <img src="https://placeimg.com/80/80/people"/>
+                                            <img src="<?= $forumEntity->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
                                         </div>
                                     </div>
                                 </a>
                                 <a href="#">
                                     <div class="ml-2">
-                                        <div class="">Vous</div>
-                                        <div>Mardi 09 Juin, 19:42</div>
+                                        <div class=""><?= $forumEntity->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::fetchConfigValue('forum_nobody_send_message_text') ?></div>
+                                        <div><?= $forumEntity->getLastResponse()?->getCreated() ?? "" ?></div>
                                     </div>
                                 </a>
                             </div>
@@ -147,10 +147,10 @@ $description = "Description de votre page";
 
         <div class="w-full shadow-md mb-10">
             <div class="flex py-4 bg-gray-100">
-                <div class="md:w-[55%] px-4 font-bold">Topics</div>
-                <div class="hidden md:block w-[10%] font-bold text-center">Affichages</div>
-                <div class="hidden md:block w-[10%] font-bold text-center">Réponses</div>
-                <div class="hidden md:block w-[25%] font-bold text-center">Dernier messages</div>
+                <div class="md:w-[55%] px-4 font-bold"><?= ThemeModel::fetchConfigValue('forum_topics') ?></div>
+                <div class="hidden md:block w-[10%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_display') ?></div>
+                <div class="hidden md:block w-[10%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_response') ?></div>
+                <div class="hidden md:block w-[25%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_last_message') ?></div>
             </div>
 
 
@@ -200,14 +200,14 @@ $description = "Description de votre page";
                             <a href="#">
                                 <div tabindex="0" class="avatar w-10">
                                     <div class="w-fit">
-                                        <img src="<?= $topic->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? UsersSettingsController::getDefaultImageLink() ?>"/>
+                                        <img src="<?= $topic->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
                                     </div>
                                 </div>
                             </a>
                             <a href="#">
                                 <div class="ml-2">
-                                    <div class=""><?= $topic->getLastResponse()?->getUser()->getPseudo() ?? "Postez la première réponse"?></div>
-                                    <div><?= $topic->getLastResponse()?->getCreated() ?? "Postez la première réponse" ?></div>
+                                    <div class=""><?= $topic->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::fetchConfigValue('forum_nobody_send_message_text') ?></div>
+                                    <div><?= $topic->getLastResponse()?->getCreated() ?? "" ?></div>
                                 </div>
                             </a>
                         </div>
@@ -347,33 +347,37 @@ $description = "Description de votre page";
         </div>
     </div>
 
-
-    <div class="h-fit">
-        <?php if (UsersController::isUserLogged()): ?>
-            <div class="text-center mb-4">
-                <a href="<?= $forum->getSlug() ?>/add"
-                   class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i
-                            class="fa-solid fa-pen-to-square"></i> Créer un topic</a>
-            </div>
-        <?php endif; ?>
-        <div class="w-full shadow-md mb-6">
-            <div class="flex py-4 bg-gray-100 border-b">
-                <div class="px-4 font-bold">Widgets 1</div>
-            </div>
-
-            <div class="px-2 py-4">
-                <p>Des trucs cool</p>
-            </div>
+    <?php if(ThemeModel::fetchConfigValue('forum_use_widgets')): ?>
+        <div class="h-fit">
+            <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_stats')): ?>
+                <div class="w-full shadow-md mb-6">
+                    <div class="flex py-4 bg-gray-100 border-b">
+                        <div class="px-4 font-bold">Stats forum</div>
+                    </div>
+                    <div class="px-2 py-4">
+                        <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_member')): ?><p><?= ThemeModel::fetchConfigValue('forum_widgets_text_member') ?> <b><?= UsersModel::getInstance()->countUsers() ?></b></p><?php endif; ?>
+                        <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_messages')): ?><p><?= ThemeModel::fetchConfigValue('forum_widgets_text_messages') ?> <b><?= $forumModel->countAllMessagesInAllForum() ?></b></p><?php endif; ?>
+                        <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_topics')): ?><p><?= ThemeModel::fetchConfigValue('forum_widgets_text_topics') ?> <b><?= $forumModel->countAllTopicsInAllForum() ?></b></p><?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_discord')): ?>
+                <div class="w-full shadow-md mb-6">
+                    <div class="">
+                        <iframe style="width: 100%" src="https://discord.com/widget?id=<?= ThemeModel::fetchConfigValue('forum_widgets_content') ?>&theme=light" height="400" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_custom')): ?>
+                <div class="w-full shadow-md mb-6">
+                    <div class="flex py-4 bg-gray-100 border-b">
+                        <div class="px-4 font-bold"><?= ThemeModel::fetchConfigValue('forum_widgets_custom_title') ?></div>
+                    </div>
+                    <div class="px-2 py-4">
+                        <?= ThemeModel::fetchConfigValue('forum_widgets_custom_text') ?>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
-
-        <div class="w-full shadow-md mb-6">
-            <div class="flex py-4 bg-gray-100 border-b">
-                <div class="px-4 font-bold">Widgets 2</div>
-            </div>
-
-            <div class="px-2 py-4">
-                <p>D'autres trucs cool</p>
-            </div>
-        </div>
-    </div>
+    <?php endif; ?>
 </section>

@@ -4,6 +4,7 @@ use CMW\Controller\Users\UsersController;
 use CMW\Controller\Users\UsersSettingsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
+use CMW\Model\Users\UsersModel;
 use CMW\Utils\Website;
 
 /** @var \CMW\Model\Forum\ForumModel $forumModel */
@@ -93,7 +94,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                     <li class="inline-flex items-center">
                         <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum"
                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                            Accueil
+                            <?= ThemeModel::fetchConfigValue('forum_breadcrumb_home') ?>
                         </a>
                     </li>
                 </ol>
@@ -114,16 +115,16 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
     </section>
 
 
-    <section class="lg:grid grid-cols-4 gap-6 my-8 sm:mx-12 2xl:mx-72 ">
+    <section class="<?php if(ThemeModel::fetchConfigValue('forum_use_widgets')): ?>lg:grid <?php endif; ?> grid-cols-4 gap-6 my-8 sm:mx-12 2xl:mx-72 ">
         <div class="lg:col-span-3 h-fit">
 
             <?php foreach ($categoryModel->getCategories() as $category) : ?>
                 <div class="w-full shadow-md mb-10">
                     <div class="flex py-4 bg-gray-100">
                         <div class="md:w-[55%] px-4 font-bold"><?= $category->getFontAwesomeIcon() ?> <?= $category->getName() ?></div>
-                        <div class="hidden md:block w-[10%] font-bold text-center">Topics</div>
-                        <div class="hidden md:block w-[10%] font-bold text-center">Messages</div>
-                        <div class="hidden md:block w-[25%] font-bold text-center">Dernier messages</div>
+                        <div class="hidden md:block w-[10%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_topics') ?></div>
+                        <div class="hidden md:block w-[10%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_message') ?></div>
+                        <div class="hidden md:block w-[25%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_last_message') ?></div>
                     </div>
                     <?php foreach ($forumModel->getForumByCat($category->getId()) as $forumObj): ?>
                         <div class="flex py-6 border-t  hover:bg-gray-50">
@@ -151,14 +152,14 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                                     <a href="#">
                                         <div tabindex="0" class="avatar w-10">
                                             <div class="w-fit rounded-full ">
-                                                <img src="<?= $forumObj->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? UsersSettingsController::getDefaultImageLink() ?>"/>
+                                                <img src="<?= $forumObj->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
                                             </div>
                                         </div>
                                     </a>
                                     <a href="#">
                                         <div class="ml-2">
-                                            <div class=""><?= $forumObj->getLastResponse()?->getUser()->getPseudo() ?? "Null" ?></div>
-                                            <div><?= $forumObj->getLastResponse()?->getCreated() ?? "Null" ?></div>
+                                            <div class=""><?= $forumObj->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::fetchConfigValue('forum_nobody_send_message_text')  ?></div>
+                                            <div><?= $forumObj->getLastResponse()?->getCreated() ?? "" ?></div>
                                         </div>
                                     </a>
                                 </div>
@@ -169,27 +170,38 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
             <?php endforeach; ?>
         </div>
 
-
+    <?php if(ThemeModel::fetchConfigValue('forum_use_widgets')): ?>
         <div class="h-fit">
+        <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_stats')): ?>
             <div class="w-full shadow-md mb-6">
                 <div class="flex py-4 bg-gray-100 border-b">
-                    <div class="px-4 font-bold">Widgets 1</div>
+                    <div class="px-4 font-bold">Stats forum</div>
                 </div>
-
                 <div class="px-2 py-4">
-                    <p>Des trucs cool</p>
+                    <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_member')): ?><p><?= ThemeModel::fetchConfigValue('forum_widgets_text_member') ?> <b><?= UsersModel::getInstance()->countUsers() ?></b></p><?php endif; ?>
+                    <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_messages')): ?><p><?= ThemeModel::fetchConfigValue('forum_widgets_text_messages') ?> <b><?= $forumModel->countAllMessagesInAllForum() ?></b></p><?php endif; ?>
+                    <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_topics')): ?><p><?= ThemeModel::fetchConfigValue('forum_widgets_text_topics') ?> <b><?= $forumModel->countAllTopicsInAllForum() ?></b></p><?php endif; ?>
                 </div>
             </div>
-
+        <?php endif; ?>
+        <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_discord')): ?>
+            <div class="w-full shadow-md mb-6">
+                <div class="">
+                    <iframe style="width: 100%" src="https://discord.com/widget?id=<?= ThemeModel::fetchConfigValue('forum_widgets_content') ?>&theme=light" height="400" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if(ThemeModel::fetchConfigValue('forum_widgets_show_custom')): ?>
             <div class="w-full shadow-md mb-6">
                 <div class="flex py-4 bg-gray-100 border-b">
-                    <div class="px-4 font-bold">Widgets 2</div>
+                    <div class="px-4 font-bold"><?= ThemeModel::fetchConfigValue('forum_widgets_custom_title') ?></div>
                 </div>
-
                 <div class="px-2 py-4">
-                    <p>D'autres trucs cool</p>
+                    <?= ThemeModel::fetchConfigValue('forum_widgets_custom_text') ?>
                 </div>
             </div>
+        <?php endif; ?>
         </div>
+    <?php endif; ?>
     </section>
 <?php endif; ?>

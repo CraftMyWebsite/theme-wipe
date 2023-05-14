@@ -44,7 +44,7 @@ $description = "Description de votre page";
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
                     <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                        Accueil
+                        <?= ThemeModel::fetchConfigValue('forum_breadcrumb_home') ?>
                     </a>
                 </li>
                 <li>
@@ -123,7 +123,7 @@ $description = "Description de votre page";
                 <div class="p-4 text-center ">
                     <div class="bg-gray-100 p-2">
                         <div class="w-36 h-36 mx-auto border">
-                            <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
+                            <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
                         </div>
                     </div>
                     <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
@@ -196,7 +196,7 @@ $description = "Description de votre page";
                 <div class="p-4 text-center ">
                     <div class="bg-gray-100 p-2">
                         <div class="w-36 h-36 mx-auto border">
-                            <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $response->getUser()->getUserPicture()->getImageName() ?>" />
+                            <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $response->getUser()->getUserPicture()->getImageName() ?>" />
                         </div>
                     </div>
                     <h5 class="font-semibold bg-gray-200"><?= $response->getUser()->getPseudo() ?></h5>
@@ -287,7 +287,7 @@ $description = "Description de votre page";
                 <div class="p-4 text-center ">
                         <div class="bg-gray-100 pt-2">
                             <div class="w-36 h-36 mx-auto border">
-                                <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= getenv('PATH_SUBFOLDER') ?>public/uploads/users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
+                                <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
                             </div>
                             <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
                         </div>

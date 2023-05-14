@@ -98,6 +98,40 @@ return [
     "wiki_display_edit_date" => "1",
     "wiki_display_autor" => "1",
 
+    /* - - - - - - - -
+       - - FORUM - -
+    - - - - - - - - - */
+    "forum_title" => "Forum",
+    "forum_description" => "Parcourez notre forum",
+    "forum_use_widgets" => "1",
+    "forum_widgets_show_stats" => "1",
+    "forum_widgets_title_stats" => "Stats du forum",
+    "forum_widgets_show_member" => "1",
+    "forum_widgets_text_member" => "Membres totaux :",
+    "forum_widgets_show_messages" => "1",
+    "forum_widgets_text_messages" => "Messages totaux :",
+    "forum_widgets_show_topics" => "1",
+    "forum_widgets_text_topics" => "Nombres de topics :",
+    "forum_widgets_show_discord" => "1",
+    "forum_widgets_content_id" => "(Paramètres serveur > Widget > ID serveur)",
+    "forum_widgets_show_custom" => "1",
+    "forum_widgets_custom_title" => "Widget personnaliser",
+    "forum_widgets_custom_text" => "<p>Bonjour !</p>",
+
+    "forum_breadcrumb_home" => "Accueil",
+    "forum_btn_create_topic_icon" => "fa-solid fa-pen-to-square",
+    "forum_btn_create_topic" => "Créer un topic",
+
+    "forum_sub_forum" => "Sous-Forums",
+    "forum_topics" => "Topics",
+    "forum_message" => "Messages",
+    "forum_last_message" => "Dernier messages",
+    "forum_display" => "Affichages",
+    "forum_response" => "Réponses",
+
+    "forum_nobody_send_message_img" => "Config/Default/Img/Forum/nobody.png",
+    "forum_nobody_send_message_text" => "Aucun message",
+
     /* - - - - - - - - 
        - - FOOTER - -
     - - - - - - - - - */

@@ -29,8 +29,13 @@
         <a class="nav-link" id="setting6-tab" data-bs-toggle="tab" href="#setting6" role="tab" aria-selected="false">Wiki</a>
     </li>
     <?php endif; ?>
+    <?php if (PackageController::isInstalled("Forum")): ?>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="setting7-tab" data-bs-toggle="tab" href="#setting7" role="tab" aria-selected="false">Forum</a>
+        </li>
+    <?php endif; ?>
     <li class="nav-item" role="presentation">
-        <a class="nav-link" id="setting7-tab" data-bs-toggle="tab" href="#setting7" role="tab" aria-selected="false">Footer</a>
+        <a class="nav-link" id="setting8-tab" data-bs-toggle="tab" href="#setting8" role="tab" aria-selected="false">Footer</a>
     </li>
 </ul>
 
@@ -493,8 +498,157 @@
         </div>
     </div>
     <?php endif; ?>
+    <!---FORUM---->
+    <?php if (PackageController::isInstalled("Forum")): ?>
+        <div class="tab-pane fade py-2" id="setting7" role="tabpanel" aria-labelledby="setting7-tab">
+            <div class="card-in-card">
+                <div class="card-body">
+                    <h4>Indéxation de la page (meta) :</h4>
+                    <div class="alert alert-warning">
+                        <h4 class="alert-heading">Bien comprendre l'indéxation</h4>
+                        <p>Ces options change le titre et la déscription de votre page dans l'onglet mais également lors des affichage dans discord, twitter ...<br>Ceci n'est aucunment lié au titre de la page en cours cette option ce trouve un peu plus bas (Si votre page est éligible à ce réglage.)<br>Si vous ne comprenez toujours pas ce que sa modifier merci de contacter le support de CraftMyWebsite</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <h6>Titre de la page :</h6>
+                            <input type="text" class="form-control" id="forum_title" name="forum_title" value="<?= ThemeModel::fetchConfigValue('forum_title') ?>" required>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <h6>Description de la page :</h6>
+                            <input type="text" class="form-control" id="forum_description" name="forum_description" value="<?= ThemeModel::fetchConfigValue('forum_description') ?>" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-in-card mt-4">
+                <div class="card-body">
+                    <h4>Réglages :</h4>
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            <div class="card me-2 p-3">
+                                <h6>Titres :</h6>
+                                <h6>Sous-Forums :</h6>
+                                <input type="text" class="form-control" id="forum_sub_forum" name="forum_sub_forum" value="<?= ThemeModel::fetchConfigValue('forum_sub_forum') ?>" required>
+                                <h6>Topics :</h6>
+                                <input type="text" class="form-control" id="forum_topics" name="forum_topics" value="<?= ThemeModel::fetchConfigValue('forum_topics') ?>" required>
+                                <h6>Messages :</h6>
+                                <input type="text" class="form-control" id="forum_message" name="forum_message" value="<?= ThemeModel::fetchConfigValue('forum_message') ?>" required>
+                                <h6>Dernier messages :</h6>
+                                <input type="text" class="form-control" id="forum_last_message" name="forum_last_message" value="<?= ThemeModel::fetchConfigValue('forum_last_message') ?>" required>
+                                <h6>Affichages :</h6>
+                                <input type="text" class="form-control" id="forum_display" name="forum_display" value="<?= ThemeModel::fetchConfigValue('forum_display') ?>" required>
+                                <h6>Réponses :</h6>
+                                <input type="text" class="form-control" id="forum_response" name="forum_response" value="<?= ThemeModel::fetchConfigValue('forum_response') ?>" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="card me-2 p-3">
+                                <h6>Topic sans message :</h6>
+                                <div class="form-group">
+                                    <h6>Texte :</h6>
+                                    <input type="text" class="form-control" id="forum_nobody_send_message_text" name="forum_nobody_send_message_text" value="<?= ThemeModel::fetchConfigValue('forum_nobody_send_message_text') ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <h6>Image :</h6>
+                                    <div class="text-center ">
+                                        <img class="w-25" src="<?= ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>" alt="Image introuvable !">
+                                    </div>
+                                    <input class="mt-2 form-control form-control-sm" type="file" id="forum_nobody_send_message_img" name="forum_nobody_send_message_img" accept=".png, .jpg, .jpeg, .webp, .gif">
+                                    <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="card me-2 p-3">
+                                <h6>Bouton :</h6>
+                                <div class="form-group">
+                                    <h6>Texte :</h6>
+                                    <input type="text" class="form-control" id="forum_btn_create_topic" name="forum_btn_create_topic" value="<?= ThemeModel::fetchConfigValue('forum_btn_create_topic') ?>" required>
+                                </div>
+                                <div class="form-group">
+                                    <h6>Icône : ( <i class="<?= ThemeModel::fetchConfigValue('forum_btn_create_topic_icon') ?>"></i> )</h6>
+                                    <input type="text" class="form-control" id="forum_btn_create_topic_icon" name="forum_btn_create_topic_icon" value="<?= ThemeModel::fetchConfigValue('forum_btn_create_topic_icon') ?>" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-4">
+                            <div class="card me-2 p-3">
+                                <h6>Navigation rapide <small>(accueil)</small> :</h6>
+                                <input type="text" class="form-control" id="forum_breadcrumb_home" name="forum_breadcrumb_home" value="<?= ThemeModel::fetchConfigValue('forum_breadcrumb_home') ?>" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-in-card mt-4">
+                <div class="card-body">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" value="1" id="forum_use_widgets" name="forum_use_widgets" <?= ThemeModel::fetchConfigValue('forum_use_widgets') ? 'checked' : '' ?>>
+                        <label class="form-check-label" for="forum_use_widgets"><h4>Widgets :</h4></label>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-4">
+                            <div class="card me-2 p-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" value="1" id="forum_widgets_show_stats" name="forum_widgets_show_stats" <?= ThemeModel::fetchConfigValue('forum_widgets_show_stats') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="forum_widgets_show_stats"><h6>Statistiques :</h6></label>
+                                </div>
+                                <h6>Titre du widget :</h6>
+                                <input type="text" class="form-control" id="forum_widgets_title_stats" name="forum_widgets_title_stats" value="<?= ThemeModel::fetchConfigValue('forum_widgets_title_stats') ?>" required>
+                                <hr>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" value="1" id="forum_widgets_show_member" name="forum_widgets_show_member" <?= ThemeModel::fetchConfigValue('forum_widgets_show_member') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="forum_widgets_show_member"><h6>Nombre de membres :</h6></label>
+                                </div>
+                                <input type="text" class="form-control" id="forum_widgets_text_member" name="forum_widgets_text_member" value="<?= ThemeModel::fetchConfigValue('forum_widgets_text_member') ?>" required>
+                                <hr>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" value="1" id="forum_widgets_show_messages" name="forum_widgets_show_messages" <?= ThemeModel::fetchConfigValue('forum_widgets_show_messages') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="forum_widgets_show_messages"><h6>Nombre de messages</h6></label>
+                                </div>
+                                <input type="text" class="form-control" id="forum_widgets_text_messages" name="forum_widgets_text_messages" value="<?= ThemeModel::fetchConfigValue('forum_widgets_text_messages') ?>" required>
+                                <hr>
+                                <div class="form-check form-switch">
+                                    <label class="form-check-label" for="forum_widgets_show_topics"><h6>Nombre de topics :</h6></label>
+                                    <input class="form-check-input" type="checkbox" value="1" id="forum_widgets_show_topics" name="forum_widgets_show_topics" <?= ThemeModel::fetchConfigValue('forum_widgets_show_topics') ? 'checked' : '' ?>>
+                                </div>
+                                <input type="text" class="form-control" id="forum_widgets_text_topics" name="forum_widgets_text_topics" value="<?= ThemeModel::fetchConfigValue('forum_widgets_text_topics') ?>" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="card me-2 p-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" value="1" id="forum_widgets_show_discord" name="forum_widgets_show_discord" <?= ThemeModel::fetchConfigValue('forum_widgets_show_discord') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="forum_widgets_show_discord"><h6>Discord</h6></label>
+                                </div>
+                                <h6>Id Discord :</h6>
+                                <input type="text" class="form-control" id="forum_widgets_content_id" name="forum_widgets_content_id" value="<?= ThemeModel::fetchConfigValue('forum_widgets_content_id') ?>" required>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="card me-2 p-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" value="1" id="forum_widgets_show_custom" name="forum_widgets_show_custom" <?= ThemeModel::fetchConfigValue('forum_widgets_show_custom') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="forum_widgets_show_custom"><h6>Widget personnalisé</h6></label>
+                                </div>
+                                <h6>Titre du widget :</h6>
+                                <input type="text" class="form-control" id="forum_widgets_custom_title" name="forum_widgets_custom_title" value="<?= ThemeModel::fetchConfigValue('forum_widgets_custom_title') ?>" required>
+                                <h6>Contenue :</h6>
+                                <textarea name="forum_widgets_custom_text" class="tinymce"><?= ThemeModel::fetchConfigValue('forum_widgets_custom_text') ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    <?php endif; ?>
     <!---FOOTER---->
-    <div class="tab-pane fade py-2" id="setting7" role="tabpanel" aria-labelledby="setting7-tab">
+    <div class="tab-pane fade py-2" id="setting8" role="tabpanel" aria-labelledby="setting8-tab">
         <div class="card-in-card">
             <div class="card-body">
                 <h4>Réglages :</h4>
