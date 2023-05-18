@@ -4,7 +4,7 @@ use CMW\Model\Contact\ContactModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 /*TITRE ET DESCRIPTION*/
-$title = Website::getName() . ' - '. ThemeModel::fetchConfigValue('faq_title');
+$title = Website::getName();
 $description = ThemeModel::fetchConfigValue('faq_description');
 ?>
 
