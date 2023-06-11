@@ -7,11 +7,15 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Model\Users\UsersModel;
 
-/* @var \CMW\Model\Forum\ForumModel $forumModel */
-/* @var \CMW\Model\Forum\TopicModel $topicModel */
-/* @var \CMW\Entity\Forum\TopicEntity $topic */
-/* @var \CMW\Entity\Forum\ForumEntity $forum */
-/* @var \CMW\Model\Forum\ResponseModel $responseModel */
+/* @var CMW\Model\Forum\ForumModel $forumModel */
+/* @var CMW\Model\Forum\TopicModel $topicModel */
+/* @var CMW\Entity\Forum\TopicEntity $topic */
+/* @var CMW\Entity\Forum\ForumEntity $forum */
+/* @var CMW\Model\Forum\ResponseModel $responseModel */
+/* @var CMW\Controller\Forum\SettingsController $iconNotRead */
+/* @var CMW\Controller\Forum\SettingsController $iconImportant */
+/* @var CMW\Controller\Forum\SettingsController $iconPin */
+/* @var CMW\Controller\Forum\SettingsController $iconClosed */
 
 $title = "Titre de la page";
 $description = "Description de votre page";
@@ -172,19 +176,19 @@ $description = "Description de votre page";
                             </div>
                             <div class="absolute top-0 right-0">
                                 <?= $topic->isImportant() ? "
-                            <i data-tooltip-target='tooltip-important' class='fa-solid fa-triangle-exclamation fa-sm text-orange-500'></i>
+                            <i data-tooltip-target='tooltip-important' class='<?= $iconImportant ?> fa-sm text-orange-500'></i>
                             <div id='tooltip-important' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
                                 Important
                             </div>
                             " : "" ?>
                                 <?= $topic->isPinned() ? "
-                            <i data-tooltip-target='tooltip-pined' class='fa-solid fa-thumbtack fa-sm text-red-600 ml-2'></i>
+                            <i data-tooltip-target='tooltip-pined' class='<?= $iconPin ?> fa-sm text-red-600 ml-2'></i>
                             <div id='tooltip-pined' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
                                 Épinglé
                             </div>
                              " : "" ?>
                                 <?= $topic->isDisallowReplies() ? "
-                            <i data-tooltip-target='tooltip-closed' class='fa-solid fa-lock fa-sm text-yellow-300 ml-2'></i>
+                            <i data-tooltip-target='tooltip-closed' class='<?= $iconClosed ?> fa-sm text-yellow-300 ml-2'></i>
                             <div id='tooltip-closed' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
                                 Fermé
                             </div>
@@ -272,7 +276,7 @@ $description = "Description de votre page";
                                                         </div>
                                                         <label for="important-<?= $topic->getId() ?>"
                                                                class="ml-2 text-sm font-medium text-gray-900"><i
-                                                                    class="fa-solid fa-triangle-exclamation text-orange-500 fa-sm"></i>
+                                                                    class="<?= $iconImportant ?> text-orange-500 fa-sm"></i>
                                                             Important</label>
                                                     </div>
                                                     <div class="flex items-start">
@@ -283,7 +287,7 @@ $description = "Description de votre page";
                                                         </div>
                                                         <label for="pin-<?= $topic->getId() ?>"
                                                                class="ml-2 text-sm font-medium text-gray-900"><i
-                                                                    class="fa-solid fa-thumbtack text-red-600 fa-sm"></i>
+                                                                    class="<?= $iconPin ?> text-red-600 fa-sm"></i>
                                                             Épingler</label>
                                                     </div>
                                                     <div class="flex items-start">
@@ -294,7 +298,7 @@ $description = "Description de votre page";
                                                         </div>
                                                         <label for="closed-<?= $topic->getId() ?>"
                                                                class="ml-2 text-sm font-medium text-gray-900"><i
-                                                                    class="fa-solid fa-lock text-yellow-300 fa-sm"></i>
+                                                                    class="<?= $iconClosed ?> text-yellow-300 fa-sm"></i>
                                                             Fermer</label>
                                                     </div>
                                                 </div>
@@ -319,18 +323,7 @@ $description = "Description de votre page";
                                                 class="text-gray-700 border-2 border-red-700 hover:border-red-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
                                             <i class="fa-solid fa-trash fa-lg"></i> Corbeille
                                         </a>
-                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getPinnedLink() ?>"
-                                           class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i
-                                                    class="fa-solid fa-thumbtack text-red-600 fa-lg"></i><?= $topic->isPinned() ? " Désépingler" : " Épingler" ?>
-                                        </a>
-                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getIsImportantLink() ?>"
-                                           class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i
-                                                    class="fa-solid fa-triangle-exclamation text-orange-500 fa-lg"></i><?= $topic->isImportant() ? " Non important" : " Important" ?>
-                                        </a>
-                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getDisallowRepliesLink() ?>"
-                                           class="text-gray-700 border-2 border-blue-600 hover:border-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2"><i
-                                                    class="fa-solid fa-lock text-yellow-300 fa-lg"></i><?= $topic->isDisallowReplies() ? " Ouvrir" : " Clore" ?>
-                                        </a>
+
                                         <button type="submit" form="modal-<?= $topic->getId() ?>"
                                                 class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
                                             Valider

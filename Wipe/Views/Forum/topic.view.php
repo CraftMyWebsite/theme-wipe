@@ -5,6 +5,11 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
 
+/* @var CMW\Controller\Forum\SettingsController $iconNotRead */
+/* @var CMW\Controller\Forum\SettingsController $iconImportant */
+/* @var CMW\Controller\Forum\SettingsController $iconPin */
+/* @var CMW\Controller\Forum\SettingsController $iconClosed */
+
 $title = "Titre de la page";
 $description = "Description de votre page";
 ?>
@@ -82,19 +87,19 @@ $description = "Description de votre page";
                 <h4><?= $topic->getName() ?></h4>
                 <div class="">
                     <?php if($topic->isImportant()): ?>
-                        <i data-tooltip-target="tooltip-important" class="fa-solid fa-triangle-exclamation text-orange-500 ml-4"></i>
+                        <i data-tooltip-target="tooltip-important" class="<?= $iconImportant ?> text-orange-500 ml-4"></i>
                         <div id="tooltip-important" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Important
                         </div>
                     <?php endif; ?>
                     <?php if($topic->isPinned()): ?>
-                        <i data-tooltip-target="tooltip-pined" class="fa-solid fa-thumbtack text-red-600 ml-4"></i>
+                        <i data-tooltip-target="tooltip-pined" class="<?= $iconPin ?> text-red-600 ml-4"></i>
                         <div id="tooltip-pined" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Épinglé
                         </div>
                     <?php endif; ?>
                     <?php if($topic->isDisallowReplies()): ?>
-                        <i data-tooltip-target="tooltip-closed" class="fa-solid fa-lock text-yellow-300 ml-4"></i>
+                        <i data-tooltip-target="tooltip-closed" class="<?= $iconClosed ?> text-yellow-300 ml-4"></i>
                         <div id="tooltip-closed" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Fermé
                         </div>
