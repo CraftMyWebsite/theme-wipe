@@ -84,7 +84,9 @@ $description = "Description de votre page";
     <div class="rounded-md shadow-lg p-8">
         <section>
             <div class="flex justify-between">
-                <h4><?= $topic->getName() ?></h4>
+                <h4>
+                    <?php if($topic->getPrefixId()): ?><span class="px-2 text-white rounded-lg" style="color: <?= $topic->getPrefixTextColor() ?>; background: <?= $topic->getPrefixColor() ?>"><?= $topic->getPrefixName() ?></span> <?php endif; ?><?= $topic->getName() ?>
+                </h4>
                 <div class="">
                     <?php if($topic->isImportant()): ?>
                         <i data-tooltip-target="tooltip-important" class="<?= $iconImportant ?> text-orange-500 ml-4"></i>
