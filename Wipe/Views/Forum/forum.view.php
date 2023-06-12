@@ -212,7 +212,7 @@ $description = "Description de votre page";
                             </div>
                         </a>
                     </div>
-                    <div class="hidden md:block w-[10%] text-center my-auto">NA</div>
+                    <div class="hidden md:block w-[10%] text-center my-auto"><?= $topic->countViews() ?></div>
                     <div
                         class="hidden md:inline-block w-[10%] text-center my-auto"><?= $responseModel->countResponseInTopic($topic->getId()) ?></div>
                     <!--Dernier message-->
