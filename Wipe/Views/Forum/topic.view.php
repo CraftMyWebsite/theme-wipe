@@ -9,13 +9,16 @@ use CMW\Controller\Users\UsersController;
 /* @var CMW\Controller\Forum\SettingsController $iconImportant */
 /* @var CMW\Controller\Forum\SettingsController $iconPin */
 /* @var CMW\Controller\Forum\SettingsController $iconClosed */
-
+/* @var CMW\Model\Forum\FeedbackModel $feedbackModel */
+/* @var CMW\Entity\Forum\TopicEntity $topic */
 $title = "Titre de la page";
 $description = "Description de votre page";
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>"
+         class="absolute h-full inset-0 object-center object-cover w-full"
+         alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -48,20 +51,24 @@ $description = "Description de votre page";
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum"
+                       class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         <?= ThemeModel::fetchConfigValue('forum_breadcrumb_home') ?>
                     </a>
                 </li>
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum/f/" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Je sais pas</a>
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum/f/"
+                           class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Je
+                            sais pas</a>
                     </div>
                 </li>
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getLink() ?>" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $topic->getName() ?></a>
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getLink() ?>"
+                           class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $topic->getName() ?></a>
                     </div>
                 </li>
             </ol>
@@ -70,14 +77,16 @@ $description = "Description de votre page";
     <form>
         <div class="flex">
             <div class="relative w-full">
-                <input type="search" id="search-dropdown" class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Rechercher">
-                <button type="submit" class="absolute top-0 right-0 p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="search" id="search-dropdown"
+                       class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                       placeholder="Rechercher">
+                <button type="submit"
+                        class="absolute top-0 right-0 p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    <i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
     </form>
 </section>
-
-
 
 
 <section class="my-8 sm:mx-12 2xl:mx-72">
@@ -85,38 +94,44 @@ $description = "Description de votre page";
         <section>
             <div class="flex justify-between">
                 <h4>
-                    <?php if($topic->getPrefixId()): ?><span class="px-2 text-white rounded-lg" style="color: <?= $topic->getPrefixTextColor() ?>; background: <?= $topic->getPrefixColor() ?>"><?= $topic->getPrefixName() ?></span> <?php endif; ?><?= $topic->getName() ?>
+                    <?php if ($topic->getPrefixId()): ?><span class="px-2 text-white rounded-lg"
+                                                              style="color: <?= $topic->getPrefixTextColor() ?>; background: <?= $topic->getPrefixColor() ?>"><?= $topic->getPrefixName() ?></span> <?php endif; ?><?= $topic->getName() ?>
                 </h4>
                 <div class="">
-                    <?php if($topic->isImportant()): ?>
-                        <i data-tooltip-target="tooltip-important" class="<?= $iconImportant ?> text-orange-500 ml-4"></i>
-                        <div id="tooltip-important" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                    <?php if ($topic->isImportant()): ?>
+                        <i data-tooltip-target="tooltip-important"
+                           class="<?= $iconImportant ?> text-orange-500 ml-4"></i>
+                        <div id="tooltip-important" role="tooltip"
+                             class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Important
                         </div>
                     <?php endif; ?>
-                    <?php if($topic->isPinned()): ?>
+                    <?php if ($topic->isPinned()): ?>
                         <i data-tooltip-target="tooltip-pined" class="<?= $iconPin ?> text-red-600 ml-4"></i>
-                        <div id="tooltip-pined" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                        <div id="tooltip-pined" role="tooltip"
+                             class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Épinglé
                         </div>
                     <?php endif; ?>
-                    <?php if($topic->isDisallowReplies()): ?>
+                    <?php if ($topic->isDisallowReplies()): ?>
                         <i data-tooltip-target="tooltip-closed" class="<?= $iconClosed ?> text-yellow-300 ml-4"></i>
-                        <div id="tooltip-closed" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                        <div id="tooltip-closed" role="tooltip"
+                             class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Fermé
                         </div>
                     <?php endif; ?>
                 </div>
             </div>
 
-            <p><small>Discussion dans crée par <?= $topic->getUser()->getPseudo() ?>, le <?= $topic->getCreated() ?></small></p>
+            <p><small>Discussion dans crée par <?= $topic->getUser()->getPseudo() ?>,
+                    le <?= $topic->getCreated() ?></small></p>
             <?php if ($topic->getTags() === []): ?>
-            <p><small>Ce topic ne possède pas de tags</small></p>
+                <p><small>Ce topic ne possède pas de tags</small></p>
             <?php else: ?>
-                <p><small>Tags :</small> 
-                <?php foreach ($topic->getTags() as $tag): ?>
+                <p><small>Tags :</small>
+                    <?php foreach ($topic->getTags() as $tag): ?>
                         <small><span class="px-1 bg-gray-200 rounded mr-1"><?= $tag->getContent() ?></span></small>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </p>
             <?php endif; ?>
 
@@ -130,7 +145,9 @@ $description = "Description de votre page";
                 <div class="p-4 text-center ">
                     <div class="bg-gray-100 p-2">
                         <div class="w-36 h-36 mx-auto border">
-                            <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
+                            <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
+                                 height="144px"
+                                 src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
                         </div>
                     </div>
                     <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
@@ -142,7 +159,9 @@ $description = "Description de votre page";
                             <div class="grid grid-cols-3">
                                 <div>
                                     <p><i class="fa-solid fa-comments fa-xs text-gray-600"></i></p>
-                                    <p><small><?= $responseModel->countResponseByUser($topic->getUser()->getId()) ?></small></p>
+                                    <p>
+                                        <small><?= $responseModel->countResponseByUser($topic->getUser()->getId()) ?></small>
+                                    </p>
                                 </div>
                                 <div>
                                     <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
@@ -164,28 +183,39 @@ $description = "Description de votre page";
                         </div>
                     </div>
 
+                    <div class="flex flex-wrap gap-2 text-center">
+                        <?php foreach ($feedbackModel->getFeedbacks() as $feedback) : ?>
+                            <a href="<?= $topic->getFeedbackLink($feedback->getId()) ?>"><p><?= $feedback->getName() ?></p> <?= $feedback->countFeedbackReaction($topic->getId()) ?></a>
+                        <?php endforeach; ?>
+                    </div>
+
+
                     <div class="flex justify-end p-1">
                         <?php if ($topic->isSelfTopic()): ?>
                             <a href="<?= $topic->editTopicLink() ?>">
-                                <i data-tooltip-target="tooltip-edittopic" class="fa-solid fa-edit text-blue-500 ml-4"></i>
-                                <div id="tooltip-edittopic" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                <i data-tooltip-target="tooltip-edittopic"
+                                   class="fa-solid fa-edit text-blue-500 ml-4"></i>
+                                <div id="tooltip-edittopic" role="tooltip"
+                                     class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                                     Éditer ma réponse
                                 </div>
                             </a>
                         <?php endif; ?>
                         <?php if (UsersController::isUserLogged() && !$topic->isSelfTopic()): ?>
-                        <div class="ml-4">
-                            0 <i data-tooltip-target="tooltip-like" class="fa-solid fa-thumbs-up"></i>
-                            <div id="tooltip-like" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                Like
+                            <div class="ml-4">
+                                0 <i data-tooltip-target="tooltip-like" class="fa-solid fa-thumbs-up"></i>
+                                <div id="tooltip-like" role="tooltip"
+                                     class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                    Like
+                                </div>
                             </div>
-                        </div>
-                        <div class="ml-4">
-                            0 <i data-tooltip-target="tooltip-dislike" class="fa-solid fa-thumbs-down"></i>
-                            <div id="tooltip-dislike" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                Dislike
+                            <div class="ml-4">
+                                0 <i data-tooltip-target="tooltip-dislike" class="fa-solid fa-thumbs-down"></i>
+                                <div id="tooltip-dislike" role="tooltip"
+                                     class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                    Dislike
+                                </div>
                             </div>
-                        </div>
                         <?php endif; ?>
                     </div>
 
@@ -193,108 +223,141 @@ $description = "Description de votre page";
             </div>
         </section>
 
-<?php foreach ($responseModel->getResponseByTopic($topic->getId()) as $response) : ?>
-<section class="border mt-4">
-            <div class="flex justify-between bg-gray-200 p-2">
-                <p><?= $response->getCreated() ?></p>
-                <h5 class=""><?= $response->isTopicAuthor() ? "Auteur du topic" : "" ?></h5>
-            </div>
-            <div class="lg:grid grid-cols-5">
-                <div class="p-4 text-center ">
-                    <div class="bg-gray-100 p-2">
-                        <div class="w-36 h-36 mx-auto border">
-                            <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $response->getUser()->getUserPicture()->getImageName() ?>" />
-                        </div>
-                    </div>
-                    <h5 class="font-semibold bg-gray-200"><?= $response->getUser()->getPseudo() ?></h5>
-                    <div class="bg-gray-100 pb-1">
-                        <p><small>Grade forum NA</small></p>
-                    </div>
-                    <div class="px-4 pb-2 bg-gray-100">
-                        <div class="border">
-                            <div class="grid grid-cols-3">
-                                <div>
-                                    <p><i class="fa-solid fa-comments fa-xs text-gray-600"></i></p>
-                                    <p><small><?= $responseModel->countResponseByUser($response->getUser()->getId()) ?></small></p>
-                                </div>
-                                <div>
-                                    <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
-                                    <p><small>NA</small></p>
-                                </div>
-                                <div>
-                                    <p><i class="fa-solid fa-trophy fa-xs text-gray-600"></i></p>
-                                    <p><small>NA</small></p>
-                                </div>
+        <?php foreach ($responseModel->getResponseByTopic($topic->getId()) as $response) : ?>
+            <section class="border mt-4">
+                <div class="flex justify-between bg-gray-200 p-2">
+                    <p><?= $response->getCreated() ?></p>
+                    <h5 class=""><?= $response->isTopicAuthor() ? "Auteur du topic" : "" ?></h5>
+                </div>
+                <div class="lg:grid grid-cols-5">
+                    <div class="p-4 text-center ">
+                        <div class="bg-gray-100 p-2">
+                            <div class="w-36 h-36 mx-auto border">
+                                <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
+                                     height="144px"
+                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $response->getUser()->getUserPicture()->getImageName() ?>"/>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-span-4 py-4 pr-2">
-                    <div class="border p-2 h-fit">
-                        <?= $response->getContent() ?>
-                        <div class="flex justify-between mt-4">
-                            <p><small><?= $response->getUser()->getPseudo() ?>, <?= $response->getCreated() ?></small></p>
+                        <h5 class="font-semibold bg-gray-200"><?= $response->getUser()->getPseudo() ?></h5>
+                        <div class="bg-gray-100 pb-1">
+                            <p><small>Grade forum NA</small></p>
                         </div>
-                    </div>
-
-
-                    <div class="flex justify-end p-1">
-                        <?php if ($response->isSelfReply()): ?>
-                        <i data-modal-target="popup-modal-<?= $response->getId() ?>" data-modal-toggle="popup-modal-<?= $response->getId() ?>" data-tooltip-target="tooltip-delete" class="fa-solid fa-trash text-red-500 ml-4"></i>
-                        <div id="tooltip-delete" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
-                            Supprimer ma réponse
-                        </div>
-                        <div id="popup-modal-<?= $response->getId() ?>" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-                            <div class="relative w-full h-full max-w-md md:h-auto">
-                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                    <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="popup-modal-<?= $response->getId() ?>">
-                                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                        <span class="sr-only">Close modal</span>
-                                    </button>
-                                    <div class="p-6 text-center">
-                                        <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Voulez-vous vraiment supprimer votre réponse ?</h3>
-                                        <a href="<?= $response->trashLink() ?>" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                            Supprimer
-                                        </a>
-                                        <button data-modal-hide="popup-modal-<?= $response->getId() ?>" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Annuler</button>
+                        <div class="px-4 pb-2 bg-gray-100">
+                            <div class="border">
+                                <div class="grid grid-cols-3">
+                                    <div>
+                                        <p><i class="fa-solid fa-comments fa-xs text-gray-600"></i></p>
+                                        <p>
+                                            <small><?= $responseModel->countResponseByUser($response->getUser()->getId()) ?></small>
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
+                                        <p><small>NA</small></p>
+                                    </div>
+                                    <div>
+                                        <p><i class="fa-solid fa-trophy fa-xs text-gray-600"></i></p>
+                                        <p><small>NA</small></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php endif; ?>
-                        <?php if (UsersController::isUserLogged() && !$response->isSelfReply()): ?>
-                        <div class="ml-4">
-                            0 <i data-tooltip-target="tooltip-like" class="fa-solid fa-thumbs-up"></i>
-                            <div id="tooltip-like" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                Like
+                    </div>
+                    <div class="col-span-4 py-4 pr-2">
+                        <div class="border p-2 h-fit">
+                            <?= $response->getContent() ?>
+                            <div class="flex justify-between mt-4">
+                                <p><small><?= $response->getUser()->getPseudo() ?>
+                                        , <?= $response->getCreated() ?></small></p>
                             </div>
                         </div>
-                        <div class="ml-4">
-                            0 <i data-tooltip-target="tooltip-dislike" class="fa-solid fa-thumbs-down"></i>
-                            <div id="tooltip-dislike" role="tooltip" class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                Dislike
-                            </div>
+
+
+                        <div class="flex justify-end p-1">
+                            <?php if ($response->isSelfReply()): ?>
+                                <i data-modal-target="popup-modal-<?= $response->getId() ?>"
+                                   data-modal-toggle="popup-modal-<?= $response->getId() ?>"
+                                   data-tooltip-target="tooltip-delete" class="fa-solid fa-trash text-red-500 ml-4"></i>
+                                <div id="tooltip-delete" role="tooltip"
+                                     class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                    Supprimer ma réponse
+                                </div>
+                                <div id="popup-modal-<?= $response->getId() ?>" tabindex="-1"
+                                     class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                                    <div class="relative w-full h-full max-w-md md:h-auto">
+                                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                            <button type="button"
+                                                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                                                    data-modal-hide="popup-modal-<?= $response->getId() ?>">
+                                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor"
+                                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                          clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                            <div class="p-6 text-center">
+                                                <svg aria-hidden="true"
+                                                     class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200"
+                                                     fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                                                    Voulez-vous vraiment supprimer votre réponse ?</h3>
+                                                <a href="<?= $response->trashLink() ?>"
+                                                   class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                                    Supprimer
+                                                </a>
+                                                <button data-modal-hide="popup-modal-<?= $response->getId() ?>"
+                                                        type="button"
+                                                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                                    Annuler
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (UsersController::isUserLogged() && !$response->isSelfReply()): ?>
+                                <div class="ml-4">
+                                    0 <i data-tooltip-target="tooltip-like" class="fa-solid fa-thumbs-up"></i>
+                                    <div id="tooltip-like" role="tooltip"
+                                         class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                        Like
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    0 <i data-tooltip-target="tooltip-dislike" class="fa-solid fa-thumbs-down"></i>
+                                    <div id="tooltip-dislike" role="tooltip"
+                                         class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                        Dislike
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                        <?php endif; ?>
                     </div>
                 </div>
-            </div>
-        </section>
-<?php endforeach; ?>
+            </section>
+        <?php endforeach; ?>
 
 
 
-<?php if(!$topic->isDisallowReplies() && UsersController::isUserLogged()): ?>
-        <section class="border mt-4">
-            <div class="bg-gray-200 p-2">
-                <p><b>Répondre à ce topic :</b></p>
-            </div>
-            <div class="lg:grid grid-cols-5">
-                <div class="p-4 text-center ">
+        <?php if (!$topic->isDisallowReplies() && UsersController::isUserLogged()): ?>
+            <section class="border mt-4">
+                <div class="bg-gray-200 p-2">
+                    <p><b>Répondre à ce topic :</b></p>
+                </div>
+                <div class="lg:grid grid-cols-5">
+                    <div class="p-4 text-center ">
                         <div class="bg-gray-100 pt-2">
                             <div class="w-36 h-36 mx-auto border">
-                                <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px" height="144px" src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>" />
+                                <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
+                                     height="144px"
+                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
                             </div>
                             <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
                         </div>
@@ -302,17 +365,20 @@ $description = "Description de votre page";
                     <div class="col-span-4 py-4 pr-2">
                         <div class="h-fit">
                             <form action="" method="post">
-                            <?php (new SecurityManager())->insertHiddenToken() ?>
+                                <?php (new SecurityManager())->insertHiddenToken() ?>
                                 <input hidden type="text" name="topicId" value="<?= $topic->getId() ?>">
-                                <textarea class="w-full tinymce" name="topicResponse" ></textarea>
-                            <div class="flex justify-end mt-2">
-                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5"><i class="fa-solid fa-reply"></i> Poster ma réponse</button>
-                            </div>
-                        </form>
+                                <textarea class="w-full tinymce" name="topicResponse"></textarea>
+                                <div class="flex justify-end mt-2">
+                                    <button type="submit"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5">
+                                        <i class="fa-solid fa-reply"></i> Poster ma réponse
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-            </div>
-        </section>
-<?php endif; ?>
-</div>
+                </div>
+            </section>
+        <?php endif; ?>
+    </div>
 </section>
