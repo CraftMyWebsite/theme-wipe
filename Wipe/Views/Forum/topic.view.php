@@ -165,7 +165,7 @@ $description = "Description de votre page";
                                 </div>
                                 <div>
                                     <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
-                                    <p><small>NA</small></p>
+                                    <p><small><?= $feedbackModel->countTopicFeedbackByUser($topic->getUser()->getId()) ?></small></p>
                                 </div>
                                 <div>
                                     <p><i class="fa-solid fa-trophy fa-xs text-gray-600"></i></p>
@@ -185,7 +185,29 @@ $description = "Description de votre page";
 
                     <div class="flex flex-wrap gap-2 text-center">
                         <?php foreach ($feedbackModel->getFeedbacks() as $feedback) : ?>
-                            <a href="<?= $topic->getFeedbackLink($feedback->getId()) ?>"><p><?= $feedback->getName() ?></p> <?= $feedback->countFeedbackReaction($topic->getId()) ?></a>
+                            <?php if ($feedback->userCanReact($topic->getId())): ?>
+                                <?php if(UsersController::isUserLogged()): ?>
+                                        <?php if ($feedback->getFeedbackReacted($topic->getId()) == $feedback->getId()): ?>
+                                        <a href="Remove my reaction">
+                                        <p><?= $feedback->getName() ?></p>
+                                    <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+                                        </a>
+                                        <?php else: ?>
+                                        <a href="change my reaction to this">
+                                            <p><?= $feedback->getName() ?></p>
+                                            <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+                                        </a>
+                                <?php endif; ?>
+                                <?php else: ?>
+                                    <p><?= $feedback->getName() ?></p>
+                                    <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <a href="<?= $topic->getFeedbackAddTopicLink($feedback->getId()) ?>">
+                                    <p><?= $feedback->getName() ?></p>
+                                    <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+                                </a>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
 
@@ -253,7 +275,7 @@ $description = "Description de votre page";
                                     </div>
                                     <div>
                                         <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
-                                        <p><small>NA</small></p>
+                                        <p><small><?= $feedbackModel->countTopicFeedbackByUser($topic->getUser()->getId()) ?></small></p>
                                     </div>
                                     <div>
                                         <p><i class="fa-solid fa-trophy fa-xs text-gray-600"></i></p>
