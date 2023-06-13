@@ -4,6 +4,8 @@ use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
+use CMW\Model\Forum\FeedbackModel;
+use CMW\Model\Users\UsersModel;
 
 /* @var CMW\Controller\Forum\SettingsController $iconNotRead */
 /* @var CMW\Controller\Forum\SettingsController $iconImportant */
@@ -11,8 +13,10 @@ use CMW\Controller\Users\UsersController;
 /* @var CMW\Controller\Forum\SettingsController $iconClosed */
 /* @var CMW\Model\Forum\FeedbackModel $feedbackModel */
 /* @var CMW\Entity\Forum\TopicEntity $topic */
+/* @var CMW\Entity\Forum\ResponseEntity $response */
 $title = "Titre de la page";
 $description = "Description de votre page";
+$i= 0;
 ?>
 
 <section class="bg-gray-800 relative text-white">
@@ -165,7 +169,9 @@ $description = "Description de votre page";
                                 </div>
                                 <div>
                                     <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
-                                    <p><small><?= $feedbackModel->countTopicFeedbackByUser($topic->getUser()->getId()) ?></small></p>
+                                    <p>
+                                        <small><?= $feedbackModel->countTopicFeedbackByUser($topic->getUser()->getId()) ?></small>
+                                    </p>
                                 </div>
                                 <div>
                                     <p><i class="fa-solid fa-trophy fa-xs text-gray-600"></i></p>
@@ -185,27 +191,73 @@ $description = "Description de votre page";
 
                     <div class="flex flex-wrap gap-2 text-center">
                         <?php foreach ($feedbackModel->getFeedbacks() as $feedback) : ?>
-                            <?php if ($feedback->userCanReact($topic->getId())): ?>
-                                <?php if(UsersController::isUserLogged()): ?>
-                                        <?php if ($feedback->getFeedbackReacted($topic->getId()) == $feedback->getId()): ?>
-                                        <a href="Remove my reaction">
-                                        <p><?= $feedback->getName() ?></p>
-                                    <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+                            <?php if ($feedback->userCanTopicReact($topic->getId())): ?>
+                                <?php if (UsersController::isUserLogged()): ?>
+                                    <?php if ($feedback->getFeedbackTopicReacted($topic->getId()) == $feedback->getId()): ?>
+                                        <a data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>"
+                                           href="<?= $topic->getFeedbackDeleteTopicLink($feedback->getId()) ?>">
+                                            <b><p><?= $feedback->getName() ?></p>
+                                                <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?></b>
+                                            <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
+                                                 class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                                <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
+                                                    <ul>
+                                                        <li>
+                                                            <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
+                                                        </li>
+                                                    </ul>
+                                                <?php endforeach; ?>
+                                            </div>
                                         </a>
-                                        <?php else: ?>
-                                        <a href="change my reaction to this">
+
+
+                                    <?php else: ?>
+                                        <a data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>" href="<?= $topic->getFeedbackChangeTopicLink($feedback->getId()) ?>">
                                             <p><?= $feedback->getName() ?></p>
                                             <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+
+                                            <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
+                                                 class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                                <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
+                                                    <ul>
+                                                        <li>
+                                                            <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
+                                                        </li>
+                                                    </ul>
+                                                <?php endforeach; ?>
+                                            </div>
+
                                         </a>
-                                <?php endif; ?>
+                                    <?php endif; ?>
                                 <?php else: ?>
-                                    <p><?= $feedback->getName() ?></p>
-                                    <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+                                    <div data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>"><p><?= $feedback->getName() ?></p>
+                                        <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+                                        <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
+                                             class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                            <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
+                                                <ul>
+                                                    <li>
+                                                        <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
+                                                    </li>
+                                                </ul>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
                                 <?php endif; ?>
                             <?php else: ?>
-                                <a href="<?= $topic->getFeedbackAddTopicLink($feedback->getId()) ?>">
+                                <a data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>" href="<?= $topic->getFeedbackAddTopicLink($feedback->getId()) ?>">
                                     <p><?= $feedback->getName() ?></p>
                                     <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+                                    <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
+                                         class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                        <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
+                                            <ul>
+                                                <li>
+                                                    <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
+                                                </li>
+                                            </ul>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </a>
                             <?php endif; ?>
                         <?php endforeach; ?>
@@ -275,7 +327,9 @@ $description = "Description de votre page";
                                     </div>
                                     <div>
                                         <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
-                                        <p><small><?= $feedbackModel->countTopicFeedbackByUser($topic->getUser()->getId()) ?></small></p>
+                                        <p>
+                                            <small><?= $feedbackModel->countTopicFeedbackByUser($topic->getUser()->getId()) ?></small>
+                                        </p>
                                     </div>
                                     <div>
                                         <p><i class="fa-solid fa-trophy fa-xs text-gray-600"></i></p>
@@ -292,6 +346,83 @@ $description = "Description de votre page";
                                 <p><small><?= $response->getUser()->getPseudo() ?>
                                         , <?= $response->getCreated() ?></small></p>
                             </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 text-center">
+                            <?php foreach ($feedbackModel->getFeedbacks() as $responseFeedback) : ?>
+                                <?php if ($responseFeedback->userCanResponseReact($response->getId())): ?>
+                                    <?php if (UsersController::isUserLogged()): ?>
+                                        <?php if ($responseFeedback->getFeedbackResponseReacted($response->getId()) == $responseFeedback->getId()): ?>
+                                            <a data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>"
+                                               href="<?= $response->getFeedbackDeleteResponseLink($responseFeedback->getId()) ?>">
+                                                <b><p><?= $responseFeedback->getName() ?></p>
+                                                    <?= $responseFeedback->countResponseFeedbackReceived($response->getId()) ?></b>
+                                                <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" role="tooltip"
+                                                     class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                                    <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
+                                                        <ul>
+                                                            <li>
+                                                                <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
+                                                            </li>
+                                                        </ul>
+                                                    <?php $i++; ?>
+                                                    <?php endforeach; ?>
+                                                </div>
+
+                                            </a>
+                                        <?php else: ?>
+                                            <a data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>"
+                                               href="<?= $response->getFeedbackChangeResponseLink($responseFeedback->getId()) ?>">
+                                                <p><?= $responseFeedback->getName() ?></p>
+                                                <?= $responseFeedback->countResponseFeedbackReceived($response->getId()) ?>
+                                                <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" role="tooltip"
+                                                     class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                                    <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
+                                                        <ul>
+                                                            <li>
+                                                                <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
+                                                            </li>
+                                                        </ul>
+                                                        <?php $i++; ?>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </a>
+                                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <div data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" ><p><?= $responseFeedback->getName() ?></p>
+                                            <?= $responseFeedback->countResponseFeedbackReceived($response->getId()) ?>
+                                            <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" role="tooltip"
+                                                 class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                                <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
+                                                    <ul>
+                                                        <li>
+                                                            <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
+                                                        </li>
+                                                    </ul>
+                                                    <?php $i++; ?>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <a data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>"
+                                       href="<?= $response->getFeedbackAddResponseLink($responseFeedback->getId()) ?>">
+                                        <p><?= $responseFeedback->getName() ?></p>
+                                        <?= $responseFeedback->countResponseFeedbackReceived($response->getId()) ?>
+                                        <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" role="tooltip"
+                                             class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                            <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
+                                                <ul>
+                                                    <li>
+                                                        <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
+                                                    </li>
+                                                </ul>
+                                                <?php $i++; ?>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </div>
 
 
