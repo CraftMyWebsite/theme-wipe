@@ -1,11 +1,14 @@
 <?php
 
 use CMW\Manager\Env\EnvManager;
+use CMW\Manager\Uploads\ImagesManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
+use CMW\Model\Forum\DiscordModel;
 use CMW\Model\Forum\FeedbackModel;
 use CMW\Model\Users\UsersModel;
+use CMW\Utils\Website;
 
 /* @var CMW\Controller\Forum\SettingsController $iconNotRead */
 /* @var CMW\Controller\Forum\SettingsController $iconImportant */
@@ -18,7 +21,6 @@ $title = "Titre de la page";
 $description = "Description de votre page";
 $i= 0;
 ?>
-
 <section class="bg-gray-800 relative text-white">
     <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>"
          class="absolute h-full inset-0 object-center object-cover w-full"
@@ -259,22 +261,6 @@ $i= 0;
                                 </div>
                             </a>
                         <?php endif; ?>
-                        <?php if (UsersController::isUserLogged() && !$topic->isSelfTopic()): ?>
-                            <div class="ml-4">
-                                0 <i data-tooltip-target="tooltip-like" class="fa-solid fa-thumbs-up"></i>
-                                <div id="tooltip-like" role="tooltip"
-                                     class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                    Like
-                                </div>
-                            </div>
-                            <div class="ml-4">
-                                0 <i data-tooltip-target="tooltip-dislike" class="fa-solid fa-thumbs-down"></i>
-                                <div id="tooltip-dislike" role="tooltip"
-                                     class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                    Dislike
-                                </div>
-                            </div>
-                        <?php endif; ?>
                     </div>
 
                 </div>
@@ -446,22 +432,6 @@ $i= 0;
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                            <?php if (UsersController::isUserLogged() && !$response->isSelfReply()): ?>
-                                <div class="ml-4">
-                                    0 <i data-tooltip-target="tooltip-like" class="fa-solid fa-thumbs-up"></i>
-                                    <div id="tooltip-like" role="tooltip"
-                                         class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                        Like
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    0 <i data-tooltip-target="tooltip-dislike" class="fa-solid fa-thumbs-down"></i>
-                                    <div id="tooltip-dislike" role="tooltip"
-                                         class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                        Dislike
                                     </div>
                                 </div>
                             <?php endif; ?>
