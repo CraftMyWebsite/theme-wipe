@@ -63,9 +63,8 @@ $i= 0;
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum/f/"
-                           class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Je
-                            sais pas</a>
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum/f/<?= $topic->getForum()->getSlug() ?>"
+                           class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $topic->getForum()->getName() ?></a>
                     </div>
                 </li>
                 <li>
