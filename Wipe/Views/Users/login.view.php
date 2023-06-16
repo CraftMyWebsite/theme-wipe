@@ -27,6 +27,7 @@ $description = 'Connectez-vous sur ' . Website::getName(); ?>
             <div class="py-6 px-6 lg:px-8">
                 <form class="space-y-6" action="" method="post">
                     <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <input hidden name="previousRoute" type="text" value="<?= $_SERVER['HTTP_REFERER'] ?>">
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mail</label>
                         <input name="login_email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="mail@craftmywebsite.fr" required>
@@ -37,6 +38,7 @@ $description = 'Connectez-vous sur ' . Website::getName(); ?>
                             <input type="password" name="login_password" id="passwordInput" placeholder="••••••••" class="block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg block w-full p-2.5" required>
                             <div onclick="showPassword()" class="cursor-pointer p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800"><i class="fa fa-eye-slash" aria-hidden="true"></i></div>
                         </div>
+
                     </div>
                     <div class="flex justify-between">
                         <div class="flex items-start">
