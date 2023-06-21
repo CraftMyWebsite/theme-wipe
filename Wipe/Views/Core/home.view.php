@@ -11,7 +11,7 @@ use CMW\Utils\Website;
 use CMW\Controller\Core\PackageController;
 /*NEWS BASIC NEED*/
 use CMW\Model\News\NewsModel;
-if (PackageController::isInstalled("news")) {
+if (PackageController::isInstalled("News")) {
     $newsLists = new newsModel;
     $newsList = $newsLists->getSomeNews( ThemeModel::fetchConfigValue('news_number_display'));
 }
