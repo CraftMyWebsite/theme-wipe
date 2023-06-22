@@ -1,5 +1,6 @@
 <?php
 
+use CMW\Manager\Env\EnvManager;
 use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
@@ -36,7 +37,7 @@ $description = ThemeModel::fetchConfigValue('vote_description');
             <div class="rounded-md shadow-lg p-2 mb-4">
                     <div class="text-center">Pour pouvoir voter et récupérer vos récompenses vous devez être connecté sur le site, alors n'attendez plus pour obtenir des récompenses uniques !</div>
                     <div class="pt-4 pb-2 text-center">
-                        <a href="<?= getenv('PATH_SUBFOLDER') ?>login" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2">Connexion</i></a>
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2">Connexion</i></a>
                     </div>
             </div>
             

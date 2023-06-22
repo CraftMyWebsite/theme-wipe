@@ -16,7 +16,6 @@ use CMW\Utils\Website;
 /* @var CMW\Controller\Forum\SettingsController $iconClosed */
 /* @var CMW\Model\Forum\FeedbackModel $feedbackModel */
 /* @var CMW\Entity\Forum\TopicEntity $topic */
-/* @var CMW\Entity\Users\UserEntity $currentUser */
 /* @var CMW\Entity\Forum\ResponseEntity $response */
 $title = "Titre de la page";
 $description = "Description de votre page";
@@ -172,7 +171,7 @@ $i= 0;
                                 <div>
                                     <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
                                     <p>
-                                        <small><?= $feedbackModel->countTopicFeedbackByUser($topic->getUser()->getId()) ?> TODO : + par reponse</small>
+                                        <small><?= $feedbackModel->countTopicFeedbackByUser($topic->getUser()->getId()) ?></small>
                                     </p>
                                 </div>
                                 <div>
@@ -299,7 +298,7 @@ $i= 0;
                                     <div>
                                         <p><i class="fa-solid fa-thumbs-up fa-xs text-gray-600"></i></p>
                                         <p>
-                                            <small><?= $feedbackModel->countTopicFeedbackByUser($response->getUser()->getId()) ?> TODO : + par reponse</small>
+                                            <small><?= $feedbackModel->countTopicFeedbackByUser($topic->getUser()->getId()) ?></small>
                                         </p>
                                     </div>
                                     <div>
@@ -455,9 +454,9 @@ $i= 0;
                             <div class="w-36 h-36 mx-auto border">
                                 <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
                                      height="144px"
-                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $currentUser->getUserPicture()->getImageName() ?>"/>
+                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
                             </div>
-                            <h5 class="font-semibold bg-gray-200"><?= $currentUser->getPseudo() ?></h5>
+                            <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
                         </div>
                     </div>
                     <div class="col-span-4 py-4 pr-2">
