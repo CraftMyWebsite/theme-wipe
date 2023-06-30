@@ -59,7 +59,7 @@
                                 <img class="w-25" src="<?= ThemeModel::fetchImageLink("header_img_logo") ?>" alt="Image introuvable !">
                             </div>
                             <input class="mt-2 form-control form-control-sm" type="file" id="header_img_logo" name="header_img_logo" accept=".png, .jpg, .jpeg, .webp, .gif">
-                            <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
+                            <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
                             <div class="form-check form-switch mt-2">
                                 <input class="form-check-input" type="checkbox" value="1" name="header_active_title" id="header_active_title" <?= ThemeModel::fetchConfigValue('header_active_title') ? 'checked' : '' ?>>
                                 <label class="form-check-label" for="header_active_title"><h6>Titre : <i data-bs-toggle="tooltip" title="Vous pouvez l'afficher ou le masqué" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
@@ -84,7 +84,7 @@
                                     <label class="form-check-label" for="header_allow_register_button"><h6>Inscription <i data-bs-toggle="tooltip" title="Vous pouvez désactiver les inscriptions et afficher un message" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
                                 </div>
                             </div>
-                            <h6>Message d'inscription désactiver :</h6>
+                            <h6>Message lorsque l'inscription est désactivée :</h6>
                             <textarea name="global_no_register_message" class="tinymce"><?= ThemeModel::fetchConfigValue('global_no_register_message') ?></textarea>
                         </div>
                     </div>
@@ -100,7 +100,9 @@
                     <h4>Indéxation de la page (meta) :</h4>
                     <div class="alert alert-warning">
                         <h4 class="alert-heading">Bien comprendre l'indéxation</h4>
-                        <p>Ces options change le titre et la déscription de votre page dans l'onglet mais également lors des affichage dans discord, twitter ...<br>Ceci n'est aucunment lié au titre de la page en cours cette option ce trouve un peu plus bas (Si votre page est éligible à ce réglage.)<br>Si vous ne comprenez toujours pas ce que sa modifier merci de contacter le support de CraftMyWebsite</p>
+                        <p>Ces options changent le titre et la description de votre page dans l'onglet, mais également lors des affichages sur Discord, Twitter...<br>
+                            Ceci n'est aucunement lié au titre de la page en cours de modification. Cette option se trouve un peu plus bas (Si votre page est éligible à ce réglage).<br>
+                            Si vous avez besoin d'aide supplémentaire vous pouvez contacter le support CraftMyWebsite.</p>
                     </div>
                     <h6>Titre de la page :</h6>
                         <input type="text" class="form-control" id="home_title" name="home_title" value="<?= ThemeModel::fetchConfigValue('home_title') ?>" required>
@@ -112,7 +114,7 @@
                     <h6>En tête :</h6>
                     <h6>Images :</h6>
                     <input class="mt-2 form-control form-control-sm" type="file" id="hero_img_bg" name="hero_img_bg" accept="png,jpg,jpeg,webp,svg,gif">
-                    <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
+                    <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
                     <h6>Réglages :</h6>
                     <section class="bg-gray-800 position-relative text-white">
                         <img width="1080" height="720" src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="position-absolute h-full inset-0 object-center object-cover w-full" style="width: 100%; height: 100%; object-fit: cover;" alt="Vous devez upload bg.webp depuis votre panel !"/>
@@ -156,7 +158,7 @@
                             </div>
                             <div class="form-group">
                                 <input class="mt-2 form-control form-control-sm" type="file" id="feature_img_1" name="feature_img_1" accept="png,jpg,jpeg,webp,svg,gif">
-                                <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
+                                <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
                             </div>
                             <div class="form-group">
                                 <label>Titre :</label>
@@ -174,7 +176,7 @@
                             </div>
                             <div class="form-group">
                                 <input class="mt-2 form-control form-control-sm" type="file" id="feature_img_2" name="feature_img_2" accept="png,jpg,jpeg,webp,svg,gif">
-                                <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
+                                <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
                             </div>
                             <div class="form-group">
                                 <label>Titre :</label>
@@ -192,7 +194,7 @@
                             </div>
                             <div class="form-group">
                                 <input class="mt-2 form-control form-control-sm" type="file" id="feature_img_3" name="feature_img_3" accept="png,jpg,jpeg,webp,svg,gif">
-                                <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
+                                <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
                             </div>
                             <div class="form-group">
                                 <label>Titre :</label>
@@ -232,7 +234,7 @@
                     </div>
                     <label>Titre de la section :</label>
                     <input type="text" class="form-control" name="custom_section_title_1" value="<?= ThemeModel::fetchConfigValue('custom_section_title_1') ?>" required>
-                    <label>Contenue :</label>
+                    <label>Contenu :</label>
                     <textarea name="custom_section_content_1" class="tinymce"><?= ThemeModel::fetchConfigValue('custom_section_content_1') ?></textarea>
                 </div>
             </div>
@@ -245,7 +247,7 @@
                     </div>
                     <label>Titre de la section :</label>
                     <input type="text" class="form-control" name="custom_section_title_2" value="<?= ThemeModel::fetchConfigValue('custom_section_title_2') ?>" required>
-                    <label>Contenue :</label>
+                    <label>Contenu :</label>
                     <textarea name="custom_section_content_2" class="tinymce"><?= ThemeModel::fetchConfigValue('custom_section_content_2') ?></textarea>
                 </div>
             </div>
@@ -258,7 +260,7 @@
                     </div>
                     <label>Titre de la section :</label>
                     <input type="text" class="form-control" name="custom_section_title_3" value="<?= ThemeModel::fetchConfigValue('custom_section_title_3') ?>" required>
-                    <label>Contenue :</label>
+                    <label>Contenu :</label>
                     <textarea name="custom_section_content_3" class="tinymce"><?= ThemeModel::fetchConfigValue('custom_section_content_3') ?></textarea>
                 </div>
             </div>
@@ -282,7 +284,9 @@
                 <h4>Indéxation de la page (meta) :</h4>
                 <div class="alert alert-warning">
                     <h4 class="alert-heading">Bien comprendre l'indéxation</h4>
-                    <p>Ces options change le titre et la déscription de votre page dans l'onglet mais également lors des affichage dans discord, twitter ...<br>Ceci n'est aucunment lié au titre de la page en cours cette option ce trouve un peu plus bas (Si votre page est éligible à ce réglage.)<br>Si vous ne comprenez toujours pas ce que sa modifier merci de contacter le support de CraftMyWebsite</p>
+                    <p>Ces options changent le titre et la description de votre page dans l'onglet, mais également lors des affichages sur Discord, Twitter...<br>
+                        Ceci n'est aucunement lié au titre de la page en cours de modification. Cette option se trouve un peu plus bas (Si votre page est éligible à ce réglage).<br>
+                        Si vous avez besoin d'aide supplémentaire vous pouvez contacter le support CraftMyWebsite.</p>
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-6">
@@ -321,7 +325,9 @@
                 <h4>Indéxation de la page (meta) :</h4>
                 <div class="alert alert-warning">
                     <h4 class="alert-heading">Bien comprendre l'indéxation</h4>
-                    <p>Ces options change le titre et la déscription de votre page dans l'onglet mais également lors des affichage dans discord, twitter ...<br>Ceci n'est aucunment lié au titre de la page en cours cette option ce trouve un peu plus bas (Si votre page est éligible à ce réglage.)<br>Si vous ne comprenez toujours pas ce que sa modifier merci de contacter le support de CraftMyWebsite</p>
+                    <p>Ces options changent le titre et la description de votre page dans l'onglet, mais également lors des affichages sur Discord, Twitter...<br>
+                        Ceci n'est aucunement lié au titre de la page en cours de modification. Cette option se trouve un peu plus bas (Si votre page est éligible à ce réglage).<br>
+                        Si vous avez besoin d'aide supplémentaire vous pouvez contacter le support CraftMyWebsite.</p>
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-6">
@@ -378,7 +384,9 @@
                 <h4>Indéxation de la page (meta) :</h4>
                 <div class="alert alert-warning">
                     <h4 class="alert-heading">Bien comprendre l'indéxation</h4>
-                    <p>Ces options change le titre et la déscription de votre page dans l'onglet mais également lors des affichage dans discord, twitter ...<br>Ceci n'est aucunment lié au titre de la page en cours cette option ce trouve un peu plus bas (Si votre page est éligible à ce réglage.)<br>Si vous ne comprenez toujours pas ce que sa modifier merci de contacter le support de CraftMyWebsite</p>
+                    <p>Ces options changent le titre et la description de votre page dans l'onglet, mais également lors des affichages sur Discord, Twitter...<br>
+                        Ceci n'est aucunement lié au titre de la page en cours de modification. Cette option se trouve un peu plus bas (Si votre page est éligible à ce réglage).<br>
+                        Si vous avez besoin d'aide supplémentaire vous pouvez contacter le support CraftMyWebsite.</p>
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-6">
@@ -433,7 +441,9 @@
                 <h4>Indéxation de la page (meta) :</h4>
                 <div class="alert alert-warning">
                     <h4 class="alert-heading">Bien comprendre l'indéxation</h4>
-                    <p>Ces options change le titre et la déscription de votre page dans l'onglet mais également lors des affichage dans discord, twitter ...<br>Ceci n'est aucunment lié au titre de la page en cours cette option ce trouve un peu plus bas (Si votre page est éligible à ce réglage.)<br>Si vous ne comprenez toujours pas ce que sa modifier merci de contacter le support de CraftMyWebsite</p>
+                    <p>Ces options changent le titre et la description de votre page dans l'onglet, mais également lors des affichages sur Discord, Twitter...<br>
+                        Ceci n'est aucunement lié au titre de la page en cours de modification. Cette option se trouve un peu plus bas (Si votre page est éligible à ce réglage).<br>
+                        Si vous avez besoin d'aide supplémentaire vous pouvez contacter le support CraftMyWebsite.</p>
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-6">
@@ -506,7 +516,9 @@
                     <h4>Indéxation de la page (meta) :</h4>
                     <div class="alert alert-warning">
                         <h4 class="alert-heading">Bien comprendre l'indéxation</h4>
-                        <p>Ces options change le titre et la déscription de votre page dans l'onglet mais également lors des affichage dans discord, twitter ...<br>Ceci n'est aucunment lié au titre de la page en cours cette option ce trouve un peu plus bas (Si votre page est éligible à ce réglage.)<br>Si vous ne comprenez toujours pas ce que sa modifier merci de contacter le support de CraftMyWebsite</p>
+                        <p>Ces options changent le titre et la description de votre page dans l'onglet, mais également lors des affichages sur Discord, Twitter...<br>
+                            Ceci n'est aucunement lié au titre de la page en cours de modification. Cette option se trouve un peu plus bas (Si votre page est éligible à ce réglage).<br>
+                            Si vous avez besoin d'aide supplémentaire vous pouvez contacter le support CraftMyWebsite.</p>
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-6">
@@ -554,7 +566,7 @@
                                         <img class="w-25" src="<?= ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>" alt="Image introuvable !">
                                     </div>
                                     <input class="mt-2 form-control form-control-sm" type="file" id="forum_nobody_send_message_img" name="forum_nobody_send_message_img" accept=".png, .jpg, .jpeg, .webp, .gif">
-                                    <span>Fichiers autorisé ; png, jpg, jpeg, webp, svg, gif</span>
+                                    <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
                                 </div>
                             </div>
                         </div>
@@ -636,7 +648,7 @@
                                 </div>
                                 <h6>Titre du widget :</h6>
                                 <input type="text" class="form-control" id="forum_widgets_custom_title" name="forum_widgets_custom_title" value="<?= ThemeModel::fetchConfigValue('forum_widgets_custom_title') ?>" required>
-                                <h6>Contenue :</h6>
+                                <h6>Contenu :</h6>
                                 <textarea name="forum_widgets_custom_text" class="tinymce"><?= ThemeModel::fetchConfigValue('forum_widgets_custom_text') ?></textarea>
                             </div>
                         </div>
@@ -668,7 +680,7 @@
         </div>
         <div class="card-in-card mt-4">
             <div class="card-body">
-                <h4>Conditions general :</h4>
+                <h4>Conditions générales :</h4>
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <h6>Titre de section :</h6>
@@ -694,7 +706,7 @@
         <div class="card-in-card mt-4">
             <div class="card-body">
                 <h4>Icônes :</h4>
-                <p>Retrouvez les incônes ici : <a href="https://fontawesome.com/search?o=r&m=free" target="_blank">FontAwesome (gratuit)</a></p>
+                <p>Retrouvez les icônes ici : <a href="https://fontawesome.com/search?o=r&m=free" target="_blank">FontAwesome (gratuit)</a></p>
                 <div class="row">
                     <div class="col-12 col-lg-3">
                         <div class="card me-2 p-3">
