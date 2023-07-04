@@ -26,5 +26,5 @@ $description = ThemeModel::fetchConfigValue('faq_description');
 </section>
 
 <div class="mb-8 mt-2 lg:mx-72">
-    <p>Écrit par <b><?= $cgu->getLastEditor()->getPseudo() ?></b>, mis à jours le <?= $cgu->getUpdate() ?></p>
+    <p>Écrit par <b><?= $cgu->getLastEditor()->getPseudo() ?></b>, mis à jour le <?= $cgu->getUpdate() ?></p>
 </div>
