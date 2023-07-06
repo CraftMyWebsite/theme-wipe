@@ -32,7 +32,7 @@ $description = ThemeModel::fetchConfigValue('vote_description');
             </div>
 
 
-            <?php if (usersModel::getLoggedUser() === -1): ?>
+            <?php if (UsersModel::getCurrentUser()?->getId() === -1): ?>
     <!-- Si le joueur n'est pas connecté -->
             <div class="rounded-md shadow-lg p-2 mb-4">
                     <div class="text-center">Pour pouvoir voter et récupérer vos récompenses vous devez être connecté sur le site, alors n'attendez plus pour obtenir des récompenses uniques !</div>
