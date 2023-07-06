@@ -5,18 +5,18 @@ use CMW\Manager\Uploads\ImagesManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
-use CMW\Model\Forum\DiscordModel;
-use CMW\Model\Forum\FeedbackModel;
+use CMW\Model\Forum\ForumDiscordModel;
+use CMW\Model\Forum\ForumFeedbackModel;
 use CMW\Model\Users\UsersModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Controller\Forum\SettingsController $iconNotRead */
-/* @var CMW\Controller\Forum\SettingsController $iconImportant */
-/* @var CMW\Controller\Forum\SettingsController $iconPin */
-/* @var CMW\Controller\Forum\SettingsController $iconClosed */
-/* @var CMW\Model\Forum\FeedbackModel $feedbackModel */
-/* @var CMW\Entity\Forum\TopicEntity $topic */
-/* @var CMW\Entity\Forum\ResponseEntity $response */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconNotRead */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconImportant */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconPin */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconClosed */
+/* @var CMW\Model\Forum\ForumFeedbackModel $feedbackModel */
+/* @var CMW\Entity\Forum\ForumTopicEntity $topic */
+/* @var CMW\Entity\Forum\ForumResponseEntity $response */
 $title = "Titre de la page";
 $description = "Description de votre page";
 $i= 0;

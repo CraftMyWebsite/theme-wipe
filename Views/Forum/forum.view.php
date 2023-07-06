@@ -5,18 +5,18 @@ use CMW\Controller\Users\UsersSettingsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
-use CMW\Model\Forum\PrefixModel;
+use CMW\Model\Forum\ForumPrefixModel;
 use CMW\Model\Users\UsersModel;
 
 /* @var CMW\Model\Forum\ForumModel $forumModel */
-/* @var CMW\Model\Forum\TopicModel $topicModel */
-/* @var CMW\Entity\Forum\TopicEntity $topic */
+/* @var CMW\Model\Forum\ForumTopicModel $topicModel */
+/* @var CMW\Entity\Forum\ForumTopicEntity $topic */
 /* @var CMW\Entity\Forum\ForumEntity $forum */
-/* @var CMW\Model\Forum\ResponseModel $responseModel */
-/* @var CMW\Controller\Forum\SettingsController $iconNotRead */
-/* @var CMW\Controller\Forum\SettingsController $iconImportant */
-/* @var CMW\Controller\Forum\SettingsController $iconPin */
-/* @var CMW\Controller\Forum\SettingsController $iconClosed */
+/* @var CMW\Model\Forum\ForumResponseModel $responseModel */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconNotRead */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconImportant */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconPin */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconClosed */
 
 $title = "Titre de la page";
 $description = "Description de votre page";
@@ -348,7 +348,7 @@ $description = "Description de votre page";
                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prefix :</label>
                                                     <select name="prefix" id="prefix" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                                         <option value="">Aucun</option>
-                                                        <?php foreach ($prefixesModel = prefixModel::getInstance()->getPrefixes() as $prefix) : ?>
+                                                        <?php foreach ($prefixesModel = ForumPrefixModel::getInstance()->getPrefixes() as $prefix) : ?>
                                                             <option value="<?= $prefix->getId() ?>"
                                                                 <?= ($topic->getPrefixName() === $prefix->getName() ? "selected" : "") ?>>
                                                                 <?= $prefix->getName() ?>

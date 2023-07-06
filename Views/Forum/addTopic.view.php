@@ -5,10 +5,10 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
 
-/* @var CMW\Controller\Forum\SettingsController $iconNotRead */
-/* @var CMW\Controller\Forum\SettingsController $iconImportant */
-/* @var CMW\Controller\Forum\SettingsController $iconPin */
-/* @var CMW\Controller\Forum\SettingsController $iconClosed */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconNotRead */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconImportant */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconPin */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconClosed */
 
 $title = "Titre de la page";
 $description = "Description de votre page";
