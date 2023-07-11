@@ -7,7 +7,7 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Shop\ShopItemsModel $items */
 /* @var CMW\Model\Shop\ShopImagesModel $imagesItem */
 
-$title = Website::getName() . ' - Shop';
+$title = Website::getWebsiteName() . ' - Shop';
 $description = 'Visitez notre shop ';
 
 ?>

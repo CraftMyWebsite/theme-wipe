@@ -6,7 +6,7 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-$title = Website::getName() . ' - Mot de passe oublié';
+$title = Website::getWebsiteName() . ' - Mot de passe oublié';
 $description = "C'est pas très bien d'oublié son mot de passe ...";
 ?>
 <div class="card">

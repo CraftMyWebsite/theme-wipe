@@ -7,7 +7,7 @@ use CMW\Controller\Users\UsersController;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-$title = Website::getName() . ' - '. ThemeModel::fetchConfigValue('news_title');
+$title = Website::getWebsiteName() . ' - '. ThemeModel::fetchConfigValue('news_title');
 $description = ThemeModel::fetchConfigValue('news_description');
 ?>
 

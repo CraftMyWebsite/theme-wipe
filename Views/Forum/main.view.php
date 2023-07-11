@@ -9,7 +9,7 @@ use CMW\Utils\Website;
 
 /** @var \CMW\Model\Forum\ForumModel $forumModel */
 /** @var \CMW\Model\Forum\ForumCategoryModel $categoryModel */
-$title = Website::getName() . ' - ' . ThemeModel::fetchConfigValue('wiki_title');
+$title = Website::getWebsiteName() . ' - ' . ThemeModel::fetchConfigValue('wiki_title');
 $description = ThemeModel::fetchConfigValue('wiki_description');
 ?>
 

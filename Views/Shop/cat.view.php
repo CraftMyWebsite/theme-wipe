@@ -4,7 +4,7 @@ use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\ShopItemEntity[] $items */
 
-$title = Website::getName() . ' - Catégorie';
+$title = Website::getWebsiteName() . ' - Catégorie';
 $description = 'Visitez notre shop ';
 
 ?>

@@ -7,7 +7,7 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-$title = Website::getName() . ' - Profil - ' . $user->getPseudo();
+$title = Website::getWebsiteName() . ' - Profil - ' . $user->getPseudo();
 $description = 'Profil de  ' . $user->getPseudo(); 
 ?>
 

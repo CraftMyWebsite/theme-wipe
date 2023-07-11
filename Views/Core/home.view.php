@@ -21,7 +21,7 @@ use CMW\Model\Contact\ContactModel;
 
 
 /*TITRE ET DESCRIPTION*/
-$title = Website::getName() . ' - '. ThemeModel::fetchConfigValue('home_title');
+$title = Website::getWebsiteName() . ' - '. ThemeModel::fetchConfigValue('home_title');
 $description = Website::getDescription();
 ?>
 <!-- HERO -->
@@ -31,7 +31,7 @@ $description = Website::getDescription();
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
                 <p class="font-medium mb-2 text-blue-600 uppercase"><?= ThemeModel::fetchConfigValue('hero_title') ?></p>
-                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= Website::getName()?></h1>
+                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= Website::getWebsiteName()?></h1>
                 <p class="font-light mb-6 text-xl"><?= ThemeModel::fetchConfigValue('hero_description') ?></p>
                 <a href="<?= ThemeModel::fetchConfigValue('hero_button_link') ?>" class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none"><?= ThemeModel::fetchConfigValue('hero_button_text') ?></a>
             </div>

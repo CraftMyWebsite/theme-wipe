@@ -2,7 +2,7 @@
 
 use CMW\Utils\Website;
 
-$title = Website::getName() . ' - Historique';
+$title = Website::getWebsiteName() . ' - Historique';
 $description = 'Visitez notre shop ';
 
 ?>

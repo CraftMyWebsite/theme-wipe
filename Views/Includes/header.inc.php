@@ -18,7 +18,7 @@ $menus = MenusModel::getInstance();
                      alt="Vous devez upload logo.webp depuis votre panel !">
             <?php endif; ?>
             <?php if (ThemeModel::fetchConfigValue('header_active_title')): ?>
-                <span class="self-center md:text-xl font-semibold whitespace-nowrap"><?= Website::getName() ?></span>
+                <span class="self-center md:text-xl font-semibold whitespace-nowrap"><?= Website::getWebsiteName() ?></span>
             <?php endif; ?>
         </a>
         <div class="flex md:order-2">

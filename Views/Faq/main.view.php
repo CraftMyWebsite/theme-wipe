@@ -6,7 +6,7 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-$title = Website::getName(). ' - '. ThemeModel::fetchConfigValue('faq_title');
+$title = Website::getWebsiteName(). ' - '. ThemeModel::fetchConfigValue('faq_title');
 $description = ThemeModel::fetchConfigValue('faq_description');
 ?>
 

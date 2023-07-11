@@ -1,12 +1,13 @@
 <?php
 
+use CMW\Controller\Core\ThemeController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-$title = Website::getName() . ' - '. ThemeModel::fetchConfigValue('vote_title');
+$title = Website::getWebsiteName() . ' - '. ThemeModel::fetchConfigValue('vote_title');
 $description = ThemeModel::fetchConfigValue('vote_description');
 ?>
 <section class="bg-gray-800 relative text-white">
@@ -52,7 +53,7 @@ $description = ThemeModel::fetchConfigValue('vote_description');
                 <div class="flex flex-wrap justify-between">
                     <div class="mt-2 py-2 font-medium">Récompense : <span class="font-bold"><?= $site->getRewards()?->getTitle() ?></span></div>
                     <div class="pt-4 pb-2">
-                        <a onclick="sendVote('<?= $site->getSiteId() ?>')" type="button" rel="noopener noreferrer" class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2">Voter <i class="fa-solid fa-award"></i></a>
+                        <a onclick="sendVote('<?= $site->getSiteId() ?>', this)" type="button" rel="noopener noreferrer" class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2">Voter <i class="fa-solid fa-award"></i></a>
                     </div>
                 </div>
             </div>
@@ -202,3 +203,8 @@ $description = ThemeModel::fetchConfigValue('vote_description');
     </div>
     <?php endif; ?>
 </section>
+
+<link rel="stylesheet" href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.css' ?>">
+<script src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.js' ?>"></script>
+<script src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'App/Package/Votes/Views/Resources/Js/VotesStatus.js' ?>"></script>
+<script src="<?= ThemeController::getCurrentTheme()->getPath() . 'Views/Votes/Resources/Js/VotesLogic.js' ?>"></script>
