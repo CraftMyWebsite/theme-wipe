@@ -22,7 +22,7 @@ use CMW\Model\Contact\ContactModel;
 
 /*TITRE ET DESCRIPTION*/
 $title = Website::getWebsiteName() . ' - '. ThemeModel::fetchConfigValue('home_title');
-$description = Website::getDescription();
+$description = Website::getWebsiteDescription();
 ?>
 <!-- HERO -->
 <section class="bg-gray-800 relative text-white">
