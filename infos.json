@@ -2,7 +2,7 @@
   "author": "Zomb",
   "authors": ["Zomb", "Teyir"],
   "name": "Wipe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "cmwVersion": "2.0",
   "packages": [
     "core", 
