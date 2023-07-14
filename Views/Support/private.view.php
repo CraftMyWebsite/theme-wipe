@@ -26,4 +26,5 @@ $description = 'Parfait pour vos demande de support';
     <p>Statut : <?= $support->getStatusFormatted() ?></p>
     <?= $support->getQuestion() ?>
     <a href="<?= $support->getUrl() ?>">Allez voir ça</a>
+    <br><br>
 <?php endforeach; ?>

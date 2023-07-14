@@ -48,8 +48,10 @@ $description = 'Parfait pour vos demande de support';
     </div>
 </div>
 <a href="<?= Website::getProtocol() . "://" . $_SERVER["SERVER_NAME"] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ."support/private" ?>">Voir mes demandes</a>
+<br><br>
 <?php foreach ($publicSupport as $support): ?>
 <p>Statut : <?= $support->getStatusFormatted() ?></p>
 <?= $support->getQuestion() ?>
 <a href="<?= $support->getUrl() ?>">Allez voir ça</a>
+<br><br>
 <?php endforeach; ?>
