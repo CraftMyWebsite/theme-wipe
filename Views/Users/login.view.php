@@ -47,7 +47,7 @@ $description = 'Connectez-vous sur ' . Website::getWebsiteName(); ?>
                             </div>
                             <label for="login_keep_connect" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Se souvenir de moi</label>
                         </div>
-                        <a href="#" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Mot de passe oublié ?</a>
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login/forgot" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Mot de passe oublié ?</a>
                     </div>
                     <?php SecurityController::getPublicData(); ?>
                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Connexion</button>

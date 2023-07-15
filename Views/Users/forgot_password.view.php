@@ -3,38 +3,41 @@
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Lang\LangManager;
 use CMW\Manager\Security\SecurityManager;
+use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
 $title = Website::getWebsiteName() . ' - Mot de passe oublié';
 $description = "C'est pas très bien d'oublié son mot de passe ...";
 ?>
-<div class="card">
-    <div class="card-body login-card-body">
-        <p class="login-box-msg"><?= LangManager::translate("users.login.forgot_password.desc") ?></p>
-        <form action="" method="post">
-            <?php (new SecurityManager())->insertHiddenToken() ?>
-            <div class="input-group mb-3">
-                <input type="email" class="form-control" name="mail" placeholder="<?= LangManager::translate("users.users.mail") ?>">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-envelope"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn-block"><?= LangManager::translate("users.login.forgot_password.btn") ?></button>
-                </div>
 
+<section class="bg-gray-800 relative text-white">
+    <!--PROD DEFINIR LA SOURCE-->
+    <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <div class="container mx-auto px-4 py-12 relative">
+        <div class="flex flex-wrap -mx-4">
+            <div class="mx-auto px-4 text-center w-full lg:w-8/12">
+                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl">Mot de passe oublié</h1>
             </div>
-        </form>
-        <p class="mt-3 mb-1">
-            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login"><?= LangManager::translate("users.login.signin") ?></a>
-        </p>
-        <p class="mb-0">
-            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>register" class="text-center"><?= LangManager::translate("users.login.register") ?></a>
-        </p>
+        </div>
     </div>
+</section>
 
+<div class="mx-auto relative p-4 w-full max-w-md h-full md:h-auto mb-6 mt-6">
+    <div class="relative bg-white rounded-lg shadow">
+        <div class="py-6 px-6 lg:px-8">
+            <form class="space-y-6" action="" method="post">
+                <?php (new SecurityManager())->insertHiddenToken() ?>
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mail</label>
+                    <input name="mail" id="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="mail@craftmywebsite.fr" required>
+                </div>
+                <div class="flex justify-between">
+                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>register" class="text-sm text-blue-700 hover:underline dark:text-blue-500">S'inscrire</a>
+                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Connexion</a>
+                </div>
+                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Envoyer</button>
+            </form>
+        </div>
+    </div>
 </div>
