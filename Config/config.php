@@ -717,8 +717,9 @@
                             <div class="text-center">
                                 <i style="font-size : 6rem;" class="<?= ThemeModel::fetchConfigValue('footer_icon_facebook') ?>"></i>
                             </div>
-                            <input type="text" class="mt-1 form-control" id="footer_link_facebook" name="footer_link_facebook" value="<?= ThemeModel::fetchConfigValue('footer_link_facebook') ?>" required>
                             <h6 class="mt-2">Lien :</h6>
+                            <input type="text" class="mt-1 form-control" id="footer_link_facebook" name="footer_link_facebook" value="<?= ThemeModel::fetchConfigValue('footer_link_facebook') ?>" required>
+                            <h6 class="mt-2">Icône :</h6>
                             <input type="text" class="form-control" id="footer_icon_facebook" name="footer_icon_facebook" value="<?= ThemeModel::fetchConfigValue('footer_icon_facebook') ?>" required>
                         </div>
                     </div>
@@ -731,8 +732,9 @@
                             <div class="text-center">
                                 <i style="font-size : 6rem;" class="<?= ThemeModel::fetchConfigValue('footer_icon_twitter') ?>"></i>
                             </div>
-                            <input type="text" class="mt-1 form-control" id="footer_link_twitter" name="footer_link_twitter" value="<?= ThemeModel::fetchConfigValue('footer_link_twitter') ?>" required>
                             <h6 class="mt-2">Lien :</h6>
+                            <input type="text" class="mt-1 form-control" id="footer_link_twitter" name="footer_link_twitter" value="<?= ThemeModel::fetchConfigValue('footer_link_twitter') ?>" required>
+                            <h6 class="mt-2">Icône :</h6>
                             <input type="text" class="form-control" id="footer_icon_twitter" name="footer_icon_twitter" value="<?= ThemeModel::fetchConfigValue('footer_icon_twitter') ?>" required>
                         </div>
                     </div>
@@ -745,8 +747,9 @@
                             <div class="text-center">
                                 <i style="font-size : 6rem;" class="<?= ThemeModel::fetchConfigValue('footer_icon_instagram') ?>"></i>
                             </div>
-                            <input type="text" class="mt-1 form-control" id="footer_link_instagram" name="footer_link_instagram" value="<?= ThemeModel::fetchConfigValue('footer_link_instagram') ?>" required>
                             <h6 class="mt-2">Lien :</h6>
+                            <input type="text" class="mt-1 form-control" id="footer_link_instagram" name="footer_link_instagram" value="<?= ThemeModel::fetchConfigValue('footer_link_instagram') ?>" required>
+                            <h6 class="mt-2">Icône :</h6>
                             <input type="text" class="form-control" id="footer_icon_instagram" name="footer_icon_instagram" value="<?= ThemeModel::fetchConfigValue('footer_icon_instagram') ?>" required>
                         </div>
                     </div>
@@ -759,8 +762,9 @@
                             <div class="text-center">
                                 <i style="font-size : 6rem;" class="<?= ThemeModel::fetchConfigValue('footer_icon_discord') ?>"></i>
                             </div>
-                            <input type="text" class="mt-1 form-control" id="footer_link_discord" name="footer_link_discord" value="<?= ThemeModel::fetchConfigValue('footer_link_discord') ?>" required>
                             <h6 class="mt-2">Lien :</h6>
+                            <input type="text" class="mt-1 form-control" id="footer_link_discord" name="footer_link_discord" value="<?= ThemeModel::fetchConfigValue('footer_link_discord') ?>" required>
+                            <h6 class="mt-2">Icône :</h6>
                             <input type="text" class="form-control" id="footer_icon_discord" name="footer_icon_discord" value="<?= ThemeModel::fetchConfigValue('footer_icon_discord') ?>" required>
                         </div>
                     </div>
