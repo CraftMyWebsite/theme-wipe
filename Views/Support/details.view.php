@@ -1,6 +1,7 @@
 <?php
 
 use CMW\Controller\Core\SecurityController;
+use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Model\Support\SupportSettingsModel;
@@ -25,32 +26,59 @@ $description = 'Parfait pour vos demande de support';
         </div>
     </div>
 </section>
-<p>
-    <?= $support->getIsPublicFormatted() ?><br>
-    <?= $support->getStatusFormatted() ?><br>
-    <?= $support->getUser()->getPseudo() ?><br>
-    <?= $support->getCreated() ?><br>
-    <?= $support->getQuestion() ?>
-</p>
-<a href="<?= $support->getCloseUrl() ?>">Cloturer</a>
-<div>
-    <?php foreach ($responses as $response): ?>
-        <p><?= $response->getUser()->getPseudo() ?> <small><?= $response->getIsStaffFormatted() ?></small> : <?= $response->getResponse() ?><br></p>
-    <?php endforeach; ?>
-</div>
 
-<div>
-    <form class="space-y-6" action="" method="post">
-        <?php (new SecurityManager())->insertHiddenToken() ?>
-        <label for="support_response_content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Réponse</label>
-        <textarea id="support_response_content" name="support_response_content"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"></textarea>
-        <?php if(SupportSettingsModel::getInstance()->getConfig()->getCaptcha()):?>
-            <?php SecurityController::getPublicData(); ?>
+<section class="bg-white rounded-lg shadow my-8 mx-2 2xl:mx-96 mt-8 mb-8">
+    <div class="container p-4">
+        <div class="flex flex-wrap justify-between">
+            <a href="<?= Website::getProtocol() . "://" . $_SERVER["SERVER_NAME"] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "support" ?>"
+               class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center">Retourner
+                au support</a>
+            <?php if ($support->getStatus() !== "2"): ?>
+            <a href="<?= $support->getCloseUrl() ?>"
+               class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center">Cloturer</a>
+            <?php endif; ?>
+        </div>
+        <div class="flex flex-wrap justify-between">
+            <p>Auteur : <?= $support->getUser()->getPseudo() ?></p>
+            <p>État : <?= $support->getStatusFormatted() ?></p>
+            <p>Visibilité : <?= $support->getIsPublicFormatted() ?></p>
+            <p>Date : <?= $support->getCreated() ?></p>
+        </div>
+        <h4>Demande :</h4>
+        <div class="shadow-lg rounded-xl p-4 bg-gray-100 mb-4">
+            <?= $support->getQuestion() ?>
+        </div>
+        <div class="border-t"></div>
+        <h4>Réponses :</h4>
+        <?php foreach ($responses as $response): ?>
+            <div class="shadow-lg rounded-xl p-4 bg-gray-100 mb-4">
+                <div class="flex-wrap flex justify-between">
+                    <b><?= $response->getUser()->getPseudo() ?> : </b>
+                    <?php if ($response->getIsStaff()): ?><small class="rounded-lg bg-green-400 px-2 py-1"><?= $response->getIsStaffFormatted() ?></small><?php endif; ?>
+                </div>
+                <p><?= $response->getResponse() ?></p>
+                <p><?= $response->getCreated() ?></p>
+            </div>
+        <?php endforeach; ?>
+        <?php if ($support->getStatus() !== "2"): ?>
+        <form class="space-y-6" action="" method="post">
+            <?php (new SecurityManager())->insertHiddenToken() ?>
+            <div class="mb-4">
+                <label for="support_response_content" class="block mb-2 text-sm font-medium text-gray-900">Votre réponse :</label>
+                <textarea id="support_response_content" name="support_response_content" rows="4"
+                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                          placeholder="Vous pouvez ..."></textarea>
+            </div>
+            <?php if (SupportSettingsModel::getInstance()->getConfig()->getCaptcha()): ?>
+                <?php SecurityController::getPublicData(); ?>
+            <?php endif; ?>
+            <div class="text-center">
+                <button type="submit"
+                        class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Envoyé
+                </button>
+            </div>
+        </form>
         <?php endif; ?>
-        <button type="submit"
-                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-            Soumettre
-        </button>
-    </form>
-</div>
+    </div>
+</section>

@@ -4,6 +4,7 @@ use CMW\Controller\Core\SecurityController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
+use CMW\Model\Support\SupportResponsesModel;
 use CMW\Model\Support\SupportSettingsModel;
 use CMW\Utils\Website;
 
@@ -24,34 +25,71 @@ $description = 'Parfait pour vos demande de support';
     </div>
 </section>
 
-<div class="mx-auto relative p-4 w-full 2xl:px-72 h-full md:h-auto mb-6 mt-6">
-    <div class="relative bg-white rounded-lg shadow">
-        <div class="py-6 px-6 lg:px-8">
+<section class="mx-2 lg:mx-40 mt-8 mb-8">
+    <div class="text-center">
+        <a href="<?= Website::getProtocol() . "://" . $_SERVER["SERVER_NAME"] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ."support/private" ?>"
+           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center">Voir
+            mes demandes</a>
+    </div>
+    <div class="lg:grid grid-cols-3 gap-4">
+        <div class="container mx-auto rounded-md shadow-lg p-8 h-fit">
+            <div class="flex flex-no-wrap justify-center items-center py-4">
+                <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+                <div class="px-10 w-auto">
+                    <h2 class="font-semibold text-2xl uppercase">Nouveau support</h2>
+                </div>
+                <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+            </div>
             <form class="space-y-6" action="" method="post">
                 <?php (new SecurityManager())->insertHiddenToken() ?>
-                <div>
-                    <div class="flex items-center h-5">
-                        <input name="support_is_public" value="1" id="support_is_public" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" >
-                    </div>
-                    <label for="support_is_public" class="ml-2 text-sm font-medium text-gray-900">Demande publique</label>
-                </div>
-                <div>
-                    <label for="support_question" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Question :</label>
-                    <input id="support_question" name="support_question" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="mail@craftmywebsite.fr" required>
-                </div>
+            <div class="mb-2">
+                <label for="support_question" class="block mb-2 text-sm font-medium text-gray-900">Votre demande :</label>
+                <textarea id="support_question" rows="4" name="support_question"
+                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                          placeholder="Impossible de ..."></textarea>
+            </div>
                 <?php if(SupportSettingsModel::getInstance()->getConfig()->getCaptcha()):?>
                     <?php SecurityController::getPublicData(); ?>
                 <?php endif; ?>
-                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Soumettre</button>
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input id="support_is_public" name="support_is_public" checked type="checkbox" value=""
+                               class="w-4 h-4 border border-gray-300 rounded bg-gray-50">
+                    </div>
+                    <label for="support_is_public" class="ml-2 text-sm font-medium text-gray-900">Question publique</label>
+                </div>
+                <div>
+                    <button type="submit"
+                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Soumettre
+                    </button>
+                </div>
+            </div>
             </form>
         </div>
+        <div class="col-span-2">
+            <div class="container mx-auto rounded-md shadow-lg p-8 h-fit">
+                <div class="flex flex-no-wrap justify-center items-center py-4">
+                    <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+                    <div class="px-10 w-auto">
+                        <h2 class="font-semibold text-2xl uppercase">Support publique</h2>
+                    </div>
+                    <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+                </div>
+                <div class="lg:grid grid-cols-3 gap-4">
+                    <?php foreach ($publicSupport as $support): ?>
+                    <div class="shadow-lg p-2 rounded-lg">
+                        <a href="<?= $support->getUrl() ?>" class="text-lg font-medium text-blue-700 hover:text-blue-500"><?= $support->getQuestion() ?></a>
+                        <div class="border-t">
+                            <p>Statut : <?= $support->getStatusFormatted() ?></p>
+                            <p>Date : <?= $support->getCreated() ?></p>
+                            <p>Réponses : <?= SupportResponsesModel::getInstance()->countResponses($support->getId()) ?></p>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<a href="<?= Website::getProtocol() . "://" . $_SERVER["SERVER_NAME"] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ."support/private" ?>">Voir mes demandes</a>
-<br><br>
-<?php foreach ($publicSupport as $support): ?>
-<p>Statut : <?= $support->getStatusFormatted() ?></p>
-<?= $support->getQuestion() ?>
-<a href="<?= $support->getUrl() ?>">Allez voir ça</a>
-<br><br>
-<?php endforeach; ?>
+</section>
