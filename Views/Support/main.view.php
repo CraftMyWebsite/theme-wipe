@@ -9,6 +9,7 @@ use CMW\Model\Support\SupportSettingsModel;
 use CMW\Utils\Website;
 
 /* @var CMW\Entity\Support\SupportEntity[] $publicSupport */
+/* @var CMW\Entity\Support\SupportSettingEntity $config */
 
 $title = Website::getWebsiteName() . ' - Support';
 $description = 'Parfait pour vos demande de support';
@@ -31,7 +32,7 @@ $description = 'Parfait pour vos demande de support';
            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center">Voir
             mes demandes</a>
     </div>
-    <div class="lg:grid grid-cols-3 gap-4">
+    <div class="<?php if ($config->getDefaultVisibility() && $config->visibilityIsDefinedByCustomer() || !$config->visibilityIsDefinedByCustomer()): ?>lg:grid grid-cols-3<?php endif; ?> gap-4">
         <div class="container mx-auto rounded-md shadow-lg p-8 h-fit">
             <div class="flex flex-no-wrap justify-center items-center py-4">
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
@@ -52,6 +53,7 @@ $description = 'Parfait pour vos demande de support';
                     <?php SecurityController::getPublicData(); ?>
                 <?php endif; ?>
             <div class="flex flex-wrap justify-between items-center">
+                <?php if (!$config->visibilityIsDefinedByCustomer()): ?>
                 <div class="flex items-start">
                     <div class="flex items-center h-5">
                         <input id="support_is_public" name="support_is_public" checked type="checkbox" value=""
@@ -59,6 +61,7 @@ $description = 'Parfait pour vos demande de support';
                     </div>
                     <label for="support_is_public" class="ml-2 text-sm font-medium text-gray-900">Question publique</label>
                 </div>
+                <?php endif; ?>
                 <div>
                     <button type="submit"
                             class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
@@ -68,6 +71,7 @@ $description = 'Parfait pour vos demande de support';
             </div>
             </form>
         </div>
+        <?php if ($config->getDefaultVisibility() && $config->visibilityIsDefinedByCustomer() || !$config->visibilityIsDefinedByCustomer()): ?>
         <div class="col-span-2">
             <div class="container mx-auto rounded-md shadow-lg p-8 h-fit">
                 <div class="flex flex-no-wrap justify-center items-center py-4">
@@ -91,5 +95,6 @@ $description = 'Parfait pour vos demande de support';
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 </section>
