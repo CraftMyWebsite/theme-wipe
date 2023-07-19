@@ -65,7 +65,7 @@ $description = 'Parfait pour vos demande de support';
             <?php (new SecurityManager())->insertHiddenToken() ?>
             <div class="mb-4">
                 <label for="support_response_content" class="block mb-2 text-sm font-medium text-gray-900">Votre réponse :</label>
-                <textarea id="support_response_content" name="support_response_content" rows="4"
+                <textarea minlength="20" id="support_response_content" name="support_response_content" rows="4"
                           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                           placeholder="Vous pouvez ..."></textarea>
             </div>

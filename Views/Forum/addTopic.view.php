@@ -123,7 +123,7 @@ $description = "Description de votre page";
                         </div>
                     </div>
                     <label for="summernote-1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenue<span class="text-red-500">*</span> :</label>
-                    <textarea name="content"  class="w-full tinymce"></textarea>
+                    <textarea minlength="20" name="content"  class="w-full tinymce"></textarea>
                 </div>
             </div>
 
