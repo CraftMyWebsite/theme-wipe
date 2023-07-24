@@ -1,5 +1,6 @@
 <?php
 
+use CMW\Controller\Forum\ForumController;
 use CMW\Controller\Users\UsersController;
 use CMW\Controller\Users\UsersSettingsController;
 use CMW\Manager\Env\EnvManager;
@@ -81,7 +82,7 @@ $description = "Description de votre page";
     </div>
     <form>
         <div class="flex">
-            <?php if (UsersController::isUserLogged()): ?>
+            <?php if (UsersController::isUserLogged() && ForumController::getInstance()->hasPermission("user_create_topic")): ?>
                 <div class="text-center mb-4">
                     <a href="<?= $forum->getSlug() ?>/add"
                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i
