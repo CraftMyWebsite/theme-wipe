@@ -76,7 +76,12 @@ $menus = MenusModel::getInstance();
                 <?php foreach ($menus->getMenus() as $menu): ?>
                     <?php if ($menu->isUserAllowed()): ?>
                         <li id="multiLevelDropdownButton" data-dropdown-toggle="dropdown-<?= $menu->getId() ?>"
-                            class="cursor-pointer block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+                            class="cursor-pointer block py-2 pr-4 pl-3
+                            <?php
+                            if (str_contains($_SERVER['REQUEST_URI'], $menu->getUrl()) ) {echo "text-blue-500";}
+                            if ($_SERVER['REQUEST_URI']==="/" && $menu->getUrl()==="/home") {echo "text-blue-500";}
+                            ?>
+                             rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
                             <a href="<?= $menu->getUrl() ?>" <?= !$menu->isTargetBlank() ?: "target='_blank'" ?>
                             ><?= $menu->getName() ?></a>
                         </li>
