@@ -84,10 +84,12 @@ $menus = MenusModel::getInstance();
                         </li>
                         <div id="dropdown-<?= $menu->getId() ?>" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
                             <?php foreach ($menus->getSubMenusByMenu($menu->getId()) as $subMenu): ?>
+                            <?php if ($subMenu->isUserAllowed()): ?>
                                 <ul class="py-1 text-sm text-gray-700" aria-labelledby="multiLevelDropdownButton">
                                     <li>
                                         <a href="<?= $subMenu->getUrl() ?>" id="doubleDropdownButton" data-dropdown-toggle="doubleDropdown-<?= $subMenu->getId() ?>" data-dropdown-placement="right-start" type="button" class="flex justify-between items-center py-2 px-4 w-full hover:bg-gray-100"><?= $subMenu->getName() ?></a>
                                         <?php foreach ($menus->getSubMenusByMenu($subMenu->getId()) as $subSubMenu): ?>
+                                            <?php if ($subSubMenu->isUserAllowed()): ?>
                                         <div id="doubleDropdown-<?= $subMenu->getId() ?>" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(10px, 300px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="right-start">
                                             <ul class="py-1 text-sm text-gray-700" aria-labelledby="doubleDropdownButton">
                                                 <li>
@@ -95,9 +97,11 @@ $menus = MenusModel::getInstance();
                                                 </li>
                                             </ul>
                                         </div>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     </li>
                             </ul>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
