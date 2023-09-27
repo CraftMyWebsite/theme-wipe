@@ -119,6 +119,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
         <div class="lg:col-span-3 h-fit">
 
             <?php foreach ($categoryModel->getCategories() as $category) : ?>
+        <?php if ($category->isUserAllowed()): ?>
                 <div class="w-full shadow-md mb-10">
                     <div class="flex py-4 bg-gray-100">
                         <div class="md:w-[55%] px-4 font-bold"><?= $category->getFontAwesomeIcon() ?> <?= $category->getName() ?></div>
@@ -167,6 +168,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                         </div>
                     <?php endforeach; ?>
                 </div>
+        <?php endif; ?>
             <?php endforeach; ?>
         </div>
 
