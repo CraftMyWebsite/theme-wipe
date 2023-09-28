@@ -122,7 +122,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
         <?php if ($category->isUserAllowed()): ?>
                 <div class="w-full shadow-md mb-10">
                     <div class="flex py-4 bg-gray-100">
-                        <div class="md:w-[55%] px-4 font-bold"><?= $category->getFontAwesomeIcon() ?> <?= $category->getName() ?></div>
+                        <a href="<?= $category->getSlug() ?>" class="md:w-[55%] px-4 font-bold"><?= $category->getFontAwesomeIcon() ?> <?= $category->getName() ?></a>
                         <div class="hidden md:block w-[10%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_topics') ?></div>
                         <div class="hidden md:block w-[10%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_message') ?></div>
                         <div class="hidden md:block w-[25%] font-bold text-center"><?= ThemeModel::fetchConfigValue('forum_last_message') ?></div>
@@ -131,7 +131,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                         <div class="flex py-6 border-t  hover:bg-gray-50">
                             <div class="md:w-[55%] px-5">
                                 <a class="flex"
-                                   href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $forumObj->getLink() ?>">
+                                   href="<?= $forumObj->getLink($category->getSlug()) ?>">
                                     <div class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
                                         <?= $forumObj->getFontAwesomeIcon("fa-xl") ?>
                                     </div>

@@ -10,9 +10,10 @@ use CMW\Model\Forum\ForumPrefixModel;
 use CMW\Model\Users\UsersModel;
 
 /* @var CMW\Model\Forum\ForumModel $forumModel */
+/* @var \CMW\Entity\Forum\ForumCategoryEntity $category */
+/* @var CMW\Entity\Forum\ForumEntity $forum */
 /* @var CMW\Model\Forum\ForumTopicModel $topicModel */
 /* @var CMW\Entity\Forum\ForumTopicEntity $topic */
-/* @var CMW\Entity\Forum\ForumEntity $forum */
 /* @var CMW\Model\Forum\ForumResponseModel $responseModel */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconNotRead */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconImportant */
@@ -73,7 +74,14 @@ $description = "Description de votre page";
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum/f/<?= $forum->getSlug() ?>"
+                        <a href="<?= $category->getSlug() ?>"
+                           class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $category->getName() ?></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <a href="<?= $forum->getLink($category->getSlug()) ?>"
                            class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $forum->getName() ?></a>
                     </div>
                 </li>
@@ -116,7 +124,7 @@ $description = "Description de votre page";
                     <div class="flex py-6 border-t bg-gray-50 hover:bg-gray-100">
                         <div class="md:w-[55%] px-5">
                             <a class="flex"
-                               href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $forumEntity->getLink() ?>">
+                               href="<?= $forumEntity->getLink($category->getSlug()) ?>">
                                 <div
                                     class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
                                     <?= $forumEntity->getFontAwesomeIcon("fa-xl") ?>
@@ -177,7 +185,7 @@ $description = "Description de votre page";
                 <div class="relative flex py-2 border-t bg-gray-50 hover:bg-gray-100">
                     <div class="md:w-[55%] px-5 relative">
                         <a class="flex flex-wrap hover:text-blue-800"
-                           href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getLink() ?>">
+                           href="<?= $topic->getLink($category->getSlug(), $forum->getSlug()) ?>">
                             <div class="w-12 h-12 shadow-xl">
                                 <img style="object-fit: fill; max-height: 48px; max-width: 48px" width="48px"
                                      height="48px"
@@ -382,7 +390,7 @@ $description = "Description de votre page";
                                     </div>
                                     <!-- Modal footer -->
                                     <div class="flex justify-between p-6 space-x-2 border-t border-gray-200 rounded-b">
-                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->trashLink() ?>"
+                                        <a href="<?= $topic->trashLink($category->getSlug(), $forum->getSlug()) ?>"
                                            class="text-gray-700 border-2 border-red-700 hover:border-red-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
                                             <i class="fa-solid fa-trash fa-lg"></i> Corbeille
                                         </a>

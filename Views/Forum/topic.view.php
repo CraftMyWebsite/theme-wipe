@@ -10,6 +10,8 @@ use CMW\Model\Forum\ForumFeedbackModel;
 use CMW\Model\Users\UsersModel;
 use CMW\Utils\Website;
 
+/* @var \CMW\Entity\Forum\ForumCategoryEntity $category */
+/* @var CMW\Entity\Forum\ForumEntity $forum */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconNotRead */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconImportant */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconPin */
@@ -65,14 +67,21 @@ $i= 0;
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum/f/<?= $topic->getForum()->getSlug() ?>"
-                           class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $topic->getForum()->getName() ?></a>
+                        <a href="<?= $category->getSlug() ?>"
+                           class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $category->getName() ?></a>
                     </div>
                 </li>
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?><?= $topic->getLink() ?>"
+                        <a href="<?= $forum->getLink($category->getSlug()) ?>"
+                           class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $forum->getName() ?></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <a href="<?= $topic->getLink($category->getSlug(), $forum->getSlug()) ?>"
                            class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $topic->getName() ?></a>
                     </div>
                 </li>
