@@ -68,7 +68,7 @@ $i= 0;
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= $category->getSlug() ?>"
+                        <a href="<?= $category->getLink() ?>"
                            class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $category->getName() ?></a>
                     </div>
                 </li>
@@ -76,7 +76,7 @@ $i= 0;
                     <li>
                         <div class="flex items-center">
                             <i class="fa-solid fa-chevron-right"></i>
-                            <a href="<?= $parent->getLink($category->getSlug()) ?>"
+                            <a href="<?= $parent->getLink($category->getLink()) ?>"
                                class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $parent->getName() ?></a>
                         </div>
                     </li>
@@ -84,7 +84,7 @@ $i= 0;
                 <li>
                     <div class="flex items-center">
                         <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= $topic->getLink($category->getSlug(), $forum->getSlug()) ?>"
+                        <a href="<?= $topic->getLink() ?>"
                            class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $topic->getName() ?></a>
                     </div>
                 </li>

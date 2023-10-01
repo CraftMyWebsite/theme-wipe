@@ -41,7 +41,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                     <li>
                         <div class="flex items-center">
                             <i class="fa-solid fa-chevron-right"></i>
-                            <a href="<?= $category->getSlug() ?>"
+                            <a href="<?= $category->getLink() ?>"
                                class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $category->getName() ?></a>
                         </div>
                     </li>
@@ -77,7 +77,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                             <div class="flex py-6 border-t  hover:bg-gray-50">
                                 <div class="md:w-[55%] px-5">
                                     <a class="flex"
-                                       href="<?= $forumObj->getLink($category->getSlug()) ?>">
+                                       href="/forum/c/<?= $category->getSlug() ?>/f/<?= $forumObj->getSlug() ?>">
                                         <div class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
                                             <?= $forumObj->getFontAwesomeIcon("fa-xl") ?>
                                         </div>
