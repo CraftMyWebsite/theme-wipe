@@ -280,10 +280,14 @@ $i= 0;
         </section>
 
         <?php foreach ($responseModel->getResponseByTopic($topic->getId()) as $response) : ?>
-            <section class="border mt-4">
+            <section class="border mt-4" id="<?= $response->getId() ?>">
                 <div class="flex justify-between bg-gray-200 p-2">
                     <p><?= $response->getCreated() ?></p>
-                    <h5 class=""><?= $response->isTopicAuthor() ? "Auteur du topic" : "" ?></h5>
+                    <div>
+                        <span class="mr-2"><?= $response->isTopicAuthor() ? "Auteur du topic" : "" ?></span>
+                        <span onclick="copierURL('<?=Website::getProtocol()."://".$_SERVER['HTTP_HOST']. EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ."forum/c/" .  $category->getSlug() ."/f/". $forum->getSlug() . "/t/". $response->getResponseTopic()->getSlug() . "#" . $response->getId() ?>')" class="text-gray-700 hover:text-blue-600"><i class="fa-solid fa-share-nodes"></i></span>
+                    </div>
+
                 </div>
                 <div class="lg:grid grid-cols-5">
                     <div class="p-4 text-center ">
@@ -491,3 +495,10 @@ $i= 0;
         <?php endif; ?>
     </div>
 </section>
+
+<script>
+    function copierURL(url) {
+        navigator.clipboard.writeText(url)
+        alert("L'URL a été copié dans le presse-papiers : " + url);
+    }
+</script>

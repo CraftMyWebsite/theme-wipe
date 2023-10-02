@@ -148,7 +148,7 @@ $description = "Description de votre page";
                         <!--Dernier message-->
                         <div class="hidden md:block w-[25%] my-auto">
                             <div class="flex text-sm">
-                                <a href="#">
+                                <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumEntity->getLastResponse()?->getId() ?>">
                                     <div tabindex="0" class="avatar w-10">
                                         <div class="w-fit rounded-full ">
                                             <img
@@ -156,7 +156,7 @@ $description = "Description de votre page";
                                         </div>
                                     </div>
                                 </a>
-                                <a href="#">
+                                <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumEntity->getLastResponse()?->getId() ?>">
                                     <div class="ml-2">
                                         <div
                                             class=""><?= $forumEntity->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::fetchConfigValue('forum_nobody_send_message_text') ?></div>
@@ -229,7 +229,7 @@ $description = "Description de votre page";
                     <!--Dernier message-->
                     <div class="hidden md:block w-[25%] my-auto">
                         <div class="flex text-sm">
-                            <a href="#">
+                            <a href="<?= $topic->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $topic->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $topic->getLastResponse()?->getId() ?>">
                                 <div tabindex="0" class="avatar w-10">
                                     <div class="w-fit">
                                         <img
@@ -237,7 +237,7 @@ $description = "Description de votre page";
                                     </div>
                                 </div>
                             </a>
-                            <a href="#">
+                            <a href="<?= $topic->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $topic->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $topic->getLastResponse()?->getId() ?>">
                                 <div class="ml-2">
                                     <div
                                         class=""><?= $topic->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::fetchConfigValue('forum_nobody_send_message_text') ?></div>

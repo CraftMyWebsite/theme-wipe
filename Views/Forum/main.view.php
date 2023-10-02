@@ -150,14 +150,14 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                             <!--Dernier message-->
                             <div class="hidden md:block w-[25%] my-auto">
                                 <div class="flex text-sm">
-                                    <a href="#">
+                                    <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumObj->getLastResponse()?->getId() ?>">
                                         <div tabindex="0" class="avatar w-10">
                                             <div class="w-fit rounded-full ">
                                                 <img src="<?= $forumObj->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="#">
+                                    <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumObj->getLastResponse()?->getId() ?>">
                                         <div class="ml-2">
                                             <div class=""><?= $forumObj->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::fetchConfigValue('forum_nobody_send_message_text')  ?></div>
                                             <div><?= $forumObj->getLastResponse()?->getCreated() ?? "" ?></div>
