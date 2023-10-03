@@ -123,49 +123,55 @@ $description = "Description de votre page";
                 </div>
 
                 <?php foreach ($forumModel->getSubforumByForum($forum->getId(), true) as $forumEntity): ?>
-                    <div class="flex py-6 border-t bg-gray-50 hover:bg-gray-100">
-                        <div class="md:w-[55%] px-5">
-                            <a class="flex"
-                               href="<?= $forumEntity->getLink() ?>">
-                                <div
-                                    class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
-                                    <?= $forumEntity->getFontAwesomeIcon("fa-xl") ?>
-                                </div>
-                                <div class="ml-4">
-                                    <div class="font-bold">
-                                        <?= $forumEntity->getName() ?>
+                    <?php if ($forumEntity->isUserAllowed()): ?>
+                        <div class="flex py-6 border-t bg-gray-50 hover:bg-gray-100">
+                            <div class="md:w-[55%] px-5">
+                                <a class="flex"
+                                   href="<?= $forumEntity->getLink() ?>">
+                                    <div
+                                        class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
+                                        <?= $forumEntity->getFontAwesomeIcon("fa-xl") ?>
                                     </div>
-                                    <div>
-                                        <?= $forumEntity->getDescription() ?>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div
-                            class="hidden md:block w-[10%] text-center my-auto"><?= $forumModel->countTopicInForum($forumEntity->getId()) ?></div>
-                        <div
-                            class="hidden md:inline-block w-[10%] text-center my-auto"><?= $forumModel->countMessagesInForum($forumEntity->getId()) ?></div>
-                        <!--Dernier message-->
-                        <div class="hidden md:block w-[25%] my-auto">
-                            <div class="flex text-sm">
-                                <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumEntity->getLastResponse()?->getId() ?>">
-                                    <div tabindex="0" class="avatar w-10">
-                                        <div class="w-fit rounded-full ">
-                                            <img
-                                                src="<?= $forumEntity->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
+                                    <div class="ml-4">
+                                        <div class="font-bold">
+                                            <?= $forumEntity->getName() ?>
+                                        </div>
+                                        <div>
+                                            <?= $forumEntity->getDescription() ?>
                                         </div>
                                     </div>
                                 </a>
-                                <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumEntity->getLastResponse()?->getId() ?>">
-                                    <div class="ml-2">
-                                        <div
-                                            class=""><?= $forumEntity->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::fetchConfigValue('forum_nobody_send_message_text') ?></div>
-                                        <div><?= $forumEntity->getLastResponse()?->getCreated() ?? "" ?></div>
-                                    </div>
-                                </a>
+                            </div>
+                            <div
+                                class="hidden md:block w-[10%] text-center my-auto"><?= $forumModel->countTopicInForum($forumEntity->getId()) ?></div>
+                            <div
+                                class="hidden md:inline-block w-[10%] text-center my-auto"><?= $forumModel->countMessagesInForum($forumEntity->getId()) ?></div>
+                            <!--Dernier message-->
+                            <div class="hidden md:block w-[25%] my-auto">
+                                <div class="flex text-sm">
+                                    <?php if ($forumEntity->getLastResponse() !== null) : ?>
+                                    <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumEntity->getLastResponse()?->getId() ?>">
+                                        <?php endif; ?>
+                                        <div tabindex="0" class="avatar w-10">
+                                            <div class="w-fit rounded-full ">
+                                                <img
+                                                    src="<?= $forumEntity->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <?php if ($forumEntity->getLastResponse() !== null) : ?>
+                                    <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumEntity->getLastResponse()?->getId() ?>">
+                                        <?php endif; ?>
+                                        <div class="ml-2">
+                                            <div
+                                                class=""><?= $forumEntity->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::fetchConfigValue('forum_nobody_send_message_text') ?></div>
+                                            <div><?= $forumEntity->getLastResponse()?->getCreated() ?? "" ?></div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
         <?php endif ?>
@@ -229,7 +235,9 @@ $description = "Description de votre page";
                     <!--Dernier message-->
                     <div class="hidden md:block w-[25%] my-auto">
                         <div class="flex text-sm">
+                            <?php if ($topic->getLastResponse() !== null) : ?>
                             <a href="<?= $topic->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $topic->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $topic->getLastResponse()?->getId() ?>">
+                                <?php endif; ?>
                                 <div tabindex="0" class="avatar w-10">
                                     <div class="w-fit">
                                         <img
@@ -237,7 +245,9 @@ $description = "Description de votre page";
                                     </div>
                                 </div>
                             </a>
+                            <?php if ($topic->getLastResponse() !== null) : ?>
                             <a href="<?= $topic->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $topic->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $topic->getLastResponse()?->getId() ?>">
+                                <?php endif; ?>
                                 <div class="ml-2">
                                     <div
                                         class=""><?= $topic->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::fetchConfigValue('forum_nobody_send_message_text') ?></div>
@@ -356,8 +366,10 @@ $description = "Description de votre page";
                                             <div class="grid gap-6 md:grid-cols-2 mt-2">
                                                 <div>
                                                     <label for="prefix"
-                                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prefix :</label>
-                                                    <select name="prefix" id="prefix" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prefix
+                                                        :</label>
+                                                    <select name="prefix" id="prefix"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                                         <option value="">Aucun</option>
                                                         <?php foreach ($prefixesModel = ForumPrefixModel::getInstance()->getPrefixes() as $prefix) : ?>
                                                             <option value="<?= $prefix->getId() ?>"
@@ -373,11 +385,12 @@ $description = "Description de votre page";
                                                         vers :</label>
                                                     <select id="forum" name="move"
                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-<!--                                                        TODO Améliorer la façon dont les options sont affiché-->
+                                                        <!--                                                        TODO Améliorer la façon dont les options sont affiché-->
                                                         <?php foreach ($categoryModel->getCategories() as $cat): ?>
                                                             <option disabled>──── <?= $cat->getName() ?> ────</option>
                                                             <?php foreach ($forumModel->getChildForumByCatId($cat->getId()) as $forumObject): ?>
-                                                                <option value="<?= $forumObject->getId() ?>" <?= ($forumObject->getName() === $topic->getForum()->getName() ? "selected" : "") ?>><?= $forumObject->getName() ?></option>
+                                                                <option
+                                                                    value="<?= $forumObject->getId() ?>" <?= ($forumObject->getName() === $topic->getForum()->getName() ? "selected" : "") ?>><?= $forumObject->getName() ?></option>
                                                             <?php endforeach; ?>
                                                         <?php endforeach; ?>
                                                     </select>
