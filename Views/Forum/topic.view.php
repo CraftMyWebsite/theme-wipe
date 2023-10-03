@@ -496,9 +496,69 @@ $i= 0;
     </div>
 </section>
 
+<link rel="stylesheet" href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.css' ?>">
+<script src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.js' ?>"></script>
+
 <script>
+    let hash = window.location.hash;
+    if (hash) {
+        hash = hash.substring(1);
+        // Fonction pour afficher l'élément avec un décalage de 200 pixels vers le haut
+        function scrollToElementWithOffset() {
+            var element = document.getElementById(hash);
+            if (element) {
+                var offsetTop = element.offsetTop - 200;
+                window.scrollTo(0, offsetTop);
+            }
+        }
+        // Appelez la fonction scrollToElementWithOffset lorsque la page a fini de se charger
+        window.addEventListener('load', scrollToElementWithOffset);
+        // Fonction pour faire clignoter la bordure toutes 150 ms
+        function toggleHighlight() {
+            var element = document.getElementById(hash);
+            if (element) {
+                if (element.style.border === "2px solid blue") {
+                    element.style.border = "1px solid #E5E7EB";
+                } else {
+                    element.style.border = "2px solid blue";
+                }
+            }
+        }
+        // Appelez la fonction toggleHighlight toutes les 150 ms
+        var interval = setInterval(toggleHighlight, 150);
+
+        // Arrêtez le clignotement après un certain temps
+        setTimeout(function () {
+            clearInterval(interval);
+            var element = document.getElementById(hash);
+            if (element) {
+                element.style.border = "1px solid #E5E7EB";
+            }
+        }, 1200);
+    }
+
+
     function copierURL(url) {
         navigator.clipboard.writeText(url)
-        alert("L'URL a été copié dans le presse-papiers : " + url);
+        iziToast.show(
+            {
+                titleSize: '16',
+                messageSize: '14',
+                icon: 'fa-solid fa-check',
+                title  : "Forum",
+                message: "Le liens vers cette réponse à été copié !",
+                color: "#41435F",
+                iconColor: '#22E445',
+                titleColor: '#22E445',
+                messageColor: '#fff',
+                balloon: false,
+                close: false,
+                position: 'bottomRight',
+                timeout: 5000,
+                animateInside: false,
+                progressBar: false,
+                transitionIn: 'fadeInLeft',
+                transitionOut: 'fadeOutRight',
+            });
     }
 </script>
