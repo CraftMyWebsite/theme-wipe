@@ -7,6 +7,7 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
 use CMW\Model\Forum\ForumDiscordModel;
 use CMW\Model\Forum\ForumFeedbackModel;
+use CMW\Model\Forum\ForumPermissionRoleModel;
 use CMW\Model\Users\UsersModel;
 use CMW\Utils\Website;
 
@@ -169,7 +170,7 @@ $i= 0;
                     </div>
                     <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
                     <div class="bg-gray-100 pb-1">
-                        <p><small>Grade forum NA</small></p>
+                        <p><small><?= ForumPermissionRoleModel::getInstance()->getHighestRoleByUser($topic->getUser()->getId())->getName() ?></small></p>
                     </div>
                     <div class="px-4 pb-2 bg-gray-100">
                         <div class="border">
@@ -300,7 +301,7 @@ $i= 0;
                         </div>
                         <h5 class="font-semibold bg-gray-200"><?= $response->getUser()->getPseudo() ?></h5>
                         <div class="bg-gray-100 pb-1">
-                            <p><small>Grade forum NA</small></p>
+                            <p><small><?= ForumPermissionRoleModel::getInstance()->getHighestRoleByUser($response->getUser()->getId())->getName() ?></small></p>
                         </div>
                         <div class="px-4 pb-2 bg-gray-100">
                             <div class="border">
@@ -470,9 +471,9 @@ $i= 0;
                             <div class="w-36 h-36 mx-auto border">
                                 <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
                                      height="144px"
-                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
+                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= UsersModel::getCurrentUser()->getUserPicture()->getImageName() ?>"/>
                             </div>
-                            <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
+                            <h5 class="font-semibold bg-gray-200"><?= UsersModel::getCurrentUser()->getPseudo() ?></h5>
                         </div>
                     </div>
                     <div class="col-span-4 py-4 pr-2">
