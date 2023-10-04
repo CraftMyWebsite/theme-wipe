@@ -93,7 +93,7 @@ $description = "Description de votre page";
     </div>
     <form>
         <div class="flex">
-            <?php if (UsersController::isUserLogged() && ForumPermissionController::getInstance()->hasPermission("user_create_topic")): ?>
+            <?php if (UsersController::isUserLogged() && ForumPermissionController::getInstance()->hasPermission("user_create_topic") && !$forum->disallowTopics()): ?>
                 <div class="text-center mb-4">
                     <a href="<?= $forum->getSlug() ?>/add"
                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i
