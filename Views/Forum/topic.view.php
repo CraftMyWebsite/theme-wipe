@@ -7,6 +7,7 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
 use CMW\Model\Forum\ForumDiscordModel;
 use CMW\Model\Forum\ForumFeedbackModel;
+use CMW\Model\Forum\ForumFollowedModel;
 use CMW\Model\Forum\ForumPermissionRoleModel;
 use CMW\Model\Users\UsersModel;
 use CMW\Utils\Website;
@@ -158,9 +159,21 @@ $i = 0;
         <section class="border mt-4">
             <div class="flex justify-between bg-gray-200 p-2">
                 <p><?= $topic->getCreated() ?></p>
-                <i data-modal-target="reportTopic-<?= $topic->getId() ?>"
-                   data-modal-toggle="reportTopic-<?= $topic->getId() ?>" data-tooltip-target="tooltip-admin"
-                   class="fa-solid fa-circle-exclamation"></i>
+                <div>
+                    <?php if (UsersController::isUserLogged()): ?>
+                        <?php if (ForumFollowedModel::getInstance()->isFollower($topic->getId(), UsersModel::getCurrentUser()?->getId())): ?>
+                            <a href="<?= $topic->unfollowTopicLink() ?>"><i
+                                    class="fa-solid fa-eye-slash text-blue-500 mr-2"></i></a>
+                        <?php else: ?>
+                            <a href="<?= $topic->followTopicLink() ?>"><i
+                                    class="fa-solid fa-eye text-blue-500 mr-2"></i></a>
+                        <?php endif ?>
+                    <?php endif; ?>
+                    <i data-modal-target="reportTopic-<?= $topic->getId() ?>"
+                       data-modal-toggle="reportTopic-<?= $topic->getId() ?>" data-tooltip-target="tooltip-admin"
+                       class="fa-solid fa-circle-exclamation"></i>
+                </div>
+
             </div>
             <!------------------
             --- REPORT TOPIC MODAL ---
@@ -189,13 +202,16 @@ $i = 0;
                             </button>
                         </div>
                         <!-- Modal body -->
-                        <form id="modal-<?= $topic->getId() ?>" action="<?= $topic->getSlug() ?>/reportTopic/<?= $topic->getId() ?>"
+                        <form id="modal-<?= $topic->getId() ?>"
+                              action="<?= $topic->getSlug() ?>/reportTopic/<?= $topic->getId() ?>"
                               method="post">
                             <?php (new SecurityManager())->insertHiddenToken() ?>
                             <div class="p-4">
                                 <div>
-                                    <label for="reportTopic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Raison</label>
-                                    <select id="reportTopic" name="reason" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <label for="reportTopic"
+                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Raison</label>
+                                    <select id="reportTopic" name="reason"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                         <option value="1">Nom du topic inapproprié</option>
                                         <option value="2">Le topic n'est pas au bon endroit</option>
                                         <option value="3">Contenue choquant</option>
@@ -268,7 +284,7 @@ $i = 0;
                             <?php if ($feedback->userCanTopicReact($topic->getId())): ?>
                                 <?php if (UsersController::isUserLogged()): ?>
                                     <?php if ($feedback->getFeedbackTopicReacted($topic->getId()) == $feedback->getId()): ?>
-                                        <a class="bg-blue-200 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                        <a class="bg-blue-200 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center mr-2"
                                            data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>"
                                            href="<?= $topic->getFeedbackDeleteTopicLink($feedback->getId()) ?>">
                                             <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
@@ -284,7 +300,7 @@ $i = 0;
                                             </div>
                                         </a>
                                     <?php else: ?>
-                                        <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                        <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center mr-2"
                                            data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>"
                                            href="<?= $topic->getFeedbackChangeTopicLink($feedback->getId()) ?>">
                                             <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
@@ -302,7 +318,7 @@ $i = 0;
                                     <?php endif; ?>
                                 <?php else: ?>
                                     <div
-                                        class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                        class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center mr-2"
                                         data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>">
                                         <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
                                              src="<?= $feedback->getImage() ?>"></img>
@@ -318,7 +334,7 @@ $i = 0;
                                     </div>
                                 <?php endif; ?>
                             <?php else: ?>
-                                <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center mr-2"
                                    data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>"
                                    href="<?= $topic->getFeedbackAddTopicLink($feedback->getId()) ?>">
                                     <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
@@ -365,7 +381,8 @@ $i = 0;
                             onclick="copierURL('<?= Website::getProtocol() . "://" . $_SERVER['HTTP_HOST'] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "forum/c/" . $category->getSlug() . "/f/" . $forum->getSlug() . "/t/" . $response->getResponseTopic()->getSlug() . "#" . $response->getId() ?>')"
                             class="text-gray-700 hover:text-blue-600"><i class="fa-solid fa-share-nodes"></i></span>
                         <span><i data-modal-target="reportResponse-<?= $response->getId() ?>"
-                                 data-modal-toggle="reportResponse-<?= $response->getId() ?>" data-tooltip-target="tooltip-admin"
+                                 data-modal-toggle="reportResponse-<?= $response->getId() ?>"
+                                 data-tooltip-target="tooltip-admin"
                                  class="fa-solid fa-circle-exclamation ml-2"></i></span>
                     </div>
                 </div>
@@ -397,13 +414,16 @@ $i = 0;
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <form id="modal-<?= $response->getId() ?>" action="<?= $topic->getSlug() ?>/reportResponse/<?= $response->getId() ?>"
+                            <form id="modal-<?= $response->getId() ?>"
+                                  action="<?= $topic->getSlug() ?>/reportResponse/<?= $response->getId() ?>"
                                   method="post">
                                 <?php (new SecurityManager())->insertHiddenToken() ?>
                                 <div class="p-4">
                                     <div>
-                                        <label for="reportTopic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Raison</label>
-                                        <select id="reportTopic" name="reason" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                        <label for="reportTopic"
+                                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Raison</label>
+                                        <select id="reportTopic" name="reason"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                             <option value="1">Réponse inapproprié</option>
                                             <option value="2">Contenue choquant</option>
                                             <option value="3">Harcèlement, discrimination ...</option>
@@ -477,7 +497,7 @@ $i = 0;
                                     <?php if (UsersController::isUserLogged()): ?>
                                         <?php if ($responseFeedback->getFeedbackResponseReacted($response->getId()) === $responseFeedback->getId()): ?>
 
-                                            <a class="bg-blue-200 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                            <a class="bg-blue-200 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center mr-2"
                                                data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                                href="<?= $response->getFeedbackDeleteResponseLink($responseFeedback->getId()) ?>">
                                                 <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
@@ -498,7 +518,7 @@ $i = 0;
 
                                             </a>
                                         <?php else: ?>
-                                            <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                            <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center mr-2"
                                                data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                                href="<?= $response->getFeedbackChangeResponseLink($responseFeedback->getId()) ?>">
                                                 <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
@@ -520,7 +540,7 @@ $i = 0;
                                         <?php endif; ?>
                                     <?php else: ?>
                                         <div
-                                            class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                            class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center mr-2"
                                             data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>">
                                             <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
                                                  src="<?= $responseFeedback->getImage() ?>"></img>
@@ -538,7 +558,7 @@ $i = 0;
                                         </div>
                                     <?php endif; ?>
                                 <?php else: ?>
-                                    <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                    <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center mr-2"
                                        data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                        href="<?= $response->getFeedbackAddResponseLink($responseFeedback->getId()) ?>">
                                         <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"

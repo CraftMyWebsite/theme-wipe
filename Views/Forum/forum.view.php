@@ -93,13 +93,15 @@ $description = "Description de votre page";
     </div>
     <form>
         <div class="flex">
-            <?php if (UsersController::isUserLogged() && !$forum->disallowTopics() && ForumPermissionController::getInstance()->hasPermission("user_create_topic") || ForumPermissionController::getInstance()->hasPermission("operator") || ForumPermissionController::getInstance()->hasPermission("admin_bypass_forum_disallow_topics")): ?>
-                <div class="text-center mb-4">
-                    <a href="<?= $forum->getSlug() ?>/add"
-                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i
-                            class="<?= ThemeModel::fetchConfigValue('forum_btn_create_topic_icon') ?>"></i> <?= ThemeModel::fetchConfigValue('forum_btn_create_topic') ?>
-                    </a>
-                </div>
+            <?php if (UsersController::isUserLogged()): ?>
+                <?php if (!$forum->disallowTopics() && ForumPermissionController::getInstance()->hasPermission("user_create_topic") || ForumPermissionController::getInstance()->hasPermission("operator") || ForumPermissionController::getInstance()->hasPermission("admin_bypass_forum_disallow_topics")): ?>
+                    <div class="text-center mb-4">
+                        <a href="<?= $forum->getSlug() ?>/add"
+                           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i
+                                class="<?= ThemeModel::fetchConfigValue('forum_btn_create_topic_icon') ?>"></i> <?= ThemeModel::fetchConfigValue('forum_btn_create_topic') ?>
+                        </a>
+                    </div>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
     </form>

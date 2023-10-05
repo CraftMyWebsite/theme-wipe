@@ -115,20 +115,14 @@ $description = "Description de votre page";
                     </div>
                 </div>
 
-                    <label class="text-red-500 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Options :</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Options :</label>
                     <div class="flex mb-4 ">
                         <div class="flex ml-3 space-x-4">
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
-                                    <input id="follow" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" checked>
+                                    <input id="follow" type="checkbox" name="followTopic" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" checked>
                                 </div>
-                                <label for="follow" class="ml-2 text-sm font-medium text-red-500">Suivre la discussion</label>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex items-center h-5">
-                                    <input id="mailalert" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" checked>
-                                </div>
-                                <label for="mailalert" class="ml-2 text-sm font-medium text-red-500">Recevoir les alertes par e-mail</label>
+                                <label for="follow" class="ml-2 text-sm font-medium">Suivre la discussion (alérter par mail)</label>
                             </div>
                         </div>
                     </div>
