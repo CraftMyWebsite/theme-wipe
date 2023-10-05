@@ -23,7 +23,7 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Forum\ForumResponseEntity $response */
 $title = "Titre de la page";
 $description = "Description de votre page";
-$i= 0;
+$i = 0;
 ?>
 <section class="bg-gray-800 relative text-white">
     <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>"
@@ -158,7 +158,65 @@ $i= 0;
         <section class="border mt-4">
             <div class="flex justify-between bg-gray-200 p-2">
                 <p><?= $topic->getCreated() ?></p>
+                <i data-modal-target="reportTopic-<?= $topic->getId() ?>"
+                   data-modal-toggle="reportTopic-<?= $topic->getId() ?>" data-tooltip-target="tooltip-admin"
+                   class="fa-solid fa-circle-exclamation"></i>
             </div>
+            <!------------------
+            --- REPORT TOPIC MODAL ---
+            -------------------->
+            <div id="reportTopic-<?= $topic->getId() ?>" tabindex="-1" aria-hidden="true"
+                 class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                <div class="relative w-full h-full max-w-2xl md:h-auto">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div
+                            class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Signalé le topic <?= $topic->getName() ?>
+                            </h3>
+                            <button type="button"
+                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                    data-modal-hide="reportTopic-<?= $topic->getId() ?>">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor"
+                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <form id="modal-<?= $topic->getId() ?>" action="<?= $topic->getSlug() ?>/reportTopic/<?= $topic->getId() ?>"
+                              method="post">
+                            <?php (new SecurityManager())->insertHiddenToken() ?>
+                            <div class="p-4">
+                                <div>
+                                    <label for="reportTopic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Raison</label>
+                                    <select id="reportTopic" name="reason" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                        <option value="1">Nom du topic inapproprié</option>
+                                        <option value="2">Le topic n'est pas au bon endroit</option>
+                                        <option value="3">Contenue choquant</option>
+                                        <option value="4">Harcèlement, discrimination ...</option>
+                                        <option value="0">Autre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="flex justify-between p-6 space-x-2 border-t border-gray-200 rounded-b">
+                                <button type="submit"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
+                                    Signalé
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="lg:grid grid-cols-5">
                 <div class="p-4 text-center ">
                     <div class="bg-gray-100 p-2">
@@ -170,7 +228,9 @@ $i= 0;
                     </div>
                     <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
                     <div class="bg-gray-100 pb-1">
-                        <p><small><?= ForumPermissionRoleModel::getInstance()->getHighestRoleByUser($topic->getUser()->getId())->getName() ?></small></p>
+                        <p>
+                            <small><?= ForumPermissionRoleModel::getInstance()->getHighestRoleByUser($topic->getUser()->getId())->getName() ?></small>
+                        </p>
                     </div>
                     <div class="px-4 pb-2 bg-gray-100">
                         <div class="border">
@@ -208,52 +268,67 @@ $i= 0;
                             <?php if ($feedback->userCanTopicReact($topic->getId())): ?>
                                 <?php if (UsersController::isUserLogged()): ?>
                                     <?php if ($feedback->getFeedbackTopicReacted($topic->getId()) == $feedback->getId()): ?>
-                                        <a class="bg-blue-200 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center" data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>"
+                                        <a class="bg-blue-200 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                           data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>"
                                            href="<?= $topic->getFeedbackDeleteTopicLink($feedback->getId()) ?>">
-                                            <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px" src="<?= $feedback->getImage() ?>"></img>
-                                                <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
+                                            <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
+                                                 src="<?= $feedback->getImage() ?>"></img>
+                                            <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
                                             <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
                                                  class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
                                                 <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
-                                                    <small class="px-2 text-xs">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
+                                                    <small
+                                                        class="px-2 text-xs">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
                                                 <?php endforeach; ?>
                                                 <p class="p-1"><small><?= $feedback->getName() ?></small></p>
                                             </div>
                                         </a>
                                     <?php else: ?>
-                                        <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center" data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>" href="<?= $topic->getFeedbackChangeTopicLink($feedback->getId()) ?>">
-                                            <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px" src="<?= $feedback->getImage() ?>"></img>
+                                        <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                           data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>"
+                                           href="<?= $topic->getFeedbackChangeTopicLink($feedback->getId()) ?>">
+                                            <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
+                                                 src="<?= $feedback->getImage() ?>"></img>
                                             <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
                                             <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
                                                  class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
                                                 <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
-                                                    <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
+                                                    <small
+                                                        class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
                                                 <?php endforeach; ?>
                                                 <p class="p-1"><small><?= $feedback->getName() ?></small></p>
                                             </div>
                                         </a>
                                     <?php endif; ?>
                                 <?php else: ?>
-                                    <div class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center" data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>">
-                                        <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px" src="<?= $feedback->getImage() ?>"></img>
+                                    <div
+                                        class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                        data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>">
+                                        <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
+                                             src="<?= $feedback->getImage() ?>"></img>
                                         <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
                                         <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
                                              class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
                                             <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
-                                                <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
+                                                <small
+                                                    class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
                                             <?php endforeach; ?>
                                             <p class="p-1"><small><?= $feedback->getName() ?></small></p>
                                         </div>
                                     </div>
                                 <?php endif; ?>
                             <?php else: ?>
-                                <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center" data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>" href="<?= $topic->getFeedbackAddTopicLink($feedback->getId()) ?>">
-                                    <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px" src="<?= $feedback->getImage() ?>"></img>
+                                <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                   data-tooltip-target="tooltip-users-<?= $feedback->getId() ?>"
+                                   href="<?= $topic->getFeedbackAddTopicLink($feedback->getId()) ?>">
+                                    <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
+                                         src="<?= $feedback->getImage() ?>"></img>
                                     <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
                                     <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
                                          class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
                                         <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
-                                            <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
+                                            <small
+                                                class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
                                         <?php endforeach; ?>
                                         <p class="p-1"><small><?= $feedback->getName() ?></small></p>
                                     </div>
@@ -286,10 +361,69 @@ $i= 0;
                     <p><?= $response->getCreated() ?></p>
                     <div>
                         <span class="mr-2"><?= $response->isTopicAuthor() ? "Auteur du topic" : "" ?></span>
-                        <span onclick="copierURL('<?=Website::getProtocol()."://".$_SERVER['HTTP_HOST']. EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ."forum/c/" .  $category->getSlug() ."/f/". $forum->getSlug() . "/t/". $response->getResponseTopic()->getSlug() . "#" . $response->getId() ?>')" class="text-gray-700 hover:text-blue-600"><i class="fa-solid fa-share-nodes"></i></span>
+                        <span
+                            onclick="copierURL('<?= Website::getProtocol() . "://" . $_SERVER['HTTP_HOST'] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "forum/c/" . $category->getSlug() . "/f/" . $forum->getSlug() . "/t/" . $response->getResponseTopic()->getSlug() . "#" . $response->getId() ?>')"
+                            class="text-gray-700 hover:text-blue-600"><i class="fa-solid fa-share-nodes"></i></span>
+                        <span><i data-modal-target="reportResponse-<?= $response->getId() ?>"
+                                 data-modal-toggle="reportResponse-<?= $response->getId() ?>" data-tooltip-target="tooltip-admin"
+                                 class="fa-solid fa-circle-exclamation ml-2"></i></span>
                     </div>
-
                 </div>
+
+                <!------------------
+            --- REPORT TOPIC MODAL ---
+            -------------------->
+                <div id="reportResponse-<?= $response->getId() ?>" tabindex="-1" aria-hidden="true"
+                     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+                    <div class="relative w-full h-full max-w-2xl md:h-auto">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <!-- Modal header -->
+                            <div
+                                class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                    Signalé cette réponse
+                                </h3>
+                                <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                        data-modal-hide="reportResponse-<?= $response->getId() ?>">
+                                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor"
+                                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <form id="modal-<?= $response->getId() ?>" action="<?= $topic->getSlug() ?>/reportResponse/<?= $response->getId() ?>"
+                                  method="post">
+                                <?php (new SecurityManager())->insertHiddenToken() ?>
+                                <div class="p-4">
+                                    <div>
+                                        <label for="reportTopic" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Raison</label>
+                                        <select id="reportTopic" name="reason" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                            <option value="1">Réponse inapproprié</option>
+                                            <option value="2">Contenue choquant</option>
+                                            <option value="3">Harcèlement, discrimination ...</option>
+                                            <option value="0">Autre</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="flex justify-between p-6 space-x-2 border-t border-gray-200 rounded-b">
+                                    <button type="submit"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
+                                        Signalé
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="lg:grid grid-cols-5">
                     <div class="p-4 text-center ">
                         <div class="bg-gray-100 p-2">
@@ -301,7 +435,9 @@ $i= 0;
                         </div>
                         <h5 class="font-semibold bg-gray-200"><?= $response->getUser()->getPseudo() ?></h5>
                         <div class="bg-gray-100 pb-1">
-                            <p><small><?= ForumPermissionRoleModel::getInstance()->getHighestRoleByUser($response->getUser()->getId())->getName() ?></small></p>
+                            <p>
+                                <small><?= ForumPermissionRoleModel::getInstance()->getHighestRoleByUser($response->getUser()->getId())->getName() ?></small>
+                            </p>
                         </div>
                         <div class="px-4 pb-2 bg-gray-100">
                             <div class="border">
@@ -341,43 +477,60 @@ $i= 0;
                                     <?php if (UsersController::isUserLogged()): ?>
                                         <?php if ($responseFeedback->getFeedbackResponseReacted($response->getId()) === $responseFeedback->getId()): ?>
 
-                                            <a class="bg-blue-200 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center" data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>"
+                                            <a class="bg-blue-200 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                               data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                                href="<?= $response->getFeedbackDeleteResponseLink($responseFeedback->getId()) ?>">
-                                                <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px" src="<?= $responseFeedback->getImage() ?>"></img>
-                                                    <?= $responseFeedback->countResponseFeedbackReceived($response->getId()) ?>
-                                                <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" role="tooltip"
-                                                     class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                                <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
+                                                     src="<?= $responseFeedback->getImage() ?>"></img>
+                                                <?= $responseFeedback->countResponseFeedbackReceived($response->getId()) ?>
+                                                <div
+                                                    id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
+                                                    role="tooltip"
+                                                    class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
                                                     <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
-                                                        <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
-                                                    <?php $i++; ?>
+                                                        <small
+                                                            class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
+                                                        <?php $i++; ?>
                                                     <?php endforeach; ?>
-                                                    <p class="p-1"><small><?= $responseFeedback->getName() ?></small></p>
+                                                    <p class="p-1"><small><?= $responseFeedback->getName() ?></small>
+                                                    </p>
                                                 </div>
 
                                             </a>
                                         <?php else: ?>
-                                            <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center" data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>"
+                                            <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                               data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                                href="<?= $response->getFeedbackChangeResponseLink($responseFeedback->getId()) ?>">
-                                                <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px" src="<?= $responseFeedback->getImage() ?>"></img>
+                                                <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
+                                                     src="<?= $responseFeedback->getImage() ?>"></img>
                                                 <?= $responseFeedback->countResponseFeedbackReceived($response->getId()) ?>
-                                                <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" role="tooltip"
-                                                     class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
+                                                <div
+                                                    id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
+                                                    role="tooltip"
+                                                    class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
                                                     <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
-                                                        <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
+                                                        <small
+                                                            class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
                                                         <?php $i++; ?>
                                                     <?php endforeach; ?>
-                                                    <p class="p-1"><small><?= $responseFeedback->getName() ?></small></p>
+                                                    <p class="p-1"><small><?= $responseFeedback->getName() ?></small>
+                                                    </p>
                                                 </div>
                                             </a>
                                         <?php endif; ?>
                                     <?php else: ?>
-                                        <div class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center" data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" >
-                                            <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px" src="<?= $responseFeedback->getImage() ?>"></img>
+                                        <div
+                                            class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                            data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>">
+                                            <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
+                                                 src="<?= $responseFeedback->getImage() ?>"></img>
                                             <?= $responseFeedback->countResponseFeedbackReceived($response->getId()) ?>
-                                            <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" role="tooltip"
+                                            <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
+                                                 role="tooltip"
                                                  class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
                                                 <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
-                                                    <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
+                                                    <small
+                                                        class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
                                                     <?php $i++; ?>
                                                 <?php endforeach; ?>
                                                 <p class="p-1"><small><?= $responseFeedback->getName() ?></small></p>
@@ -385,14 +538,18 @@ $i= 0;
                                         </div>
                                     <?php endif; ?>
                                 <?php else: ?>
-                                    <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center" data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>"
+                                    <a class="bg-blue-50 border-2 border-blue-300 px-1 flex flex-wrap rounded-xl items-center"
+                                       data-tooltip-target="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                        href="<?= $response->getFeedbackAddResponseLink($responseFeedback->getId()) ?>">
-                                        <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px" src="<?= $responseFeedback->getImage() ?>"></img>
+                                        <img class="mr-1" alt="..." style="max-width: 20px; max-height: 20px"
+                                             src="<?= $responseFeedback->getImage() ?>"></img>
                                         <?= $responseFeedback->countResponseFeedbackReceived($response->getId()) ?>
-                                        <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?=$i?>" role="tooltip"
+                                        <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
+                                             role="tooltip"
                                              class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
                                             <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
-                                                <small class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
+                                                <small
+                                                    class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
                                                 <?php $i++; ?>
                                             <?php endforeach; ?>
                                             <p class="p-1"><small><?= $responseFeedback->getName() ?></small></p>
@@ -497,13 +654,16 @@ $i= 0;
     </div>
 </section>
 
-<link rel="stylesheet" href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.css' ?>">
-<script src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.js' ?>"></script>
+<link rel="stylesheet"
+      href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.css' ?>">
+<script
+    src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.js' ?>"></script>
 
 <script>
     let hash = window.location.hash;
     if (hash) {
         hash = hash.substring(1);
+
         // Fonction pour afficher l'élément avec un décalage de 200 pixels vers le haut
         function scrollToElementWithOffset() {
             var element = document.getElementById(hash);
@@ -512,8 +672,10 @@ $i= 0;
                 window.scrollTo(0, offsetTop);
             }
         }
+
         // Appelez la fonction scrollToElementWithOffset lorsque la page a fini de se charger
         window.addEventListener('load', scrollToElementWithOffset);
+
         // Fonction pour faire clignoter la bordure toutes 150 ms
         function toggleHighlight() {
             var element = document.getElementById(hash);
@@ -525,6 +687,7 @@ $i= 0;
                 }
             }
         }
+
         // Appelez la fonction toggleHighlight toutes les 150 ms
         var interval = setInterval(toggleHighlight, 150);
 
@@ -546,7 +709,7 @@ $i= 0;
                 titleSize: '16',
                 messageSize: '14',
                 icon: 'fa-solid fa-check',
-                title  : "Forum",
+                title: "Forum",
                 message: "Le liens vers cette réponse à été copié !",
                 color: "#41435F",
                 iconColor: '#22E445',
