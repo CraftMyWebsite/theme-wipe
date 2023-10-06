@@ -378,7 +378,7 @@ $i = 0;
                     <div>
                         <span class="mr-2"><?= $response->isTopicAuthor() ? "Auteur du topic" : "" ?></span>
                         <span
-                            onclick="copierURL('<?= Website::getProtocol() . "://" . $_SERVER['HTTP_HOST'] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "forum/c/" . $category->getSlug() . "/f/" . $forum->getSlug() . "/t/" . $response->getResponseTopic()->getSlug() . "#" . $response->getId() ?>')"
+                            onclick="copyURL('<?= Website::getProtocol() . "://" . $_SERVER['HTTP_HOST'] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "forum/c/" . $category->getSlug() . "/f/" . $forum->getSlug() . "/t/" . $response->getResponseTopic()->getSlug() . "#" . $response->getId() ?>')"
                             class="text-gray-700 hover:text-blue-600"><i class="fa-solid fa-share-nodes"></i></span>
                         <span><i data-modal-target="reportResponse-<?= $response->getId() ?>"
                                  data-modal-toggle="reportResponse-<?= $response->getId() ?>"
@@ -674,6 +674,8 @@ $i = 0;
     </div>
 </section>
 
+<p class="needConnect">blop !</p>
+
 <link rel="stylesheet"
       href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.css' ?>">
 <script
@@ -722,7 +724,7 @@ $i = 0;
     }
 
 
-    function copierURL(url) {
+    function copyURL(url) {
         navigator.clipboard.writeText(url)
         iziToast.show(
             {
@@ -744,5 +746,15 @@ $i = 0;
                 transitionIn: 'fadeInLeft',
                 transitionOut: 'fadeOutRight',
             });
+    }
+
+
+    //Besoin d'être connecter pour afficher
+    var isLoggedIn = <?php echo UsersController::isUserLogged() ? 'true' : 'false'; ?>;
+    var elementsToToggle = document.querySelectorAll('.needConnect');
+    for (var i = 0; i < elementsToToggle.length; i++) {
+        if (!isLoggedIn) {
+            elementsToToggle[i].innerHTML = "<i>Vous devez être <a style='color: #0d6efd' href='/login'>connecter</a> pour afficher ce contenue</i>";
+        }
     }
 </script>
