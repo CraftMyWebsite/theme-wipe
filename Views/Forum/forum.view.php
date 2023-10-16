@@ -153,7 +153,8 @@ $description = "Description de votre page";
                             <div class="hidden md:block w-[25%] my-auto">
                                 <div class="flex text-sm">
                                     <?php if ($forumEntity->getLastResponse() !== null) : ?>
-                                    <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumEntity->getLastResponse()?->getId() ?>">
+<!--                                    TODO : determiné dans quel page se trouve la réponse-->
+                                    <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/p1/#<?= $forumEntity->getLastResponse()?->getId() ?>">
                                         <?php endif; ?>
                                         <div tabindex="0" class="avatar w-10">
                                             <div class="w-fit rounded-full ">
@@ -163,7 +164,7 @@ $description = "Description de votre page";
                                         </div>
                                     </a>
                                     <?php if ($forumEntity->getLastResponse() !== null) : ?>
-                                    <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $forumEntity->getLastResponse()?->getId() ?>">
+                                    <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/p1/#<?= $forumEntity->getLastResponse()?->getId() ?>">
                                         <?php endif; ?>
                                         <div class="ml-2">
                                             <div
@@ -239,7 +240,7 @@ $description = "Description de votre page";
                     <div class="hidden md:block w-[25%] my-auto">
                         <div class="flex text-sm">
                             <?php if ($topic->getLastResponse() !== null) : ?>
-                            <a href="<?= $topic->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $topic->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $topic->getLastResponse()?->getId() ?>">
+                            <a href="<?= $topic->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $topic->getLastResponse()->getResponseTopic()->getSlug() ?>/p1/#<?= $topic->getLastResponse()?->getId() ?>">
                                 <?php endif; ?>
                                 <div tabindex="0" class="avatar w-10">
                                     <div class="w-fit">
@@ -249,7 +250,8 @@ $description = "Description de votre page";
                                 </div>
                             </a>
                             <?php if ($topic->getLastResponse() !== null) : ?>
-                            <a href="<?= $topic->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $topic->getLastResponse()->getResponseTopic()->getSlug() ?>/#<?= $topic->getLastResponse()?->getId() ?>">
+                            <!--                                    TODO : determiné dans quel page se trouve la réponse-->
+                            <a href="<?= $topic->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $topic->getLastResponse()->getResponseTopic()->getSlug() ?>/p1/#<?= $topic->getLastResponse()?->getId() ?>">
                                 <?php endif; ?>
                                 <div class="ml-2">
                                     <div

@@ -1,5 +1,6 @@
 <?php
 
+use CMW\Controller\Forum\ForumPermissionController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Security\SecurityManager;
@@ -7,6 +8,7 @@ use CMW\Controller\Users\UsersController;
 
 /** @var \CMW\Entity\Forum\ForumCategoryEntity $category */
 /** @var \CMW\Entity\Forum\ForumEntity $forum */
+/* @var CMW\Model\Forum\ForumModel $forumModel */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconNotRead */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconImportant */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconPin */
@@ -44,13 +46,15 @@ $description = "Description de votre page";
                            class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $category->getName() ?></a>
                     </div>
                 </li>
-                <li>
-                    <div class="flex items-center">
-                        <i class="fa-solid fa-chevron-right"></i>
-                        <a href="<?= $forum->getLink() ?>"
-                           class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $forum->getName() ?></a>
-                    </div>
-                </li>
+                <?php foreach ($forumModel->getParentByForumId($forum->getId()) as $parent): ?>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-chevron-right"></i>
+                            <a href="../../<?= $parent->getLink() ?>"
+                               class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $parent->getName() ?></a>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
             </ol>
         </nav>
     </div>
@@ -64,7 +68,7 @@ $description = "Description de votre page";
         <h4>Nouveau topic dans : <b><?= $forum->getName() ?></b></h4>
         <form action="" method="post">
             <?php (new SecurityManager())->insertHiddenToken() ?>
-            <?php if (UsersController::isAdminLogged()) : ?>
+            <?php if (UsersController::isAdminLogged() || ForumPermissionController::getInstance()->hasPermission("operator")) : ?>
             <!--
             ADMINISTRATION
             -->

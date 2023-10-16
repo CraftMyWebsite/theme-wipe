@@ -21,7 +21,7 @@ use CMW\Utils\Website;
 /* @var CMW\Controller\Forum\ForumSettingsController $iconClosed */
 /* @var CMW\Model\Forum\ForumFeedbackModel $feedbackModel */
 /* @var CMW\Entity\Forum\ForumTopicEntity $topic */
-/* @var CMW\Entity\Forum\ForumResponseEntity $response */
+/* @var CMW\Entity\Forum\ForumResponseEntity[] $responses */
 $title = "Titre de la page";
 $description = "Description de votre page";
 $i = 0;
@@ -78,7 +78,7 @@ $i = 0;
                     <li>
                         <div class="flex items-center">
                             <i class="fa-solid fa-chevron-right"></i>
-                            <a href="../../<?= $parent->getLink() ?>"
+                            <a href="../../../<?= $parent->getLink() ?>"
                                class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"><?= $parent->getName() ?></a>
                         </div>
                     </li>
@@ -107,6 +107,22 @@ $i = 0;
     </form>
 </section>
 
+
+<div class="mx-auto">
+    <div class="flex">
+        <?php if ($currentPage !== "1"): ?>
+            <a href="p<?=$currentPage-1?>"
+                    class="p-1 text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                <i class="fa-solid fa-chevron-left"></i></a>
+        <?php endif; ?>
+            <span class="border border-blue-700 p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
+        <?php if ($currentPage !== $totalPage): ?>
+            <a href="p<?=$currentPage+1?>"
+                    class="p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                <i class="fa-solid fa-chevron-right"></i></a>
+        <?php endif; ?>
+    </div>
+</div>
 
 <section class="my-8 sm:mx-12 2xl:mx-72">
     <div class="rounded-md shadow-lg p-8">
@@ -203,7 +219,7 @@ $i = 0;
                         </div>
                         <!-- Modal body -->
                         <form id="modal-<?= $topic->getId() ?>"
-                              action="<?= $topic->getSlug() ?>/reportTopic/<?= $topic->getId() ?>"
+                              action="p1/reportTopic/<?= $topic->getId() ?>"
                               method="post">
                             <?php (new SecurityManager())->insertHiddenToken() ?>
                             <div class="p-4">
@@ -371,14 +387,14 @@ $i = 0;
             </div>
         </section>
 
-        <?php foreach ($responseModel->getResponseByTopic($topic->getId()) as $response) : ?>
+        <?php foreach ($responses as $response) : ?>
             <section class="border mt-4" id="<?= $response->getId() ?>">
                 <div class="flex justify-between bg-gray-200 p-2">
                     <p><?= $response->getCreated() ?></p>
                     <div>
                         <span class="mr-2"><?= $response->isTopicAuthor() ? "Auteur du topic" : "" ?></span>
                         <span
-                            onclick="copyURL('<?= Website::getProtocol() . "://" . $_SERVER['HTTP_HOST'] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "forum/c/" . $category->getSlug() . "/f/" . $forum->getSlug() . "/t/" . $response->getResponseTopic()->getSlug() . "#" . $response->getId() ?>')"
+                            onclick="copyURL('<?= Website::getProtocol() . "://" . $_SERVER['HTTP_HOST'] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "forum/c/" . $category->getSlug() . "/f/" . $forum->getSlug() . "/t/" . $response->getResponseTopic()->getSlug()."/p".$currentPage."/#" . $response->getId() ?>')"
                             class="text-gray-700 hover:text-blue-600"><i class="fa-solid fa-share-nodes"></i></span>
                         <span><i data-modal-target="reportResponse-<?= $response->getId() ?>"
                                  data-modal-toggle="reportResponse-<?= $response->getId() ?>"
@@ -415,7 +431,7 @@ $i = 0;
                             </div>
                             <!-- Modal body -->
                             <form id="modal-<?= $response->getId() ?>"
-                                  action="<?= $topic->getSlug() ?>/reportResponse/<?= $response->getId() ?>"
+                                  action="p1/reportResponse/<?= $response->getId() ?>"
                                   method="post">
                                 <?php (new SecurityManager())->insertHiddenToken() ?>
                                 <div class="p-4">
@@ -635,7 +651,21 @@ $i = 0;
             </section>
         <?php endforeach; ?>
 
-
+        <div class="mt-4 w-full mx-auto">
+            <div class="flex">
+                <?php if ($currentPage !== "1"): ?>
+                    <a href="p<?=$currentPage-1?>"
+                       class="p-1 text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        <i class="fa-solid fa-chevron-left"></i></a>
+                <?php endif; ?>
+                <span class="border border-blue-700 p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
+                <?php if ($currentPage !== $totalPage): ?>
+                    <a href="p<?=$currentPage+1?>"
+                       class="p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                        <i class="fa-solid fa-chevron-right"></i></a>
+                <?php endif; ?>
+            </div>
+        </div>
 
         <?php if (!$topic->isDisallowReplies() && UsersController::isUserLogged()): ?>
             <section class="border mt-4">
