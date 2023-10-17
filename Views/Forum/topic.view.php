@@ -111,8 +111,11 @@ $i = 0;
 <div class="mx-auto">
     <div class="flex">
         <?php if ($currentPage !== "1"): ?>
+            <a href="p1"
+                    class="mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a>
             <a href="p<?=$currentPage-1?>"
-                    class="p-1 text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+               class="p-1 text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 <i class="fa-solid fa-chevron-left"></i></a>
         <?php endif; ?>
             <span class="border border-blue-700 p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
@@ -120,6 +123,9 @@ $i = 0;
             <a href="p<?=$currentPage+1?>"
                     class="p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 <i class="fa-solid fa-chevron-right"></i></a>
+            <a href="p<?=$totalPage?>"
+               class="ml-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a>
         <?php endif; ?>
     </div>
 </div>
@@ -388,6 +394,16 @@ $i = 0;
             </div>
         </section>
 
+
+        <div class="flex flex-no-wrap justify-center items-center py-4">
+            <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+            <div class="px-10 w-auto">
+                <h2 class="font-semibold text-2xl uppercase">Réponses</h2>
+            </div>
+            <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+        </div>
+
+
         <?php foreach ($responses as $response) : ?>
             <section class="border mt-4" id="<?= $response->getId() ?>">
                 <div class="flex justify-between bg-gray-200 p-2">
@@ -653,21 +669,27 @@ $i = 0;
         <?php endforeach; ?>
 
         <?php if ($totalPage > "1"): ?>
-        <div class="mt-4 w-full mx-auto">
-            <div class="flex">
-                <?php if ($currentPage !== "1"): ?>
-                    <a href="p<?=$currentPage-1?>"
-                       class="p-1 text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        <i class="fa-solid fa-chevron-left"></i></a>
-                <?php endif; ?>
-                <span class="border border-blue-700 p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
-                <?php if ($currentPage !== $totalPage): ?>
-                    <a href="p<?=$currentPage+1?>"
-                       class="p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        <i class="fa-solid fa-chevron-right"></i></a>
-                <?php endif; ?>
+            <div class="mx-auto mt-4">
+                <div class="flex">
+                    <?php if ($currentPage !== "1"): ?>
+                        <a href="p1"
+                           class="mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a>
+                        <a href="p<?=$currentPage-1?>"
+                           class="p-1 text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <i class="fa-solid fa-chevron-left"></i></a>
+                    <?php endif; ?>
+                    <span class="border border-blue-700 p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
+                    <?php if ($currentPage !== $totalPage): ?>
+                        <a href="p<?=$currentPage+1?>"
+                           class="p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <i class="fa-solid fa-chevron-right"></i></a>
+                        <a href="p<?=$totalPage?>"
+                           class="ml-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
         <?php endif; ?>
 
         <?php if (!$topic->isDisallowReplies() && UsersController::isUserLogged()): ?>
