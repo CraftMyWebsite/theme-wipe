@@ -160,8 +160,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                                     <div class="hidden md:block w-[25%] my-auto">
                                         <div class="flex text-sm">
                                             <?php if ($forumObj->getLastResponse() !== null) : ?>
-<!--                                            TODO : determiné dans quel page se trouve la réponse-->
-                                            <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/p1/#<?= $forumObj->getLastResponse()?->getId() ?>">
+                                            <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/p<?= $forumObj->getLastResponse()->getPageNumber() ?>/#<?= $forumObj->getLastResponse()?->getId() ?>">
                                                 <?php endif; ?>
                                                 <div tabindex="0" class="avatar w-10">
                                                     <div class="w-fit rounded-full ">
@@ -171,7 +170,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                                                 </div>
                                             </a>
                                             <?php if ($forumObj->getLastResponse() !== null) : ?>
-                                            <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/p1/#<?= $forumObj->getLastResponse()?->getId() ?>">
+                                            <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/p<?= $forumObj->getLastResponse()->getPageNumber() ?>/#<?= $forumObj->getLastResponse()?->getId() ?>">
                                                 <?php endif; ?>
                                                 <div class="ml-2">
                                                     <div
