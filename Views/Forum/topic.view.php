@@ -107,7 +107,7 @@ $i = 0;
     </form>
 </section>
 
-
+<?php if ($totalPage > "1"): ?>
 <div class="mx-auto">
     <div class="flex">
         <?php if ($currentPage !== "1"): ?>
@@ -123,6 +123,7 @@ $i = 0;
         <?php endif; ?>
     </div>
 </div>
+<?php endif; ?>
 
 <section class="my-8 sm:mx-12 2xl:mx-72">
     <div class="rounded-md shadow-lg p-8">
@@ -651,6 +652,7 @@ $i = 0;
             </section>
         <?php endforeach; ?>
 
+        <?php if ($totalPage > "1"): ?>
         <div class="mt-4 w-full mx-auto">
             <div class="flex">
                 <?php if ($currentPage !== "1"): ?>
@@ -666,6 +668,7 @@ $i = 0;
                 <?php endif; ?>
             </div>
         </div>
+        <?php endif; ?>
 
         <?php if (!$topic->isDisallowReplies() && UsersController::isUserLogged()): ?>
             <section class="border mt-4">
