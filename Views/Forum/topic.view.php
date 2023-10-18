@@ -417,6 +417,7 @@ $i = 0;
                                  data-modal-toggle="reportResponse-<?= $response->getId() ?>"
                                  data-tooltip-target="tooltip-admin"
                                  class="fa-solid fa-circle-exclamation ml-2"></i></span>
+                        <span class="ml-2">#<?= $response->getResponsePosition() ?></span>
                     </div>
                 </div>
 
