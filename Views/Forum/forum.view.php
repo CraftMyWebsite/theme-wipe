@@ -153,7 +153,6 @@ $description = "Description de votre page";
                             <div class="hidden md:block w-[25%] my-auto">
                                 <div class="flex text-sm">
                                     <?php if ($forumEntity->getLastResponse() !== null) : ?>
-<!--                                    TODO : determiné dans quel page se trouve la réponse-->
                                     <a href="<?= $forumEntity->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumEntity->getLastResponse()->getResponseTopic()->getSlug() ?>/p<?= $forumEntity->getLastResponse()->getPageNumber() ?>/#<?= $forumEntity->getLastResponse()?->getId() ?>">
                                         <?php endif; ?>
                                         <div tabindex="0" class="avatar w-10">
@@ -393,9 +392,11 @@ $description = "Description de votre page";
                                                         <!--                                                        TODO Améliorer la façon dont les options sont affiché-->
                                                         <?php foreach ($categoryModel->getCategories() as $cat): ?>
                                                             <option disabled>──── <?= $cat->getName() ?> ────</option>
-                                                            <?php foreach ($forumModel->getChildForumByCatId($cat->getId()) as $forumObject): ?>
-                                                                <option
-                                                                    value="<?= $forumObject->getId() ?>" <?= ($forumObject->getName() === $topic->getForum()->getName() ? "selected" : "") ?>><?= $forumObject->getName() ?></option>
+                                                            <?php foreach ($forumModel->getForumByCat($cat->getId()) as $forumObj): ?>
+                                                                <option value="<?= $forumObj->getId() ?>" <?= ($forumObj->getName() === $topic->getForum()->getName() ? "selected" : "") ?>><?= $forumObj->getName() ?></option>
+                                                                <?php foreach ($forumModel->getSubsForums($forumObj->getId()) as $subForum): ?>
+                                                                    <option value="<?= $subForum["subforum"]->getId() ?>" <?= ($subForum["subforum"]->getName() === $topic->getForum()->getName() ? "selected" : "") ?>> <?=str_repeat("      ", $subForum["depth"])?> ↪ <?= $subForum["subforum"]->getName() ?></option>
+                                                                <?php endforeach; ?>
                                                             <?php endforeach; ?>
                                                         <?php endforeach; ?>
                                                     </select>
@@ -408,7 +409,7 @@ $description = "Description de votre page";
                                     </div>
                                     <!-- Modal footer -->
                                     <div class="flex justify-between p-6 space-x-2 border-t border-gray-200 rounded-b">
-                                        <a href="<?= $topic->trashLink($category->getLink(), $forum->getSlug()) ?>"
+                                        <a href="<?= $topic->trashLink() ?>"
                                            class="text-gray-700 border-2 border-red-700 hover:border-red-800 font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
                                             <i class="fa-solid fa-trash fa-lg"></i> Corbeille
                                         </a>

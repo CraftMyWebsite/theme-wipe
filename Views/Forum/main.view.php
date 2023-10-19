@@ -138,7 +138,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                                 <div class="flex py-6 border-t  hover:bg-gray-50">
                                     <div class="md:w-[55%] px-5">
                                         <a class="flex"
-                                           href="/forum/c/<?= $category->getSlug() ?>/f/<?= $forumObj->getSlug() ?>">
+                                           href="<?= $forumObj->getLink() ?>">
                                             <div
                                                 class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
                                                 <?= $forumObj->getFontAwesomeIcon("fa-xl") ?>
