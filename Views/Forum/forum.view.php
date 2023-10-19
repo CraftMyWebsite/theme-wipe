@@ -159,7 +159,7 @@ $description = "Description de votre page";
                                         <div tabindex="0" class="avatar w-10">
                                             <div class="w-fit rounded-full ">
                                                 <img
-                                                    src="<?= $forumEntity->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
+                                                    src="<?= $forumEntity->getLastResponse()?->getUser()->getUserPicture()->getImage() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
                                             </div>
                                         </div>
                                     </a>
@@ -201,7 +201,7 @@ $description = "Description de votre page";
                             <div class="w-12 h-12 shadow-xl">
                                 <img style="object-fit: fill; max-height: 48px; max-width: 48px" width="48px"
                                      height="48px"
-                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
+                                     src="<?= $topic->getUser()->getUserPicture()->getImage() ?>"/>
                             </div>
                             <div class="ml-4">
                                 <p><?php if ($topic->getPrefixId()): ?><span class="px-2 text-white rounded-lg"
@@ -245,7 +245,7 @@ $description = "Description de votre page";
                                 <div tabindex="0" class="avatar w-10">
                                     <div class="w-fit">
                                         <img
-                                            src="<?= $topic->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
+                                            src="<?= $topic->getLastResponse()?->getUser()->getUserPicture()->getImage() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
                                     </div>
                                 </div>
                             </a>

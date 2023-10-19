@@ -165,7 +165,7 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                                                 <div tabindex="0" class="avatar w-10">
                                                     <div class="w-fit rounded-full ">
                                                         <img
-                                                            src="<?= $forumObj->getLastResponse()?->getUser()->getUserPicture()->getImageLink() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
+                                                            src="<?= $forumObj->getLastResponse()?->getUser()->getUserPicture()->getImage() ?? ThemeModel::fetchImageLink("forum_nobody_send_message_img") ?>"/>
                                                     </div>
                                                 </div>
                                             </a>

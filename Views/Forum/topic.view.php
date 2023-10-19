@@ -262,7 +262,7 @@ $i = 0;
                         <div class="w-36 h-36 mx-auto border">
                             <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
                                  height="144px"
-                                 src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $topic->getUser()->getUserPicture()->getImageName() ?>"/>
+                                 src="<?= $topic->getUser()->getUserPicture()->getImage() ?>"/>
                         </div>
                     </div>
                     <h5 class="font-semibold bg-gray-200"><?= $topic->getUser()->getPseudo() ?></h5>
@@ -484,7 +484,7 @@ $i = 0;
                             <div class="w-36 h-36 mx-auto border">
                                 <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
                                      height="144px"
-                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= $response->getUser()->getUserPicture()->getImageName() ?>"/>
+                                     src="<?= $response->getUser()->getUserPicture()->getImage() ?>"/>
                             </div>
                         </div>
                         <h5 class="font-semibold bg-gray-200"><?= $response->getUser()->getPseudo() ?></h5>
@@ -704,7 +704,7 @@ $i = 0;
                             <div class="w-36 h-36 mx-auto border">
                                 <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
                                      height="144px"
-                                     src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Uploads/Users/<?= UsersModel::getCurrentUser()->getUserPicture()->getImageName() ?>"/>
+                                     src="<?= UsersModel::getCurrentUser()->getUserPicture()->getImage() ?>"/>
                             </div>
                             <h5 class="font-semibold bg-gray-200"><?= UsersModel::getCurrentUser()->getPseudo() ?></h5>
                         </div>

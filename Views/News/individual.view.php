@@ -80,7 +80,7 @@ $description = ThemeModel::fetchConfigValue('news_description');
 <?php foreach ($news->getComments() as $comment): ?>
         <div class="bg-white rounded-lg shadow md:grid md:grid-cols-5 py-4 pr-4 mb-4">
             <div class="">
-                <img class="hidden lg:block mx-auto rounded-lg border border-gray-300 shadow-xl" height="50%" width="50%" src="<?= $comment->getUser()->getUserPicture()->getImageLink() ?>" alt="...">
+                <img class="hidden lg:block mx-auto rounded-lg border border-gray-300 shadow-xl" height="50%" width="50%" src="<?= $comment->getUser()->getUserPicture()->getImage() ?>" alt="...">
             </div>
             <div class="col-span-4 px-4 md:px-0">
 
