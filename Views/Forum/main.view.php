@@ -3,6 +3,7 @@
 use CMW\Controller\Users\UsersController;
 use CMW\Controller\Users\UsersSettingsController;
 use CMW\Manager\Env\EnvManager;
+use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Model\Users\UsersModel;
 use CMW\Utils\Website;
@@ -100,20 +101,20 @@ $description = ThemeModel::fetchConfigValue('wiki_description');
                 </ol>
             </nav>
         </div>
-        <form>
             <div class="flex">
                 <div class="relative w-full">
-                    <input type="search" id="search-dropdown"
-                           class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                           placeholder="Rechercher">
-                    <button type="submit"
-                            class="absolute top-0 right-0 p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        <i class="fa-solid fa-magnifying-glass"></i></button>
+                    <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER')?>forum/search" method="POST">
+                        <?php (new SecurityManager())->insertHiddenToken() ?>
+                        <input type="text" name="for"
+                               class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                               placeholder="Rechercher">
+                        <button type="submit"
+                                class="absolute top-0 right-0 p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
                 </div>
             </div>
-        </form>
     </section>
-
 
     <section
         class="<?php if (ThemeModel::fetchConfigValue('forum_use_widgets')): ?>lg:grid <?php endif; ?> grid-cols-4 gap-6 my-8 sm:mx-12 2xl:mx-72 ">
