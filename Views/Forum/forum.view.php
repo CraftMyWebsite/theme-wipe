@@ -13,6 +13,7 @@ use CMW\Model\Users\UsersModel;
 /* @var CMW\Model\Forum\ForumModel $forumModel */
 /* @var \CMW\Entity\Forum\ForumCategoryEntity $category */
 /* @var CMW\Entity\Forum\ForumEntity $forum */
+/* @var CMW\Entity\Forum\ForumTopicEntity[] $topics */
 /* @var CMW\Model\Forum\ForumTopicModel $topicModel */
 /* @var CMW\Entity\Forum\ForumTopicEntity $topic */
 /* @var CMW\Model\Forum\ForumResponseModel $responseModel */
@@ -96,7 +97,7 @@ $description = "Description de votre page";
             <?php if (UsersController::isUserLogged()): ?>
                 <?php if (!$forum->disallowTopics() && ForumPermissionController::getInstance()->hasPermission("user_create_topic") || ForumPermissionController::getInstance()->hasPermission("operator") || ForumPermissionController::getInstance()->hasPermission("admin_bypass_forum_disallow_topics")): ?>
                     <div class="text-center mb-4">
-                        <a href="<?= $forum->getSlug() ?>/add"
+                        <a href="<?= $forum->getLink() ?>/add"
                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i
                                 class="<?= ThemeModel::fetchConfigValue('forum_btn_create_topic_icon') ?>"></i> <?= ThemeModel::fetchConfigValue('forum_btn_create_topic') ?>
                         </a>
@@ -192,7 +193,7 @@ $description = "Description de votre page";
             </div>
 
 
-            <?php foreach ($topicModel->getTopicByForum($forum->getId()) as $topic): ?>
+            <?php foreach ($topics as $topic): ?>
                 <div class="relative flex py-2 border-t bg-gray-50 hover:bg-gray-100">
                     <div class="md:w-[55%] px-5 relative">
                         <a class="flex flex-wrap hover:text-blue-800"
@@ -301,7 +302,7 @@ $description = "Description de votre page";
                                     <div class="p-4">
 
                                         <form id="modal-<?= $topic->getId() ?>"
-                                              action="<?= $forum->getSlug() ?>/adminedit" method="post">
+                                              action="<?= $forum->getLink() ?>/adminedit" method="post">
                                             <?php (new SecurityManager())->insertHiddenToken() ?>
 
                                             <input type="text" name="topicId" hidden value="<?= $topic->getId() ?>">
@@ -363,7 +364,7 @@ $description = "Description de votre page";
                                                            placeholder="Titre du topic"
                                                            value="<?php foreach ($topic->getTags() as $tag) {
                                                                echo "" . $tag->getContent() . ",";
-                                                           } ?>" required>
+                                                           } ?>">
                                                 </div>
                                             </div>
 
@@ -425,9 +426,32 @@ $description = "Description de votre page";
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
-
-
         </div>
+
+        <?php if ($totalPage > "1"): ?>
+            <div class="mx-auto">
+                <div class="flex">
+                    <?php if ($currentPage !== "1"): ?>
+                        <a href="fp1"
+                           class="mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a>
+                        <a href="fp<?=$currentPage-1?>"
+                           class="p-1 text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <i class="fa-solid fa-chevron-left"></i></a>
+                    <?php endif; ?>
+                    <span class="border border-blue-700 p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
+                    <?php if ($currentPage !== $totalPage): ?>
+                        <a href="fp<?=$currentPage+1?>"
+                           class="p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <i class="fa-solid fa-chevron-right"></i></a>
+                        <a href="fp<?=$totalPage?>"
+                           class="ml-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+
     </div>
 
     <?php if (ThemeModel::fetchConfigValue('forum_use_widgets')): ?>
