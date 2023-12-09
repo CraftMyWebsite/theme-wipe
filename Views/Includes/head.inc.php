@@ -23,7 +23,7 @@ $siteName = Website::getWebsiteName();
 
     <meta property="og:title" content=<?= $siteName ?>>
     <meta property="og:site_name" content="<?= $siteName ?>">
-    <meta property="og:description" content="<?= Website::getWebsiteDescription() ?>">
+    <meta property="og:description" content="<?= Website::getDescription() ?>">
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="<?= EnvManager::getInstance()->getValue('PATH_URL') ?>">
 
