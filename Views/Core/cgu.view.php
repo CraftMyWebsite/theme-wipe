@@ -4,8 +4,9 @@ use CMW\Model\Contact\ContactModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 /*TITRE ET DESCRIPTION*/
-$title = Website::getWebsiteName();
-$description = ThemeModel::fetchConfigValue('faq_description');
+
+Website::setTitle("CGU");
+Website::setDescription("Condition d'utilisation");
 ?>
 
 <section class="bg-gray-800 relative text-white">

@@ -8,8 +8,8 @@ use CMW\Utils\Website;
 /** @var \CMW\Entity\Forum\ForumTopicEntity[] $results */
 /* @var CMW\Model\Forum\ForumResponseModel $responseModel */
 
-$title = Website::getWebsiteName() . ' - ' . ThemeModel::fetchConfigValue('wiki_title');
-$description = ThemeModel::fetchConfigValue('wiki_description');
+Website::setTitle("Forum");
+Website::setDescription("Recherchez un sujet dans le forum");
 ?>
 
     <section class="bg-gray-800 relative text-white">

@@ -2,8 +2,10 @@
 
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
-$title = "Erreur";
-$description = "Erreur";
+use CMW\Utils\Website;
+
+Website::setTitle("Erreur");
+Website::setDescription("Erreur");
 ?>
 
 <section class="bg-gray-800 relative text-white">

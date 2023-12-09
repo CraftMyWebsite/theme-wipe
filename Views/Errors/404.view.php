@@ -2,8 +2,11 @@
 
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
-$title = "Page introuvable";
-$description = "Erreur";
+use CMW\Utils\Website;
+
+Website::setTitle("Page introuvable");
+Website::setDescription("Erreur 404");
+
 ?>
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->

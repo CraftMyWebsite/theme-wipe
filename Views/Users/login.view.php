@@ -6,8 +6,9 @@ use CMW\Controller\Core\SecurityController;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Utils\Website;
 
-$title = Website::getWebsiteName() . ' - Connexion';
-$description = 'Connectez-vous sur ' . Website::getWebsiteName(); ?>
+Website::setTitle("Connexion");
+Website::setDescription("Connectez-vous sur " . Website::getWebsiteName());
+?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->

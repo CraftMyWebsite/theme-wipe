@@ -9,6 +9,7 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Model\Forum\ForumPrefixModel;
 use CMW\Model\Users\UsersModel;
+use CMW\Utils\Website;
 
 /* @var CMW\Model\Forum\ForumModel $forumModel */
 /* @var \CMW\Entity\Forum\ForumCategoryEntity $category */
@@ -22,8 +23,8 @@ use CMW\Model\Users\UsersModel;
 /* @var CMW\Controller\Forum\ForumSettingsController $iconPin */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconClosed */
 
-$title = "Titre de la page";
-$description = "Description de votre page";
+Website::setTitle("Forum");
+Website::setDescription("Consultez les sujets de discussion et répondez aux questions posées par les membres de votre communauté.");
 ?>
 
 <section class="bg-gray-800 relative text-white">

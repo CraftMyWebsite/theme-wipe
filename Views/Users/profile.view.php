@@ -7,8 +7,8 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-$title = Website::getWebsiteName() . ' - Profil - ' . $user->getPseudo();
-$description = 'Profil de  ' . $user->getPseudo(); 
+Website::setTitle("Votre profil");
+Website::setDescription("Éditez votre profil");
 ?>
 
 <section class="bg-gray-800 relative text-white">

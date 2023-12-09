@@ -11,8 +11,8 @@ use CMW\Utils\Website;
 /** @var \CMW\Model\Forum\ForumModel $forumModel */
 /** @var \CMW\Entity\Forum\ForumCategoryEntity $category */
 
-$title = Website::getWebsiteName() . ' - ' . ThemeModel::fetchConfigValue('wiki_title');
-$description = ThemeModel::fetchConfigValue('wiki_description');
+Website::setTitle("Forum");
+Website::setDescription("Consulter les catégorie du Forum");
 ?>
 
 <section class="bg-gray-800 relative text-white">

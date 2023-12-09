@@ -3,9 +3,11 @@
 use CMW\Controller\Core\SecurityController;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
+use CMW\Utils\Website;
 
-$title = "Contactez-nous";
-$description = "Contactez-nous dès maintenant"; ?>
+Website::setTitle("Contactez-nous");
+Website::setDescription("Contactez-nous dès maintenant");
+?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->

@@ -7,8 +7,8 @@ use CMW\Controller\Users\UsersController;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-$title = Website::getWebsiteName() . ' - '. ThemeModel::fetchConfigValue('news_title');
-$description = ThemeModel::fetchConfigValue('news_description');
+Website::setTitle(ThemeModel::fetchConfigValue('news_title'));
+Website::setDescription(ThemeModel::fetchConfigValue('news_description'));
 ?>
 
 <section class="bg-gray-800 relative text-white">

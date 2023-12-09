@@ -10,8 +10,8 @@ use CMW\Utils\Website;
 
 /** @var \CMW\Model\Forum\ForumModel $forumModel */
 /** @var \CMW\Model\Forum\ForumCategoryModel $categoryModel */
-$title = Website::getWebsiteName() . ' - ' . ThemeModel::fetchConfigValue('wiki_title');
-$description = ThemeModel::fetchConfigValue('wiki_description');
+Website::setTitle("Forum");
+Website::setDescription("Consultez les sujets de discussion et répondez aux questions posées par les membres de votre communauté.");
 ?>
 
     <section class="bg-gray-800 relative text-white">

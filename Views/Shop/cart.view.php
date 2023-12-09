@@ -5,9 +5,8 @@ use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\ShopCartEntity[] $cartContent */
 
-$title = Website::getWebsiteName() . ' - Panier';
-$description = 'Visitez notre shop ';
-
+Website::setTitle("Boutique - Panier");
+Website::setDescription("Votre panier");
 ?>
 
     <section class="bg-gray-800 relative text-white">

@@ -8,8 +8,8 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Shop\ShopItemsModel $items */
 /* @var CMW\Model\Shop\ShopImagesModel $imagesItem */
 
-$title = Website::getWebsiteName() . ' - Shop';
-$description = 'Visitez notre shop ';
+Website::setTitle("Boutique");
+Website::setDescription("Découvrez la boutique !");
 
 ?>
 

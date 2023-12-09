@@ -8,8 +8,8 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\ShopCategoryEntity $thisCat */
 /* @var CMW\Model\Shop\ShopImagesModel $imagesItem */
 
-$title = Website::getWebsiteName() . ' - Catégorie';
-$description = 'Visitez notre shop ';
+Website::setTitle("Boutique - Catégorie : ". $thisCat->getName());
+Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat->getName());
 
 ?>
 

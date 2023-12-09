@@ -11,8 +11,8 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Support\SupportEntity[] $publicSupport */
 /* @var CMW\Entity\Support\SupportSettingEntity $config */
 
-$title = Website::getWebsiteName() . ' - Support';
-$description = 'Parfait pour vos demande de support';
+Website::setTitle("Support");
+Website::setDescription("Consultez les réponses de nos experts.");
 ?>
 
 <section class="bg-gray-800 relative text-white">

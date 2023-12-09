@@ -3,8 +3,8 @@
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-$title = Website::getWebsiteName() . ' - Paramètres';
-$description = 'Visitez notre shop ';
+Website::setTitle("Boutique - Paramètres");
+Website::setDescription("Gérer vos paramètres de boutique");
 
 ?>
 

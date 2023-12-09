@@ -9,8 +9,8 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\ShopCategoryEntity $parentCat */
 /* @var CMW\Entity\Shop\ShopItemEntity $item */
 
-$title = Website::getWebsiteName() . ' - Article';
-$description = 'Visitez notre shop ';
+Website::setTitle("Boutique - Article");
+Website::setDescription("Venez découvrir l'article !");
 
 ?>
 

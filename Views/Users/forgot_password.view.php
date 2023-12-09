@@ -8,8 +8,8 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-$title = Website::getWebsiteName() . ' - Mot de passe oublié';
-$description = "C'est pas très bien d'oublié son mot de passe ...";
+Website::setTitle("Mot de passe oublié");
+Website::setDescription("C'est pas très bien d'oublié son mot de passe ...");
 ?>
 
 <section class="bg-gray-800 relative text-white">

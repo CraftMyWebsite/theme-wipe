@@ -4,8 +4,8 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-$title = Website::getWebsiteName();
-$description = ThemeModel::fetchConfigValue('faq_description');
+Website::setTitle("CGV");
+Website::setDescription("Condition de vente");
 ?>
 
 <section class="bg-gray-800 relative text-white">

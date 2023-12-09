@@ -5,6 +5,7 @@ use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
+use CMW\Utils\Website;
 
 /** @var \CMW\Entity\Forum\ForumCategoryEntity $category */
 /** @var \CMW\Entity\Forum\ForumEntity $forum */
@@ -14,8 +15,8 @@ use CMW\Controller\Users\UsersController;
 /* @var CMW\Controller\Forum\ForumSettingsController $iconPin */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconClosed */
 
-$title = "Titre de la page";
-$description = "Description de votre page";
+Website::setTitle("Forum");
+Website::setDescription("Ajouter un sujet");
 ?>
 
 <section class="bg-gray-800 relative text-white">

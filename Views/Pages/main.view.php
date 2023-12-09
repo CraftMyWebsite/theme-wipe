@@ -7,8 +7,8 @@
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-$title = Website::getWebsiteName() . ' - '. ucfirst($page->getTitle());
-$description = 'Visitez notre page ' . ucfirst($page->getTitle());
+Website::setTitle(ucfirst($page->getTitle()));
+Website::setDescription(ucfirst($page->getTitle()));
 ?>
 
 <section class="bg-gray-800 relative text-white">

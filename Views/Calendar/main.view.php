@@ -1,9 +1,11 @@
 <?php
 
 use CMW\Model\Core\ThemeModel;
+use CMW\Utils\Website;
 
-$title = "Calendrier";
-$description = "Découvrez nos futur événements"; ?>
+Website::setTitle("Calendrier");
+Website::setDescription("Découvrez nos futur événements");
+?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->

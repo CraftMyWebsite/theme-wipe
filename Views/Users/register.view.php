@@ -5,8 +5,11 @@ use CMW\Manager\Lang\LangManager;
 use CMW\Manager\Security\SecurityManager;
 
 use CMW\Utils\Utils;
-$title = Utils::getSiteName() . ' - Inscription';
-$description = 'Inscrivez-vous sur ' . Utils::getSiteName(); ?>
+use CMW\Utils\Website;
+
+Website::setTitle("Inscription");
+Website::setDescription("Inscrivez-vous");
+?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->

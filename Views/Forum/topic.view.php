@@ -22,8 +22,8 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Forum\ForumFeedbackModel $feedbackModel */
 /* @var CMW\Entity\Forum\ForumTopicEntity $topic */
 /* @var CMW\Entity\Forum\ForumResponseEntity[] $responses */
-$title = "Titre de la page";
-$description = "Description de votre page";
+Website::setTitle("Forum");
+Website::setDescription("Lisez les sujets et les réponses de la communauté");
 $i = 0;
 ?>
 <section class="bg-gray-800 relative text-white">

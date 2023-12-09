@@ -7,8 +7,8 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-$title = Website::getWebsiteName() . ' - '. ThemeModel::fetchConfigValue('vote_title');
-$description = ThemeModel::fetchConfigValue('vote_description');
+Website::setTitle("Votez");
+Website::setDescription("Votez, obtenez des points de vote et plein d'autres cadeaux!");
 ?>
 <section class="bg-gray-800 relative text-white">
     <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>

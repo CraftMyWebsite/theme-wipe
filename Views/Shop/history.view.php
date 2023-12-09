@@ -3,8 +3,8 @@
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-$title = Website::getWebsiteName() . ' - Historique';
-$description = 'Visitez notre shop ';
+Website::setTitle("Boutique - Historique d'achat");
+Website::setDescription("Consultation de vos achats");
 
 ?>
 
