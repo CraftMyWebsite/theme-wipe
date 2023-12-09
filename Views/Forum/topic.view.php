@@ -730,56 +730,12 @@ $i = 0;
     </div>
 </section>
 
-<p class="needConnect">blop !</p>
-
 <link rel="stylesheet"
       href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.css' ?>">
 <script
     src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.js' ?>"></script>
 
 <script>
-    let hash = window.location.hash;
-    if (hash) {
-        hash = hash.substring(1);
-
-        // Fonction pour afficher l'élément avec un décalage de 200 pixels vers le haut
-        function scrollToElementWithOffset() {
-            var element = document.getElementById(hash);
-            if (element) {
-                var offsetTop = element.offsetTop - 200;
-                window.scrollTo(0, offsetTop);
-            }
-        }
-
-        // Appelez la fonction scrollToElementWithOffset lorsque la page a fini de se charger
-        window.addEventListener('load', scrollToElementWithOffset);
-
-        // Fonction pour faire clignoter la bordure toutes 150 ms
-        function toggleHighlight() {
-            var element = document.getElementById(hash);
-            if (element) {
-                if (element.style.border === "2px solid blue") {
-                    element.style.border = "1px solid #E5E7EB";
-                } else {
-                    element.style.border = "2px solid blue";
-                }
-            }
-        }
-
-        // Appelez la fonction toggleHighlight toutes les 150 ms
-        var interval = setInterval(toggleHighlight, 150);
-
-        // Arrêtez le clignotement après un certain temps
-        setTimeout(function () {
-            clearInterval(interval);
-            var element = document.getElementById(hash);
-            if (element) {
-                element.style.border = "1px solid #E5E7EB";
-            }
-        }, 1200);
-    }
-
-
     function copyURL(url) {
         navigator.clipboard.writeText(url)
         iziToast.show(
@@ -802,15 +758,5 @@ $i = 0;
                 transitionIn: 'fadeInLeft',
                 transitionOut: 'fadeOutRight',
             });
-    }
-
-
-    //Besoin d'être connecter pour afficher
-    var isLoggedIn = <?php echo UsersController::isUserLogged() ? 'true' : 'false'; ?>;
-    var elementsToToggle = document.querySelectorAll('.needConnect');
-    for (var i = 0; i < elementsToToggle.length; i++) {
-        if (!isLoggedIn) {
-            elementsToToggle[i].innerHTML = "<i>Vous devez être <a style='color: #0d6efd' href='/login'>connecter</a> pour afficher ce contenue</i>";
-        }
     }
 </script>

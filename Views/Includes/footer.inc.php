@@ -6,7 +6,7 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /** @var CoreController $core */
-/**@var  array $includes*/?>
+?>
 
 <div class="border-t-2 text-sm mt-auto">
     <div class="flex flex-wrap  items-center">
@@ -50,6 +50,4 @@ use CMW\Utils\Website;
     </div>
 </div>
 
-<?php
-View::loadInclude($includes, "afterScript");
-?>
+

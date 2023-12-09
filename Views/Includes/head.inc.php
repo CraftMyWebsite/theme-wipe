@@ -27,7 +27,7 @@ use CMW\Manager\Views\View;
     <?= ImagesManager::getFaviconInclude() ?>
 
     <?php
-    View::loadInclude($includes, "beforeScript", "styles");
+    View::loadInclude($includes, "styles");
     ?>
 
     <script src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Themes/Wipe/Assets/Js/flowbite.js"></script>
@@ -36,4 +36,8 @@ use CMW\Manager\Views\View;
 </head>
 
 <body class="flex flex-col min-h-screen">
-<?= $core->cmwWarn() ?>
+
+<?php
+View::loadInclude($includes, "beforeScript");
+//echo $core->cmwWarn();
+?>
