@@ -4,6 +4,7 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\ShopCartEntity[] $cartContent */
+/* @var CMW\Entity\Shop\ShopCartEntity[] $asideCartContent */
 
 Website::setTitle("Boutique - Panier");
 Website::setDescription("Votre panier");
@@ -144,3 +145,60 @@ Website::setDescription("Votre panier");
         </div>
     </div>
 </section>
+
+<?php if ($asideCartContent !== []): ?>
+<section class="bg-white rounded-lg shadow my-8 sm:mx-12 lg:mx-72">
+    <div class="container p-4">
+        <h4 class="text-center mb-2">Article mis de côté</h4>
+                <div class="overflow-x-auto relative shadow-md sm:rounded-lg h-fit">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="font-medium text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th class="py-3 px-6">
+                            </th>
+                            <th class="text-center py-3 px-6">
+                                Produit
+                            </th>
+                            <th class="text-center py-3 px-6">
+                                Stock restant
+                            </th>
+                            <th class="text-center py-3 px-6">
+                                Prix
+                            </th>
+                            <th class="py-3 px-6">
+
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-center">
+                        <?php foreach ($asideCartContent as $asideCart): ?>
+                            <tr class="bg-white border-b text-center">
+                                <td class="py-2">
+                                    <?php if ($asideCart->getFirstImageItemUrl() !== "/Public/Uploads/Shop/0"): ?>
+                                        <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
+                                             src="<?= $asideCart->getFirstImageItemUrl() ?>" alt="Panier">
+                                    <?php endif; ?>
+                                </td>
+                                <td class="py-4 px-6 font-semibold text-gray-900">
+                                    <?= $asideCart->getItem()->getName() ?>
+                                </td>
+                                <td class="py-4 px-6 text-center">
+                                    <?= $asideCart->getItem()->getCurrentStock() ?>
+                                </td>
+                                <td class="py-4 px-6 text-gray-900">
+                                    <?= $asideCart->getItem()->getPrice() ?>€
+                                </td>
+                                <td>
+                                    <a href="<?= $asideCart->getItem()->getAddToCartLink() ?>" class="mr-4 font-medium text-blue-700">
+                                        <i class="fa-solid fa-cart-arrow-down"></i></a>
+                                    <a href="<?= $asideCart->getRemoveLink() ?>" class="font-medium ml-4 text-red-600"><i
+                                            class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+</section>
+<?php endif; ?>
