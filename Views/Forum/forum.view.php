@@ -1,9 +1,7 @@
 <?php
 
-use CMW\Controller\Forum\ForumController;
-use CMW\Controller\Forum\ForumPermissionController;
+use CMW\Controller\Forum\Admin\ForumPermissionController;
 use CMW\Controller\Users\UsersController;
-use CMW\Controller\Users\UsersSettingsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
@@ -18,10 +16,10 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Forum\ForumTopicModel $topicModel */
 /* @var CMW\Entity\Forum\ForumTopicEntity $topic */
 /* @var CMW\Model\Forum\ForumResponseModel $responseModel */
-/* @var CMW\Controller\Forum\ForumSettingsController $iconNotRead */
-/* @var CMW\Controller\Forum\ForumSettingsController $iconImportant */
-/* @var CMW\Controller\Forum\ForumSettingsController $iconPin */
-/* @var CMW\Controller\Forum\ForumSettingsController $iconClosed */
+/* @var CMW\Controller\Forum\Admin\ForumSettingsController $iconNotRead */
+/* @var CMW\Controller\Forum\Admin\ForumSettingsController $iconImportant */
+/* @var CMW\Controller\Forum\Admin\ForumSettingsController $iconPin */
+/* @var CMW\Controller\Forum\Admin\ForumSettingsController $iconClosed */
 
 Website::setTitle("Forum");
 Website::setDescription("Consultez les sujets de discussion et répondez aux questions posées par les membres de votre communauté.");
