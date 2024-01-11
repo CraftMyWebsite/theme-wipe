@@ -1304,6 +1304,9 @@ pre {
 .w-12 {
   width: 3rem;
 }
+.w-\[40\%\] {
+  width: 40%;
+}
 .w-36 {
   width: 9rem;
 }
@@ -1333,12 +1336,6 @@ pre {
 }
 .w-64 {
   width: 16rem;
-}
-.w-\[35\%\] {
-  width: 35%;
-}
-.w-\[40\%\] {
-  width: 40%;
 }
 .max-w-sm {
   max-width: 24rem;
@@ -2698,16 +2695,12 @@ pre {
     width: 55%;
   }
 
-  .md\:w-\[30\%\] {
-    width: 30%;
+  .md\:w-\[25\%\] {
+    width: 25%;
   }
 
   .md\:w-auto {
     width: auto;
-  }
-
-  .md\:w-\[25\%\] {
-    width: 25%;
   }
 
   .md\:flex-1 {
@@ -2720,6 +2713,10 @@ pre {
 
   .md\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:flex-row {
