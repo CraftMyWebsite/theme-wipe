@@ -90,7 +90,7 @@ Website::setDescription("Votre panier");
                     </table>
                 </div>
 
-                <div class="flex flex-wrap justify-between mt-4">
+                <div class="flex flex-wrap justify-end mt-4">
                     <div>
                         <div class="flex">
                             <div class="relative w-full">
@@ -103,12 +103,6 @@ Website::setDescription("Votre panier");
                                 </button>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <button
-                            class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 ">
-                            Mettre à jour le panier
-                        </button>
                     </div>
                 </div>
             </div>
@@ -135,10 +129,10 @@ Website::setDescription("Votre panier");
                     </div>
 
                 </div>
-                <a href="#">
+                <a href="command">
                     <div
                         class="bg-blue-700 rounded-b-lg text-white hover:bg-blue-800 font-medium text-sm px-2 py-3 text-center">
-                        Valider le panier
+                        Commander
                     </div>
                 </a>
             </div>
