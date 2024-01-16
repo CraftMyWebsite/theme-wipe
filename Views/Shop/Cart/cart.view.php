@@ -5,6 +5,7 @@ use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\ShopCartEntity[] $cartContent */
 /* @var CMW\Entity\Shop\ShopCartEntity[] $asideCartContent */
+/* @var CMW\Model\Shop\ShopCartVariantesModel $itemsVariantes */
 
 Website::setTitle("Boutique - Panier");
 Website::setDescription("Votre panier");
@@ -62,8 +63,13 @@ Website::setDescription("Votre panier");
                                              src="<?= $cart->getFirstImageItemUrl() ?>" alt="Panier">
                                     <?php endif; ?>
                                 </td>
-                                <td class="py-4 px-6 font-semibold text-gray-900">
-                                    <?= $cart->getItem()->getName() ?>
+                                <td class="py-4 px-6 text-gray-900">
+                                    <span class="font-semibold"><?= $cart->getItem()->getName() ?></span><br>
+                                    <small>
+                                        <?php foreach ($itemsVariantes->getShopItemVariantValueByCartId($cart->getId()) as $itemVariant): ?>
+                                            <?= $itemVariant->getVariantValue()->getVariant()->getName() ?> : <?= $itemVariant->getVariantValue()->getValue() ?><br>
+                                        <?php endforeach; ?>
+                                    </small>
                                 </td>
                                 <td class="py-4 px-6 text-center">
                                     <div class="flex justify-center">

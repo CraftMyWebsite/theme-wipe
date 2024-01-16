@@ -5,9 +5,11 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\ShopItemEntity[] $otherItemsInThisCat */
+/* @var CMW\Entity\Shop\Items\ShopItemEntity[] $otherItemsInThisCat */
 /* @var CMW\Entity\Shop\ShopCategoryEntity $parentCat */
-/* @var CMW\Entity\Shop\ShopItemEntity $item */
+/* @var CMW\Entity\Shop\Items\ShopItemEntity $item */
+/* @var CMW\Entity\Shop\Items\ShopItemVariantEntity[] $itemVariants */
+/* @var CMW\Model\Shop\ShopItemVariantValueModel $variantValuesModel */
 
 Website::setTitle("Boutique - Article");
 Website::setDescription("Venez découvrir l'article !");
@@ -122,12 +124,29 @@ Website::setDescription("Venez découvrir l'article !");
 
                 <h3><?= $item->getPrice() ?> €</h3>
                 <p><?= $item->getDescription() ?></p>
-                <form method="post" class="flex items-center my-2">
+
+                <form method="post">
                     <?php (new SecurityManager())->insertHiddenToken() ?>
-                    <input type="number" value="1" name="quantity" class="text-center w-14 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
-                    <button type="submit" class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        Ajouter au panier
-                    </button>
+                    <div class="flex flex-wrap">
+                        <?php foreach ($itemVariants as $itemVariant): ?>
+                            <div class="mr-2">
+                                <div class="my-2">
+                                    <?= $itemVariant->getName() ?> :
+                                </div>
+                                <select name="selected_variantes[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1">
+                                    <?php foreach ($variantValuesModel->getShopItemVariantValueByVariantId($itemVariant->getId()) as $variantValue): ?>
+                                        <option value="<?= $variantValue->getId() ?>"><?= $variantValue->getValue() ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="flex items-center my-2">
+                        <input type="number" value="1" name="quantity" class="text-center w-14 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                        <button type="submit" class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            Ajouter au panier
+                        </button>
+                    </div>
                 </form>
                 <p>Catégorie : <a href="<?= $parentCat->getCatLink() ?>" class="text-blue-600 hover:text-blue-400"><?= $parentCat->getName() ?></a></p>
             </div>
