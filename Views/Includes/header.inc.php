@@ -1,12 +1,19 @@
 <?php
 /* @var \CMW\Entity\Users\UserEntity $user */
 
+use CMW\Controller\Core\PackageController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Controller\Users\UsersController;
 use CMW\Model\Core\MenusModel;
+use CMW\Model\Shop\ShopCartsModel;
 use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
+
+if (PackageController::isInstalled("Shop")) {
+    $sessionId = session_id();
+    $itemInCart = ShopCartsModel::getInstance()->countItemsByUserId(UsersModel::getCurrentUser()?->getId(), $sessionId) ?? 0;
+}
 
 $menus = MenusModel::getInstance();
 ?>
@@ -41,6 +48,18 @@ $menus = MenusModel::getInstance();
                                    class="block py-2 px-4 hover:bg-gray-100"><i class="fa-regular fa-address-card"></i>
                                     Profil</a>
                             </li>
+                            <?php if (PackageController::isInstalled("Shop")): ?>
+                                <li>
+                                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>shop/settings"
+                                       class="block py-2 px-4 hover:bg-gray-100"><i class="fa-solid fa-gear"></i>
+                                        Paramètres</a>
+                                </li>
+                                <li>
+                                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>shop/history"
+                                       class="block py-2 px-4 hover:bg-gray-100"><i class="fa-solid fa-clipboard-list"></i>
+                                        Commandes</a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                         <div class="py-1">
                             <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>logout"
@@ -70,6 +89,15 @@ $menus = MenusModel::getInstance();
                           clip-rule="evenodd"></path>
                 </svg>
             </button>
+            <?php if (PackageController::isInstalled("Shop")): ?>
+                <div>
+                    <a href="<?= Website::getProtocol() ?>://<?=  $_SERVER["SERVER_NAME"]?><?=  EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>shop/cart" class="inline-flex relative items-center p-3 text-sm font-medium text-center text-black hover:text-blue-600">
+                        <i class="text-lg fa-solid fa-cart-shopping"></i>
+                        <span class="sr-only">Articles</span>
+                        <div class="inline-flex  absolute -top-2 -right-2 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900"><?= $itemInCart ?></div>
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
         <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="navbar-cta">
             <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
