@@ -126,7 +126,7 @@ Website::setDescription("Méthode de paiement");
                     <span><b><?= $shippingMethod->getPrice() ?> €</b></span>
                 </div>
                 <h4 class="text-center mt-4">Total</h4>
-                <h4 class="text-center font-bold"><?= $shippingMethod->getPrice() + $cart->getTotalPrice() ?> €</h4>
+                <h4 class="text-center font-bold"><?= $cart->getTotalPriceComplete(0, $shippingMethod->getPrice()) ?> €</h4>
             </div>
         </div>
     </div>
