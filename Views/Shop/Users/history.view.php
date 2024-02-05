@@ -43,8 +43,9 @@ Website::setDescription("Consultation de vos achats");
                     </div>
                     <div class="flex flex-wrap justify-between items-center mb-2">
                         <div >Statut : <b><?= $order->getPublicStatus() ?></b></div>
-                        <!-- TODO : Si il est en cours de livraison affiché bouton suivie de colis -->
-                        <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5">Suivre le colis</a>
+                        <?php if (!empty($order->getShippingLink()) && $order->getStatusCode() === 2): ?>
+                            <a href="<?= $order->getShippingLink() ?>" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5">Suivre le colis</a>
+                        <?php endif; ?>
                     </div>
                     <h4 class="py-2 border-t">Vos articles :</h4>
                     <div>
