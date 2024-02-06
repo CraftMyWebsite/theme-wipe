@@ -51,14 +51,6 @@ Website::setDescription("Découvrez la boutique !");
                     </button>
                 </div>
             </div>
-            <div>
-                <a href="<?= Website::getProtocol() ?>://<?=  $_SERVER["SERVER_NAME"]?><?=  EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>shop/cart" class="inline-flex relative items-center p-3 text-sm font-medium text-center text-black hover:text-blue-600">
-                    <i class="text-xl fa-solid fa-cart-shopping"></i>
-                    <span class="sr-only">Articles</span>
-                    <div class="inline-flex  absolute -top-2 -right-2 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white dark:border-gray-900"><?= $itemInCart ?></div>
-                </a>
-            </div>
-
         </div>
 
         <div class="py-4 flex flex-wrap">
