@@ -6,6 +6,7 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\ShopOrdersEntity[] $historyOrders */
 /* @var CMW\Model\Shop\ShopOrdersItemsModel $OrderItemsModel */
 /* @var CMW\Model\Shop\ShopOrdersItemsVariantesModel $variantItemsModel */
+/* @var \CMW\Model\Shop\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Historique d'achat");
 Website::setDescription("Consultation de vos achats");
@@ -56,7 +57,7 @@ Website::setDescription("Consultation de vos achats");
                                     <?php if ($orderItem->getFirstImageItemUrl() !== "/Public/Uploads/Shop/0"): ?>
                                         <img class="mx-auto" style="width: 8rem; height: 8rem; object-fit: cover" src="<?= $orderItem->getFirstImageItemUrl() ?>" alt="Image de l'article">
                                     <?php else: ?>
-                                    <p>😫 Nous n'avons pas trouvé d'image pour cet article !</p>
+                                        <img class="mx-auto" style="width: 8rem; height: 8rem; object-fit: cover" src="<?= $defaultImage ?>" alt="Image de l'article">
                                     <?php endif; ?>
                                 </div>
 

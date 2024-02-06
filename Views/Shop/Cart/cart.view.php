@@ -6,6 +6,7 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\ShopCartEntity[] $cartContent */
 /* @var CMW\Entity\Shop\ShopCartEntity[] $asideCartContent */
 /* @var CMW\Model\Shop\ShopCartVariantesModel $itemsVariantes */
+/* @var \CMW\Model\Shop\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Panier");
 Website::setDescription("Votre panier");
@@ -61,6 +62,9 @@ Website::setDescription("Votre panier");
                                     <?php if ($cart->getFirstImageItemUrl() !== "/Public/Uploads/Shop/0"): ?>
                                         <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
                                              src="<?= $cart->getFirstImageItemUrl() ?>" alt="Panier">
+                                    <?php else: ?>
+                                        <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
+                                             src="<?= $defaultImage ?>" alt="Panier">
                                     <?php endif; ?>
                                 </td>
                                 <td class="py-4 px-6 text-gray-900">

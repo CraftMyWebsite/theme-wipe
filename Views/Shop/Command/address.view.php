@@ -6,6 +6,7 @@ use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\ShopCartEntity[] $cartContent */
 /* @var CMW\Entity\Shop\ShopDeliveryUserAddressEntity[] $userAddresses */
+/* @var \CMW\Model\Shop\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Tunnel de commande");
 Website::setDescription("Adresse de facturation et livraison");
@@ -135,6 +136,9 @@ Website::setDescription("Adresse de facturation et livraison");
                         <?php if ($cart->getFirstImageItemUrl() !== "/Public/Uploads/Shop/0"): ?>
                             <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
                                  src="<?= $cart->getFirstImageItemUrl() ?>" alt="Panier">
+                        <?php else: ?>
+                            <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
+                                 src="<?= $defaultImage ?>" alt="Panier">
                         <?php endif; ?>
                     </td>
                     <td class="py-4 px-6 font-semibold text-gray-900">

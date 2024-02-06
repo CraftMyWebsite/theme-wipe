@@ -7,6 +7,7 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\ShopItemEntity[] $items */
 /* @var CMW\Entity\Shop\ShopCategoryEntity $thisCat */
 /* @var CMW\Model\Shop\ShopImagesModel $imagesItem */
+/* @var \CMW\Model\Shop\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Catégorie : ". $thisCat->getName());
 Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat->getName());
@@ -119,6 +120,9 @@ Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat-
                                              src="<?= $imageUrl->getImageUrl() ?>">
                                     <?php endforeach; ?>
                                 <?php endif; ?>
+                            <?php else: ?>
+                                <img class="mx-auto h-48"
+                                     src="<?= $defaultImage ?>">
                             <?php endif; ?>
                             <a href="<?= $item->getItemLink() ?>"><h4 class="text-center"><?= $item->getName() ?></h4>
                                 <div class="flex justify-center">

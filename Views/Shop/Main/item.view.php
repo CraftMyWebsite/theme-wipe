@@ -10,6 +10,7 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\Items\ShopItemEntity $item */
 /* @var CMW\Entity\Shop\Items\ShopItemVariantEntity[] $itemVariants */
 /* @var CMW\Model\Shop\ShopItemVariantValueModel $variantValuesModel */
+/* @var \CMW\Model\Shop\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Article");
 Website::setDescription("Venez découvrir l'article !");
@@ -91,6 +92,9 @@ Website::setDescription("Venez découvrir l'article !");
                                  src="<?= $imageUrl->getImageUrl() ?>">
                         <?php endforeach; ?>
                     <?php endif; ?>
+                <?php else: ?>
+                    <img class="mx-auto h-48"
+                         src="<?= $defaultImage ?>">
                 <?php endif; ?>
             </div>
             <div class="col-span-4 h-fit">
