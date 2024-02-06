@@ -3,10 +3,10 @@
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\ShopCartEntity[] $cartContent */
-/* @var CMW\Entity\Shop\ShopCartEntity[] $asideCartContent */
-/* @var CMW\Model\Shop\ShopCartVariantesModel $itemsVariantes */
-/* @var \CMW\Model\Shop\ShopImagesModel $defaultImage */
+/* @var CMW\Entity\Shop\Carts\ShopCartEntity[] $cartContent */
+/* @var CMW\Entity\Shop\Carts\ShopCartEntity[] $asideCartContent */
+/* @var CMW\Model\Shop\Cart\ShopCartVariantesModel $itemsVariantes */
+/* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Panier");
 Website::setDescription("Votre panier");

@@ -6,11 +6,11 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\Items\ShopItemEntity[] $otherItemsInThisCat */
-/* @var CMW\Entity\Shop\ShopCategoryEntity $parentCat */
+/* @var CMW\Entity\Shop\Categories\ShopCategoryEntity $parentCat */
 /* @var CMW\Entity\Shop\Items\ShopItemEntity $item */
 /* @var CMW\Entity\Shop\Items\ShopItemVariantEntity[] $itemVariants */
-/* @var CMW\Model\Shop\ShopItemVariantValueModel $variantValuesModel */
-/* @var \CMW\Model\Shop\ShopImagesModel $defaultImage */
+/* @var CMW\Model\Shop\Item\ShopItemVariantValueModel $variantValuesModel */
+/* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Article");
 Website::setDescription("Venez découvrir l'article !");

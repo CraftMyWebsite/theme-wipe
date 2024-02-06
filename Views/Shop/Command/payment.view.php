@@ -4,11 +4,11 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\ShopCartEntity[] $cartContent */
-/* @var CMW\Entity\Shop\ShopDeliveryUserAddressEntity $selectedAddress */
-/* @var CMW\Entity\Shop\ShopShippingEntity $shippingMethod */
+/* @var CMW\Entity\Shop\Carts\ShopCartEntity[] $cartContent */
+/* @var CMW\Entity\Shop\Deliveries\ShopDeliveryUserAddressEntity $selectedAddress */
+/* @var CMW\Entity\Shop\Deliveries\ShopShippingEntity $shippingMethod */
 /* @var \CMW\Interface\Shop\IPaymentMethod[] $paymentMethods */
-/* @var \CMW\Model\Shop\ShopImagesModel $defaultImage */
+/* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Tunnel de commande");
 Website::setDescription("Méthode de paiement");

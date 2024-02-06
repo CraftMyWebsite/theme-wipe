@@ -4,10 +4,10 @@ use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\ShopItemEntity[] $items */
-/* @var CMW\Entity\Shop\ShopCategoryEntity $thisCat */
-/* @var CMW\Model\Shop\ShopImagesModel $imagesItem */
-/* @var \CMW\Model\Shop\ShopImagesModel $defaultImage */
+/* @var CMW\Entity\Shop\Items\ShopItemEntity[] $items */
+/* @var CMW\Entity\Shop\Categories\ShopCategoryEntity $thisCat */
+/* @var CMW\Model\Shop\Image\ShopImagesModel $imagesItem */
+/* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Catégorie : ". $thisCat->getName());
 Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat->getName());
