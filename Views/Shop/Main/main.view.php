@@ -136,7 +136,7 @@ Website::setDescription("Découvrez la boutique !");
                             <p class="text-sm font-medium text-gray-900 underline">73 avis</p>
                         </div>
 
-                        <p><?= $item->getDescription() ?></p>
+                        <p><?= $item->getShortDescription() ?></p>
                         <p class="text-xs text-center hover:text-blue-600">Lire la suite</p></a>
                     </div>
                     <div class="grid grid-cols-2 border rounded-b py-2">

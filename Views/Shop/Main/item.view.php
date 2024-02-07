@@ -113,7 +113,7 @@ Website::setDescription("Venez découvrir l'article !");
 
 
                 <h3><?= $item->getPrice() ?> €</h3>
-                <p><?= $item->getDescription() ?></p>
+                <p><?= $item->getShortDescription() ?></p>
 
                 <form method="post">
                     <?php (new SecurityManager())->insertHiddenToken() ?>
@@ -151,6 +151,10 @@ Website::setDescription("Venez découvrir l'article !");
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 rounded-t-lg border-b-2" id="description-tab" data-tabs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="false">Description</button>
                 </li>
+                <!-- TODO : Si il à un poids ou des dimensions -->
+                <li class="mr-2" role="presentation">
+                    <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="info-tab" data-tabs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="false">Informations sur le produit</button>
+                </li>
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="reviews-tab" data-tabs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Avis</button>
                 </li>
@@ -158,10 +162,11 @@ Website::setDescription("Venez découvrir l'article !");
         </div>
         <div id="myTabContent">
             <div class="hidden p-4 bg-gray-50 rounded-lg" id="description" role="tabpanel" aria-labelledby="description-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Profile tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                    <?= $item->getDescription() ?>
+                </p>
             </div>
             <div class="hidden p-4 bg-gray-50 rounded-lg" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-
                 <div class="xl:grid grid-cols-3">
                     <div>
                         <div class="flex items-center mb-3">
@@ -234,6 +239,14 @@ Website::setDescription("Venez découvrir l'article !");
 
                     </div>
                 </div>
+            </div>
+            <div class="hidden p-4 bg-gray-50 rounded-lg" id="info" role="tabpanel" aria-labelledby="info-tab">
+                <p>
+                    Poids : 100g<br>
+                    Longueur : 100cm<br>
+                    Largeur : 100cm<br>
+                    Hauteur : 100cm<br>
+                </p>
             </div>
         </div>
 
