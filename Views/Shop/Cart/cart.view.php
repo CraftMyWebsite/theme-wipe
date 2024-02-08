@@ -132,9 +132,9 @@ Website::setDescription("Votre panier");
                         <p class="py-2 border-b">
                             <?= isset($cart) ? $cart->getTotalCartPrice() : 0 ?> €
                         </p>
-                        <p class="py-2 border-b">0 %</p>
+                        <p class="py-2 border-b">Aucune</p>
                         <p class="py-2 font-medium">
-                            <?= isset($cart) ? $cart->getTotalPriceComplete(0, 0) : 0 ?> €
+                            <?= isset($cart) ? $cart->getTotalCartPriceAfterDiscount() : 0 ?> €
                         </p>
                     </div>
 
