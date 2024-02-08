@@ -11,6 +11,7 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\Items\ShopItemVariantEntity[] $itemVariants */
 /* @var CMW\Model\Shop\Item\ShopItemVariantValueModel $variantValuesModel */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
+/* @var \CMW\Entity\Shop\Items\ShopItemPhysicalRequirementEntity $physicalInfo */
 
 Website::setTitle("Boutique - Article");
 Website::setDescription("Venez découvrir l'article !");
@@ -151,10 +152,11 @@ Website::setDescription("Venez découvrir l'article !");
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 rounded-t-lg border-b-2" id="description-tab" data-tabs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="false">Description</button>
                 </li>
-                <!-- TODO : Si il à un poids ou des dimensions -->
+                <?php if (!empty($physicalInfo)): ?>
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="info-tab" data-tabs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="false">Informations sur le produit</button>
                 </li>
+                <?php endif; ?>
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="reviews-tab" data-tabs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Avis</button>
                 </li>
@@ -240,14 +242,16 @@ Website::setDescription("Venez découvrir l'article !");
                     </div>
                 </div>
             </div>
+            <?php if (!empty($physicalInfo)): ?>
             <div class="hidden p-4 bg-gray-50 rounded-lg" id="info" role="tabpanel" aria-labelledby="info-tab">
                 <p>
-                    Poids : 100g<br>
-                    Longueur : 100cm<br>
-                    Largeur : 100cm<br>
-                    Hauteur : 100cm<br>
+                    Poids : <?= $physicalInfo->getWeight() ?> grammes<br>
+                    Longueur : <?= $physicalInfo->getLength() ?> cm<br>
+                    Largeur : <?= $physicalInfo->getWidth() ?> cm<br>
+                    Hauteur : <?= $physicalInfo->getHeight() ?> cm<br>
                 </p>
             </div>
+            <?php endif;?>
         </div>
 
     </div>
