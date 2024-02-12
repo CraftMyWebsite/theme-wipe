@@ -1,18 +1,17 @@
 <?php
-/* @var \CMW\Entity\Users\UserEntity $user */
 
 use CMW\Controller\Core\PackageController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Controller\Users\UsersController;
 use CMW\Model\Core\MenusModel;
-use CMW\Model\Shop\Cart\ShopCartsModel;
+use CMW\Model\Shop\Cart\ShopCartModel;
+use CMW\Model\Shop\Cart\ShopCartItemModel;
 use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 if (PackageController::isInstalled("Shop")) {
-    $sessionId = session_id();
-    $itemInCart = ShopCartsModel::getInstance()->countItemsByUserId(UsersModel::getCurrentUser()?->getId(), $sessionId) ?? 0;
+    $itemInCart = ShopCartItemModel::getInstance()->countItemsByUserId(UsersModel::getCurrentUser()?->getId(), session_id());
 }
 
 $menus = MenusModel::getInstance();

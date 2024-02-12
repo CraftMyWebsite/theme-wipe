@@ -4,7 +4,7 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\Carts\ShopCartEntity[] $cartContent */
+/* @var CMW\Entity\Shop\Carts\ShopCartItemEntity[] $cartContent */
 /* @var CMW\Entity\Shop\Deliveries\ShopDeliveryUserAddressEntity[] $userAddresses */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 

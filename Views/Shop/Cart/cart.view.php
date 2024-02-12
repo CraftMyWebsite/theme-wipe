@@ -3,8 +3,8 @@
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\Carts\ShopCartEntity[] $cartContent */
-/* @var CMW\Entity\Shop\Carts\ShopCartEntity[] $asideCartContent */
+/* @var CMW\Entity\Shop\Carts\ShopCartItemEntity[] $cartContent */
+/* @var CMW\Entity\Shop\Carts\ShopCartItemEntity[] $asideCartContent */
 /* @var CMW\Model\Shop\Cart\ShopCartVariantesModel $itemsVariantes */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 
