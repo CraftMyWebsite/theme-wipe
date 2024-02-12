@@ -211,7 +211,7 @@ Website::setDescription("Votre panier");
 </section>
 <?php endif; ?>
 
-Code appliqué :
+Info code appliqué :
 <?php foreach ($appliedDiscounts as $appliedDiscount): ?>
-    <p>- Nom : <?= $appliedDiscount->getDiscount()->getName() ?> Code : <?= $appliedDiscount->getDiscount()->getCode() ?></p>
+    <p>- Nom : <?= $appliedDiscount->getDiscount()->getName() ?> Code : <?= $appliedDiscount->getDiscount()->getCode() ?> <a href="<?= $appliedDiscount->getRemoveLink() ?>">Supprimé</a></p>
 <?php endforeach; ?>
