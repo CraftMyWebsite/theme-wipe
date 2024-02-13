@@ -150,7 +150,7 @@ Website::setDescription("Adresse de facturation et livraison");
                         </div>
                     </td>
                     <td class="font-semibold text-black py-4 px-6">
-                        <?= $cart->getTotalPrice() ?>€
+                        <?= $cart->getItemTotalPrice() ?>€
                     </td>
                 </table>
                 <?php endforeach; ?>

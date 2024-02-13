@@ -121,7 +121,7 @@ Website::setDescription("Méthode de paiement");
                             </table>
                         </div>
                         <div>
-                            <b><?= $cart->getTotalPrice() ?> €</b>
+                            <b><?= $cart->getItemTotalPrice() ?> €</b>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -131,7 +131,7 @@ Website::setDescription("Méthode de paiement");
                     <span><b><?= $shippingMethod->getPrice() ?> €</b></span>
                 </div>
                 <h4 class="text-center mt-4">Total</h4>
-                <h4 class="text-center font-bold"><?= $cart->getTotalPriceComplete(0, $shippingMethod->getPrice()) ?> €</h4>
+                <h4 class="text-center font-bold"><?= $cart->getTotalPriceComplete() ?> €</h4>
             </div>
         </div>
     </div>

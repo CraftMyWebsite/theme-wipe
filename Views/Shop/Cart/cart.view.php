@@ -49,6 +49,7 @@ Website::setDescription("Votre panier");
                             <th class="text-center py-3 px-6">
                                 Prix
                             </th>
+                            <th></th>
                             <th class="text-center py-3 px-6">
                                 Sous total
                             </th>
@@ -89,8 +90,15 @@ Website::setDescription("Votre panier");
                                 <td class="py-4 px-6 text-gray-900">
                                     <?= $cart->getItem()->getPrice() ?>€
                                 </td>
-                                <td class="font-semibold text-black py-4 px-6">
-                                    <?= $cart->getTotalPrice() ?>€
+                                <td class="font-semibold py-4 px-6 text-gray-900">
+                                    <?= $cart->getDiscountFormatted() ?>
+                                </td>
+                                <td class="text-black py-4 px-6">
+                                    <?php if ($cart->getDiscount()): ?>
+                                        <s><?= $cart->getItemTotalPrice() ?>€</s> <span class="font-semibold"><?= $cart->getItemTotalPriceAfterDiscount() ?>€</span>
+                                    <?php else: ?>
+                                        <span class="font-semibold"><?= $cart->getItemTotalPrice() ?>€</span>
+                                    <?php endif; ?>
                                 </td>
                                 <td>
                                     <a href="<?= $cart->getRemoveLink() ?>" class="font-medium text-red-600"><i
@@ -134,7 +142,7 @@ Website::setDescription("Votre panier");
                     </div>
                     <div class="text-center">
                         <p class="py-2 border-b">
-                            <?= isset($cart) ? $cart->getTotalCartPrice() : 0 ?> €
+                            <?= isset($cart) ? $cart->getTotalCartPriceBeforeDiscount() : 0 ?> €
                         </p>
                         <p class="py-2 border-b">Aucune</p>
                         <p class="py-2 font-medium">
