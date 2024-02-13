@@ -137,19 +137,38 @@ Website::setDescription("Votre panier");
                 <div class="grid grid-cols-2 bg-white">
                     <div class="font-medium text-center">
                         <p class="py-2 border-b">Sous total</p>
-                        <p class="py-2 border-b">Réduction</p>
-                        <p class="py-2 ">Total</p>
                     </div>
                     <div class="text-center">
                         <p class="py-2 border-b">
                             <?= isset($cart) ? $cart->getTotalCartPriceBeforeDiscount() : 0 ?> €
                         </p>
-                        <p class="py-2 border-b">Aucune</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 bg-white">
+                    <div class="font-medium text-center">
+                        <p class="py-2">Réduction</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 bg-white">
+                    <?php foreach ($appliedDiscounts as $appliedDiscount): ?>
+                        <div class="text-center mb-2">
+                            Code : <b><?= $appliedDiscount->getDiscount()->getCode() ?></b>
+                        </div>
+                        <div class="text-center">
+                            <b><?= $appliedDiscount->getDiscountFormatted() ?></b>
+                            <a href="<?= $appliedDiscount->getRemoveLink() ?>" class="font-medium ml-4 text-red-600"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="grid grid-cols-2 bg-white border-t">
+                    <div class="font-medium text-center">
+                        <p class="py-2 ">Total</p>
+                    </div>
+                    <div class="text-center">
                         <p class="py-2 font-medium">
                             <?= isset($cart) ? $cart->getTotalCartPriceAfterDiscount() : 0 ?> €
                         </p>
                     </div>
-
                 </div>
                 <a href="command">
                     <div
@@ -219,7 +238,3 @@ Website::setDescription("Votre panier");
 </section>
 <?php endif; ?>
 
-Info code appliqué :
-<?php foreach ($appliedDiscounts as $appliedDiscount): ?>
-    <p>- Nom : <?= $appliedDiscount->getDiscount()->getName() ?> Code : <?= $appliedDiscount->getDiscount()->getCode() ?> <a href="<?= $appliedDiscount->getRemoveLink() ?>">Supprimé</a></p>
-<?php endforeach; ?>

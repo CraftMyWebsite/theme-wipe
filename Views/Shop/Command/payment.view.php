@@ -121,7 +121,11 @@ Website::setDescription("Méthode de paiement");
                             </table>
                         </div>
                         <div>
-                            <b><?= $cart->getItemTotalPrice() ?> €</b>
+                            <?php if ($cart->getDiscount()): ?>
+                                <s><?= $cart->getItemTotalPrice() ?>€</s> <span class="font-semibold"><?= $cart->getItemTotalPriceAfterDiscount() ?>€</span>
+                            <?php else: ?>
+                                <span class="font-semibold"><?= $cart->getItemTotalPrice() ?>€</span>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>

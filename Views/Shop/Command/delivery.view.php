@@ -92,29 +92,34 @@ Website::setDescription("Méthode de livraison");
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 </div>
                 <?php foreach ($cartContent as $cart): ?>
-                    <table>
-                        <td class="py-2">
-                            <?php if ($cart->getFirstImageItemUrl() !== "/Public/Uploads/Shop/0"): ?>
-                                <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
-                                     src="<?= $cart->getFirstImageItemUrl() ?>" alt="Panier">
+                    <div class="flex flex-wrap justify-between items-center">
+                        <div>
+                            <table>
+                                <td class="py-2">
+                                    <?php if ($cart->getFirstImageItemUrl() !== "/Public/Uploads/Shop/0"): ?>
+                                        <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
+                                             src="<?= $cart->getFirstImageItemUrl() ?>" alt="Panier">
+                                    <?php else: ?>
+                                        <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
+                                             src="<?= $defaultImage ?>" alt="Panier">
+                                    <?php endif; ?>
+                                </td>
+                                <td class="py-4 px-6 font-semibold text-gray-900">
+                                    <?= $cart->getQuantity() ?> <?= $cart->getItem()->getName() ?>
+                                </td>
+                            </table>
+                        </div>
+                        <div>
+                            <?php if ($cart->getDiscount()): ?>
+                                <s><?= $cart->getItemTotalPrice() ?>€</s> <span class="font-semibold"><?= $cart->getItemTotalPriceAfterDiscount() ?>€</span>
                             <?php else: ?>
-                                <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
-                                     src="<?= $defaultImage ?>" alt="Panier">
+                                <span class="font-semibold"><?= $cart->getItemTotalPrice() ?>€</span>
                             <?php endif; ?>
-                        </td>
-                        <td class="py-4 px-6 font-semibold text-gray-900">
-                            <?= $cart->getItem()->getName() ?>
-                        </td>
-                        <td class="py-4 px-6 text-center">
-                            <div class="flex justify-center">
-                                <b><?= $cart->getQuantity() ?></b>
-                            </div>
-                        </td>
-                        <td class="font-semibold text-black py-4 px-6">
-                            <?= $cart->getItemTotalPrice() ?>€
-                        </td>
-                    </table>
+                        </div>
+                    </div>
                 <?php endforeach; ?>
+                <h4 class="text-center mt-4">Total</h4>
+                <h4 class="text-center font-bold"><?= $cart->getTotalCartPriceAfterDiscount() ?> €</h4>
             </div>
         </div>
     </div>
