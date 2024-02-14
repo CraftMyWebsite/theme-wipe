@@ -29,7 +29,12 @@ Website::setDescription("Venez découvrir l'article !");
     </div>
 </section>
 
-<section class="bg-white rounded-lg shadow my-8 sm:mx-12 lg:mx-72">
+<section class="relative bg-white rounded-lg shadow my-8 sm:mx-12 lg:mx-72">
+    <?php if ($item->getDiscountImpactDefaultApplied()): ?>
+        <div style="z-index: 5000; position: absolute; top: 0; left: 0; transform: translate(5%, 10%) rotate(-30deg); background-color: #f44336; color: white; padding: 8px 16px; border-radius: 0 16px 0 16px;">
+            <p class="text-center text-xl"><?= $item->getDiscountImpactDefaultApplied() ?></p>
+        </div>
+    <?php endif; ?>
     <div class="container p-4">
         <div class="xl:grid grid-cols-6 gap-6">
             <div class="col-span-2 h-fit">
@@ -113,7 +118,11 @@ Website::setDescription("Venez découvrir l'article !");
                 </div>
 
 
-                <h3><?= $item->getPrice() ?> €</h3>
+                <?php if ($item->getPriceDiscountDefaultApplied()): ?>
+                    <h3><s class="text-xl"><?= $item->getPrice() ?>€</s> <?= $item->getPriceDiscountDefaultApplied() ?>€</h3>
+                <?php else: ?>
+                    <h3><?= $item->getPrice() ?>€</h3>
+                <?php endif; ?>
                 <p><?= $item->getShortDescription() ?></p>
 
                 <form method="post">

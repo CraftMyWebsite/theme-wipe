@@ -88,7 +88,11 @@ Website::setDescription("Votre panier");
                                     </div>
                                 </td>
                                 <td class="py-4 px-6 text-gray-900">
-                                    <?= $cart->getItem()->getPrice() ?>€
+                                    <?php if ($cart->getItem()->getPriceDiscountDefaultApplied()): ?>
+                                        <s><?= $cart->getItem()->getPrice() ?>€</s> <br><?= $cart->getItem()->getPriceDiscountDefaultApplied() ?>€
+                                    <?php else: ?>
+                                        <?= $cart->getItem()->getPrice() ?>€
+                                    <?php endif; ?>
                                 </td>
                                 <td class="font-semibold py-4 px-6 text-gray-900">
                                     <?= $cart->getDiscountFormatted() ?>

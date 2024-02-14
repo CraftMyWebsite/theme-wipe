@@ -56,7 +56,12 @@ Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat-
 
         <div class="py-4 flex flex-wrap">
             <?php foreach ($items as $item): ?>
-                <div class="w-full xl:w-1/2 2xl:w-1/4 mb-5 2xl:mb-0 px-4 hover:scale-105 transition">
+                <div class="relative w-full xl:w-1/2 2xl:w-1/4 mt-2 mb-5 2xl:mb-0 px-4 hover:scale-105 transition">
+                    <?php if ($item->getDiscountImpactDefaultApplied()): ?>
+                        <div style="z-index: 5000; position: absolute; top: 0; left: 0; transform: translate(5%, 10%) rotate(-30deg); background-color: #f44336; color: white; padding: 8px 16px; border-radius: 0 16px 0 16px;">
+                            <p class="text-center text-xl"><?= $item->getDiscountImpactDefaultApplied() ?></p>
+                        </div>
+                    <?php endif; ?>
                     <div>
                         <div class="rounded-t border-t border-l border-r border-gray-200 p-4">
 
@@ -91,26 +96,26 @@ Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat-
                                         <button type="button"
                                                 class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                                                 data-carousel-prev>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                 fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M5 1 1 5l4 4"/>
-            </svg>
-            <span class="sr-only">Previous</span>
-        </span>
+                                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                 fill="none" viewBox="0 0 6 10">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="M5 1 1 5l4 4"/>
+                                            </svg>
+                                            <span class="sr-only">Previous</span>
+                                        </span>
                                         </button>
                                         <button type="button"
                                                 class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                                                 data-carousel-next>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                 fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="m1 9 4-4-4-4"/>
-            </svg>
-            <span class="sr-only">Next</span>
-        </span>
+                                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                 fill="none" viewBox="0 0 6 10">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                      d="m1 9 4-4-4-4"/>
+                                            </svg>
+                                            <span class="sr-only">Next</span>
+                                        </span>
                                         </button>
                                     </div>
 
@@ -140,9 +145,14 @@ Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat-
                                 <p class="text-xs text-center hover:text-blue-600">Lire la suite</p></a>
                         </div>
                         <div class="grid grid-cols-2 border rounded-b py-2">
-                            <p class="text-center text-xl"><?= $item->getPrice() ?>€</p>
+                            <?php if ($item->getPriceDiscountDefaultApplied()): ?>
+                                <p class="text-center"><s><?= $item->getPrice() ?>€</s> <b class="text-xl"><?= $item->getPriceDiscountDefaultApplied() ?></b>€</p>
+                            <?php else: ?>
+                                <p class="text-center text-xl"><?= $item->getPrice() ?>€</p>
+                            <?php endif; ?>
+
                             <a href="<?= $item->getAddToCartLink() ?>" class="border-l text-center text-2xl hover:text-blue-600"><i
-                                        class="fa-solid fa-cart-plus"></i></a>
+                                    class="fa-solid fa-cart-plus"></i></a>
                         </div>
                     </div>
                 </div>
