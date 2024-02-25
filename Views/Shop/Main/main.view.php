@@ -58,8 +58,8 @@ Website::setDescription("Découvrez la boutique !");
             <?php foreach ($items->getShopItems() as $item): ?>
                 <div class="relative w-full xl:w-1/2 2xl:w-1/4 mt-4 mb-5 2xl:mb-0 px-4 hover:scale-105 transition">
                     <?php if ($item->getDiscountImpactDefaultApplied()): ?>
-                    <div style="z-index: 5000; position: absolute; top: 0; left: 0; transform: translate(5%, 10%) rotate(-25deg); background-color: #f44336; color: white; padding: 8px 16px; border-radius: 0 16px 0 16px;">
-                        <p class="text-center text-xl"><?= $item->getDiscountImpactDefaultApplied() ?></p>
+                    <div style="z-index: 5000; position: absolute; top: 0; left: 0; transform: translate(5%, 10%) rotate(-10deg); background-color: #f44336; color: white; padding: 8px 16px; border-radius: 0 16px 0 16px;">
+                        <p class="text-center"><?= $item->getDiscountImpactDefaultApplied() ?></p>
                     </div>
                     <?php endif; ?>
                     <div>

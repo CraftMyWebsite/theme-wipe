@@ -31,7 +31,7 @@ Website::setDescription("Venez découvrir l'article !");
 
 <section class="relative bg-white rounded-lg shadow my-8 sm:mx-12 lg:mx-72">
     <?php if ($item->getDiscountImpactDefaultApplied()): ?>
-        <div style="z-index: 5000; position: absolute; top: 0; left: 0; transform: translate(5%, 10%) rotate(-30deg); background-color: #f44336; color: white; padding: 8px 16px; border-radius: 0 16px 0 16px;">
+        <div style="z-index: 5000; position: absolute; top: 0; left: 0; transform: translate(5%, 10%) rotate(-10deg); background-color: #f44336; color: white; padding: 8px 16px; border-radius: 0 16px 0 16px;">
             <p class="text-center text-xl"><?= $item->getDiscountImpactDefaultApplied() ?></p>
         </div>
     <?php endif; ?>
