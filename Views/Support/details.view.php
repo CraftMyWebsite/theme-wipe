@@ -15,7 +15,7 @@ Website::setDescription("Consultez les réponses de nos experts.");
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>"
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>"
          class="absolute h-full inset-0 object-center object-cover w-full"
          alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">

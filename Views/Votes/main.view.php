@@ -11,11 +11,11 @@ Website::setTitle("Votez");
 Website::setDescription("Votez, obtenez des points de vote et plein d'autres cadeaux!");
 ?>
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
-                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= ThemeModel::fetchConfigValue('votes_page_title') ?></h1>
+                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= ThemeModel::getInstance()->fetchConfigValue('votes_page_title') ?></h1>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             <div class="flex flex-no-wrap justify-center items-center py-4">
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 <div class="px-10 w-auto">
-                    <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('votes_participate_title') ?></h2>
+                    <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('votes_participate_title') ?></h2>
                 </div>
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
             </div>
@@ -66,7 +66,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
                 <div class="flex flex-no-wrap justify-center items-center py-4">
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                     <div class="px-10 w-auto">
-                        <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('votes_top_10_title') ?></h2>
+                        <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('votes_top_10_title') ?></h2>
                     </div>
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 </div>
@@ -132,13 +132,13 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             </div>
         </div>
     </div>
-    <?php if(ThemeModel::fetchConfigValue('votes_display_global')): ?>
+    <?php if(ThemeModel::getInstance()->fetchConfigValue('votes_display_global')): ?>
     <div class="md:px-16 xl:px-28 2xl:px-48 mt-4">
         <div class="container mx-auto rounded-md shadow-lg p-8">
             <div class="flex flex-no-wrap justify-center items-center py-4">
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 <div class="px-10 w-auto">
-                    <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('votes_top_10_global_title') ?></h2>
+                    <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('votes_top_10_global_title') ?></h2>
                 </div>
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
             </div>

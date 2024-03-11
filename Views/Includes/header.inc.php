@@ -19,11 +19,11 @@ $menus = MenusModel::getInstance();
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
         <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>" class="flex items-center">
-            <?php if (ThemeModel::fetchConfigValue('header_active_logo')): ?>
-                <img src="<?= ThemeModel::fetchImageLink("header_img_logo") ?>" class="mr-3 h-6 sm:h-9"
+            <?php if (ThemeModel::getInstance()->fetchConfigValue('header_active_logo')): ?>
+                <img src="<?= ThemeModel::getInstance()->fetchImageLink("header_img_logo") ?>" class="mr-3 h-6 sm:h-9"
                      alt="Vous devez upload logo.webp depuis votre panel !">
             <?php endif; ?>
-            <?php if (ThemeModel::fetchConfigValue('header_active_title')): ?>
+            <?php if (ThemeModel::getInstance()->fetchConfigValue('header_active_title')): ?>
                 <span class="self-center md:text-xl font-semibold whitespace-nowrap"><?= Website::getWebsiteName() ?></span>
             <?php endif; ?>
         </a>
@@ -68,11 +68,11 @@ $menus = MenusModel::getInstance();
                     </div>
                 </ul>
             <?php else: ?>
-                <?php if (ThemeModel::fetchConfigValue('header_allow_login_button')): ?>
+                <?php if (ThemeModel::getInstance()->fetchConfigValue('header_allow_login_button')): ?>
                     <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login"
                        class="md:bg-white bg-blue-700 md:hover:bg-gray-200 hover:bg-blue-800 text-white md:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Connexion</a>
                 <?php endif; ?>
-                <?php if (ThemeModel::fetchConfigValue('header_allow_register_button')): ?>
+                <?php if (ThemeModel::getInstance()->fetchConfigValue('header_allow_register_button')): ?>
                     <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>register"
                        class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 ">S'inscrire</a>
                 <?php endif; ?>

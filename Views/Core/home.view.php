@@ -13,7 +13,7 @@ use CMW\Controller\Core\PackageController;
 use CMW\Model\News\NewsModel;
 if (PackageController::isInstalled("News")) {
     $newsLists = new newsModel;
-    $newsList = $newsLists->getSomeNews( ThemeModel::fetchConfigValue('news_number_display'));
+    $newsList = $newsLists->getSomeNews( ThemeModel::getInstance()->fetchConfigValue('news_number_display'));
 }
 
 /*CONTACT BASIC NEDD*/
@@ -21,30 +21,30 @@ use CMW\Model\Contact\ContactModel;
 
 
 /*TITRE ET DESCRIPTION*/
-Website::setTitle(ThemeModel::fetchConfigValue('home_title'));
+Website::setTitle(ThemeModel::getInstance()->getInstance()->fetchConfigValue('home_title'));
 Website::setDescription(Website::getWebsiteDescription());
 ?>
 <!-- HERO -->
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-40 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
-                <p class="font-medium mb-2 text-blue-600 uppercase"><?= ThemeModel::fetchConfigValue('hero_title') ?></p>
+                <p class="font-medium mb-2 text-blue-600 uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('hero_title') ?></p>
                 <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= Website::getWebsiteName()?></h1>
-                <p class="font-light mb-6 text-xl"><?= ThemeModel::fetchConfigValue('hero_description') ?></p>
-                <a href="<?= ThemeModel::fetchConfigValue('hero_button_link') ?>" class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none"><?= ThemeModel::fetchConfigValue('hero_button_text') ?></a>
+                <p class="font-light mb-6 text-xl"><?= ThemeModel::getInstance()->fetchConfigValue('hero_description') ?></p>
+                <a href="<?= ThemeModel::getInstance()->fetchConfigValue('hero_button_link') ?>" class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none"><?= ThemeModel::getInstance()->fetchConfigValue('hero_button_text') ?></a>
             </div>
         </div>
     </div>
 </section>
-<?php if(ThemeModel::fetchConfigValue('feature_section_active')): ?>
+<?php if(ThemeModel::getInstance()->fetchConfigValue('feature_section_active')): ?>
 <!-- Fonctionnalités -->
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('feature_section_title') ?></h2>
+            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('feature_section_title') ?></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
@@ -52,28 +52,28 @@ Website::setDescription(Website::getWebsiteDescription());
         <div class="flex flex-wrap -mx-4  justify-center">
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= ThemeModel::fetchImageLink("feature_img_1") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
+                    <img src="<?= ThemeModel::getInstance()->fetchImageLink("feature_img_1") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
                     <div>
-                        <h3 class="text-center  font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_1') ?></h3>
-                        <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_1') ?></p>
+                        <h3 class="text-center  font-bold text-2xl text-gray-900"><?= ThemeModel::getInstance()->fetchConfigValue('feature_title_1') ?></h3>
+                        <p class="mt-2 mb-4"><?= ThemeModel::getInstance()->fetchConfigValue('feature_description_1') ?></p>
                     </div>
                 </div>
             </div>
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= ThemeModel::fetchImageLink("feature_img_2") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
+                    <img src="<?= ThemeModel::getInstance()->fetchImageLink("feature_img_2") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
                     <div>
-                        <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_2') ?></h3>
-                        <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_2') ?></p>
+                        <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::getInstance()->fetchConfigValue('feature_title_2') ?></h3>
+                        <p class="mt-2 mb-4"><?= ThemeModel::getInstance()->fetchConfigValue('feature_description_2') ?></p>
                     </div>
                 </div>
             </div>
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= ThemeModel::fetchImageLink("feature_img_3") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
+                    <img src="<?= ThemeModel::getInstance()->fetchImageLink("feature_img_3") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
                     <div>
-                        <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::fetchConfigValue('feature_title_3') ?></h3>
-                            <p class="mt-2 mb-4"><?= ThemeModel::fetchConfigValue('feature_description_3') ?></p>
+                        <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::getInstance()->fetchConfigValue('feature_title_3') ?></h3>
+                            <p class="mt-2 mb-4"><?= ThemeModel::getInstance()->fetchConfigValue('feature_description_3') ?></p>
                     </div>
                 </div>
             </div>
@@ -85,12 +85,12 @@ Website::setDescription(Website::getWebsiteDescription());
 
 <!-- News -->
 <?php if (PackageController::isInstalled("News")): ?>
-<?php if(ThemeModel::fetchConfigValue('news_section_active')): ?>
+<?php if(ThemeModel::getInstance()->fetchConfigValue('news_section_active')): ?>
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('news_section_title') ?></h2>
+            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('news_section_title') ?></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
@@ -172,54 +172,54 @@ Website::setDescription(Website::getWebsiteDescription());
 
 
 <!-- Personnalisé 1 -->
-<?php if(ThemeModel::fetchConfigValue('custom_section_active_1')): ?>
+<?php if(ThemeModel::getInstance()->fetchConfigValue('custom_section_active_1')): ?>
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('custom_section_title_1') ?></h2>
+            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_1') ?></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
     <div class="container my-8 mx-2 xl:mx-72 relative">
         <div class="px-4">
-            <?= ThemeModel::fetchConfigValue('custom_section_content_1') ?>
+            <?= ThemeModel::getInstance()->fetchConfigValue('custom_section_content_1') ?>
         </div>
     </div>
 </section>
 <?php endif; ?>
 
 <!-- Personnalisé 2 -->
-<?php if(ThemeModel::fetchConfigValue('custom_section_active_2')): ?>
+<?php if(ThemeModel::getInstance()->fetchConfigValue('custom_section_active_2')): ?>
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('custom_section_title_2') ?></h2>
+            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_2') ?></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
     <div class="container my-8 mx-2 xl:mx-72 relative">
         <div class="px-4">
-            <?= ThemeModel::fetchConfigValue('custom_section_content_2') ?>
+            <?= ThemeModel::getInstance()->fetchConfigValue('custom_section_content_2') ?>
         </div>
     </div>
 </section>
 <?php endif; ?>
 
 <!-- Personnalisé 3 -->
-<?php if(ThemeModel::fetchConfigValue('custom_section_active_3')): ?>
+<?php if(ThemeModel::getInstance()->fetchConfigValue('custom_section_active_3')): ?>
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('custom_section_title_3') ?></h2>
+            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_3') ?></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
     <div class="container my-8 mx-2 xl:mx-72 relative">
         <div class="px-4">
-            <?= ThemeModel::fetchConfigValue('custom_section_content_3') ?>
+            <?= ThemeModel::getInstance()->fetchConfigValue('custom_section_content_3') ?>
         </div>
     </div>
 </section>
@@ -227,12 +227,12 @@ Website::setDescription(Website::getWebsiteDescription());
 
 <!-- Contact -->
 <?php if (PackageController::isInstalled("Contact")): ?>
-<?php if(ThemeModel::fetchConfigValue('contact_section_active')): ?>
+<?php if(ThemeModel::getInstance()->fetchConfigValue('contact_section_active')): ?>
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::fetchConfigValue('contact_section_title') ?></h2>
+            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('contact_section_title') ?></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>

@@ -2,21 +2,21 @@
 
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
-$newsList = $newsModel->getSomeNews(ThemeModel::fetchConfigValue('news_page_number_display'), 'DESC');
+$newsList = $newsModel->getSomeNews(ThemeModel::getInstance()->fetchConfigValue('news_page_number_display'), 'DESC');
 use CMW\Controller\Users\UsersController;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-Website::setTitle(ThemeModel::fetchConfigValue('news_title'));
-Website::setDescription(ThemeModel::fetchConfigValue('news_description'));
+Website::setTitle(ThemeModel::getInstance()->fetchConfigValue('news_title'));
+Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_description'));
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
-                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= ThemeModel::fetchConfigValue('news_page_title') ?></h1>
+                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= ThemeModel::getInstance()->fetchConfigValue('news_page_title') ?></h1>
             </div>
         </div>
     </div>
