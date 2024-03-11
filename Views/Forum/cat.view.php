@@ -1,7 +1,5 @@
 <?php
 
-use CMW\Controller\Users\UsersController;
-use CMW\Controller\Users\UsersSettingsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;

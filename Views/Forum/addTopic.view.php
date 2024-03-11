@@ -1,6 +1,6 @@
 <?php
 
-use CMW\Controller\Forum\ForumPermissionController;
+use CMW\Controller\Forum\Admin\ForumPermissionController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Security\SecurityManager;
@@ -136,6 +136,7 @@ Website::setDescription("Ajouter un sujet");
                 </div>
             </div>
 
+            <!--
             <div class="border-b p-2">
                 <div class="bg-red-500 rounded-lg p-3">
                     <p class="font-semibold mt-4 text-center">Sondage <small><i>Falcutatif</i></small></p>
@@ -228,6 +229,7 @@ Website::setDescription("Ajouter un sujet");
                 </div>
 
             </div>
+            -->
 
             <div class="text-center mt-2">
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center"><i class="fa-solid fa-pen-to-square"></i> Poster</button>
