@@ -66,7 +66,7 @@ Website::setDescription("Recherchez un sujet dans le forum");
                         <a class="flex flex-wrap hover:text-blue-800" href="<?= $result->getLink() ?>">
                             <div class="">
                                 <p><?php if ($result->getPrefixId()): ?><span class="px-2 text-white rounded-lg"
-                                                                              style="color: <?= $topic->getPrefixTextColor() ?>; background: <?= $topic->getPrefixColor() ?>"><?= $result->getPrefixName() ?></span> <?php endif; ?>
+                                                                              style="color: <?= $result->getPrefixTextColor() ?>; background: <?= $result->getPrefixColor() ?>"><?= $result->getPrefixName() ?></span> <?php endif; ?>
                                     <?= mb_strimwidth($result->getName(), 0, 65, '...') ?>
                                     <?= $result->isImportant() ? "
                             <i data-tooltip-target='tooltip-important' class='<?= $iconImportant ?> fa-sm text-orange-500'></i>

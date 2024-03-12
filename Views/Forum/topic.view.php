@@ -110,7 +110,7 @@ $i = 0;
 
 <?php if ($totalPage > "1"): ?>
 <div class="mx-auto">
-    <div class="flex">
+    <div class="flex justify-center">
         <?php if ($currentPage !== "1"): ?>
             <a href="p1"
                     class="mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
@@ -672,7 +672,7 @@ $i = 0;
 
         <?php if ($totalPage > "1"): ?>
             <div class="mx-auto mt-4">
-                <div class="flex">
+                <div class="flex justify-center">
                     <?php if ($currentPage !== "1"): ?>
                         <a href="p1"
                            class="mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
