@@ -2,6 +2,7 @@
 
 use CMW\Controller\Core\ThemeController;
 use CMW\Manager\Env\EnvManager;
+use CMW\Manager\Theme\ThemeManager;
 use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
@@ -207,4 +208,4 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
 <link rel="stylesheet" href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.css' ?>">
 <script src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.js' ?>"></script>
 <script src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'App/Package/Votes/Views/Resources/Js/VotesStatus.js' ?>"></script>
-<script src="<?= ThemeController::getCurrentTheme()->getPath() . 'Views/Votes/Resources/Js/VotesLogic.js' ?>"></script>
+<script src="<?= ThemeManager::getInstance()->getCurrentTheme()->name() . 'Views/Votes/Resources/Js/VotesLogic.js' ?>"></script>
