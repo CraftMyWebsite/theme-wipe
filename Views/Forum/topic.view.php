@@ -741,23 +741,24 @@ $i = 0;
         navigator.clipboard.writeText(url)
         iziToast.show(
             {
-                titleSize: '16',
-                messageSize: '14',
+                titleSize: '14',
+                messageSize: '12',
                 icon: 'fa-solid fa-check',
                 title: "Forum",
                 message: "Le liens vers cette réponse à été copié !",
-                color: "#41435F",
-                iconColor: '#22E445',
-                titleColor: '#22E445',
-                messageColor: '#fff',
+                color: "#20b23a",
+                iconColor: '#ffffff',
+                titleColor: '#ffffff',
+                messageColor: '#ffffff',
                 balloon: false,
-                close: false,
-                position: 'bottomRight',
-                timeout: 5000,
+                close: true,
+                pauseOnHover: true,
+                position: 'topCenter',
+                timeout: 4000,
                 animateInside: false,
-                progressBar: false,
-                transitionIn: 'fadeInLeft',
-                transitionOut: 'fadeOutRight',
+                progressBar: true,
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOut',
             });
     }
 </script>

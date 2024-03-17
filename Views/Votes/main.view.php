@@ -1,10 +1,12 @@
 <?php
 
 use CMW\Controller\Core\ThemeController;
+use CMW\Controller\Users\UsersController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Theme\ThemeManager;
 use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
+use CMW\Model\Votes\VotesConfigModel;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
@@ -34,7 +36,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             </div>
 
 
-            <?php if (UsersModel::getCurrentUser()?->getId() === -1): ?>
+            <?php if (!UsersController::isUserLogged()): ?>
     <!-- Si le joueur n'est pas connecté -->
             <div class="rounded-md shadow-lg p-2 mb-4">
                     <div class="text-center">Pour pouvoir voter et récupérer vos récompenses vous devez être connecté sur le site, alors n'attendez plus pour obtenir des récompenses uniques !</div>
@@ -67,7 +69,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
                 <div class="flex flex-no-wrap justify-center items-center py-4">
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                     <div class="px-10 w-auto">
-                        <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('votes_top_10_title') ?></h2>
+                        <h2 class="font-semibold text-2xl uppercase">Top <?= VotesConfigModel::getInstance()->getConfig()->getTopShow() ?> du mois</h2>
                     </div>
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 </div>
@@ -139,7 +141,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             <div class="flex flex-no-wrap justify-center items-center py-4">
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 <div class="px-10 w-auto">
-                    <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('votes_top_10_global_title') ?></h2>
+                    <h2 class="font-semibold text-2xl uppercase">Top <?= VotesConfigModel::getInstance()->getConfig()->getTopShow() ?> global</h2>
                 </div>
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
             </div>
