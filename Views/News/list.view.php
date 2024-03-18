@@ -46,6 +46,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
 
 
                             <div class="cursor-pointer">
+                                <?php if ($news->isLikesStatus()): ?>
                                 <span data-tooltip-target="<?php if ($news->getLikes()->userCanLike()) {echo "tooltip-liked";} else {echo "tooltip-like";} ?>">
                                 <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
                                     <?php if ($news->getLikes()->userCanLike()): ?>
@@ -63,6 +64,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
                                     <?php endif; ?>
                                 </span>
                                 </span>
+                                <?php endif; ?>
                             </div>
 
                         </div>

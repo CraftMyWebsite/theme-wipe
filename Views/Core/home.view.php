@@ -117,6 +117,7 @@ Website::setDescription(Website::getWebsiteDescription());
                         <div class="mt-6 flex justify-between">
                             <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" class="font-bold hover:text-blue-700 text-gray-900 text-sm">Lire la suite <i class="fa-solid fa-caret-right"></i></a>
                             <div class="cursor-pointer">
+            <?php if ($news->isLikesStatus()): ?>
                                 <span data-tooltip-target="<?php if ($news->getLikes()->userCanLike()) {echo "tooltip-liked";} else {echo "tooltip-like";} ?>">
                                 <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
                                     <?php if ($news->getLikes()->userCanLike()): ?>
@@ -134,6 +135,7 @@ Website::setDescription(Website::getWebsiteDescription());
                                     <?php endif; ?>
                                 </span>
                                 </span>
+            <?php endif; ?>
                             </div>
                         </div>
                     </div>

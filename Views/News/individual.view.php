@@ -37,6 +37,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
                 </div>
                 <div class="text-center mt-2">
                     <div class="cursor-pointer">
+                        <?php if ($news->isLikesStatus()): ?>
                         <span data-tooltip-target="<?php if ($news->getLikes()->userCanLike()) {echo "tooltip-liked";} else {echo "tooltip-like";} ?>">
                         <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
                         <?php if ($news->getLikes()->userCanLike()): ?>
@@ -54,6 +55,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
                         <?php endif; ?>
                         </span>
                         </span>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="text-center">
@@ -66,6 +68,8 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
             </div>
         </div>
     </div>
+
+    <?php if ($news->isCommentsStatus()): ?>
     <div class="flex flex-no-wrap justify-center items-center pt-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
@@ -130,3 +134,4 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
         </form>
     </div>
 </div>
+<?php endif; ?>
