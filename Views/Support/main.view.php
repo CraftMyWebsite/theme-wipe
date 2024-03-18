@@ -49,7 +49,6 @@ Website::setDescription("Consultez les réponses de nos experts.");
                           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                           placeholder="Impossible de ..."></textarea>
             </div>
-                    <?php SecurityController::getPublicData(); ?>
             <div class="flex flex-wrap justify-between items-center">
                 <?php if (!$config->visibilityIsDefinedByCustomer()): ?>
                 <div class="flex items-start">
