@@ -68,7 +68,7 @@ Website::setDescription("Méthode de paiement");
                                         <label>
                                             <input name="paymentName" id="paymentName" type="radio"
                                                    value="<?= $paymentMethod->name() ?>" required>
-                                            <?= $paymentMethod->name() ?>
+                                            <?= $paymentMethod->faIcon("fa-xl text-blue-600") ?> <?= $paymentMethod->name() ?>
                                         </label>
                                     </div>
                                     <div>
