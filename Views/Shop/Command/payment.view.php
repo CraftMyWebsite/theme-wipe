@@ -35,7 +35,7 @@ Website::setDescription("Méthode de paiement");
                     <div class="flex flex-no-wrap justify-center items-center py-4">
                         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                         <div class="px-10 w-auto">
-                            <h2 class="font-semibold text-2xl uppercase">Adresse de livraison</h2>
+                            <h2 class="font-semibold text-2xl uppercase">Adresse de livraison / facturation</h2>
                         </div>
                         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                     </div>
@@ -129,11 +129,13 @@ Website::setDescription("Méthode de paiement");
                         </div>
                     </div>
                 <?php endforeach; ?>
+                <?php if (!is_null($shippingMethod)): ?>
                 <h4 class="text-center mt-4">Livraison</h4>
                 <div class="flex flex-wrap justify-between">
                     <span><?= $shippingMethod->getName() ?></span>
                     <span><b><?= $shippingMethod->getPrice() ?> €</b></span>
                 </div>
+                <?php endif; ?>
                 <h4 class="text-center mt-4">Total</h4>
                 <h4 class="text-center font-bold"><?= $cart->getTotalPriceComplete() ?> €</h4>
             </div>
