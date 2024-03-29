@@ -43,7 +43,17 @@ Website::setDescription("Consultation de vos achats");
                         <div class="font-medium">Commandé le : <span style="color: #5a8cde"><?= $order->getOrderCreated() ?></span></div>
                     </div>
                     <div class="flex flex-wrap justify-between items-center mb-2">
-                        <div >Statut : <b><?= $order->getPublicStatus() ?></b></div>
+                        <div >
+                            <p>Statut : <b><?= $order->getPublicStatus() ?></b></p>
+                            <?php if ($order->getShippingMethod()): ?>
+                            <p>Éxpédition : <?= $order->getShippingMethod()->getName() ?> (<?= $order->getShippingMethod()->getPrice() ?>€)</p>
+                            <?php endif; ?>
+                            <p>Total : <b>
+                                    <?php $total = 0; $shippingFee = $order->getShippingMethod()?->getPrice(); foreach ($OrderItemsModel->getOrdersItemsByOrderId($order->getOrderId()) as $orderItem) {
+                                        $total += $orderItem->getOrderItemPriceAfterDiscount();
+                                    } $total += $shippingFee; echo $total."€"; ?>
+                                </b> payé avec <?= $order->getPaymentName() ?></p>
+                        </div>
                         <?php if (!empty($order->getShippingLink()) && $order->getStatusCode() === 2): ?>
                             <a href="<?= $order->getShippingLink() ?>" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5">Suivre le colis</a>
                         <?php endif; ?>
@@ -71,16 +81,19 @@ Website::setDescription("Consultation de vos achats");
                                 <?php foreach ($variantItemsModel->getShopItemVariantValueByOrderItemId($orderItem->getOrderItemId()) as $variant): ?>
                                     <p><?= $variant->getVariantValue()->getVariant()->getName() ?> : <?= $variant->getVariantValue()->getValue() ?></p>
                                 <?php endforeach; ?>
-                                <p>Prix : <b><?= $orderItem->getOrderItemPrice() ?>€</b> | Quantité : <?= $orderItem->getOrderItemQuantity() ?></p>
+                                <?php if ($orderItem->getDiscount()): ?>
+                                    <p>Réduction appliquée : <b><?= $orderItem->getDiscount()->getName() ?></b> (-<?=  is_null($orderItem->getDiscount()->getPrice()) ? $orderItem->getDiscount()->getPercentage() . '%' : $orderItem->getDiscount()->getPrice() . '€' ?>)</p>
+                                    <p>Prix : <s><?= $orderItem->getOrderItemPrice() ?></s> <b><?= $orderItem->getOrderItemPriceAfterDiscount() ?>€</b> | Quantité : <?= $orderItem->getOrderItemQuantity() ?></p>
+                                <?php else: ?>
+                                    <p>Prix : <b> <?= $orderItem->getOrderItemPrice() ?>€</b> | Quantité : <?= $orderItem->getOrderItemQuantity() ?></p>
+                                <?php endif; ?>
 
                             </div>
                         </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
-
         </div>
         <?php endforeach; ?>
-
     </div>
 </section>
