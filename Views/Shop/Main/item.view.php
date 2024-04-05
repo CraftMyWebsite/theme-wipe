@@ -1,5 +1,6 @@
 <?php
 
+use CMW\Controller\Users\UsersController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
@@ -12,6 +13,7 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Shop\Item\ShopItemVariantValueModel $variantValuesModel */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Entity\Shop\Items\ShopItemPhysicalRequirementEntity $physicalInfo */
+/* @var CMW\Model\Shop\Review\ShopReviewsModel $review */
 
 Website::setTitle("Boutique - Article");
 Website::setDescription("Venez découvrir l'article !");
@@ -107,14 +109,9 @@ Website::setDescription("Venez découvrir l'article !");
                 <h2 class="font-medium"><?= $item->getName() ?></h2>
 
                 <div class="flex items-center">
-                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">4.00</p>
-                    <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-                    <p class="text-sm font-medium text-gray-900 underline">73 avis</p>
+                    <?= $review->getStars($item->getId()) ?>
+                    <span class="mx-1 "></span>
+                    <p class="text-sm font-medium text-gray-900 underline"><?= $review->countTotalRatingByItemId($item->getId()) ?> avis</p>
                 </div>
 
 
@@ -180,74 +177,60 @@ Website::setDescription("Venez découvrir l'article !");
             <div class="hidden p-4 bg-gray-50 rounded-lg" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                 <div class="xl:grid grid-cols-3">
                     <div>
-                        <div class="flex items-center mb-3">
-                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <p class="ml-2 text-sm font-medium text-gray-900 dark:text-white">4 sur 5</p>
+                        <div class="flex items-center">
+                            <?= $review->getStars($item->getId()) ?>
+                            <span class="mx-1 "></span>
+                            <p class="ml-2 text-sm font-medium text-gray-900 dark:text-white"><?= $review->getAverageRatingByItemId($item->getId()) ?> sur 5</p>
                         </div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">1,745 global ratings</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400"><?= $review->countTotalRatingByItemId($item->getId()) ?> avis</p>
+                        <?php foreach ($review->getRatingsPercentageByItemId($item->getId()) as $rating): ?>
                         <div class="flex items-center mt-4">
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">5 star</span>
+                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?=$rating->getRating()?> étoiles</span>
                             <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div class="h-5 bg-yellow-400 rounded" style="width: 70%"></div>
+                                <div class="h-5 rounded" style="background-color: #FFD700; width: <?=$rating->getPercentage()?>%"></div>
                             </div>
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">70%</span>
+                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?=$rating->getPercentage()?>%</span>
                         </div>
-                        <div class="flex items-center mt-4">
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">4 star</span>
-                            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div class="h-5 bg-yellow-400 rounded" style="width: 17%"></div>
-                            </div>
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">17%</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">3 star</span>
-                            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div class="h-5 bg-yellow-400 rounded" style="width: 8%"></div>
-                            </div>
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">8%</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">2 star</span>
-                            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div class="h-5 bg-yellow-400 rounded" style="width: 4%"></div>
-                            </div>
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">4%</span>
-                        </div>
-                        <div class="flex items-center mt-4">
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">1 star</span>
-                            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div class="h-5 bg-yellow-400 rounded" style="width: 1%"></div>
-                            </div>
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500">1%</span>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                     <div class="col-span-2">
 
-                        <article class="rounded-lg bg-white  p-4">
+                        <?php foreach ($review->getShopReviewByItemId($item->getId()) as $reviewed): ?>
+                        <article class="rounded-lg bg-white p-4 mb-4">
                             <div class="flex items-center mb-4 space-x-4">
-                                <img class="w-10 h-10 rounded-full" src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/d8/d8f0e864d7bf1978a729af9bda8199d006fd1114_full.jpg" alt="">
+                                <img class="w-10 h-10 rounded-full" src="<?= $reviewed->getUser()->getUserPicture()->getImage() ?>" alt="">
                                 <div class="space-y-1 font-medium dark:text-white">
-                                    <p>Jese Leos <time datetime="2014-08-16 19:00" class="block text-sm text-gray-500 dark:text-gray-400">Joined on August 2014</time></p>
+                                    <p><?= $reviewed->getUser()->getPseudo() ?> <span class="block text-sm text-gray-500"><?= $reviewed->getCreated() ?></span></p>
                                 </div>
                             </div>
                             <div class="flex items-center mb-1">
-                                <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                <h3 class="ml-2 text-sm font-semibold text-gray-900 dark:text-white">Thinking to buy another one!</h3>
+                                <?= $reviewed->getStarsReview() ?>
+                                <h3 class="ml-2 text-sm font-semibold text-gray-900"><?= $reviewed->getReviewRating() ?> sur 5</h3>
                             </div>
-                            <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400"><p>Reviewed in the United Kingdom on <time datetime="2017-03-03 19:00">March 3, 2017</time></p></footer>
-                            <p class="mb-2 font-light text-gray-500 dark:text-gray-400">This is my third Invicta Pro Diver. They are just fantastic value for money. This one arrived yesterday and the first thing I did was set the time, popped on an identical strap from another Invicta and went in the shower with it to test the waterproofing.... No problems.</p>
-                            <p class="mb-3 font-light text-gray-500 dark:text-gray-400">It is obviously not the same build quality as those very expensive watches. But that is like comparing a Citroën to a Ferrari. This watch was well under £100! An absolute bargain.</p>
-                            <a href="#" class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Signaler</a>
+                            <h3 class="text-sm font-semibold text-gray-900"><?= $reviewed->getReviewTitle() ?></h3>
+                            <p class="mb-2 font-light text-gray-500"><?= $reviewed->getReviewText() ?></p>
                         </article>
+                        <?php endforeach; ?>
 
+                        <div class="rounded-lg bg-white p-4 mb-4">
+                            <form method="post" action="<?=$item->getSlug()?>/addReview" class="">
+                                <?php (new SecurityManager())->insertHiddenToken() ?>
+                                <h3 class="text-base font-semibold text-gray-900 mb-2">Donner votre avis.</h3>
+                                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Note</label>
+                                <?= $review->getInputStars() ?>
+                                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Titre</label>
+                                <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" required>
+                                <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Contenue :</label>
+                                <textarea minlength="20" name="content" id="content" rows="4" class="tinymce block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Bonjour," required></textarea>
+                                <div class="text-center mt-4">
+                                    <?php if(UsersController::isUserLogged()): ?>
+                                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Envoyer <i class="fa-solid fa-paper-plane"></i></button>
+                                    <?php else: ?>
+                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Connectez-vous <i class="fa-solid fa-paper-plane"></i></a>
+                                    <?php endif; ?>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
