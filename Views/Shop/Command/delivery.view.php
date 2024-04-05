@@ -66,7 +66,7 @@ Website::setDescription("Méthode de livraison");
                                     </label>
                                 </div>
                                 <div>
-                                    <b><?= $shipping->getPrice() ?> €</b>
+                                    <b><?= $shipping->getPriceFormatted() ?></b>
                                 </div>
                             </div>
                         </div>
@@ -111,15 +111,24 @@ Website::setDescription("Méthode de livraison");
                         </div>
                         <div>
                             <?php if ($cart->getDiscount()): ?>
-                                <s><?= $cart->getItemTotalPrice() ?>€</s> <span class="font-semibold"><?= $cart->getItemTotalPriceAfterDiscount() ?>€</span>
+                                <s><?= $cart->getItemTotalPriceFormatted() ?></s> <span class="font-semibold"><?= $cart->getItemTotalPriceAfterDiscountFormatted() ?></span>
                             <?php else: ?>
-                                <span class="font-semibold"><?= $cart->getItemTotalPrice() ?>€</span>
+                                <span class="font-semibold"><?= $cart->getItemTotalPriceFormatted() ?></span>
                             <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
+                <?php if (!empty($giftCodes)): ?>
+                    <h4 class="text-center mt-4">Carte cadeau :</h4>
+                    <?php foreach ($giftCodes as $giftCode): ?>
+                        <div class="flex flex-wrap justify-between">
+                            <span><?= $giftCode->getCode() ?></span>
+                            <span><b>-<?= $giftCode->getPriceFormatted() ?></b></span>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
                 <h4 class="text-center mt-4">Total</h4>
-                <h4 class="text-center font-bold"><?= $cart->getTotalCartPriceAfterDiscount() ?> €</h4>
+                <h4 class="text-center font-bold"><?= $cart->getTotalCartPriceAfterDiscountFormatted() ?></h4>
             </div>
         </div>
     </div>

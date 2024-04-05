@@ -88,16 +88,16 @@ Website::setDescription("Votre panier");
                                     </div>
                                 </td>
                                 <td class="py-4 px-6 text-gray-900">
-                                    <?= $cart->getItem()->getPrice() ?>€
+                                    <?= $cart->getItem()->getPriceFormatted() ?>
                                 </td>
                                 <td class="font-semibold py-4 px-6 text-gray-900">
                                     <?= $cart->getDiscountFormatted() ?> <?= $cart->getItem()->getDiscountImpactDefaultApplied() ?>
                                 </td>
                                 <td class="text-black py-4 px-6">
                                     <?php if ($cart->getDiscount()): ?>
-                                        <s><?= $cart->getItemTotalPrice() ?>€</s> <span class="font-semibold"><?= $cart->getItemTotalPriceAfterDiscount() ?>€</span>
+                                        <s><?= $cart->getItemTotalPriceFormatted() ?></s> <span class="font-semibold"><?= $cart->getItemTotalPriceAfterDiscountFormatted() ?></span>
                                     <?php else: ?>
-                                        <span class="font-semibold"><?= $cart->getItemTotalPrice() ?>€</span>
+                                        <span class="font-semibold"><?= $cart->getItemTotalPriceFormatted() ?></span>
                                     <?php endif; ?>
                                 </td>
                                 <td>
@@ -140,7 +140,7 @@ Website::setDescription("Votre panier");
                     </div>
                     <div class="text-center">
                         <p class="py-2 border-b">
-                            <?= isset($cart) ? $cart->getTotalCartPriceBeforeDiscount() : 0 ?> €
+                            <?= isset($cart) ? $cart->getTotalCartPriceBeforeDiscountFormatted() : 0 ?>
                         </p>
                     </div>
                 </div>
@@ -166,7 +166,7 @@ Website::setDescription("Votre panier");
                     </div>
                     <div class="text-center">
                         <p class="py-2 font-medium">
-                            <?= isset($cart) ? $cart->getTotalCartPriceAfterDiscount() : 0 ?> €
+                            <?= isset($cart) ? $cart->getTotalCartPriceAfterDiscountFormatted() : 0 ?>
                         </p>
                     </div>
                 </div>
@@ -221,7 +221,7 @@ Website::setDescription("Votre panier");
                                     <?= $asideCart->getItem()->getCurrentStock() ?>
                                 </td>
                                 <td class="py-4 px-6 text-gray-900">
-                                    <?= $asideCart->getItem()->getPrice() ?>€
+                                    <?= $asideCart->getItem()->getPriceFormatted() ?>
                                 </td>
                                 <td>
                                     <a href="<?= $asideCart->getItem()->getAddToCartLink() ?>" class="mr-4 font-medium text-blue-700">

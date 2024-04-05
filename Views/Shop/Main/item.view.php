@@ -119,9 +119,9 @@ Website::setDescription("Venez découvrir l'article !");
 
 
                 <?php if ($item->getPriceDiscountDefaultApplied()): ?>
-                    <h3><s class="text-xl"><?= $item->getPrice() ?>€</s> <?= $item->getPriceDiscountDefaultApplied() ?>€</h3>
+                    <h3><s class="text-xl"><?= $item->getPriceFormatted() ?></s> <?= $item->getPriceDiscountDefaultAppliedFormatted() ?></h3>
                 <?php else: ?>
-                    <h3><?= $item->getPrice() ?>€</h3>
+                    <h3><?= $item->getPriceFormatted() ?></h3>
                 <?php endif; ?>
                 <p><?= $item->getShortDescription() ?></p>
 

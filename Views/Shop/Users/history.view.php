@@ -3,9 +3,7 @@
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\Orders\ShopOrdersEntity[] $historyOrders */
-/* @var CMW\Model\Shop\Order\ShopOrdersItemsModel $OrderItemsModel */
-/* @var CMW\Model\Shop\Order\ShopOrdersItemsVariantesModel $variantItemsModel */
+/* @var CMW\Entity\Shop\HistoryOrders\ShopHistoryOrdersEntity[] $historyOrders */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Historique d'achat");
@@ -39,20 +37,19 @@ Website::setDescription("Consultation de vos achats");
         <div class="container mx-auto rounded-md shadow-lg p-8 mb-4">
                 <div class="py-2">
                     <div class="flex flex-wrap justify-between mb-4">
-                        <h4 class="font-medium">N°<?= $order->getNumber() ?></h4>
-                        <div class="font-medium">Commandé le : <span style="color: #5a8cde"><?= $order->getOrderCreated() ?></span></div>
+                        <h4 class="font-medium">N°<?= $order->getOrderNumber() ?></h4>
+                        <div class="font-medium">Commandé le : <span style="color: #5a8cde"><?= $order->getCreated() ?></span></div>
                     </div>
                     <div class="flex flex-wrap justify-between items-center mb-2">
                         <div >
                             <p>Statut : <b><?= $order->getPublicStatus() ?></b></p>
                             <?php if ($order->getShippingMethod()): ?>
-                            <p>Éxpédition : <?= $order->getShippingMethod()->getName() ?> (<?= $order->getShippingMethod()->getPrice() ?>€)</p>
+                                <p>Éxpédition : <?= $order->getShippingMethod()->getName() ?> (<?= $order->getShippingMethod()->getPriceFormatted() ?>)</p>
                             <?php endif; ?>
-                            <p>Total : <b>
-                                    <?php $total = 0; $shippingFee = $order->getShippingMethod()?->getPrice(); foreach ($OrderItemsModel->getOrdersItemsByOrderId($order->getOrderId()) as $orderItem) {
-                                        $total += $orderItem->getOrderItemPriceAfterDiscount();
-                                    } $total += $shippingFee; echo $total."€"; ?>
-                                </b> payé avec <?= $order->getPaymentName() ?></p>
+                            <p>Total : <b><?= $order->getOrderTotalFormatted() ?></b> payé avec <?= $order->getPaymentMethod()->getName() ?> (<?= $order->getPaymentMethod()->getFeeFormatted() ?>)</p>
+                            <?php if ($order->getAppliedCartDiscount()): ?>
+                                    <p>Réduction appliquée : <b>-<?= $order->getAppliedCartDiscountTotalPriceFormatted() ?></b></p>
+                            <?php endif; ?>
                         </div>
                         <?php if (!empty($order->getShippingLink()) && $order->getStatusCode() === 2): ?>
                             <a href="<?= $order->getShippingLink() ?>" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5">Suivre le colis</a>
@@ -60,12 +57,12 @@ Website::setDescription("Consultation de vos achats");
                     </div>
                     <h4 class="py-2 border-t">Vos articles :</h4>
                     <div>
-                        <?php foreach ($OrderItemsModel->getOrdersItemsByOrderId($order->getOrderId()) as $orderItem): ?>
+                        <?php foreach ($order->getOrderedItems() as $orderItem): ?>
                         <div class="flex flex-wrap border p-4 gap-4">
 
                                 <div style="width: 20%">
-                                    <?php if ($orderItem->getFirstImageItemUrl() !== "/Public/Uploads/Shop/0"): ?>
-                                        <img class="mx-auto" style="width: 8rem; height: 8rem; object-fit: cover" src="<?= $orderItem->getFirstImageItemUrl() ?>" alt="Image de l'article">
+                                    <?php if ($orderItem->getFirstImg() !== "/Public/Uploads/Shop/0"): ?>
+                                        <img class="mx-auto" style="width: 8rem; height: 8rem; object-fit: cover" src="<?= $orderItem->getFirstImg() ?>" alt="Image de l'article">
                                     <?php else: ?>
                                         <img class="mx-auto" style="width: 8rem; height: 8rem; object-fit: cover" src="<?= $defaultImage ?>" alt="Image de l'article">
                                     <?php endif; ?>
@@ -73,19 +70,19 @@ Website::setDescription("Consultation de vos achats");
 
                             <div style="width: 78%;">
                                 <div class="flex flex-wrap justify-between items-center">
-                                    <p class="font-bold"><?= $orderItem->getItem()->getName() ?></p>
-                                    <div><a href="<?= $orderItem->getItem()->getItemLink() ?>" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1 ">Acheter à nouveau</a></div>
+                                    <p class="font-bold"><?= $orderItem->getName() ?></p>
+                                    <div><a href="<?= $orderItem->getItem()?->getItemLink() ?>" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1 ">Acheter à nouveau</a></div>
                                 </div>
 
                                 <br>
-                                <?php foreach ($variantItemsModel->getShopItemVariantValueByOrderItemId($orderItem->getOrderItemId()) as $variant): ?>
-                                    <p><?= $variant->getVariantValue()->getVariant()->getName() ?> : <?= $variant->getVariantValue()->getValue() ?></p>
+                                <?php foreach ($order->getOrderedItemsVariantes($orderItem->getId()) as $variant): ?>
+                                    <p><?= $variant->getName() ?> : <?= $variant->getValue() ?></p>
                                 <?php endforeach; ?>
-                                <?php if ($orderItem->getDiscount()): ?>
-                                    <p>Réduction appliquée : <b><?= $orderItem->getDiscount()->getName() ?></b> (-<?=  is_null($orderItem->getDiscount()->getPrice()) ? $orderItem->getDiscount()->getPercentage() . '%' : $orderItem->getDiscount()->getPrice() . '€' ?>)</p>
-                                    <p>Prix : <s><?= $orderItem->getOrderItemPrice() ?></s> <b><?= $orderItem->getOrderItemPriceAfterDiscount() ?>€</b> | Quantité : <?= $orderItem->getOrderItemQuantity() ?></p>
+                                <?php if ($orderItem->getDiscountName()): ?>
+                                    <p>Réduction appliquée : <b><?= $orderItem->getDiscountName() ?></b> (-<?= $orderItem->getPriceDiscountImpactFormatted() ?>)</p>
+                                    <p>Prix : <s><?= $orderItem->getTotalPriceBeforeDiscountFormatted() ?></s> <b><?= $orderItem->getTotalPriceAfterDiscountFormatted() ?></b> | Quantité : <?= $orderItem->getQuantity() ?></p>
                                 <?php else: ?>
-                                    <p>Prix : <b> <?= $orderItem->getOrderItemPrice() ?>€</b> | Quantité : <?= $orderItem->getOrderItemQuantity() ?></p>
+                                    <p>Prix : <b> <?= $orderItem->getTotalPriceBeforeDiscountFormatted() ?></b> | Quantité : <?= $orderItem->getQuantity() ?></p>
                                 <?php endif; ?>
 
                             </div>

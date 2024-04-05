@@ -146,9 +146,9 @@ Website::setDescription("Découvrez la boutique !");
                         </div>
                         <div class="grid grid-cols-2 border rounded-b py-2">
                             <?php if ($item->getPriceDiscountDefaultApplied()): ?>
-                                <p class="text-center"><s><?= $item->getPrice() ?>€</s> <b class="text-xl"><?= $item->getPriceDiscountDefaultApplied() ?></b>€</p>
+                                <p class="text-center"><s><?= $item->getPriceFormatted() ?></s> <b class="text-xl"><?= $item->getPriceDiscountDefaultAppliedFormatted() ?></b></p>
                             <?php else: ?>
-                                <p class="text-center text-xl"><?= $item->getPrice() ?>€</p>
+                                <p class="text-center text-xl"><?= $item->getPriceFormatted() ?></p>
                             <?php endif; ?>
 
                             <a href="<?= $item->getAddToCartLink() ?>" class="border-l text-center text-2xl hover:text-blue-600"><i
