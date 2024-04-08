@@ -9,6 +9,7 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\Categories\ShopCategoryEntity $thisCat */
 /* @var CMW\Model\Shop\Image\ShopImagesModel $imagesItem */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
+/* @var \CMW\Model\Shop\Setting\ShopSettingsModel $allowReviews */
 
 Website::setTitle("Boutique - Catégorie : ". $thisCat->getName());
 Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat->getName());
@@ -131,11 +132,13 @@ Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat-
                                      src="<?= $defaultImage ?>">
                             <?php endif; ?>
                             <a href="<?= $item->getItemLink() ?>"><h4 class="text-center"><?= $item->getName() ?></h4>
+                                <?php if ($allowReviews): ?>
                                 <div class="flex justify-center items-center">
                                     <?= $review->getStars($item->getId()) ?>
                                     <span class="mx-1 "></span>
                                     <p class="text-sm font-medium text-gray-900 underline"><?= $review->countTotalRatingByItemId($item->getId()) ?> avis</p>
                                 </div>
+                                <?php endif; ?>
 
                                 <p><?= $item->getShortDescription() ?></p>
                                 <p class="text-xs text-center hover:text-blue-600">Lire la suite</p></a>

@@ -6,7 +6,6 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\Items\ShopItemEntity[] $otherItemsInThisCat */
 /* @var CMW\Entity\Shop\Categories\ShopCategoryEntity $parentCat */
 /* @var CMW\Entity\Shop\Items\ShopItemEntity $item */
 /* @var CMW\Entity\Shop\Items\ShopItemVariantEntity[] $itemVariants */
@@ -14,6 +13,7 @@ use CMW\Utils\Website;
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Entity\Shop\Items\ShopItemPhysicalRequirementEntity $physicalInfo */
 /* @var CMW\Model\Shop\Review\ShopReviewsModel $review */
+/* @var \CMW\Model\Shop\Setting\ShopSettingsModel $allowReviews */
 
 Website::setTitle("Boutique - Article");
 Website::setDescription("Venez découvrir l'article !");
@@ -108,11 +108,13 @@ Website::setDescription("Venez découvrir l'article !");
             <div class="col-span-4 h-fit">
                 <h2 class="font-medium"><?= $item->getName() ?></h2>
 
+                <?php if ($allowReviews): ?>
                 <div class="flex items-center">
                     <?= $review->getStars($item->getId()) ?>
                     <span class="mx-1 "></span>
                     <p class="text-sm font-medium text-gray-900 underline"><?= $review->countTotalRatingByItemId($item->getId()) ?> avis</p>
                 </div>
+                <?php endif; ?>
 
 
                 <?php if ($item->getPriceDiscountDefaultApplied()): ?>
@@ -163,9 +165,11 @@ Website::setDescription("Venez découvrir l'article !");
                     <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="info-tab" data-tabs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="false">Informations sur le produit</button>
                 </li>
                 <?php endif; ?>
+                <?php if ($allowReviews): ?>
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="reviews-tab" data-tabs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Avis</button>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
         <div id="myTabContent">
@@ -174,6 +178,7 @@ Website::setDescription("Venez découvrir l'article !");
                     <?= $item->getDescription() ?>
                 </p>
             </div>
+            <?php if ($allowReviews): ?>
             <div class="hidden p-4 bg-gray-50 rounded-lg" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                 <div class="xl:grid grid-cols-3">
                     <div>
@@ -234,6 +239,7 @@ Website::setDescription("Venez découvrir l'article !");
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
             <?php if (!empty($physicalInfo)): ?>
             <div class="hidden p-4 bg-gray-50 rounded-lg" id="info" role="tabpanel" aria-labelledby="info-tab">
                 <p>
