@@ -62,13 +62,14 @@ Website::setDescription("Méthode de paiement");
                             </div>
                             <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                         </div>
+                        <?php if (!empty($paymentMethods)): ?>
                         <?php foreach ($paymentMethods as $paymentMethod): ?>
                             <div class="bg-gray-100 rounded-lg p-3 mb-2">
                                 <div class="flex flex-wrap justify-between">
                                     <div>
                                         <label>
                                             <input name="paymentName" id="paymentName" type="radio"
-                                                   value="<?= $paymentMethod->name() ?>" required>
+                                                   value="<?= $paymentMethod->varName() ?>" required>
                                             <?= $paymentMethod->faIcon("fa-xl text-blue-600") ?> <?= $paymentMethod->name() ?>
                                         </label>
                                     </div>
@@ -78,6 +79,9 @@ Website::setDescription("Méthode de paiement");
                                 </div>
                             </div>
                         <?php endforeach; ?>
+                        <?php else: ?>
+                        <p>Ce moyen de paiement est pour le moment désactiver.</p>
+                        <?php endif; ?>
                     </div>
                 </form>
                 <div class="flex justify-between mt-4">
