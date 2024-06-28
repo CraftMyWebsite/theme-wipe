@@ -14,6 +14,10 @@ use CMW\Utils\Website;
 /* @var CMW\Controller\Forum\ForumSettingsController $iconImportant */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconPin */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconClosed */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconNotReadColor */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconImportantColor */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconPinColor */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconClosedColor */
 
 Website::setTitle("Forum");
 Website::setDescription("Ajouter un sujet");
@@ -82,19 +86,19 @@ Website::setDescription("Ajouter un sujet");
                                 <div class="flex items-center h-5">
                                     <input name="important" value="1" id="important" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" >
                                 </div>
-                                <label for="important" class="ml-2 text-sm font-medium text-gray-900"><i class="<?= $iconImportant ?> text-orange-500 fa-sm"></i> Important</label>
+                                <label for="important" class="ml-2 text-sm font-medium text-gray-900"><i style='color: <?= $iconImportantColor?>' class="<?= $iconImportant ?> fa-sm"></i> Important</label>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
                                     <input name="pin" id="pin" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" >
                                 </div>
-                                <label for="pin" class="ml-2 text-sm font-medium text-gray-900"><i class="<?= $iconPin ?> text-red-600 fa-sm"></i> Épingler</label>
+                                <label for="pin" class="ml-2 text-sm font-medium text-gray-900"><i style='color: <?= $iconPinColor?>' class="<?= $iconPin ?> fa-sm"></i> Épingler</label>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
                                     <input name="disallow_replies" value="1" id="closed" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" >
                                 </div>
-                                <label for="closed" class="ml-2 text-sm font-medium text-gray-900"><i class="<?= $iconClosed ?> text-yellow-300 fa-sm"></i> Fermer</label>
+                                <label for="closed" class="ml-2 text-sm font-medium text-gray-900"><i style='color: <?= $iconClosedColor?>' class="<?= $iconClosed ?> fa-sm"></i> Fermer</label>
                             </div>
                         </div>
                     </div>

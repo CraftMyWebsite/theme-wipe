@@ -22,6 +22,11 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Forum\ForumFeedbackModel $feedbackModel */
 /* @var CMW\Entity\Forum\ForumTopicEntity $topic */
 /* @var CMW\Entity\Forum\ForumResponseEntity[] $responses */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconNotReadColor */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconImportantColor */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconPinColor */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconClosedColor */
+
 Website::setTitle("Forum");
 Website::setDescription("Lisez les sujets et les réponses de la communauté");
 $i = 0;
@@ -142,22 +147,22 @@ $i = 0;
                 </h4>
                 <div class="">
                     <?php if ($topic->isImportant()): ?>
-                        <i data-tooltip-target="tooltip-important"
-                           class="<?= $iconImportant ?> text-orange-500 ml-4"></i>
+                        <i style='color: <?= $iconImportantColor?>' data-tooltip-target="tooltip-important"
+                           class="<?= $iconImportant ?> ml-4"></i>
                         <div id="tooltip-important" role="tooltip"
                              class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Important
                         </div>
                     <?php endif; ?>
                     <?php if ($topic->isPinned()): ?>
-                        <i data-tooltip-target="tooltip-pined" class="<?= $iconPin ?> text-red-600 ml-4"></i>
+                        <i style='color: <?= $iconPinColor?>' data-tooltip-target="tooltip-pined" class="<?= $iconPin ?> ml-4"></i>
                         <div id="tooltip-pined" role="tooltip"
                              class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Épinglé
                         </div>
                     <?php endif; ?>
                     <?php if ($topic->isDisallowReplies()): ?>
-                        <i data-tooltip-target="tooltip-closed" class="<?= $iconClosed ?> text-yellow-300 ml-4"></i>
+                        <i style='color: <?= $iconClosedColor?>' data-tooltip-target="tooltip-closed" class="<?= $iconClosed ?> ml-4"></i>
                         <div id="tooltip-closed" role="tooltip"
                              class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Fermé

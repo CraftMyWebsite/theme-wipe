@@ -20,6 +20,10 @@ use CMW\Utils\Website;
 /* @var CMW\Controller\Forum\Admin\ForumSettingsController $iconImportant */
 /* @var CMW\Controller\Forum\Admin\ForumSettingsController $iconPin */
 /* @var CMW\Controller\Forum\Admin\ForumSettingsController $iconClosed */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconNotReadColor */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconImportantColor */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconPinColor */
+/* @var CMW\Controller\Forum\ForumSettingsController $iconClosedColor */
 
 Website::setTitle("Forum");
 Website::setDescription("Consultez les sujets de discussion et répondez aux questions posées par les membres de votre communauté.");
@@ -212,19 +216,19 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                             </div>
                             <div class="absolute top-0 right-0">
                                 <?= $topic->isImportant() ? "
-                            <i data-tooltip-target='tooltip-important' class='<?= $iconImportant ?> fa-sm text-orange-500'></i>
+                            <i data-tooltip-target='tooltip-important' style='color: $iconImportantColor' class='<?= $iconImportant ?> fa-sm'></i>
                             <div id='tooltip-important' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
                                 Important
                             </div>
                             " : "" ?>
                                 <?= $topic->isPinned() ? "
-                            <i data-tooltip-target='tooltip-pined' class='<?= $iconPin ?> fa-sm text-red-600 ml-2'></i>
+                            <i data-tooltip-target='tooltip-pined' style='color: $iconPinColor' class='<?= $iconPin ?> fa-sm ml-2'></i>
                             <div id='tooltip-pined' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
                                 Épinglé
                             </div>
                              " : "" ?>
                                 <?= $topic->isDisallowReplies() ? "
-                            <i data-tooltip-target='tooltip-closed' class='<?= $iconClosed ?> fa-sm text-yellow-300 ml-2'></i>
+                            <i data-tooltip-target='tooltip-closed' style='color: $iconClosedColor' class='<?= $iconClosed ?> fa-sm ml-2'></i>
                             <div id='tooltip-closed' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
                                 Fermé
                             </div>
