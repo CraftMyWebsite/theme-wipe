@@ -79,9 +79,9 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('wiki_descri
                 </div>
                 <div class="mb-4"><?= $firstArticle->getContent() ?></div>
                 <div class="flex flex-wrap justify-between border-t">
-                    <?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_creation_date')): ?><div class="mt-1">Crée le : <?= $article->getDateCreate() ?></div><?php endif; ?>
+                    <?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_creation_date')): ?><div class="mt-1">Crée le : <?= $firstArticle->getDateCreate() ?></div><?php endif; ?>
                     <?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_autor')): ?><div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs mt-1"><?= $firstArticle->getAuthor()->getPseudo() ?></div><?php endif; ?>
-                    <?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_edit_date')): ?><div class="mt-1">Modifié le : <?= $article->getDateUpdate() ?></div><?php endif; ?>
+                    <?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_edit_date')): ?><div class="mt-1">Modifié le : <?= $firstArticle->getDateUpdate() ?></div><?php endif; ?>
                 </div>
                 <?php endif; ?>
             </div>
