@@ -10,12 +10,12 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Support\SupportEntity $support */
 /* @var CMW\Entity\Support\SupportResponseEntity[] $responses */
 
-Website::setTitle("Support");
-Website::setDescription("Consultez les réponses de nos experts.");
+Website::setTitle('Support');
+Website::setDescription('Consultez les réponses de nos experts.');
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>"
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
          class="absolute h-full inset-0 object-center object-cover w-full"
          alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
@@ -30,10 +30,10 @@ Website::setDescription("Consultez les réponses de nos experts.");
 <section class="bg-white rounded-lg shadow my-8 mx-2 2xl:mx-96 mt-8 mb-8">
     <div class="container p-4">
         <div class="flex flex-wrap justify-between">
-            <a href="<?= Website::getProtocol() . "://" . $_SERVER["SERVER_NAME"] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "support" ?>"
+            <a href="<?= Website::getProtocol() . '://' . $_SERVER['SERVER_NAME'] . EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'support' ?>"
                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center">Retourner
                 au support</a>
-            <?php if ($support->getStatus() !== "2"): ?>
+            <?php if ($support->getStatus() !== '2'): ?>
             <a href="<?= $support->getCloseUrl() ?>"
                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-1 text-center">Cloturer</a>
             <?php endif; ?>
@@ -60,7 +60,7 @@ Website::setDescription("Consultez les réponses de nos experts.");
                 <p><?= $response->getCreated() ?></p>
             </div>
         <?php endforeach; ?>
-        <?php if ($support->getStatus() !== "2"): ?>
+        <?php if ($support->getStatus() !== '2'): ?>
         <form class="space-y-6" action="" method="post">
             <?php (new SecurityManager())->insertHiddenToken() ?>
             <div class="mb-4">

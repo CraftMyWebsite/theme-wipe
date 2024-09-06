@@ -1,10 +1,10 @@
 <?php
 
 use CMW\Controller\Forum\Admin\ForumPermissionController;
-use CMW\Manager\Env\EnvManager;
-use CMW\Model\Core\ThemeModel;
-use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
+use CMW\Manager\Env\EnvManager;
+use CMW\Manager\Security\SecurityManager;
+use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /** @var \CMW\Entity\Forum\ForumCategoryEntity $category */
@@ -19,12 +19,12 @@ use CMW\Utils\Website;
 /* @var CMW\Controller\Forum\ForumSettingsController $iconPinColor */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconClosedColor */
 
-Website::setTitle("Forum");
-Website::setDescription("Ajouter un sujet");
+Website::setTitle('Forum');
+Website::setDescription('Ajouter un sujet');
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -40,7 +40,7 @@ Website::setDescription("Ajouter un sujet");
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                    <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         <?= ThemeModel::getInstance()->fetchConfigValue('forum_breadcrumb_home') ?>
                     </a>
                 </li>
@@ -66,14 +66,14 @@ Website::setDescription("Ajouter un sujet");
 </section>
 
 
-<?php if(UsersController::isUserLogged()): ?>
+<?php if (UsersController::isUserLogged()): ?>
 <section class="my-8 sm:mx-12 2xl:mx-72">
     <div class="rounded-md shadow-lg p-8">
 
         <h4>Nouveau topic dans : <b><?= $forum->getName() ?></b></h4>
         <form action="" method="post">
             <?php (new SecurityManager())->insertHiddenToken() ?>
-            <?php if (UsersController::isAdminLogged() || ForumPermissionController::getInstance()->hasPermission("operator")) : ?>
+            <?php if (UsersController::isAdminLogged() || ForumPermissionController::getInstance()->hasPermission('operator')): ?>
             <!--
             ADMINISTRATION
             -->
@@ -86,19 +86,19 @@ Website::setDescription("Ajouter un sujet");
                                 <div class="flex items-center h-5">
                                     <input name="important" value="1" id="important" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" >
                                 </div>
-                                <label for="important" class="ml-2 text-sm font-medium text-gray-900"><i style='color: <?= $iconImportantColor?>' class="<?= $iconImportant ?> fa-sm"></i> Important</label>
+                                <label for="important" class="ml-2 text-sm font-medium text-gray-900"><i style='color: <?= $iconImportantColor ?>' class="<?= $iconImportant ?> fa-sm"></i> Important</label>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
                                     <input name="pin" id="pin" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" >
                                 </div>
-                                <label for="pin" class="ml-2 text-sm font-medium text-gray-900"><i style='color: <?= $iconPinColor?>' class="<?= $iconPin ?> fa-sm"></i> Épingler</label>
+                                <label for="pin" class="ml-2 text-sm font-medium text-gray-900"><i style='color: <?= $iconPinColor ?>' class="<?= $iconPin ?> fa-sm"></i> Épingler</label>
                             </div>
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
                                     <input name="disallow_replies" value="1" id="closed" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50" >
                                 </div>
-                                <label for="closed" class="ml-2 text-sm font-medium text-gray-900"><i style='color: <?= $iconClosedColor?>' class="<?= $iconClosed ?> fa-sm"></i> Fermer</label>
+                                <label for="closed" class="ml-2 text-sm font-medium text-gray-900"><i style='color: <?= $iconClosedColor ?>' class="<?= $iconClosed ?> fa-sm"></i> Fermer</label>
                             </div>
                         </div>
                     </div>
@@ -254,7 +254,7 @@ Website::setDescription("Ajouter un sujet");
                     <div class="mt-2 mb-4 text-sm">
                         Vous devez vous connecter pour pouvoir poster un nouveau topic !
                         <div class="flex mt-2">
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center">
+                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>login" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center">
                             <p>Connexion</p>
                         </a>
                     </div>

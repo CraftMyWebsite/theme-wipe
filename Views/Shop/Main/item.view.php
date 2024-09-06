@@ -15,13 +15,13 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Shop\Review\ShopReviewsModel $review */
 /* @var \CMW\Model\Shop\Setting\ShopSettingsModel $allowReviews */
 
-Website::setTitle("Boutique - Article");
+Website::setTitle('Boutique - Article');
 Website::setDescription("Venez découvrir l'article !");
 
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -40,12 +40,13 @@ Website::setDescription("Venez découvrir l'article !");
     <div class="container p-4">
         <div class="xl:grid grid-cols-6 gap-6">
             <div class="col-span-2 h-fit">
-                <?php $getImagesItem = $imagesItem->getShopImagesByItem($item->getId()); $v = 0;
+                <?php $getImagesItem = $imagesItem->getShopImagesByItem($item->getId());
+                $v = 0;
                 foreach ($getImagesItem as $countImage) {
                     $v++;
                 } ?>
-                <?php if ($getImagesItem) : ?>
-                    <?php if ($v !== 1) : ?>
+                <?php if ($getImagesItem): ?>
+                    <?php if ($v !== 1): ?>
                         <div id="indicators-carousel" class="relative w-full" data-carousel="static">
                             <!-- Carousel wrapper -->
                             <div class="relative h-56 overflow-hidden rounded-lg md:h-48">
@@ -57,7 +58,8 @@ Website::setDescription("Venez découvrir l'article !");
                                              class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                              alt="...">
                                     </div>
-                                    <?php $x++; endforeach; ?>
+                                    <?php $x++;
+                                endforeach; ?>
                             </div>
                             <!-- Slider indicators -->
                             <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
@@ -65,7 +67,8 @@ Website::setDescription("Venez découvrir l'article !");
                                 foreach ($getImagesItem as $imageId): ?>
                                     <button type="button" class="w-3 h-3 rounded-full" aria-current="<?php if ($i === 0): ?>true<?php endif; ?>"
                                             aria-label="Slide 1" data-carousel-slide-to="<?= $i ?>"></button>
-                                    <?php $i++; endforeach; ?>
+                                    <?php $i++;
+                                endforeach; ?>
                             </div>
                             <!-- Slider controls -->
                             <button type="button"
@@ -190,11 +193,11 @@ Website::setDescription("Venez découvrir l'article !");
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400"><?= $review->countTotalRatingByItemId($item->getId()) ?> avis</p>
                         <?php foreach ($review->getRatingsPercentageByItemId($item->getId()) as $rating): ?>
                         <div class="flex items-center mt-4">
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?=$rating->getRating()?> étoiles</span>
+                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?= $rating->getRating() ?> étoiles</span>
                             <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div class="h-5 rounded" style="background-color: #FFD700; width: <?=$rating->getPercentage()?>%"></div>
+                                <div class="h-5 rounded" style="background-color: #FFD700; width: <?= $rating->getPercentage() ?>%"></div>
                             </div>
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?=$rating->getPercentage()?>%</span>
+                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?= $rating->getPercentage() ?>%</span>
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -218,7 +221,7 @@ Website::setDescription("Venez découvrir l'article !");
                         <?php endforeach; ?>
 
                         <div class="rounded-lg bg-white p-4 mb-4">
-                            <form method="post" action="<?=$item->getSlug()?>/addReview" class="">
+                            <form method="post" action="<?= $item->getSlug() ?>/addReview" class="">
                                 <?php (new SecurityManager())->insertHiddenToken() ?>
                                 <h3 class="text-base font-semibold text-gray-900 mb-2">Donner votre avis.</h3>
                                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Note</label>
@@ -228,10 +231,10 @@ Website::setDescription("Venez découvrir l'article !");
                                 <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Contenue :</label>
                                 <textarea minlength="20" name="content" id="content" rows="4" class="tinymce block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Bonjour," required></textarea>
                                 <div class="text-center mt-4">
-                                    <?php if(UsersController::isUserLogged()): ?>
+                                    <?php if (UsersController::isUserLogged()): ?>
                                         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Envoyer <i class="fa-solid fa-paper-plane"></i></button>
                                     <?php else: ?>
-                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Connectez-vous <i class="fa-solid fa-paper-plane"></i></a>
+                                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Connectez-vous <i class="fa-solid fa-paper-plane"></i></a>
                                     <?php endif; ?>
                                 </div>
                             </form>
@@ -249,7 +252,7 @@ Website::setDescription("Venez découvrir l'article !");
                     Hauteur : <?= $physicalInfo->getHeight() ?> cm<br>
                 </p>
             </div>
-            <?php endif;?>
+            <?php endif; ?>
         </div>
 
     </div>

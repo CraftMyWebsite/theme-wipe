@@ -1,10 +1,10 @@
 <?php
 
+use CMW\Controller\Users\UsersController;
 use CMW\Manager\Env\EnvManager;
+use CMW\Manager\Security\SecurityManager;
 use CMW\Manager\Uploads\ImagesManager;
 use CMW\Model\Core\ThemeModel;
-use CMW\Manager\Security\SecurityManager;
-use CMW\Controller\Users\UsersController;
 use CMW\Model\Forum\ForumDiscordModel;
 use CMW\Model\Forum\ForumFeedbackModel;
 use CMW\Model\Forum\ForumFollowedModel;
@@ -27,12 +27,12 @@ use CMW\Utils\Website;
 /* @var CMW\Controller\Forum\ForumSettingsController $iconPinColor */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconClosedColor */
 
-Website::setTitle("Forum");
-Website::setDescription("Lisez les sujets et les réponses de la communauté");
+Website::setTitle('Forum');
+Website::setDescription('Lisez les sujets et les réponses de la communauté');
 $i = 0;
 ?>
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>"
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
          class="absolute h-full inset-0 object-center object-cover w-full"
          alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
@@ -67,7 +67,7 @@ $i = 0;
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum"
+                    <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum"
                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         <?= ThemeModel::getInstance()->fetchConfigValue('forum_breadcrumb_home') ?>
                     </a>
@@ -100,7 +100,7 @@ $i = 0;
     </div>
     <div class="flex">
         <div class="relative w-full">
-            <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER')?>forum/search" method="POST">
+            <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum/search" method="POST">
                 <?php (new SecurityManager())->insertHiddenToken() ?>
                 <input type="text" name="for"
                        class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
@@ -113,23 +113,23 @@ $i = 0;
     </div>
 </section>
 
-<?php if ($totalPage > "1"): ?>
+<?php if ($totalPage > '1'): ?>
 <div class="mx-auto">
     <div class="flex justify-center">
-        <?php if ($currentPage !== "1"): ?>
+        <?php if ($currentPage !== '1'): ?>
             <a href="p1"
                     class="mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a>
-            <a href="p<?=$currentPage-1?>"
+            <a href="p<?= $currentPage - 1 ?>"
                class="p-1 text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 <i class="fa-solid fa-chevron-left"></i></a>
         <?php endif; ?>
-            <span class="border border-blue-700 p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
+            <span class="border border-blue-700 p-1 text-sm"><?= $currentPage ?>/<?= $totalPage ?></span>
         <?php if ($currentPage !== $totalPage): ?>
-            <a href="p<?=$currentPage+1?>"
+            <a href="p<?= $currentPage + 1 ?>"
                     class="p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 <i class="fa-solid fa-chevron-right"></i></a>
-            <a href="p<?=$totalPage?>"
+            <a href="p<?= $totalPage ?>"
                class="ml-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a>
         <?php endif; ?>
@@ -147,7 +147,7 @@ $i = 0;
                 </h4>
                 <div class="">
                     <?php if ($topic->isImportant()): ?>
-                        <i style='color: <?= $iconImportantColor?>' data-tooltip-target="tooltip-important"
+                        <i style='color: <?= $iconImportantColor ?>' data-tooltip-target="tooltip-important"
                            class="<?= $iconImportant ?> ml-4"></i>
                         <div id="tooltip-important" role="tooltip"
                              class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
@@ -155,14 +155,14 @@ $i = 0;
                         </div>
                     <?php endif; ?>
                     <?php if ($topic->isPinned()): ?>
-                        <i style='color: <?= $iconPinColor?>' data-tooltip-target="tooltip-pined" class="<?= $iconPin ?> ml-4"></i>
+                        <i style='color: <?= $iconPinColor ?>' data-tooltip-target="tooltip-pined" class="<?= $iconPin ?> ml-4"></i>
                         <div id="tooltip-pined" role="tooltip"
                              class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Épinglé
                         </div>
                     <?php endif; ?>
                     <?php if ($topic->isDisallowReplies()): ?>
-                        <i style='color: <?= $iconClosedColor?>' data-tooltip-target="tooltip-closed" class="<?= $iconClosed ?> ml-4"></i>
+                        <i style='color: <?= $iconClosedColor ?>' data-tooltip-target="tooltip-closed" class="<?= $iconClosed ?> ml-4"></i>
                         <div id="tooltip-closed" role="tooltip"
                              class="absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg">
                             Fermé
@@ -309,7 +309,7 @@ $i = 0;
                     </div>
 
                     <div class="flex flex-wrap gap-2 text-center mt-1">
-                        <?php foreach ($feedbackModel->getFeedbacks() as $feedback) : ?>
+                        <?php foreach ($feedbackModel->getFeedbacks() as $feedback): ?>
                             <?php if ($feedback->userCanTopicReact($topic->getId())): ?>
                                 <?php if (UsersController::isUserLogged()): ?>
                                     <?php if ($feedback->getFeedbackTopicReacted($topic->getId()) == $feedback->getId()): ?>
@@ -321,7 +321,7 @@ $i = 0;
                                             <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
                                             <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
                                                  class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                                <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
+                                                <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId): ?>
                                                     <small
                                                         class="px-2 text-xs">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
                                                 <?php endforeach; ?>
@@ -337,7 +337,7 @@ $i = 0;
                                             <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
                                             <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
                                                  class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                                <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
+                                                <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId): ?>
                                                     <small
                                                         class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
                                                 <?php endforeach; ?>
@@ -354,7 +354,7 @@ $i = 0;
                                         <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
                                         <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
                                              class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                            <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
+                                            <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId): ?>
                                                 <small
                                                     class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
                                             <?php endforeach; ?>
@@ -371,7 +371,7 @@ $i = 0;
                                     <?= $feedback->countTopicFeedbackReceived($topic->getId()) ?>
                                     <div id="tooltip-users-<?= $feedback->getId() ?>" role="tooltip"
                                          class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                        <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId) : ?>
+                                        <?php foreach ($feedbackModel->getTopicUsersFeedbackByFeedbackId($topic->getId(), $feedback->getId()) as $userId): ?>
                                             <small
                                                 class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userId)->getPseudo() ?></small>
                                         <?php endforeach; ?>
@@ -410,14 +410,14 @@ $i = 0;
         </div>
 
 
-        <?php foreach ($responses as $response) : ?>
+        <?php foreach ($responses as $response): ?>
             <section class="border mt-4" id="<?= $response->getId() ?>">
                 <div class="flex justify-between bg-gray-200 p-2">
                     <p><?= $response->getCreated() ?></p>
                     <div>
-                        <span class="mr-2"><?= $response->isTopicAuthor() ? "Auteur du topic" : "" ?></span>
+                        <span class="mr-2"><?= $response->isTopicAuthor() ? 'Auteur du topic' : '' ?></span>
                         <span
-                            onclick="copyURL('<?= Website::getProtocol() . "://" . $_SERVER['HTTP_HOST'] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "forum/c/" . $category->getSlug() . "/f/" . $forum->getSlug() . "/t/" . $response->getResponseTopic()->getSlug()."/p".$currentPage."/#" . $response->getId() ?>')"
+                            onclick="copyURL('<?= Website::getProtocol() . '://' . $_SERVER['HTTP_HOST'] . EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'forum/c/' . $category->getSlug() . '/f/' . $forum->getSlug() . '/t/' . $response->getResponseTopic()->getSlug() . '/p' . $currentPage . '/#' . $response->getId() ?>')"
                             class="text-gray-700 hover:text-blue-600"><i class="fa-solid fa-share-nodes"></i></span>
                         <span><i data-modal-target="reportResponse-<?= $response->getId() ?>"
                                  data-modal-toggle="reportResponse-<?= $response->getId() ?>"
@@ -532,7 +532,7 @@ $i = 0;
                         </div>
 
                         <div class="flex flex-wrap gap-2 text-center mt-1">
-                            <?php foreach ($feedbackModel->getFeedbacks() as $responseFeedback) : ?>
+                            <?php foreach ($feedbackModel->getFeedbacks() as $responseFeedback): ?>
                                 <?php if ($responseFeedback->userCanResponseReact($response->getId())): ?>
                                     <?php if (UsersController::isUserLogged()): ?>
                                         <?php if ($responseFeedback->getFeedbackResponseReacted($response->getId()) === $responseFeedback->getId()): ?>
@@ -547,7 +547,7 @@ $i = 0;
                                                     id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                                     role="tooltip"
                                                     class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                                    <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
+                                                    <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId): ?>
                                                         <small
                                                             class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
                                                         <?php $i++; ?>
@@ -568,7 +568,7 @@ $i = 0;
                                                     id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                                     role="tooltip"
                                                     class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                                    <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
+                                                    <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId): ?>
                                                         <small
                                                             class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
                                                         <?php $i++; ?>
@@ -588,7 +588,7 @@ $i = 0;
                                             <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                                  role="tooltip"
                                                  class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                                <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
+                                                <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId): ?>
                                                     <small
                                                         class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
                                                     <?php $i++; ?>
@@ -607,7 +607,7 @@ $i = 0;
                                         <div id="tooltip-users-response-<?= $responseFeedback->getId() ?>-<?= $i ?>"
                                              role="tooltip"
                                              class="absolute z-10 invisible inline-block text-sm font-medium text-white bg-gray-700 rounded-lg">
-                                            <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId) : ?>
+                                            <?php foreach ($feedbackModel->getResponseUsersFeedbackByFeedbackId($response->getId(), $responseFeedback->getId()) as $userResponseId): ?>
                                                 <small
                                                     class="px-2">- <?= $user = UsersModel::getInstance()->getUserById($userResponseId)->getPseudo() ?></small>
                                                 <?php $i++; ?>
@@ -675,23 +675,23 @@ $i = 0;
             </section>
         <?php endforeach; ?>
 
-        <?php if ($totalPage > "1"): ?>
+        <?php if ($totalPage > '1'): ?>
             <div class="mx-auto mt-4">
                 <div class="flex justify-center">
-                    <?php if ($currentPage !== "1"): ?>
+                    <?php if ($currentPage !== '1'): ?>
                         <a href="p1"
                            class="mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                             <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a>
-                        <a href="p<?=$currentPage-1?>"
+                        <a href="p<?= $currentPage - 1 ?>"
                            class="p-1 text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                             <i class="fa-solid fa-chevron-left"></i></a>
                     <?php endif; ?>
-                    <span class="border border-blue-700 p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
+                    <span class="border border-blue-700 p-1 text-sm"><?= $currentPage ?>/<?= $totalPage ?></span>
                     <?php if ($currentPage !== $totalPage): ?>
-                        <a href="p<?=$currentPage+1?>"
+                        <a href="p<?= $currentPage + 1 ?>"
                            class="p-1 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                             <i class="fa-solid fa-chevron-right"></i></a>
-                        <a href="p<?=$totalPage?>"
+                        <a href="p<?= $totalPage ?>"
                            class="ml-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                             <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a>
                     <?php endif; ?>

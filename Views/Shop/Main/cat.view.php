@@ -11,13 +11,13 @@ use CMW\Utils\Website;
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Model\Shop\Setting\ShopSettingsModel $allowReviews */
 
-Website::setTitle("Boutique - Catégorie : ". $thisCat->getName());
-Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat->getName());
+Website::setTitle('Boutique - Catégorie : ' . $thisCat->getName());
+Website::setDescription('Découvrez nos produits de la catégorie : ' . $thisCat->getName());
 
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -33,8 +33,9 @@ Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat-
         <div class="flex flex-wrap justify-between border-t border-b py-2">
             <div>
                 <select onchange="location = this.value;" class="block pr-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-                    <option value="<?= Website::getProtocol() . "://" . $_SERVER["SERVER_NAME"] . EnvManager::getInstance()->getValue("PATH_SUBFOLDER") . "shop" ?>" >Catégorie : Tout afficher</option>
-                    <?php $i = 0; foreach ($categories as $category): ?>
+                    <option value="<?= Website::getProtocol() . '://' . $_SERVER['SERVER_NAME'] . EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'shop' ?>" >Catégorie : Tout afficher</option>
+                    <?php $i = 0;
+                    foreach ($categories as $category): ?>
                         <option <?= $category->getName() === $thisCat->getName() ? 'selected' : '' ?> value="<?= $category->getCatLink() ?>">Catégorie : <?= $category->getName() ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -67,12 +68,13 @@ Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat-
                     <div>
                         <div class="rounded-t border-t border-l border-r border-gray-200 p-4">
 
-                            <?php $getImagesItem = $imagesItem->getShopImagesByItem($item->getId()); $v = 0;
+                            <?php $getImagesItem = $imagesItem->getShopImagesByItem($item->getId());
+                            $v = 0;
                             foreach ($getImagesItem as $countImage) {
                                 $v++;
                             } ?>
-                            <?php if ($getImagesItem) : ?>
-                                <?php if ($v !== 1) : ?>
+                            <?php if ($getImagesItem): ?>
+                                <?php if ($v !== 1): ?>
                                     <div id="indicators-carousel" class="relative w-full" data-carousel="static">
                                         <!-- Carousel wrapper -->
                                         <div class="relative h-56 overflow-hidden rounded-lg md:h-48">
@@ -84,7 +86,8 @@ Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat-
                                                          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                                          alt="...">
                                                 </div>
-                                                <?php $x++; endforeach; ?>
+                                                <?php $x++;
+                                            endforeach; ?>
                                         </div>
                                         <!-- Slider indicators -->
                                         <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
@@ -92,7 +95,8 @@ Website::setDescription("Découvrez nos produits de la catégorie : ". $thisCat-
                                             foreach ($getImagesItem as $imageId): ?>
                                                 <button type="button" class="w-3 h-3 rounded-full" aria-current="<?php if ($i === 0): ?>true<?php endif; ?>"
                                                         aria-label="Slide 1" data-carousel-slide-to="<?= $i ?>"></button>
-                                                <?php $i++; endforeach; ?>
+                                                <?php $i++;
+                                            endforeach; ?>
                                         </div>
                                         <!-- Slider controls -->
                                         <button type="button"

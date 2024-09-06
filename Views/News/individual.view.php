@@ -3,17 +3,17 @@
 use CMW\Manager\Env\EnvManager;
 use CMW\Utils\Utils;
 /* @var \CMW\Entity\News\NewsEntity $news */
-use CMW\Model\Core\ThemeModel;
-use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
+use CMW\Manager\Security\SecurityManager;
+use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/*TITRE ET DESCRIPTION*/
-Website::setTitle(ThemeModel::getInstance()->fetchConfigValue('news_title') . ' - '. $news->getTitle());
+/* TITRE ET DESCRIPTION */
+Website::setTitle(ThemeModel::getInstance()->fetchConfigValue('news_title') . ' - ' . $news->getTitle());
 Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_description'));
 ?>
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -38,12 +38,12 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
                 <div class="text-center mt-2">
                     <div class="cursor-pointer">
                         <?php if ($news->isLikesStatus()): ?>
-                        <span data-tooltip-target="<?php if ($news->getLikes()->userCanLike()) {echo "tooltip-liked";} else {echo "tooltip-like";} ?>">
+                        <span data-tooltip-target="<?php if ($news->getLikes()->userCanLike()) { echo 'tooltip-liked'; } else { echo 'tooltip-like'; } ?>">
                         <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
                         <?php if ($news->getLikes()->userCanLike()): ?>
                             <a href="#"><i class="fa-solid fa-heart"></i></a>
                             <div id="tooltip-liked" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
-                        <?php if(UsersController::isUserLogged()) {echo "Vous aimez déjà !";} else {echo "Connectez-vous pour aimé !";} ?>
+                        <?php if (UsersController::isUserLogged()) { echo 'Vous aimez déjà !'; } else { echo 'Connectez-vous pour aimé !'; } ?>
                             <div class="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         <?php else: ?> 
@@ -59,7 +59,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
                     </div>
                 </div>
                 <div class="text-center">
-                <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news" class="text-blue-600">< Revenir aux news</a>
+                <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>news" class="text-blue-600">< Revenir aux news</a>
                 </div>
             </div>
             <div class="md:hidden mt-4 border"></div>
@@ -96,12 +96,12 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
                 <div><?= $comment->getContent() ?></div>
                 <div class="flex justify-end">
                             <div class="cursor-pointer">
-                                <span data-tooltip-target="<?php if ($comment->userCanLike()) {echo "tooltip-liked";} else {echo "tooltip-like";} ?>">
+                                <span data-tooltip-target="<?php if ($comment->userCanLike()) { echo 'tooltip-liked'; } else { echo 'tooltip-like'; } ?>">
                                 <span class="text-base"><?= $comment->getLikes()->getTotal() ?>                               
                                     <?php if ($comment->userCanLike()): ?>
                                     <a href="#"><i class="fa-solid fa-heart"></i></a>
                                     <div id="tooltip-liked" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
-                                        <?php if(UsersController::isUserLogged()) {echo "Vous aimez déjà !";} else {echo "Connectez-vous pour aimé !";} ?>
+                                        <?php if (UsersController::isUserLogged()) { echo 'Vous aimez déjà !'; } else { echo 'Connectez-vous pour aimé !'; } ?>
                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                     </div>
                                     <?php else: ?> 
@@ -125,10 +125,10 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Votre commentaire :</label>
             <textarea minlength="20" name="comments" id="message" rows="4" class="tinymce block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Bonjour," required></textarea>
             <div class="text-center mt-4">
-                <?php if(UsersController::isUserLogged()): ?>
+                <?php if (UsersController::isUserLogged()): ?>
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Commenter <i class="fa-solid fa-comments"></i></i></button>
                 <?php else: ?> 
-                <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Commenter <i class="fa-solid fa-comments"></i></i></a>
+                <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none">Commenter <i class="fa-solid fa-comments"></i></i></a>
                 <?php endif; ?>
             </div>
         </form>

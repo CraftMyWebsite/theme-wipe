@@ -1,17 +1,17 @@
-<?php 
+<?php
 use CMW\Controller\Core\SecurityController;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Contact\ContactModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/*TITRE ET DESCRIPTION*/
+/* TITRE ET DESCRIPTION */
 Website::setTitle(ThemeModel::getInstance()->fetchConfigValue('faq_title'));
 Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('faq_description'));
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -22,8 +22,8 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('faq_descrip
 </section>
 
 <section class="px-2 md:px-24 xl:px-48 2xl:px-72 py-6">
-    <div class="<?php if(ThemeModel::getInstance()->fetchConfigValue('faq_display_form')): {echo "lg:grid lg:grid-cols-3 gap-6";} endif ?>">
-        <?php if(ThemeModel::getInstance()->fetchConfigValue('faq_display_form')): ?>
+    <div class="<?php if (ThemeModel::getInstance()->fetchConfigValue('faq_display_form')): { echo 'lg:grid lg:grid-cols-3 gap-6'; } endif ?>">
+        <?php if (ThemeModel::getInstance()->fetchConfigValue('faq_display_form')): ?>
             <div class="container mx-auto rounded-md shadow-lg p-8">
                 <div class="flex flex-no-wrap justify-center items-center py-4">
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
@@ -83,11 +83,11 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('faq_descrip
                     </div>
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 </div>
-                <?php foreach ($faqList as $faq) : ?>
+                <?php foreach ($faqList as $faq): ?>
                 <div class="border-b py-2">
                     <div class="flex flex-wrap justify-between">
                         <div class="font-medium">- <?= $faq->getQuestion() ?> :</div>
-                        <?php if(ThemeModel::getInstance()->fetchConfigValue('faq_display_autor')): ?>
+                        <?php if (ThemeModel::getInstance()->fetchConfigValue('faq_display_autor')): ?>
                         <div class="bg-gray-300 font-medium inline-block px-3 py-1 rounded-sm text-xs"><?= $faq->getAuthor()->getPseudo() ?></div>
                         <?php endif; ?>
                     </div>

@@ -12,12 +12,12 @@ use CMW\Utils\Website;
 /* @var CMW\Controller\Forum\ForumSettingsController $iconPinColor */
 /* @var CMW\Controller\Forum\ForumSettingsController $iconClosedColor */
 
-Website::setTitle("Forum");
-Website::setDescription("Recherchez un sujet dans le forum");
+Website::setTitle('Forum');
+Website::setDescription('Recherchez un sujet dans le forum');
 ?>
 
     <section class="bg-gray-800 relative text-white">
-        <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>"
+        <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
              class="absolute h-full inset-0 object-center object-cover w-full"
              alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
         <div class="container mx-auto px-4 py-12 relative">
@@ -77,19 +77,19 @@ Website::setDescription("Recherchez un sujet dans le forum");
                             <span id='tooltip-important' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
                                 Important
                             </span>
-                            " : "" ?>
+                            " : '' ?>
                                     <?= $result->isPinned() ? "
                             <i data-tooltip-target='tooltip-pined' style='color: $iconPinColor' class='<?= $iconPin ?> fa-sm ml-2'></i>
                             <span id='tooltip-pined' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
                                 Épinglé
                             </span>
-                             " : "" ?>
+                             " : '' ?>
                                     <?= $result->isDisallowReplies() ? "
                             <i data-tooltip-target='tooltip-closed' style='color: $iconClosedColor' class='<?= $iconClosed ?> fa-sm ml-2'></i>
                             <span id='tooltip-closed' role='tooltip' class='absolute z-10 invisible inline-block p-2 text-sm font-medium text-white bg-gray-700 rounded-lg'>
                                 Fermé
                             </span>
-                             " : "" ?>
+                             " : '' ?>
                                 </p>
                             </div>
                         </a>

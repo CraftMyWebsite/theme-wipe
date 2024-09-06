@@ -47,16 +47,16 @@ $siteName = Website::getWebsiteName();
 
 
     <!-- Theme style -->
-    <link rel="stylesheet" type="text/css" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Themes/Wipe/Assets/Css/style.css">
-    <link rel="stylesheet" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Admin/Resources/Vendors/Fontawesome-free/Css/fa-all.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>Public/Themes/Wipe/Assets/Css/style.css">
+    <link rel="stylesheet" href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>Admin/Resources/Vendors/Fontawesome-free/Css/fa-all.min.css">
 
     <?= ImagesManager::getFaviconInclude() ?>
 
     <?php
-    View::loadInclude($includes, "styles");
+        View::loadInclude($includes, 'styles');
     ?>
 
-    <script src="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Themes/Wipe/Assets/Js/flowbite.js"></script>
+    <script src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>Public/Themes/Wipe/Assets/Js/flowbite.js"></script>
 
 
 </head>
@@ -64,6 +64,6 @@ $siteName = Website::getWebsiteName();
 <body class="flex flex-col min-h-screen">
 
 <?php
-View::loadInclude($includes, "beforeScript");
+View::loadInclude($includes, 'beforeScript');
 echo CoreController::getInstance()->cmwWarn();
 ?>

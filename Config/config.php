@@ -1,11 +1,11 @@
 <?php use CMW\Controller\Core\PackageController;
 use CMW\Controller\Core\ThemeController;
-use CMW\Utils\Utils;
 use CMW\Manager\Lang\LangManager;
-use CMW\Model\Core\ThemeModel;
-use CMW\Utils\SecurityService;
-use CMW\Model\Votes\VotesConfigModel;
 use CMW\Model\Core\CoreModel;
+use CMW\Model\Core\ThemeModel;
+use CMW\Model\Votes\VotesConfigModel;
+use CMW\Utils\SecurityService;
+use CMW\Utils\Utils;
 use CMW\Utils\Website; ?>
 <!-------------->
 <!--Navigation-->
@@ -18,27 +18,27 @@ use CMW\Utils\Website; ?>
         <li>
             <button type="button" data-tabs-target="#tab2" role="tab">Accueil</button>
         </li>
-        <?php if (PackageController::isInstalled("News")): ?>
+        <?php if (PackageController::isInstalled('News')): ?>
             <li>
                 <button type="button" data-tabs-target="#tab3" role="tab">News</button>
             </li>
         <?php endif; ?>
-        <?php if (PackageController::isInstalled("Faq")): ?>
+        <?php if (PackageController::isInstalled('Faq')): ?>
             <li>
                 <button type="button" data-tabs-target="#tab4" role="tab">F.A.Q</button>
             </li>
         <?php endif; ?>
-        <?php if (PackageController::isInstalled("Votes")): ?>
+        <?php if (PackageController::isInstalled('Votes')): ?>
             <li>
                 <button type="button" data-tabs-target="#tab5" role="tab">Votes</button>
             </li>
         <?php endif; ?>
-        <?php if (PackageController::isInstalled("Wiki")): ?>
+        <?php if (PackageController::isInstalled('Wiki')): ?>
             <li>
                 <button type="button" data-tabs-target="#tab6" role="tab">Wiki</button>
             </li>
         <?php endif; ?>
-        <?php if (PackageController::isInstalled("Forum")): ?>
+        <?php if (PackageController::isInstalled('Forum')): ?>
             <li>
                 <button type="button" data-tabs-target="#tab7" role="tab">Forum</button>
             </li>
@@ -79,7 +79,7 @@ use CMW\Utils\Website; ?>
                 </div>
                 <div class="grid-2">
                     <div class="flex justify-center">
-                        <img class="w-25" src="<?= ThemeModel::getInstance()->fetchImageLink("header_img_logo") ?>"
+                        <img class="w-25" src="<?= ThemeModel::getInstance()->fetchImageLink('header_img_logo') ?>"
                              alt="Image introuvable !">
                     </div>
                     <div class="drop-img-area mt-4" data-input-name="header_img_logo"></div>
@@ -137,7 +137,7 @@ use CMW\Utils\Website; ?>
         <div class="drop-img-area" data-input-name="hero_img_bg"></div>
         <h6>Réglages :</h6>
         <section class="relative">
-            <img width="1080" height="720" src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>"
+            <img width="1080" height="720" src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
                  class="absolute h-full inset-0 object-center object-cover w-full rounded-lg"
                  style="width: 100%; height: 100%; object-fit: cover;"
                  alt="Vous devez upload bg.webp depuis votre panel !"/>
@@ -177,7 +177,7 @@ use CMW\Utils\Website; ?>
             <div>
                 <label>Image :</label>
                 <div class="text-center">
-                    <img src="<?= ThemeModel::getInstance()->fetchImageLink("feature_img_1") ?>" class="mb-3 mx-auto"
+                    <img src="<?= ThemeModel::getInstance()->fetchImageLink('feature_img_1') ?>" class="mb-3 mx-auto"
                          alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
                 </div>
                 <div class="drop-img-area" data-input-name="feature_img_1"></div>
@@ -195,7 +195,7 @@ use CMW\Utils\Website; ?>
             <div>
                 <label>Image :</label>
                 <div class="text-center">
-                    <img src="<?= ThemeModel::getInstance()->fetchImageLink("feature_img_2") ?>" class="mb-3 mx-auto"
+                    <img src="<?= ThemeModel::getInstance()->fetchImageLink('feature_img_2') ?>" class="mb-3 mx-auto"
                          alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
                 </div>
                 <div class="drop-img-area" data-input-name="feature_img_2"></div>
@@ -213,7 +213,7 @@ use CMW\Utils\Website; ?>
             <div>
                 <label>Image :</label>
                 <div class="text-center">
-                    <img src="<?= ThemeModel::getInstance()->fetchImageLink("feature_img_3") ?>" class="mb-3 mx-auto"
+                    <img src="<?= ThemeModel::getInstance()->fetchImageLink('feature_img_3') ?>" class="mb-3 mx-auto"
                          alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
                 </div>
                 <div class="drop-img-area" data-input-name="feature_img_3"></div>
@@ -231,7 +231,7 @@ use CMW\Utils\Website; ?>
         </div>
         <hr>
         <!--NEWS-->
-        <?php if (PackageController::isInstalled("News")): ?>
+        <?php if (PackageController::isInstalled('News')): ?>
             <div>
                 <label class="toggle">
                     <h5 class="toggle-label">Nouveautés : <i data-bs-toggle="tooltip"
@@ -321,7 +321,7 @@ use CMW\Utils\Website; ?>
     </div>
     <div class="tab-content" id="tab3">
         <!---NEWS---->
-        <?php if (PackageController::isInstalled("News")): ?>
+        <?php if (PackageController::isInstalled('News')): ?>
             <h6>Indéxation de la page (meta) :</h6>
             <div class="alert alert-warning">
                 <h6 class="alert-heading">Bien comprendre l'indéxation</h6>
@@ -361,7 +361,7 @@ use CMW\Utils\Website; ?>
     </div>
     <div class="tab-content" id="tab4">
         <!---FAQ---->
-        <?php if (PackageController::isInstalled("Faq")): ?>
+        <?php if (PackageController::isInstalled('Faq')): ?>
             <h6>Indéxation de la page (meta) :</h6>
             <div class="alert alert-warning">
                 <h6 class="alert-heading">Bien comprendre l'indéxation</h6>
@@ -420,7 +420,7 @@ use CMW\Utils\Website; ?>
     </div>
     <!---VOTES---->
     <div class="tab-content" id="tab5">
-        <?php if (PackageController::isInstalled("Votes")): ?>
+        <?php if (PackageController::isInstalled('Votes')): ?>
             <h6>Indéxation de la page (meta) :</h6>
             <div class="alert alert-warning">
                 <h6 class="alert-heading">Bien comprendre l'indéxation</h6>
@@ -479,7 +479,7 @@ use CMW\Utils\Website; ?>
     </div>
     <div class="tab-content" id="tab6">
         <!---WIKI---->
-        <?php if (PackageController::isInstalled("Wiki")): ?>
+        <?php if (PackageController::isInstalled('Wiki')): ?>
             <h6>Indéxation de la page (meta) :</h6>
             <div class="alert alert-warning">
                 <h6 class="alert-heading">Bien comprendre l'indéxation</h6>
@@ -571,7 +571,7 @@ use CMW\Utils\Website; ?>
     </div>
     <div class="tab-content" id="tab7">
         <!---FORUM---->
-        <?php if (PackageController::isInstalled("Forum")): ?>
+        <?php if (PackageController::isInstalled('Forum')): ?>
 
             <h6>Indéxation de la page (meta) :</h6>
             <div class="alert alert-warning">
@@ -633,7 +633,7 @@ use CMW\Utils\Website; ?>
                         <h6>Image :</h6>
                         <div class="flex justify-center">
                             <img class="w-24"
-                                 src="<?= ThemeModel::getInstance()->fetchImageLink("forum_nobody_send_message_img") ?>"
+                                 src="<?= ThemeModel::getInstance()->fetchImageLink('forum_nobody_send_message_img') ?>"
                                  alt="Image introuvable !">
                         </div>
                         <div class="drop-img-area" data-input-name="forum_nobody_send_message_img"></div>

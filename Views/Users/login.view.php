@@ -1,18 +1,18 @@
 <?php
 
-use CMW\Manager\Env\EnvManager;
-use CMW\Model\Core\ThemeModel;
 use CMW\Controller\Core\SecurityController;
+use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
+use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-Website::setTitle("Connexion");
-Website::setDescription("Connectez-vous sur " . Website::getWebsiteName());
+Website::setTitle('Connexion');
+Website::setDescription('Connectez-vous sur ' . Website::getWebsiteName());
 ?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -48,7 +48,7 @@ Website::setDescription("Connectez-vous sur " . Website::getWebsiteName());
                             </div>
                             <label for="login_keep_connect" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Se souvenir de moi</label>
                         </div>
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login/forgot" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Mot de passe oublié ?</a>
+                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>login/forgot" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Mot de passe oublié ?</a>
                     </div>
                     <?php SecurityController::getPublicData(); ?>
                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Connexion</button>
@@ -74,7 +74,7 @@ Website::setDescription("Connectez-vous sur " . Website::getWebsiteName());
                             <i class="fa-xl fa-brands fa-google"></i></a>
                     </div>
                 </div>
-                <label class="block text-sm text-gray-900 mt-4">Pas encore de comtpe, <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>register" class="text-blue-500">s'enregistrer</a></label>
+                <label class="block text-sm text-gray-900 mt-4">Pas encore de comtpe, <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>register" class="text-blue-500">s'enregistrer</a></label>
             </div>
         </div>
     </div>

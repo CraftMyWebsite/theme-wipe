@@ -7,13 +7,13 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-Website::setTitle("Votre profil");
-Website::setDescription("Éditez votre profil");
+Website::setTitle('Votre profil');
+Website::setDescription('Éditez votre profil');
 ?>
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -107,7 +107,7 @@ Website::setDescription("Éditez votre profil");
             </div>
 
             <div>
-                <form action="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>profile" method="post" enctype="multipart/form-data">
+                <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>profile" method="post" enctype="multipart/form-data">
                     <?php (new SecurityManager())->insertHiddenToken() ?>
                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Changer votre image :</label>
                     <div class="flex">
@@ -130,7 +130,7 @@ Website::setDescription("Éditez votre profil");
     </div>
     <div class="pt-2 pb-6 text-center">
         <p class="mb-2">Nous somme triste de vous voir partir !</p>
-        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>profile/delete/<?= $user->getId() ?>" class="mb-4 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Supprimer mon compte</a>
+        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>profile/delete/<?= $user->getId() ?>" class="mb-4 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Supprimer mon compte</a>
     </div>
 </div>
 

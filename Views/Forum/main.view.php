@@ -10,12 +10,12 @@ use CMW\Utils\Website;
 
 /** @var \CMW\Model\Forum\ForumModel $forumModel */
 /** @var \CMW\Model\Forum\ForumCategoryModel $categoryModel */
-Website::setTitle("Forum");
-Website::setDescription("Consultez les sujets de discussion et répondez aux questions posées par les membres de votre communauté.");
+Website::setTitle('Forum');
+Website::setDescription('Consultez les sujets de discussion et répondez aux questions posées par les membres de votre communauté.');
 ?>
 
     <section class="bg-gray-800 relative text-white">
-        <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>"
+        <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
              class="absolute h-full inset-0 object-center object-cover w-full"
              alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
         <div class="container mx-auto px-4 py-12 relative">
@@ -49,7 +49,7 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                         administrateurs voient ce message !
                     </div>
                     <div class="flex">
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>cmw-admin/forum/manage"
+                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin/forum/manage"
                            target="_blank" type="button"
                            class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
                             <p><i class="fa-solid fa-gears"></i> Gestion du forum</p>
@@ -93,7 +93,7 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1">
                     <li class="inline-flex items-center">
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum"
+                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum"
                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                             <?= ThemeModel::getInstance()->fetchConfigValue('forum_breadcrumb_home') ?>
                         </a>
@@ -103,7 +103,7 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
         </div>
             <div class="flex">
                 <div class="relative w-full">
-                    <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER')?>forum/search" method="POST">
+                    <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum/search" method="POST">
                         <?php (new SecurityManager())->insertHiddenToken() ?>
                         <input type="text" name="for"
                                class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
@@ -120,7 +120,7 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
         class="<?php if (ThemeModel::getInstance()->fetchConfigValue('forum_use_widgets')): ?>lg:grid <?php endif; ?> grid-cols-4 gap-6 my-8 sm:mx-12 2xl:mx-72 ">
         <div class="lg:col-span-3 h-fit">
 
-            <?php foreach ($categoryModel->getCategories() as $category) : ?>
+            <?php foreach ($categoryModel->getCategories() as $category): ?>
                 <?php if ($category->isUserAllowed()): ?>
                     <div class="w-full shadow-md mb-10">
                         <div class="flex py-4 bg-gray-100">
@@ -141,7 +141,7 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                                            href="<?= $forumObj->getLink() ?>">
                                             <div
                                                 class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
-                                                <?= $forumObj->getFontAwesomeIcon("fa-xl") ?>
+                                                <?= $forumObj->getFontAwesomeIcon('fa-xl') ?>
                                             </div>
                                             <div class="ml-4">
                                                 <div class="font-bold">
@@ -160,23 +160,23 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                                     <!--Dernier message-->
                                     <div class="hidden md:block w-[25%] my-auto">
                                         <div class="flex text-sm">
-                                            <?php if ($forumObj->getLastResponse() !== null) : ?>
+                                            <?php if ($forumObj->getLastResponse() !== null): ?>
                                             <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/p<?= $forumObj->getLastResponse()->getPageNumber() ?>/#<?= $forumObj->getLastResponse()?->getId() ?>">
                                                 <?php endif; ?>
                                                 <div tabindex="0" class="avatar w-10">
                                                     <div class="w-fit rounded-full ">
                                                         <img
-                                                            src="<?= $forumObj->getLastResponse()?->getUser()->getUserPicture()->getImage() ?? ThemeModel::getInstance()->fetchImageLink("forum_nobody_send_message_img") ?>"/>
+                                                            src="<?= $forumObj->getLastResponse()?->getUser()->getUserPicture()->getImage() ?? ThemeModel::getInstance()->fetchImageLink('forum_nobody_send_message_img') ?>"/>
                                                     </div>
                                                 </div>
                                             </a>
-                                            <?php if ($forumObj->getLastResponse() !== null) : ?>
+                                            <?php if ($forumObj->getLastResponse() !== null): ?>
                                             <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/p<?= $forumObj->getLastResponse()->getPageNumber() ?>/#<?= $forumObj->getLastResponse()?->getId() ?>">
                                                 <?php endif; ?>
                                                 <div class="ml-2">
                                                     <div
                                                         class=""><?= $forumObj->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::getInstance()->fetchConfigValue('forum_nobody_send_message_text') ?></div>
-                                                    <div><?= $forumObj->getLastResponse()?->getCreated() ?? "" ?></div>
+                                                    <div><?= $forumObj->getLastResponse()?->getCreated() ?? '' ?></div>
                                                 </div>
                                             </a>
                                         </div>

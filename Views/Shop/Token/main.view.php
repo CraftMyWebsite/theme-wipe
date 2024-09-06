@@ -13,17 +13,17 @@ use CMW\Utils\Website;
 /* @var \CMW\Entity\Shop\Items\ShopItemEntity[] $items */
 /* @var \CMW\Interface\Shop\IPaymentMethod $paymentToken */
 
-Website::setTitle("Boutique - ".$token->name());
-Website::setDescription("Gérez vos ".$token->name());
+Website::setTitle('Boutique - ' . $token->name());
+Website::setDescription('Gérez vos ' . $token->name());
 
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
-                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= $paymentToken->faIcon() ?> <?=$token->name()?></h1>
+                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= $paymentToken->faIcon() ?> <?= $token->name() ?></h1>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@ Website::setDescription("Gérez vos ".$token->name());
             <div class="flex flex-no-wrap justify-center items-center py-4">
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 <div class="px-10 w-auto">
-                    <h2 class="font-semibold text-2xl uppercase">Envoyer des <?=$token->name()?></h2>
+                    <h2 class="font-semibold text-2xl uppercase">Envoyer des <?= $token->name() ?></h2>
                 </div>
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
             </div>
@@ -50,7 +50,7 @@ Website::setDescription("Gérez vos ".$token->name());
                 <div class="mb-2">
                     <label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Envoyé à :</label>
                     <select name="user" id="user" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        <?php foreach ($userList as $user) : ?>
+                        <?php foreach ($userList as $user): ?>
                             <option value="<?= $user->getId() ?>">
                                 <?= $user->getPseudo() ?>
                             </option>
@@ -67,12 +67,12 @@ Website::setDescription("Gérez vos ".$token->name());
                 <div class="flex flex-no-wrap justify-center items-center py-4">
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                     <div class="px-10 w-auto">
-                        <h2 class="font-semibold text-2xl uppercase">Mes <?=$token->name()?></h2>
+                        <h2 class="font-semibold text-2xl uppercase">Mes <?= $token->name() ?></h2>
                     </div>
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 </div>
                 <div>
-                    <h2 class="text-center font-bold"><?=$userToken?->getStock() ?? 0?> <?= $paymentToken->faIcon() ?></h2>
+                    <h2 class="text-center font-bold"><?= $userToken?->getStock() ?? 0 ?> <?= $paymentToken->faIcon() ?></h2>
                 </div>
             </div>
             <div class="container mx-auto rounded-md shadow-lg p-8">
@@ -88,8 +88,8 @@ Website::setDescription("Gérez vos ".$token->name());
                     <div class="p-2 border shadow-xl">
                         <div class="flex flex-wrap justify-between">
 
-                            <div <?php if ($history->getEvent() == 1) {echo "style='background-color: #06a93a'";} else {echo "style='background-color: #E2320F'";} ?> class="font-medium inline-block px-3 py-1 rounded-sm text-base"><?= $history->getFormattedEvent() ?> <?= $history->getAmount() ?> <?= $paymentToken->faIcon() ?></div>
-                            <div class="text-sm"><?=$history->getCreated()?></div>
+                            <div <?php if ($history->getEvent() == 1) { echo "style='background-color: #06a93a'"; } else { echo "style='background-color: #E2320F'"; } ?> class="font-medium inline-block px-3 py-1 rounded-sm text-base"><?= $history->getFormattedEvent() ?> <?= $history->getAmount() ?> <?= $paymentToken->faIcon() ?></div>
+                            <div class="text-sm"><?= $history->getCreated() ?></div>
                         </div>
                         <div class="mt-2"><?= $history->getReason() ?></div>
                     </div>
@@ -110,7 +110,7 @@ Website::setDescription("Gérez vos ".$token->name());
         <div class="flex flex-no-wrap justify-center items-center py-4">
             <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
             <div class="px-10 w-auto">
-                <h2 class="font-semibold text-2xl uppercase">Obtenir des <?=$token->name()?></h2>
+                <h2 class="font-semibold text-2xl uppercase">Obtenir des <?= $token->name() ?></h2>
             </div>
             <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         </div>
@@ -125,12 +125,13 @@ Website::setDescription("Gérez vos ".$token->name());
                     <div>
                         <div class="rounded-t border-t border-l border-r border-gray-200 p-4">
 
-                            <?php $getImagesItem = $imagesItem->getShopImagesByItem($item->getId()); $v = 0;
+                            <?php $getImagesItem = $imagesItem->getShopImagesByItem($item->getId());
+                            $v = 0;
                             foreach ($getImagesItem as $countImage) {
                                 $v++;
                             } ?>
-                            <?php if ($getImagesItem) : ?>
-                                <?php if ($v !== 1) : ?>
+                            <?php if ($getImagesItem): ?>
+                                <?php if ($v !== 1): ?>
                                     <div id="indicators-carousel" class="relative w-full" data-carousel="static">
                                         <!-- Carousel wrapper -->
                                         <div class="relative h-56 overflow-hidden rounded-lg md:h-48">
@@ -142,7 +143,8 @@ Website::setDescription("Gérez vos ".$token->name());
                                                          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                                          alt="...">
                                                 </div>
-                                                <?php $x++; endforeach; ?>
+                                                <?php $x++;
+                                            endforeach; ?>
                                         </div>
                                         <!-- Slider indicators -->
                                         <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
@@ -150,7 +152,8 @@ Website::setDescription("Gérez vos ".$token->name());
                                             foreach ($getImagesItem as $imageId): ?>
                                                 <button type="button" class="w-3 h-3 rounded-full" aria-current="<?php if ($i === 0): ?>true<?php endif; ?>"
                                                         aria-label="Slide 1" data-carousel-slide-to="<?= $i ?>"></button>
-                                                <?php $i++; endforeach; ?>
+                                                <?php $i++;
+                                            endforeach; ?>
                                         </div>
                                         <!-- Slider controls -->
                                         <button type="button"

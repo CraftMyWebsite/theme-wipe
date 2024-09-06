@@ -4,13 +4,13 @@ use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-Website::setTitle("Page introuvable");
-Website::setDescription("Erreur 404");
+Website::setTitle('Page introuvable');
+Website::setDescription('Erreur 404');
 
 ?>
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -23,5 +23,5 @@ Website::setDescription("Erreur 404");
 <div class="relative w-full text-center">
     <h1 class="text-gray-600 font-extrabold" style="font-size: 12rem">{errorCode}</h1>
     <p>La page que vous demandez n'existe pas ou n'existe plus !</p>
-    <p>Vous pouvez toujours <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>" class="text-blue-500">retourner à l'accueil.</a></p>
+    <p>Vous pouvez toujours <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>" class="text-blue-500">retourner à l'accueil.</a></p>
 </div>

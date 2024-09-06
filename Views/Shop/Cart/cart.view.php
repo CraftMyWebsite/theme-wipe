@@ -10,12 +10,12 @@ use CMW\Utils\Website;
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Entity\Shop\Carts\ShopCartDiscountEntity[] $appliedDiscounts */
 
-Website::setTitle("Boutique - Panier");
-Website::setDescription("Votre panier");
+Website::setTitle('Boutique - Panier');
+Website::setDescription('Votre panier');
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>"
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
          class="absolute h-full inset-0 object-center object-cover w-full"
          alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
@@ -62,7 +62,7 @@ Website::setDescription("Votre panier");
                         <?php foreach ($cartContent as $cart): ?>
                             <tr class="bg-white border-b text-center">
                                 <td class="py-2">
-                                    <?php if ($cart->getFirstImageItemUrl() !== "/Public/Uploads/Shop/0"): ?>
+                                    <?php if ($cart->getFirstImageItemUrl() !== '/Public/Uploads/Shop/0'): ?>
                                         <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
                                              src="<?= $cart->getFirstImageItemUrl() ?>" alt="Panier">
                                     <?php else: ?>
@@ -209,7 +209,7 @@ Website::setDescription("Votre panier");
                         <?php foreach ($asideCartContent as $asideCart): ?>
                             <tr class="bg-white border-b text-center">
                                 <td class="py-2">
-                                    <?php if ($asideCart->getFirstImageItemUrl() !== "/Public/Uploads/Shop/0"): ?>
+                                    <?php if ($asideCart->getFirstImageItemUrl() !== '/Public/Uploads/Shop/0'): ?>
                                         <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
                                              src="<?= $asideCart->getFirstImageItemUrl() ?>" alt="Panier">
                                     <?php endif; ?>

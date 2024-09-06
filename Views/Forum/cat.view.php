@@ -8,13 +8,12 @@ use CMW\Utils\Website;
 
 /** @var \CMW\Model\Forum\ForumModel $forumModel */
 /** @var \CMW\Entity\Forum\ForumCategoryEntity $category */
-
-Website::setTitle("Forum");
-Website::setDescription("Consulter les catégorie du Forum");
+Website::setTitle('Forum');
+Website::setDescription('Consulter les catégorie du Forum');
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>"
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
          class="absolute h-full inset-0 object-center object-cover w-full"
          alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
@@ -32,7 +31,7 @@ Website::setDescription("Consulter les catégorie du Forum");
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum"
+                    <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum"
                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         <?= ThemeModel::getInstance()->fetchConfigValue('forum_breadcrumb_home') ?>
                     </a>
@@ -49,7 +48,7 @@ Website::setDescription("Consulter les catégorie du Forum");
     </div>
     <div class="flex">
         <div class="relative w-full">
-            <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER')?>forum/search" method="POST">
+            <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum/search" method="POST">
                 <?php (new SecurityManager())->insertHiddenToken() ?>
                 <input type="text" name="for"
                        class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
@@ -86,7 +85,7 @@ Website::setDescription("Consulter les catégorie du Forum");
                                    href="<?= $forumObj->getLink() ?>">
                                     <div
                                         class="py-2 px-2 bg-gradient-to-b from-gray-400 to-gray-300 rounded-xl shadow-connect w-fit h-fit">
-                                        <?= $forumObj->getFontAwesomeIcon("fa-xl") ?>
+                                        <?= $forumObj->getFontAwesomeIcon('fa-xl') ?>
                                     </div>
                                     <div class="ml-4">
                                         <div class="font-bold">
@@ -105,23 +104,23 @@ Website::setDescription("Consulter les catégorie du Forum");
                             <!--Dernier message-->
                             <div class="hidden md:block w-[25%] my-auto">
                                 <div class="flex text-sm">
-                                    <?php if ($forumObj->getLastResponse() !== null) : ?>
+                                    <?php if ($forumObj->getLastResponse() !== null): ?>
                                     <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/p<?= $forumObj->getLastResponse()->getPageNumber() ?>/#<?= $forumObj->getLastResponse()?->getId() ?>">
                                         <?php endif; ?>
                                         <div tabindex="0" class="avatar w-10">
                                             <div class="w-fit rounded-full ">
                                                 <img
-                                                    src="<?= $forumObj->getLastResponse()?->getUser()->getUserPicture()->getImage() ?? ThemeModel::getInstance()->fetchImageLink("forum_nobody_send_message_img") ?>"/>
+                                                    src="<?= $forumObj->getLastResponse()?->getUser()->getUserPicture()->getImage() ?? ThemeModel::getInstance()->fetchImageLink('forum_nobody_send_message_img') ?>"/>
                                             </div>
                                         </div>
                                     </a>
-                                    <?php if ($forumObj->getLastResponse() !== null) : ?>
+                                    <?php if ($forumObj->getLastResponse() !== null): ?>
                                     <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/p<?= $forumObj->getLastResponse()->getPageNumber() ?>/#<?= $forumObj->getLastResponse()?->getId() ?>">
                                         <?php endif; ?>
                                         <div class="ml-2">
                                             <div
                                                 class=""><?= $forumObj->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::getInstance()->fetchConfigValue('forum_nobody_send_message_text') ?></div>
-                                            <div><?= $forumObj->getLastResponse()?->getCreated() ?? "" ?></div>
+                                            <div><?= $forumObj->getLastResponse()?->getCreated() ?? '' ?></div>
                                         </div>
                                     </a>
                                 </div>

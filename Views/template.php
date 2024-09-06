@@ -1,19 +1,20 @@
-<?php use CMW\Manager\Views\View;
+<?php
+use CMW\Manager\Views\View;
 
-/* INCLUDE SCRIPTS / STYLES*/
+/* INCLUDE SCRIPTS / STYLES */
 /* @var $includes */
-View::loadInclude($includes, "beforePhp");
+View::loadInclude($includes, 'beforePhp');
 
-include_once("Includes/head.inc.php");
-include_once("Includes/header.inc.php");
+include_once ('Includes/head.inc.php');
+include_once ('Includes/header.inc.php');
 ?>
 
 <?= /* @var string $content */ $content ?>
 
 <?php
-include_once("Includes/footer.inc.php");
+include_once ('Includes/footer.inc.php');
 ?>
 
 <?php
-View::loadInclude($includes, "afterScript" ,"afterPhp");
+View::loadInclude($includes, 'afterScript', 'afterPhp');
 ?>

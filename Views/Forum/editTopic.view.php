@@ -1,20 +1,20 @@
 <?php
 
-use CMW\Manager\Env\EnvManager;
-use CMW\Model\Core\ThemeModel;
-use CMW\Manager\Security\SecurityManager;
 use CMW\Controller\Users\UsersController;
+use CMW\Manager\Env\EnvManager;
+use CMW\Manager\Security\SecurityManager;
+use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /* @var \CMW\Entity\Forum\ForumCategoryEntity $category */
 /* @var CMW\Entity\Forum\ForumEntity $forum */
 
-Website::setTitle("Forum");
-Website::setDescription("Éditez un topic");
+Website::setTitle('Forum');
+Website::setDescription('Éditez un topic');
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -29,7 +29,7 @@ Website::setDescription("Éditez un topic");
         <nav class="flex" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1">
                 <li class="inline-flex items-center">
-                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                    <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                         <?= ThemeModel::getInstance()->fetchConfigValue('forum_breadcrumb_home') ?>
                     </a>
                 </li>
@@ -60,7 +60,7 @@ Website::setDescription("Éditez un topic");
 </section>
 
 
-<?php if(UsersController::isUserLogged()): ?>
+<?php if (UsersController::isUserLogged()): ?>
 <section class="my-8 sm:mx-12 2xl:mx-72">
     <div class="rounded-md shadow-lg p-8">
 
@@ -78,7 +78,7 @@ Website::setDescription("Éditez un topic");
                     </div>
                     <div>
                         <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tags : <small>Séparez vos tags par ','</small></label>
-                        <input name="tags" type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Tag1,Tag2,Tag3" value="<?php foreach ($topic->getTags() as $tag) {echo "" . $tag->getContent() . ",";} ?>">
+                        <input name="tags" type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Tag1,Tag2,Tag3" value="<?php foreach ($topic->getTags() as $tag) { echo '' . $tag->getContent() . ','; } ?>">
                     </div>
                 </div>
                     <label for="summernote-1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenue<span class="text-red-500">*</span> :</label>
@@ -105,7 +105,7 @@ Website::setDescription("Éditez un topic");
                     <div class="mt-2 mb-4 text-sm">
                         Vous devez vous connecter pour pouvoir poster un nouveau topic !
                         <div class="flex mt-2">
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center">
+                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>login" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center">
                             <p>Connexion</p>
                         </a>
                     </div>

@@ -2,17 +2,17 @@
 
 /* @var \CMW\Entity\Core\MaintenanceEntity $maintenance */
 
-/*TITRE ET DESCRIPTION*/
+/* TITRE ET DESCRIPTION */
 
 use CMW\Utils\Website;
 
-Website::setTitle("Maintenance");
-Website::setDescription("Maintenance en cours sur le site");
+Website::setTitle('Maintenance');
+Website::setDescription('Maintenance en cours sur le site');
 ?>
 
 <section class="page-section">
     <div class="container">
-        <?php if($maintenance->isEnable()): ?>
+        <?php if ($maintenance->isEnable()): ?>
             <div>
                 <h1><?= $maintenance->getTitle() ?></h1>
             </div>

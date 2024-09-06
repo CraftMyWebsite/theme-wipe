@@ -4,17 +4,17 @@ use CMW\Controller\Core\ThemeController;
 use CMW\Controller\Users\UsersController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Theme\ThemeManager;
-use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
+use CMW\Model\Users\UsersModel;
 use CMW\Model\Votes\VotesConfigModel;
 use CMW\Utils\Website;
 
-/*TITRE ET DESCRIPTION*/
-Website::setTitle("Votez");
+/* TITRE ET DESCRIPTION */
+Website::setTitle('Votez');
 Website::setDescription("Votez, obtenez des points de vote et plein d'autres cadeaux!");
 ?>
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -41,7 +41,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             <div class="rounded-md shadow-lg p-2 mb-4">
                     <div class="text-center">Pour pouvoir voter et récupérer vos récompenses vous devez être connecté sur le site, alors n'attendez plus pour obtenir des récompenses uniques !</div>
                     <div class="pt-4 pb-2 text-center">
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2">Connexion</i></a>
+                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>login" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2">Connexion</i></a>
                     </div>
             </div>
             
@@ -92,7 +92,8 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
                         <tbody>
 
                                 <?php $i = 0;
-                                foreach ($topCurrent as $top): $i++; ?>
+                                foreach ($topCurrent as $top):
+                                    $i++; ?>
 
                                     <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <td scope="row" class="flex items-center lg:px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -102,24 +103,24 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
                                             </div>
                                         </td>
                                         <td class="py-4 px-6 text-center">
-                                            <?php $color_position = $i  ?>
+                                            <?php $color_position = $i ?>
                                             <div class="
-                                                <?php 
+                                                <?php
                                                 switch ($color_position) {
                                                     case '1':
-                                                        echo "bg-amber-400";
+                                                        echo 'bg-amber-400';
                                                         break;
                                                     case '2':
-                                                        echo "bg-amber-300";
+                                                        echo 'bg-amber-300';
                                                         break;
                                                     case '3':
-                                                        echo "bg-amber-200";
+                                                        echo 'bg-amber-200';
                                                         break;
                                                     default:
-                                                        echo "bg-blue-200";
+                                                        echo 'bg-blue-200';
                                                         break;
                                                 }
-                                                ?>
+                                                                                ?>
                                              inline-block px-3 py-1 rounded-sm font-medium text-black"># <?= $i ?></div>
                                         </td>
                                         <td class="py-4 px-6 text-center">
@@ -135,7 +136,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             </div>
         </div>
     </div>
-    <?php if(ThemeModel::getInstance()->fetchConfigValue('votes_display_global')): ?>
+    <?php if (ThemeModel::getInstance()->fetchConfigValue('votes_display_global')): ?>
     <div class="md:px-16 xl:px-28 2xl:px-48 mt-4">
         <div class="container mx-auto rounded-md shadow-lg p-8">
             <div class="flex flex-no-wrap justify-center items-center py-4">
@@ -162,7 +163,9 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $i = 0; foreach ($topGlobal as $top): $i++; ?>
+                    <?php $i = 0;
+                    foreach ($topGlobal as $top):
+                        $i++; ?>
                     <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" class="flex items-center lg:px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <img class="hidden lg:inline-block w-10 h-10 rounded-full" src="<?= $top->getUser()->getUserPicture()->getImage() ?>" alt="...">
@@ -171,24 +174,24 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
                             </div>
                         </th>
                         <td class="py-4 px-6 text-center">
-                            <?php $color_position = $i  ?>
+                            <?php $color_position = $i ?>
                             <div class="
-                                <?php 
+                                <?php
                                 switch ($color_position) {
                                     case '1':
-                                        echo "bg-amber-400";
+                                        echo 'bg-amber-400';
                                         break;
                                     case '2':
-                                        echo "bg-amber-300";
+                                        echo 'bg-amber-300';
                                         break;
                                     case '3':
-                                        echo "bg-amber-200";
+                                        echo 'bg-amber-200';
                                         break;
                                     default:
-                                        echo "bg-blue-200";
+                                        echo 'bg-blue-200';
                                         break;
                                 }
-                                ?>
+                                                ?>
                             inline-block px-3 py-1 rounded-sm font-medium text-black"># <?= $i ?> 
                         </div>
                         </td>

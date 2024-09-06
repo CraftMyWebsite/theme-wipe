@@ -7,12 +7,12 @@ use CMW\Utils\Website;
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Historique d'achat");
-Website::setDescription("Consultation de vos achats");
+Website::setDescription('Consultation de vos achats');
 
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink("hero_img_bg") ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -33,7 +33,7 @@ Website::setDescription("Consultation de vos achats");
             <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         </div>
 
-        <?php foreach ($historyOrders as $order) : ?>
+        <?php foreach ($historyOrders as $order): ?>
         <div class="container mx-auto rounded-md shadow-lg p-8 mb-4">
                 <div class="py-2">
                     <div class="flex flex-wrap justify-between mb-4">
@@ -61,7 +61,7 @@ Website::setDescription("Consultation de vos achats");
                         <div class="flex flex-wrap border p-4 gap-4">
 
                                 <div style="width: 20%">
-                                    <?php if ($orderItem->getFirstImg() !== "/Public/Uploads/Shop/0"): ?>
+                                    <?php if ($orderItem->getFirstImg() !== '/Public/Uploads/Shop/0'): ?>
                                         <img class="mx-auto" style="width: 8rem; height: 8rem; object-fit: cover" src="<?= $orderItem->getFirstImg() ?>" alt="Image de l'article">
                                     <?php else: ?>
                                         <img class="mx-auto" style="width: 8rem; height: 8rem; object-fit: cover" src="<?= $defaultImage ?>" alt="Image de l'article">
