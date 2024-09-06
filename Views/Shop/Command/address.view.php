@@ -5,6 +5,7 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\Carts\ShopCartItemEntity[] $cartContent */
+/* @var CMW\Entity\Shop\Country\ShopCountryEntity[] $country */
 /* @var CMW\Entity\Shop\Deliveries\ShopDeliveryUserAddressEntity[] $userAddresses */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 
@@ -47,7 +48,7 @@ Website::setDescription("Adresse de facturation et livraison");
                                     <?= $userAddress->getLine1() ?><br>
                                     <?= $userAddress->getLine2() ?>
                                     <?= $userAddress->getPostalCode() . " " . $userAddress->getCity() ?><br>
-                                    <?= $userAddress->getCountry() ?>
+                                    <?= $userAddress->getFormattedCountry() ?>
                                 </div>
                                 <?php endforeach; ?>
                         </div>
@@ -110,7 +111,14 @@ Website::setDescription("Adresse de facturation et livraison");
                                 </div>
                                 <div>
                                     <label for="country" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pays<span class="text-red-500">*</span> :</label>
-                                    <input name="country" type="text" id="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Ciel">
+                                    <select name="country" id="country"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                        <?php foreach ($country as $countryEntity) : ?>
+                                            <option value="<?= $countryEntity->getCode() ?>">
+                                                <?= $countryEntity->getName() ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>

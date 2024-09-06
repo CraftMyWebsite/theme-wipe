@@ -6,7 +6,8 @@ use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\Carts\ShopCartItemEntity[] $cartContent */
 /* @var CMW\Entity\Shop\Deliveries\ShopDeliveryUserAddressEntity $selectedAddress */
-/* @var CMW\Entity\Shop\Deliveries\ShopShippingEntity[] $shippings */
+/* @var CMW\Entity\Shop\Shippings\ShopShippingEntity[] $shippings */
+/* @var CMW\Entity\Shop\Shippings\ShopShippingEntity[] $withdrawPoints */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 
 Website::setTitle("Boutique - Tunnel de commande");
@@ -43,7 +44,7 @@ Website::setDescription("Méthode de livraison");
                                 <?= $selectedAddress->getLine1() ?><br>
                                 <?= $selectedAddress->getLine2() ?>
                                 <?= $selectedAddress->getPostalCode() . " " . $selectedAddress->getCity() ?><br>
-                                <?= $selectedAddress->getCountry() ?>
+                                <?= $selectedAddress->getFormattedCountry() ?>
                             </div>
                     </div>
                 </div>
@@ -51,12 +52,15 @@ Website::setDescription("Méthode de livraison");
                 <div class="flex flex-no-wrap justify-center items-center py-4">
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                     <div class="px-10 w-auto">
-                        <h2 class="font-semibold text-2xl uppercase">Expédition</h2>
+                        <h2 class="font-semibold text-2xl uppercase">Expédition / Point de retrait</h2>
                     </div>
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 </div>
                 <form id="toPayment" action="command/toPayment" method="post">
                     <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <?php if (!empty($shippings)): ?>
+                    <h4>Expédition</h4>
+                    <small>Recevez vos colis directement chez vous</small>
                     <?php foreach ($shippings as $shipping): ?>
                         <div class="bg-gray-100 rounded-lg p-3 mb-2">
                             <div class="flex flex-wrap justify-between">
@@ -66,11 +70,33 @@ Website::setDescription("Méthode de livraison");
                                     </label>
                                 </div>
                                 <div>
-                                    <b><?= $shipping->getPriceFormatted() ?></b>
+                                    <b><?= $shipping->getPrice() ?> TODO formatted price!</b>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
+                    <hr>
+                    <?php endif; ?>
+                    <?php if (!empty($withdrawPoints)): ?>
+                    <h4>Point de retrait</h4>
+                    <small>Venez chercher votre colis dans nos points de distribution</small>
+                    <p>Todo MAP + Calcul distance</p>
+                    <?php foreach ($withdrawPoints as $withdrawPoint): ?>
+                        <div class="bg-gray-100 rounded-lg p-3 mb-2">
+                            <div class="flex flex-wrap justify-between">
+                                <div>
+                                    <label>
+                                        <input name="shippingId" type="checkbox" value="<?= $withdrawPoint->getId() ?>"> <?= $withdrawPoint->getName() ?>
+                                    </label>
+                                    <div class="withdrawPointMap"></div>
+                                </div>
+                                <div>
+                                    <b><?= $withdrawPoint->getPrice() ?> TODO formatted price!</b>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </form>
             </div>
             <div class="flex justify-between mt-4">

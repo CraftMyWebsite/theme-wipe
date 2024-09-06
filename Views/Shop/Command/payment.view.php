@@ -6,7 +6,7 @@ use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\Carts\ShopCartItemEntity[] $cartContent */
 /* @var CMW\Entity\Shop\Deliveries\ShopDeliveryUserAddressEntity $selectedAddress */
-/* @var CMW\Entity\Shop\Deliveries\ShopShippingEntity $shippingMethod */
+/* @var CMW\Entity\Shop\Shippings\ShopShippingEntity $shippingMethod */
 /* @var \CMW\Interface\Shop\IPaymentMethod[] $paymentMethods */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Entity\Shop\Discounts\ShopDiscountEntity[] $giftCodes */
@@ -48,7 +48,7 @@ Website::setDescription("Méthode de paiement");
                             <?= $selectedAddress->getLine1() ?><br>
                             <?= $selectedAddress->getLine2() ?>
                             <?= $selectedAddress->getPostalCode() . " " . $selectedAddress->getCity() ?><br>
-                            <?= $selectedAddress->getCountry() ?>
+                            <?= $selectedAddress->getFormattedCountry() ?>
                         </div>
                     </div>
                 </div>
@@ -145,11 +145,12 @@ Website::setDescription("Méthode de paiement");
                     <?php endforeach; ?>
                 <?php endif; ?>
 
+                /*TODO : Refac*/
                 <?php if (!is_null($shippingMethod)): ?>
                 <h4 class="text-center mt-4">Livraison</h4>
                 <div class="flex flex-wrap justify-between">
                     <span><?= $shippingMethod->getName() ?></span>
-                    <span><b><?= $shippingMethod->getPriceFormatted() ?></b></span>
+                    <span><b><?= $shippingMethod->getPrice() ?> TODO formatted price!</b></span>
                 </div>
                 <?php endif; ?>
                 <h4 class="text-center mt-4">Total</h4>

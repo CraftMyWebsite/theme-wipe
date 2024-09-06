@@ -71,7 +71,7 @@ Website::setDescription("Votre panier");
                                     <?php endif; ?>
                                 </td>
                                 <td class="py-4 px-6 text-gray-900">
-                                    <span class="font-semibold"><?= $cart->getItem()->getName() ?></span><br>
+                                    <span class="font-semibold"><a class="text-blue-500" href="<?= $cart->getItem()->getItemLink() ?>"><?= $cart->getItem()->getName() ?></a></span><br>
                                     <small>
                                         <?php foreach ($itemsVariantes->getShopItemVariantValueByCartId($cart->getId()) as $itemVariant): ?>
                                             <?= $itemVariant->getVariantValue()->getVariant()->getName() ?> : <?= $itemVariant->getVariantValue()->getValue() ?><br>
