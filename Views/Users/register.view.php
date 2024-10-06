@@ -85,7 +85,7 @@ Website::setDescription('Inscrivez-vous');
                 <div class="px-4 py-2 justify-center text-center w-full sm:w-auto">
                     <div class="flex-wrap inline-flex space-x-3">
                         <?php foreach ($oAuths as $oAuth): ?>
-                            <a href="register/oAuth/<?= $oAuth->methodIdentifier() ?>" class="hover:text-blue-600"
+                            <a href="oauth/<?= $oAuth->methodIdentifier() ?>" class="hover:text-blue-600"
                                aria-label="<?= $oAuth->methodeName() ?>">
                                 <img src="<?= $oAuth->methodeIconLink() ?>"
                                      alt="<?= $oAuth->methodeName() ?>" width="32" height="32"/>
