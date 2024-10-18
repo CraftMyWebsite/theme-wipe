@@ -37,7 +37,10 @@ Website::setDescription('Consultation de vos achats');
         <div class="container mx-auto rounded-md shadow-lg p-8 mb-4">
                 <div class="py-2">
                     <div class="flex flex-wrap justify-between mb-4">
-                        <h4 class="font-medium">N°<?= $order->getOrderNumber() ?></h4>
+                        <div>
+                            <h4 class="font-medium">N°<?= $order->getOrderNumber() ?></h4>
+                            <a href="history/afterSales/request/<?= $order->getOrderNumber() ?>">Ouvrir une demande S.A.V</a>
+                        </div>
                         <div class="font-medium">Commandé le : <span style="color: #5a8cde"><?= $order->getCreated() ?></span></div>
                     </div>
                     <div class="flex flex-wrap justify-between items-center mb-2">

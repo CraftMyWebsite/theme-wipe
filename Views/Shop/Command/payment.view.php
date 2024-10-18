@@ -80,7 +80,7 @@ Website::setDescription("Méthode de paiement");
                             </div>
                         <?php endforeach; ?>
                         <?php else: ?>
-                        <p>Ce moyen de paiement est pour le moment désactiver.</p>
+                        <p>Aucun moyen de paiement actif ou compatible !</p>
                         <?php endif; ?>
                     </div>
                 </form>
