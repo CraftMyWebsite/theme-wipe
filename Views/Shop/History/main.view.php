@@ -39,7 +39,6 @@ Website::setDescription('Consultation de vos achats');
                     <div class="flex flex-wrap justify-between mb-4">
                         <div>
                             <h4 class="font-medium">N°<?= $order->getOrderNumber() ?></h4>
-                            <a href="history/afterSales/request/<?= $order->getOrderNumber() ?>">Ouvrir une demande S.A.V</a>
                         </div>
                         <div class="font-medium">Commandé le : <span style="color: #5a8cde"><?= $order->getCreated() ?></span></div>
                     </div>
@@ -54,9 +53,16 @@ Website::setDescription('Consultation de vos achats');
                                     <p>Réduction appliquée : <b>-<?= $order->getAppliedCartDiscountTotalPriceFormatted() ?></b></p>
                             <?php endif; ?>
                         </div>
-                        <?php if (!empty($order->getShippingLink()) && $order->getStatusCode() === 2): ?>
-                            <a href="<?= $order->getShippingLink() ?>" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5">Suivre le colis</a>
-                        <?php endif; ?>
+                        <div class="flex flex-col">
+                            <?php if (!empty($order->getShippingLink()) && $order->getStatusCode() === 2): ?>
+                            <div>
+                                <a href="<?= $order->getShippingLink() ?>" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5">Suivre le colis</a>
+                            </div>
+                            <?php endif; ?>
+                            <div class="mt-4" style="text-align: end">
+                                <a  class="justify-self-end text-blue-500 hover:text-blue-400" href="history/afterSales/request/<?= $order->getOrderNumber() ?>">Service après vente</a>
+                            </div>
+                        </div>
                     </div>
                     <h4 class="py-2 border-t">Vos articles :</h4>
                     <div>
