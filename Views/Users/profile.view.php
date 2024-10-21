@@ -107,7 +107,7 @@ Website::setDescription('Éditez votre profil');
             </div>
 
             <div>
-                <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>profile" method="post" enctype="multipart/form-data">
+                <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>profile/update/picture" method="post" enctype="multipart/form-data">
                     <?php (new SecurityManager())->insertHiddenToken() ?>
                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Changer votre image :</label>
                     <div class="flex">
