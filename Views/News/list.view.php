@@ -3,7 +3,7 @@
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 
-$newsList = $newsModel->getSomeNews(ThemeModel::getInstance()->fetchConfigValue('news_page_number_display'), 'DESC');
+$newsList = \CMW\Model\News\NewsModel::getInstance()->getSomeNews(ThemeModel::getInstance()->fetchConfigValue('news_page_number_display'), 'DESC');
 
 use CMW\Controller\Users\UsersController;
 use CMW\Utils\Website;

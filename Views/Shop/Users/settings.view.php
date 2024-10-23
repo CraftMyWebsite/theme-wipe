@@ -19,4 +19,4 @@ Website::setDescription('Gérer vos paramètres de boutique');
     </div>
 </section>
 
-Paramètres
+Paramètres ( adresse d'exepdition )
