@@ -5,7 +5,7 @@ use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\Categories\ShopCategoryEntity[] $categories */
-/* @var CMW\Model\Shop\Item\ShopItemsModel $items */
+/* @var \CMW\Entity\Shop\Items\ShopItemEntity [] $items */
 /* @var CMW\Model\Shop\Review\ShopReviewsModel $review */
 /* @var CMW\Model\Shop\Image\ShopImagesModel $imagesItem */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
@@ -58,7 +58,7 @@ Website::setDescription('Découvrez la boutique !');
         </div>
 
         <div class="py-4 flex flex-wrap">
-            <?php foreach ($items->getShopItems() as $item): ?>
+            <?php foreach ($items as $item): ?>
                 <div class="relative w-full xl:w-1/2 2xl:w-1/4 mt-4 mb-5 2xl:mb-0 px-4 hover:scale-105 transition">
                     <?php if ($item->getDiscountImpactDefaultApplied()): ?>
                     <div style="z-index: 5000; position: absolute; top: 0; left: 0; transform: translate(5%, 10%) rotate(-10deg); background-color: #f44336; color: white; padding: 8px 16px; border-radius: 0 16px 0 16px;">
