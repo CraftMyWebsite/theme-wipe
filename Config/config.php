@@ -303,6 +303,7 @@ use CMW\Utils\Website; ?>
         <label for="custom_section_content_3">Contenu :</label>
         <textarea name="custom_section_content_3" id="custom_section_content_3"
                   class="tinymce"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_content_3') ?></textarea>
+        <?php if (PackageController::isInstalled('Contact')): ?>
         <hr>
         <!--CONTACT-->
         <div>
@@ -318,6 +319,30 @@ use CMW\Utils\Website; ?>
         <label for="contact_section_title">Titre de la section :</label>
         <input type="text" class="input" id="contact_section_title" name="contact_section_title"
                value="<?= ThemeModel::getInstance()->fetchConfigValue('contact_section_title') ?>" required>
+        <?php endif; ?>
+        <?php if (PackageController::isInstalled('Newsletter')): ?>
+            <hr>
+            <!--Newsletter-->
+            <div>
+                <label class="toggle">
+                    <h5 class="toggle-label">Newsletter : <i data-bs-toggle="tooltip"
+                                                          title="Vous pouvez activer ou non cette section."
+                                                          class="fa-sharp fa-solid fa-circle-question"></i></h5>
+                    <input type="checkbox" class="toggle-input" id="newsletter_section_active"
+                           name="newsletter_section_active" <?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_active') ? 'checked' : '' ?>>
+                    <div class="toggle-slider"></div>
+                </label>
+            </div>
+            <label for="newsletter_section_title">Titre de la section :</label>
+            <input type="text" class="input" id="newsletter_section_title" name="newsletter_section_title"
+                   value="<?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_title') ?>" required>
+            <label for="newsletter_section_description">Message :</label>
+            <input type="text" class="input" id="newsletter_section_description" name="newsletter_section_description"
+                   value="<?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_description') ?>" required>
+            <label for="newsletter_section_button">Bouton :</label>
+            <input type="text" class="input" id="newsletter_section_button" name="newsletter_section_button"
+                   value="<?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_button') ?>" required>
+        <?php endif; ?>
     </div>
     <div class="tab-content" id="tab3">
         <!---NEWS---->

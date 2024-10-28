@@ -37,6 +37,11 @@ return [
     'news_section_active' => '1',
     'news_section_title' => 'Nouveautés',
     'news_number_display' => '4',
+    /* NEWSLETTER SECTION */
+    'newsletter_section_active' => '1',
+    'newsletter_section_title' => 'NewsLetter',
+    'newsletter_section_description' => 'Abonnez-vous à notre newsletter pour ne louper aucune news !',
+    'newsletter_section_button' => 'S\'abonner !',
     /* CONTACT SECTION */
     'contact_section_active' => '1',
     'contact_section_title' => 'Nous contacter',

@@ -307,3 +307,35 @@ Website::setDescription(Website::getWebsiteDescription());
         </section>
     <?php endif; ?>
 <?php endif; ?>
+
+<?php if (PackageController::isInstalled('Newsletter')): ?>
+    <?php if (ThemeModel::getInstance()->fetchConfigValue('newsletter_section_active')): ?>
+        <section class="py-8">
+        <div class="flex flex-no-wrap justify-center items-center py-4">
+            <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+            <div class="px-10 w-auto">
+                <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_title') ?></h2>
+            </div>
+            <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
+        </div>
+            <div class="container mx-auto px-4 xl:px-72">
+                <form action="newsletter" method="post" class="rounded-md shadow-lg p-8">
+                    <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_description') ?>
+                    <div class="relative mt-4">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <input type="email" name="newsletter_users_mail" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="votre@mail.com" required>
+                    </div>
+                    <?php SecurityController::getPublicData(); ?>
+                    <div class="text-center mt-4">
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none" type="submit">
+                            <?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_button') ?>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    <?php endif; ?>
+<?php endif; ?>
