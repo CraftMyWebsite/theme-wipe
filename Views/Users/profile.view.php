@@ -34,7 +34,7 @@ Website::setDescription('Éditez votre profil');
 <div class="p-4">
     <div class="md:grid md:grid-cols-2 md:gap-16">
         <div>
-            <p class="text-center uppercase font-bold">Informations personnel</p>
+            <p class="text-center uppercase font-bold">Informations personnelles</p>
             <form class="space-y-6" action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'profile/update' ?>" method="post">
                 <?php (new SecurityManager())->insertHiddenToken() ?>
                 <div class="md:grid md:grid-cols-2 gap-4">
@@ -98,7 +98,7 @@ Website::setDescription('Éditez votre profil');
 <div class="md:hidden mt-4 border"></div>
         <div>
             <div class="mb-4">
-                <p class="text-center uppercase font-bold mb-2">Identité visuel</p>
+                <p class="text-center uppercase font-bold mb-2">Identité visuelle</p>
                 <?php if (!is_null($user->getUserPicture()?->getImage())): ?>
                 <!--RECUPERER L'iMAGE-->
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Votre image :</label>
@@ -129,7 +129,7 @@ Website::setDescription('Éditez votre profil');
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
     <div class="pt-2 pb-6 text-center">
-        <p class="mb-2">Nous somme triste de vous voir partir !</p>
+        <p class="mb-2">Nous sommes triste de vous voir partir !</p>
         <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>profile/delete/<?= $user->getId() ?>" class="mb-4 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Supprimer mon compte</a>
     </div>
 </div>
