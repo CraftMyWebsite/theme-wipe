@@ -145,12 +145,11 @@ Website::setDescription("Méthode de paiement");
                     <?php endforeach; ?>
                 <?php endif; ?>
 
-                /*TODO : Refac*/
                 <?php if (!is_null($shippingMethod)): ?>
                 <h4 class="text-center mt-4">Livraison</h4>
                 <div class="flex flex-wrap justify-between">
                     <span><?= $shippingMethod->getName() ?></span>
-                    <span><b><?= $shippingMethod->getPrice() ?> TODO formatted price!</b></span>
+                    <span><b><?= $shippingMethod->getPriceFormatted() ?></b></span>
                 </div>
                 <?php endif; ?>
                 <h4 class="text-center mt-4">Total</h4>

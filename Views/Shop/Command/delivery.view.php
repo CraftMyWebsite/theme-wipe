@@ -70,7 +70,7 @@ Website::setDescription("Méthode de livraison");
                                     </label>
                                 </div>
                                 <div>
-                                    <b><?= $shipping->getPrice() ?> TODO formatted price!</b>
+                                    <b><?= $shipping->getPriceFormatted() ?></b>
                                 </div>
                             </div>
                         </div>
