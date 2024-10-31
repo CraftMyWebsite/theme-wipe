@@ -90,7 +90,7 @@ Website::setDescription("Méthode de paiement");
                         <button type="submit"  class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Précedent</button>
                     </form>
 
-                    <button form="payment" type="submit"
+                    <button id="payment-button" form="payment" type="submit"
                             class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                         Payer
                     </button>
@@ -159,3 +159,12 @@ Website::setDescription("Méthode de paiement");
     </div>
 </section>
 
+<script>
+    document.getElementById("payment").addEventListener("submit", function(event) {
+        const button = document.getElementById("payment-button");
+        button.disabled = true;
+        button.innerHTML = `
+        <i style="margin-right: 10px" class="fa-solid fa-sack-dollar fa-bounce"></i> Paiement en cours...
+    `;
+    });
+</script>

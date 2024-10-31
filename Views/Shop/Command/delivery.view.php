@@ -66,7 +66,7 @@ Website::setDescription("Méthode de livraison");
                             <div class="flex flex-wrap justify-between">
                                 <div>
                                     <label>
-                                    <input name="shippingId" type="checkbox" value="<?= $shipping->getId() ?>"> <?= $shipping->getName() ?>
+                                    <input name="shippingId" type="radio" value="<?= $shipping->getId() ?>"> <?= $shipping->getName() ?>
                                     </label>
                                 </div>
                                 <div>
@@ -86,12 +86,12 @@ Website::setDescription("Méthode de livraison");
                             <div class="flex flex-wrap justify-between">
                                 <div>
                                     <label>
-                                        <input name="shippingId" type="checkbox" value="<?= $withdrawPoint->getId() ?>"> <?= $withdrawPoint->getName() ?>
+                                        <input name="shippingId" type="radio" value="<?= $withdrawPoint->getId() ?>"> <?= $withdrawPoint->getName() ?>
                                     </label>
                                     <div class="withdrawPointMap"></div>
                                 </div>
                                 <div>
-                                    <b><?= $withdrawPoint->getPrice() ?> TODO formatted price!</b>
+                                    <b><?= $withdrawPoint->getPriceFormatted() ?></b>
                                 </div>
                             </div>
                         </div>

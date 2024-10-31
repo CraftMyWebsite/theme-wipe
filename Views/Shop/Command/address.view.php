@@ -41,7 +41,7 @@ Website::setDescription("Adresse de facturation et livraison");
                         <div class="lg:grid lg:grid-cols-3 gap-6">
                                 <?php foreach ($userAddresses as $userAddress): ?>
                                 <div class="shadow p-2">
-                                    <input value="<?= $userAddress->getId() ?>" name="addressId" type="checkbox" <?php if ($userAddress->getIsFav()) {echo "checked";} ?>>
+                                    <input value="<?= $userAddress->getId() ?>" name="addressId" type="radio" <?php if ($userAddress->getIsFav()) {echo "checked";} ?>>
                                     <?= $userAddress->getLabel() ?><br>
                                     <b><?= $userAddress->getFirstName() . " " . $userAddress->getLastName() ?></b><br>
                                     <?= $userAddress->getPhone() ?><br>
