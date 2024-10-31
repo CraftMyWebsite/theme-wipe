@@ -10,6 +10,7 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Shop\Image\ShopImagesModel $imagesItem */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Model\Shop\Setting\ShopSettingsModel $allowReviews */
+/* @var CMW\Model\Shop\Category\ShopCategoriesModel $categoryModel */
 
 Website::setTitle('Boutique - Catégorie : ' . $thisCat->getName());
 Website::setDescription('Découvrez nos produits de la catégorie : ' . $thisCat->getName());
@@ -34,9 +35,11 @@ Website::setDescription('Découvrez nos produits de la catégorie : ' . $thisCat
             <div>
                 <select onchange="location = this.value;" class="block pr-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
                     <option value="<?= Website::getProtocol() . '://' . $_SERVER['SERVER_NAME'] . EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'shop' ?>" >Catégorie : Tout afficher</option>
-                    <?php $i = 0;
-                    foreach ($categories as $category): ?>
-                        <option <?= $category->getName() === $thisCat->getName() ? 'selected' : '' ?> value="<?= $category->getCatLink() ?>">Catégorie : <?= $category->getName() ?></option>
+                    <?php foreach ($categoryModel->getShopCategories() as $category): ?>
+                        <option <?= $category->getName() === $thisCat->getName() ? 'selected' : '' ?> value="<?= $category->getCatLink() ?>">Cat : <?= $category->getName() ?></option>
+                        <?php foreach ($categoryModel->getSubsCat($category->getId()) as $subCategory): ?>
+                            <option <?= $subCategory->getSubCategory()->getName() === $thisCat->getName() ? 'selected' : '' ?> value="<?= $subCategory->getSubCategory()->getCatLink() ?>"> <?php echo str_repeat("\u{00A0}\u{00A0}", $subCategory->getDepth()) . ' Sous-Cat :  ' . $subCategory->getSubCategory()->getName() ?></option>
+                        <?php endforeach; ?>
                     <?php endforeach; ?>
                 </select>
             </div>

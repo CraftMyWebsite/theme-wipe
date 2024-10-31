@@ -4,7 +4,7 @@ use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\Categories\ShopCategoryEntity[] $categories */
+/* @var CMW\Model\Shop\Category\ShopCategoriesModel $categoryModel */
 /* @var \CMW\Entity\Shop\Items\ShopItemEntity [] $items */
 /* @var CMW\Model\Shop\Review\ShopReviewsModel $review */
 /* @var CMW\Model\Shop\Image\ShopImagesModel $imagesItem */
@@ -34,9 +34,11 @@ Website::setDescription('Découvrez la boutique !');
             <div>
                 <select onchange="location = this.value;" class="block pr-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
                     <option selected value="<?= Website::getProtocol() . '://' . $_SERVER['SERVER_NAME'] . EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'shop' ?>" >Catégorie : Tout afficher</option>
-                    <?php $i = 0;
-                    foreach ($categories as $category): ?>
+                    <?php foreach ($categoryModel->getShopCategories() as $category): ?>
                     <option value="<?= $category->getCatLink() ?>">Catégorie : <?= $category->getName() ?></option>
+                        <?php foreach ($categoryModel->getSubsCat($category->getId()) as $subCategory): ?>
+                            <option value="<?= $subCategory->getSubCategory()->getCatLink() ?>"> <?php echo str_repeat("\u{00A0}\u{00A0}", $subCategory->getDepth()) . ' Sous-Cat :  ' . $subCategory->getSubCategory()->getName() ?></option>
+                        <?php endforeach; ?>
                     <?php endforeach; ?>
                 </select>
             </div>
