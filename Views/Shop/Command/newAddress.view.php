@@ -8,6 +8,7 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\Country\ShopCountryEntity[] $country */
 /* @var CMW\Entity\Shop\Deliveries\ShopDeliveryUserAddressEntity[] $userAddresses */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
+/* @var \CMW\Entity\Shop\Discounts\ShopDiscountEntity [] $appliedCartDiscounts*/
 
 Website::setTitle('Boutique - Tunnel de commande');
 Website::setDescription('Adresse de facturation et livraison');
@@ -130,12 +131,12 @@ Website::setDescription('Adresse de facturation et livraison');
                         </div>
                     </div>
                 <?php endforeach; ?>
-                <?php if (!empty($giftCodes)): ?>
-                    <h4 class="text-center mt-4">Carte cadeau :</h4>
-                    <?php foreach ($giftCodes as $giftCode): ?>
+                <?php if (!empty($appliedCartDiscounts)): ?>
+                    <h4 class="text-center mt-4">Réduction :</h4>
+                    <?php foreach ($appliedCartDiscounts as $appliedCartDiscount): ?>
                         <div class="flex flex-wrap justify-between">
-                            <span><?= $giftCode->getCode() ?></span>
-                            <span><b>-<?= $giftCode->getPriceFormatted() ?></b></span>
+                            <span><?= $appliedCartDiscount->getCode() ?></span>
+                            <span><b>-<?= $appliedCartDiscount->getPriceFormatted() ?></b></span>
                         </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
