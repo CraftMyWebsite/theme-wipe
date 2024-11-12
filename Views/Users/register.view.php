@@ -31,7 +31,7 @@ Website::setDescription('Inscrivez-vous');
         <div class="relative bg-white rounded-lg shadow">
             <div class="py-6 px-6 lg:px-8">
                 <form class="space-y-6" action="" method="post">
-                    <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Mail</label>
                         <input name="register_email" type="email"

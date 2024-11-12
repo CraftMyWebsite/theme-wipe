@@ -239,7 +239,7 @@ Website::setDescription(Website::getWebsiteDescription());
     </div>
     <div class="container mx-auto px-4 xl:px-72">
         <form action="contact" method="post" class="rounded-md shadow-lg p-8">
-            <?php (new SecurityManager())->insertHiddenToken() ?>
+            <?php SecurityManager::getInstance()->insertHiddenToken() ?>
             <div class="flex flex-wrap -mx-4 mb-4">
                 <div class="px-4 w-full md:w-6/12 lg:w-6/12">
                     <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Votre mail :</label>
@@ -321,7 +321,7 @@ Website::setDescription(Website::getWebsiteDescription());
         </div>
             <div class="container mx-auto px-4 xl:px-72">
                 <form action="newsletter" method="post" class="rounded-md shadow-lg p-8">
-                    <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                     <?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_description') ?>
                     <div class="relative mt-4">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">

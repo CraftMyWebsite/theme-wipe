@@ -29,7 +29,7 @@ Website::setDescription('Activer le double facteur');
         <form class="space-y-6"
               action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'login/validate/tfa' ?>"
               method="post">
-            <?php (new SecurityManager())->insertHiddenToken() ?>
+            <?php SecurityManager::getInstance()->insertHiddenToken() ?>
             <div>
                 <label for="code" class="block mb-2 text-sm font-medium text-gray-900">Code d'authentification</label>
                 <input type="text" name="code" id="email"

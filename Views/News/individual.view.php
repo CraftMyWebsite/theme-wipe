@@ -121,7 +121,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
         </div>
 <?php endforeach; ?>   
         <form method="post" action="<?= $news->sendComments() ?>" class="">
-            <?php (new SecurityManager())->insertHiddenToken() ?>
+            <?php SecurityManager::getInstance()->insertHiddenToken() ?>
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Votre commentaire :</label>
             <textarea minlength="20" name="comments" id="message" rows="4" class="tinymce block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Bonjour," required></textarea>
             <div class="text-center mt-4">

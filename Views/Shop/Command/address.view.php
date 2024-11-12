@@ -30,7 +30,7 @@ Website::setDescription("Adresse de facturation et livraison");
     <div class="lg:grid lg:grid-cols-3 gap-6">
         <div class="col-span-2 mt-4 lg:mt-0">
             <form action="command/toDelivery" method="post">
-                <?php (new SecurityManager())->insertHiddenToken() ?>
+                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                 <div class="container mx-auto rounded-md shadow-lg p-4 h-fit">
                     <div class="flex flex-no-wrap justify-center items-center py-4">
                         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
@@ -67,7 +67,7 @@ Website::setDescription("Adresse de facturation et livraison");
                     <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 </div>
                     <form action="command/addAddress" method="post">
-                        <?php (new SecurityManager())->insertHiddenToken() ?>
+                        <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                         <div class="bg-gray-100 rounded-lg p-3">
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">

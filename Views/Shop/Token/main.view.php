@@ -40,7 +40,7 @@ Website::setDescription('Gérez vos ' . $token->name());
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
             </div>
             <form method="post" action="">
-                <?php (new SecurityManager())->insertHiddenToken() ?>
+                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                 <div class="mb-4">
                     <label for="amount" class="block mb-2 text-sm font-medium text-gray-900">Montant :</label>
                     <input type="text" name="amount" id="amount" placeholder="19.99"

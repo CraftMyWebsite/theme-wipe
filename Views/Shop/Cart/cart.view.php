@@ -115,7 +115,7 @@ Website::setDescription('Votre panier');
                         <div class="flex">
                             <div class="relative w-full">
                                 <form action="cart/discount/apply" method="post">
-                                    <?php (new SecurityManager())->insertHiddenToken() ?>
+                                    <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                                     <input type="text" autocomplete="off" name="code"
                                        class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                                        placeholder="Code promo / Carte cadeau">

@@ -101,7 +101,7 @@ $i = 0;
     <div class="flex">
         <div class="relative w-full">
             <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum/search" method="POST">
-                <?php (new SecurityManager())->insertHiddenToken() ?>
+                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                 <input type="text" name="for"
                        class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                        placeholder="Rechercher">
@@ -234,7 +234,7 @@ $i = 0;
                         <form id="modal-<?= $topic->getId() ?>"
                               action="p1/reportTopic/<?= $topic->getId() ?>"
                               method="post">
-                            <?php (new SecurityManager())->insertHiddenToken() ?>
+                            <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                             <div class="p-4">
                                 <div>
                                     <label for="reportTopic"
@@ -457,7 +457,7 @@ $i = 0;
                             <form id="modal-<?= $response->getId() ?>"
                                   action="p1/reportResponse/<?= $response->getId() ?>"
                                   method="post">
-                                <?php (new SecurityManager())->insertHiddenToken() ?>
+                                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                                 <div class="p-4">
                                     <div>
                                         <label for="reportTopic"
@@ -718,7 +718,7 @@ $i = 0;
                     <div class="col-span-4 py-4 pr-2">
                         <div class="h-fit">
                             <form action="" method="post">
-                                <?php (new SecurityManager())->insertHiddenToken() ?>
+                                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                                 <input hidden type="text" name="topicId" value="<?= $topic->getId() ?>">
                                 <textarea minlength="20" class="w-full tinymce" name="topicResponse"></textarea>
                                 <div class="flex justify-end mt-2">

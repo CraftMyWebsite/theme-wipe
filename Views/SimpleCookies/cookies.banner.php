@@ -14,7 +14,7 @@ $settings = SimpleCookiesModel::getInstance()->getSettings();
     <small><?= $settings->getPageContent() ?></small>
 
     <form style="display: flex; justify-content: center; margin-top: 5px" action="<?= EnvManager::getInstance()->getValue('PATH_URL') . 'api/cookies/consent' ?>" method="post">
-        <?php (new SecurityManager())->insertHiddenToken(); ?>
+        <?php SecurityManager::getInstance()->insertHiddenToken(); ?>
         <button type="submit" name="consent" style="padding: .2rem .6rem .2rem .6rem; background-color: #2141e1; border-radius: 5px;" class="text-white" value="1">Ok</button>
     </form>
 </div>

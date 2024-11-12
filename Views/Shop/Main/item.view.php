@@ -129,7 +129,7 @@ Website::setDescription("Venez découvrir l'article !");
                 <p><?= $item->getShortDescription() ?></p>
 
                 <form method="post">
-                    <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                     <div class="flex flex-wrap">
                         <?php foreach ($itemVariants as $itemVariant): ?>
                             <div class="mr-2">
@@ -223,7 +223,7 @@ Website::setDescription("Venez découvrir l'article !");
 
                         <div class="rounded-lg bg-white p-4 mb-4">
                             <form method="post" action="<?= $item->getSlug() ?>/addReview" class="">
-                                <?php (new SecurityManager())->insertHiddenToken() ?>
+                                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                                 <h3 class="text-base font-semibold text-gray-900 mb-2">Donner votre avis.</h3>
                                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Note</label>
                                 <?= $review->getInputStars() ?>

@@ -83,7 +83,7 @@ Website::setDescription('Déclarer un incident sur la commande ' . $historyOrder
         </div>
         <div class="py-2 container mx-auto rounded-md shadow-lg p-8 mb-4 h-fit">
             <form method="post" action="<?=$historyOrder->getOrderNumber()?>/create">
-                <?php (new SecurityManager())->insertHiddenToken() ?>
+                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                 <label for="reason" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Raison de la demande<span class="text-red-500">*</span> :</label>
                 <select name="reason" id="reason" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="0">Modification de commande</option>

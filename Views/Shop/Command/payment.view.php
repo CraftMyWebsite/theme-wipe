@@ -53,7 +53,7 @@ Website::setDescription("Méthode de paiement");
                     </div>
                 </div>
                 <form id="payment" action="command/finalize" method="post">
-                    <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                     <div class="container mx-auto rounded-md shadow-lg p-4 h-fit mt-4">
                         <div class="flex flex-no-wrap justify-center items-center py-4">
                             <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
@@ -86,7 +86,7 @@ Website::setDescription("Méthode de paiement");
                 </form>
                 <div class="flex justify-between mt-4">
                     <form action="command/toShipping" method="post">
-                        <?php (new SecurityManager())->insertHiddenToken() ?>
+                        <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                         <button type="submit"  class="inline-flex items-center py-2 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Précedent</button>
                     </form>
 

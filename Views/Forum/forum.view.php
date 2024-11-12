@@ -306,7 +306,7 @@ Website::setDescription('Consultez les sujets de discussion et répondez aux que
 
                                         <form id="modal-<?= $topic->getId() ?>"
                                               action="<?= $forum->getLink() ?>/adminedit" method="post">
-                                            <?php (new SecurityManager())->insertHiddenToken() ?>
+                                            <?php SecurityManager::getInstance()->insertHiddenToken() ?>
 
                                             <input type="text" name="topicId" hidden value="<?= $topic->getId() ?>">
 

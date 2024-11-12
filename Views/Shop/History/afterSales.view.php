@@ -85,7 +85,7 @@ Website::setDescription('Déclarer un incident sur l\'article ' . $historyOrder-
             <?php if ($afterSales->getStatus() !== 2): ?>
             <div class="py-2 container mx-auto rounded-md shadow-lg p-8 mb-4 h-fit">
                 <form method="post" action="">
-                    <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                     <div class="mt-4">
                         <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Réponse<span class="text-red-500">*</span> :</label>
                         <textarea name="content" id="content" required minlength="20" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"></textarea>
