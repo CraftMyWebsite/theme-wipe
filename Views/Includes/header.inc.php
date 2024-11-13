@@ -4,16 +4,15 @@ use CMW\Controller\Core\PackageController;
 use CMW\Controller\Shop\Admin\Item\ShopItemsController;
 use CMW\Controller\Shop\Admin\Payment\ShopPaymentsController;
 use CMW\Controller\Users\UsersController;
+use CMW\Controller\Users\UsersSessionsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\MenusModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Model\Shop\Cart\ShopCartItemModel;
-use CMW\Model\Shop\Cart\ShopCartModel;
-use CMW\Model\Users\UsersModel;
 use CMW\Utils\Website;
 
 if (PackageController::isInstalled('Shop')) {
-    $itemInCart = ShopCartItemModel::getInstance()->countItemsByUserId(UsersModel::getCurrentUser()?->getId(), session_id());
+    $itemInCart = ShopCartItemModel::getInstance()->countItemsByUserId(UsersSessionsController::getInstance()->getCurrentUser()?->getId(), session_id());
 }
 
 $menus = MenusModel::getInstance();
@@ -34,7 +33,7 @@ $menus = MenusModel::getInstance();
                 <ul class="flex flex-col bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                     <li id="multiLevelDropdownButton" data-dropdown-toggle="dropdown1"
                         class="cursor-pointer md:text-gray-700 hover:bg-gray-50 font-medium rounded-lg text-sm px-5 py-2.5">
-                        <i class="mr-2 fa-solid fa-user"></i><?= UsersModel::getCurrentUser()->getPseudo() ?></li>
+                        <i class="mr-2 fa-solid fa-user"></i><?= UsersSessionsController::getInstance()->getCurrentUser()->getPseudo() ?></li>
                     <div id="dropdown1" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
                         <ul class="py-1 text-sm text-gray-700" aria-labelledby="multiLevelDropdownButton">
                             <?php if (UsersController::isAdminLogged()): ?>

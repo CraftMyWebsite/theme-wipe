@@ -1,12 +1,10 @@
 <?php
 
 use CMW\Controller\Users\UsersController;
+use CMW\Controller\Users\UsersSessionsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
-use CMW\Manager\Uploads\ImagesManager;
 use CMW\Model\Core\ThemeModel;
-use CMW\Model\Forum\ForumDiscordModel;
-use CMW\Model\Forum\ForumFeedbackModel;
 use CMW\Model\Forum\ForumFollowedModel;
 use CMW\Model\Forum\ForumPermissionRoleModel;
 use CMW\Model\Users\UsersModel;
@@ -190,7 +188,7 @@ $i = 0;
                 <p><?= $topic->getCreated() ?></p>
                 <div>
                     <?php if (UsersController::isUserLogged()): ?>
-                        <?php if (ForumFollowedModel::getInstance()->isFollower($topic->getId(), UsersModel::getCurrentUser()?->getId())): ?>
+                        <?php if (ForumFollowedModel::getInstance()->isFollower($topic->getId(), UsersSessionsController::getInstance()->getCurrentUser()?->getId())): ?>
                             <a href="<?= $topic->unfollowTopicLink() ?>"><i
                                     class="fa-solid fa-eye-slash text-blue-500 mr-2"></i></a>
                         <?php else: ?>
@@ -710,9 +708,9 @@ $i = 0;
                             <div class="w-36 h-36 mx-auto border">
                                 <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
                                      height="144px"
-                                     src="<?= UsersModel::getCurrentUser()->getUserPicture()->getImage() ?>"/>
+                                     src="<?= UsersSessionsController::getInstance()->getCurrentUser()->getUserPicture()->getImage() ?>"/>
                             </div>
-                            <h5 class="font-semibold bg-gray-200"><?= UsersModel::getCurrentUser()->getPseudo() ?></h5>
+                            <h5 class="font-semibold bg-gray-200"><?= UsersSessionsController::getInstance()->getCurrentUser()->getPseudo() ?></h5>
                         </div>
                     </div>
                     <div class="col-span-4 py-4 pr-2">
