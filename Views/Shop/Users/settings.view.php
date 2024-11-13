@@ -68,7 +68,7 @@ Website::setDescription('Gérer vos paramètres de boutique');
     </div>
     <div class="container mx-auto rounded-md shadow-lg p-4 h-fit mt-4">
         <form action="command/addAddress" method="post">
-            <?php (new SecurityManager())->insertHiddenToken() ?>
+            <?php SecurityManager::getInstance()->insertHiddenToken() ?>
             <div class="bg-gray-100 rounded-lg p-3">
                 <div class="flex items-start">
                     <div class="flex items-center h-5">
