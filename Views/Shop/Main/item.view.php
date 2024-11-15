@@ -120,6 +120,8 @@ Website::setDescription("Venez découvrir l'article !");
                 </div>
                 <?php endif; ?>
 
+                <b>Stock :</b> <?= $item->getPublicFormattedStock() ?>
+
 
                 <?php if ($item->getPriceDiscountDefaultApplied()): ?>
                     <h3><s class="text-xl"><?= $item->getPriceFormatted() ?></s> <?= $item->getPriceDiscountDefaultAppliedFormatted() ?></h3>

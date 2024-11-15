@@ -101,7 +101,8 @@ Website::setDescription('Votre panier');
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <a href="<?= $cart->getRemoveLink() ?>" class="font-medium text-red-600"><i
+                                    <a href="<?= $cart->getAsideLink() ?>" class="font-medium text-blue-500"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+                                    <a href="<?= $cart->getRemoveLink() ?>" class="ml-4 font-medium text-red-600"><i
                                             class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
@@ -212,13 +213,16 @@ Website::setDescription('Votre panier');
                                     <?php if ($asideCart->getFirstImageItemUrl() !== '/Public/Uploads/Shop/0'): ?>
                                         <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
                                              src="<?= $asideCart->getFirstImageItemUrl() ?>" alt="Panier">
+                                    <?php else: ?>
+                                        <img class="mx-auto" style="width: 3rem; height: 3rem; object-fit: cover"
+                                             src="<?= $defaultImage ?>" alt="Panier">
                                     <?php endif; ?>
                                 </td>
                                 <td class="py-4 px-6 font-semibold text-gray-900">
                                     <?= $asideCart->getItem()->getName() ?>
                                 </td>
                                 <td class="py-4 px-6 text-center">
-                                    <?= $asideCart->getItem()->getCurrentStock() ?>
+                                    <?= $asideCart->getItem()->getPublicFormattedStock() ?>
                                 </td>
                                 <td class="py-4 px-6 text-gray-900">
                                     <?= $asideCart->getItem()->getPriceFormatted() ?>
