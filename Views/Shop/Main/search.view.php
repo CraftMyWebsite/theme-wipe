@@ -65,7 +65,7 @@ Website::setDescription('Découvrez la boutique !');
 
         <div class="py-4 flex flex-wrap">
             <?php if (empty($results)) : ?>
-            RAS MA KOUYE
+                <h3>Aucun résultat pour <b><?= $for ?></b> ...</h3>
             <?php else: ?>
             <?php foreach ($results as $item): ?>
                 <div class="relative w-full xl:w-1/2 2xl:w-1/4 mt-4 mb-5 2xl:mb-0 px-4 hover:scale-105 transition">

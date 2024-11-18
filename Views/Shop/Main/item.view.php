@@ -15,6 +15,7 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Shop\Review\ShopReviewsModel $review */
 /* @var \CMW\Model\Shop\Setting\ShopSettingsModel $allowReviews */
 /* @var CMW\Entity\Shop\Items\ShopItemEntity [] $otherItemsInThisCat */
+/* @var bool $showPublicStock */
 
 Website::setTitle('Boutique - Article');
 Website::setDescription("Venez découvrir l'article !");
@@ -120,8 +121,9 @@ Website::setDescription("Venez découvrir l'article !");
                 </div>
                 <?php endif; ?>
 
+                <?php if ($showPublicStock): ?>
                 <b>Stock :</b> <?= $item->getPublicFormattedStock() ?>
-
+                <?php endif; ?>
 
                 <?php if ($item->getPriceDiscountDefaultApplied()): ?>
                     <h3><s class="text-xl"><?= $item->getPriceFormatted() ?></s> <?= $item->getPriceDiscountDefaultAppliedFormatted() ?></h3>

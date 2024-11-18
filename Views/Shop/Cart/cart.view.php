@@ -9,6 +9,7 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Shop\Cart\ShopCartVariantesModel $itemsVariantes */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Entity\Shop\Carts\ShopCartDiscountEntity[] $appliedDiscounts */
+/* @var bool $showPublicStock */
 
 Website::setTitle('Boutique - Panier');
 Website::setDescription('Votre panier');
@@ -195,9 +196,11 @@ Website::setDescription('Votre panier');
                             <th class="text-center py-3 px-6">
                                 Produit
                             </th>
+                            <?php if ($showPublicStock): ?>
                             <th class="text-center py-3 px-6">
                                 Stock restant
                             </th>
+                            <?php endif ?>
                             <th class="text-center py-3 px-6">
                                 Prix
                             </th>
@@ -221,9 +224,11 @@ Website::setDescription('Votre panier');
                                 <td class="py-4 px-6 font-semibold text-gray-900">
                                     <?= $asideCart->getItem()->getName() ?>
                                 </td>
+                                <?php if ($showPublicStock): ?>
                                 <td class="py-4 px-6 text-center">
                                     <?= $asideCart->getItem()->getPublicFormattedStock() ?>
                                 </td>
+                                <?php endif ?>
                                 <td class="py-4 px-6 text-gray-900">
                                     <?= $asideCart->getItem()->getPriceFormatted() ?>
                                 </td>
