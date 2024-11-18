@@ -1,6 +1,7 @@
 <?php
 
 use CMW\Manager\Env\EnvManager;
+use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
@@ -43,19 +44,22 @@ Website::setDescription('Découvrez la boutique !');
                 </select>
             </div>
             <div class="flex hidden xl:block">
-                <div class="relative w-full lg:w-96">
-                    <input type="search" id="search-dropdown"
-                           class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                           placeholder="Rechercher" required>
-                    <button type="submit"
-                            class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                        <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </button>
-                </div>
+                <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>shop/search" method="post">
+                    <?php SecurityManager::getInstance()->insertHiddenToken() ?>
+                    <div class="relative w-full lg:w-96">
+                        <input name="for" type="search" id="search-dropdown"
+                               class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                               placeholder="Rechercher" required>
+                        <button type="submit"
+                                class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -162,33 +166,6 @@ Website::setDescription('Découvrez la boutique !');
                     </div>
                 </div>
             <?php endforeach; ?>
-        </div>
-
-        <div class="flex flex-col items-center border-t pt-2">
-            <span class="text-sm text-gray-700 dark:text-gray-400">Affiche
-                <span class="font-semibold text-gray-900 dark:text-white">1</span> à <span
-                        class="font-semibold text-gray-900 dark:text-white">10</span> sur <span
-                        class="font-semibold text-gray-900 dark:text-white">100</span> éléments
-  </span>
-            <!-- Buttons -->
-            <div class="inline-flex mt-2 xs:mt-0">
-                <button class="px-4 py-2 text-sm font-medium bg-gray-50 border-l border-t border-b border-gray-300 rounded-l hover:bg-gray-200">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <button class="px-4 py-2 text-sm font-medium bg-gray-50 border border-gray-300 rounded-r hover:bg-gray-200">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
         </div>
     </div>
 </section>

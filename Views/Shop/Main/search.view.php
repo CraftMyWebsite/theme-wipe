@@ -5,16 +5,15 @@ use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
-/* @var CMW\Entity\Shop\Items\ShopItemEntity[] $items */
+/* @var CMW\Model\Shop\Category\ShopCategoriesModel $categoryModel */
+/* @var \CMW\Entity\Shop\Items\ShopItemEntity [] $results */
 /* @var CMW\Model\Shop\Review\ShopReviewsModel $review */
-/* @var CMW\Entity\Shop\Categories\ShopCategoryEntity $thisCat */
 /* @var CMW\Model\Shop\Image\ShopImagesModel $imagesItem */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Model\Shop\Setting\ShopSettingsModel $allowReviews */
-/* @var CMW\Model\Shop\Category\ShopCategoriesModel $categoryModel */
 
-Website::setTitle('Boutique - Catégorie : ' . $thisCat->getName());
-Website::setDescription('Découvrez nos produits de la catégorie : ' . $thisCat->getName());
+Website::setTitle('Boutique');
+Website::setDescription('Découvrez la boutique !');
 
 ?>
 
@@ -35,11 +34,11 @@ Website::setDescription('Découvrez nos produits de la catégorie : ' . $thisCat
         <div class="flex flex-wrap justify-between border-t border-b py-2">
             <div>
                 <select onchange="location = this.value;" class="block pr-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-                    <option value="<?= Website::getProtocol() . '://' . $_SERVER['SERVER_NAME'] . EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'shop' ?>" >Catégorie : Tout afficher</option>
+                    <option selected value="<?= Website::getProtocol() . '://' . $_SERVER['SERVER_NAME'] . EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'shop' ?>" >Catégorie : Tout afficher</option>
                     <?php foreach ($categoryModel->getShopCategories() as $category): ?>
-                        <option <?= $category->getName() === $thisCat->getName() ? 'selected' : '' ?> value="<?= $category->getCatLink() ?>">Cat : <?= $category->getName() ?></option>
+                    <option value="<?= $category->getCatLink() ?>">Catégorie : <?= $category->getName() ?></option>
                         <?php foreach ($categoryModel->getSubsCat($category->getId()) as $subCategory): ?>
-                            <option <?= $subCategory->getSubCategory()->getName() === $thisCat->getName() ? 'selected' : '' ?> value="<?= $subCategory->getSubCategory()->getCatLink() ?>"> <?php echo str_repeat("\u{00A0}\u{00A0}", $subCategory->getDepth()) . ' Sous-Cat :  ' . $subCategory->getSubCategory()->getName() ?></option>
+                            <option value="<?= $subCategory->getSubCategory()->getCatLink() ?>"> <?php echo str_repeat("\u{00A0}\u{00A0}", $subCategory->getDepth()) . ' Sous-Cat :  ' . $subCategory->getSubCategory()->getName() ?></option>
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                 </select>
@@ -65,12 +64,15 @@ Website::setDescription('Découvrez nos produits de la catégorie : ' . $thisCat
         </div>
 
         <div class="py-4 flex flex-wrap">
-            <?php foreach ($items as $item): ?>
+            <?php if (empty($results)) : ?>
+            RAS MA KOUYE
+            <?php else: ?>
+            <?php foreach ($results as $item): ?>
                 <div class="relative w-full xl:w-1/2 2xl:w-1/4 mt-4 mb-5 2xl:mb-0 px-4 hover:scale-105 transition">
                     <?php if ($item->getDiscountImpactDefaultApplied()): ?>
-                        <div style="z-index: 5000; position: absolute; top: 0; left: 0; transform: translate(5%, 10%) rotate(-10deg); background-color: #f44336; color: white; padding: 8px 16px; border-radius: 0 16px 0 16px;">
-                            <p class="text-center"><?= $item->getDiscountImpactDefaultApplied() ?></p>
-                        </div>
+                    <div style="z-index: 5000; position: absolute; top: 0; left: 0; transform: translate(5%, 10%) rotate(-10deg); background-color: #f44336; color: white; padding: 8px 16px; border-radius: 0 16px 0 16px;">
+                        <p class="text-center"><?= $item->getDiscountImpactDefaultApplied() ?></p>
+                    </div>
                     <?php endif; ?>
                     <div>
                         <div class="rounded-t border-t border-l border-r border-gray-200 p-4">
@@ -117,10 +119,10 @@ Website::setDescription('Découvrez nos produits de la catégorie : ' . $thisCat
                                             </svg>
                                             <span class="sr-only">Previous</span>
                                         </span>
-                                        </button>
-                                        <button type="button"
-                                                class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                                                data-carousel-next>
+                                                                        </button>
+                                                                        <button type="button"
+                                                                                class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                                                                data-carousel-next>
                                         <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                                             <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                  fill="none" viewBox="0 0 6 10">
@@ -167,6 +169,7 @@ Website::setDescription('Découvrez nos produits de la catégorie : ' . $thisCat
                     </div>
                 </div>
             <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>
