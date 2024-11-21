@@ -2,6 +2,7 @@
 
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
+use CMW\Model\Shop\Setting\ShopSettingsModel;
 use CMW\Utils\Website;
 
 /* @var CMW\Entity\Shop\Carts\ShopCartItemEntity[] $cartContent */
@@ -74,7 +75,7 @@ Website::setDescription("Méthode de paiement");
                                         </label>
                                     </div>
                                     <div>
-                                        <b>Frais <?= $paymentMethod->getFeesFormatted() ?></b>
+                                        <b>Frais <span id="fee_<?= $paymentMethod->varName() ?>"><?= $paymentMethod->getFeesFormatted() ?></span></b>
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +154,7 @@ Website::setDescription("Méthode de paiement");
                 </div>
                 <?php endif; ?>
                 <h4 class="text-center mt-4">Total</h4>
-                <h4 class="text-center font-bold"><?= $cart->getTotalPriceCompleteFormatted() ?></h4>
+                <h4 class="text-center font-bold" id="total"><?= $cart->getTotalPriceCompleteFormatted() ?></h4>
             </div>
         </div>
     </div>
@@ -166,5 +167,41 @@ Website::setDescription("Méthode de paiement");
         button.innerHTML = `
         <i style="margin-right: 10px" class="fa-solid fa-sack-dollar fa-bounce"></i> Paiement en cours...
     `;
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const paymentMethods = document.querySelectorAll('input[name="paymentName"]');
+        const totalElement = document.getElementById('total');
+        const originalTotal = parseFloat("<?= str_replace(',', '.', $cart->getTotalPriceCompleteFormatted()) ?>");
+
+        const currencySymbol = "<?= ShopSettingsModel::getInstance()->getSettingValue('symbol') ?>";
+        const symbolIsAfter = <?= ShopSettingsModel::getInstance()->getSettingValue('after') ? 'true' : 'false' ?>;
+
+        function formatPrice(price) {
+            if (symbolIsAfter) {
+                return price.toFixed(2) + currencySymbol;
+            } else {
+                return currencySymbol  + price.toFixed(2);
+            }
+        }
+
+        function updateTotal() {
+            let selectedPaymentMethod = document.querySelector('input[name="paymentName"]:checked');
+            if (selectedPaymentMethod) {
+                const methodId = selectedPaymentMethod.value;
+                const feeElement = document.getElementById(`fee_${methodId}`);
+                if (feeElement) {
+                    const fee = parseFloat(feeElement.textContent.replace(/[^\d.]/g, ''));
+                    const newTotal = originalTotal + (fee || 0);
+                    totalElement.textContent = formatPrice(newTotal);
+                }
+            }
+        }
+
+        paymentMethods.forEach(method => {
+            method.addEventListener('change', updateTotal);
+        });
     });
 </script>
