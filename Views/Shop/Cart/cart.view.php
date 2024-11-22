@@ -233,7 +233,7 @@ Website::setDescription('Votre panier');
                                     <?= $asideCart->getItem()->getPriceFormatted() ?>
                                 </td>
                                 <td>
-                                    <a href="<?= $asideCart->getItem()->getAddToCartLink() ?>" class="mr-4 font-medium text-blue-700">
+                                    <a href="<?= $asideCart->getUnAsideLink() ?>" class="mr-4 font-medium text-blue-700">
                                         <i class="fa-solid fa-cart-arrow-down"></i></a>
                                     <a href="<?= $asideCart->getRemoveLink() ?>" class="font-medium ml-4 text-red-600"><i
                                             class="fa-solid fa-trash"></i></a>
