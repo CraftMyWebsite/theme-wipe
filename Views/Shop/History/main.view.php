@@ -59,8 +59,13 @@ Website::setDescription('Consultation de vos achats');
                                 <a href="<?= $order->getShippingLink() ?>" target="_blank" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5">Suivre le colis</a>
                             </div>
                             <?php endif; ?>
-                            <div class="mt-4" style="text-align: end">
-                                <a  class="justify-self-end text-blue-500 hover:text-blue-400" href="history/afterSales/request/<?= $order->getOrderNumber() ?>">Service après vente</a>
+                            <?php if (!empty($order->getInvoiceLink())): ?>
+                                <div>
+                                    <a href="<?= $order->getInvoiceLink() ?>" target="_blank" class="justify-self-end text-blue-500 hover:text-blue-400">Télécharger ma facture</a>
+                                </div>
+                            <?php endif; ?>
+                            <div style="text-align: end">
+                                <a class="justify-self-end text-blue-500 hover:text-blue-400" href="history/afterSales/request/<?= $order->getOrderNumber() ?>">Service après vente</a>
                             </div>
                         </div>
                     </div>
