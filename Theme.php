@@ -54,6 +54,6 @@ class Theme implements IThemeConfig
 
     public function imageLink(): ?string
     {
-        // TODO: Implement imageLink() method.
+        return null;
     }
 }
