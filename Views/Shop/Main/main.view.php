@@ -11,6 +11,7 @@ use CMW\Utils\Website;
 /* @var CMW\Model\Shop\Image\ShopImagesModel $imagesItem */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Model\Shop\Setting\ShopSettingsModel $allowReviews */
+/* @var CMW\Entity\Shop\Categories\ShopCategoryEntity|null $thisCat */
 
 Website::setTitle('Boutique');
 Website::setDescription('Découvrez la boutique !');
@@ -36,9 +37,9 @@ Website::setDescription('Découvrez la boutique !');
                 <select onchange="location = this.value;" class="block pr-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
                     <option selected value="<?= Website::getProtocol() . '://' . $_SERVER['SERVER_NAME'] . EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'shop' ?>" >Catégorie : Tout afficher</option>
                     <?php foreach ($categoryModel->getShopCategories() as $category): ?>
-                    <option value="<?= $category->getCatLink() ?>">Catégorie : <?= $category->getName() ?></option>
+                    <option <?= $category->getName() === $thisCat?->getName() ? 'selected' : '' ?> value="<?= $category->getCatLink() ?>">Catégorie : <?= $category->getName() ?></option>
                         <?php foreach ($categoryModel->getSubsCat($category->getId()) as $subCategory): ?>
-                            <option value="<?= $subCategory->getSubCategory()->getCatLink() ?>"> <?php echo str_repeat("\u{00A0}\u{00A0}", $subCategory->getDepth()) . ' Sous-Cat :  ' . $subCategory->getSubCategory()->getName() ?></option>
+                            <option <?= $subCategory->getSubCategory()->getName() === $thisCat?->getName() ? 'selected' : '' ?> value="<?= $subCategory->getSubCategory()->getCatLink() ?>"> <?php echo str_repeat("\u{00A0}\u{00A0}", $subCategory->getDepth()) . ' Sous-Cat :  ' . $subCategory->getSubCategory()->getName() ?></option>
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                 </select>
