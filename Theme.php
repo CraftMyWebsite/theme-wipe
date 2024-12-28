@@ -13,7 +13,7 @@ class Theme implements IThemeConfig
 
     public function version(): string
     {
-        return '0.0.3';
+        return '0.0.4';
     }
 
     public function cmwVersion(): string
