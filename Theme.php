@@ -13,12 +13,12 @@ class Theme implements IThemeConfig
 
     public function version(): string
     {
-        return '0.0.5';
+        return '0.0.6';
     }
 
     public function cmwVersion(): string
     {
-        return 'alpha-05';
+        return 'alpha-09';
     }
 
     public function author(): ?string

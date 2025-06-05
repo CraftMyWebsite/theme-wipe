@@ -1,19 +1,18 @@
 <?php
 
 use CMW\Manager\Env\EnvManager;
-use CMW\Utils\Utils;
-/* @var \CMW\Entity\News\NewsEntity $news */
 use CMW\Controller\Users\UsersController;
 use CMW\Manager\Security\SecurityManager;
-use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
+/* @var \CMW\Entity\News\NewsEntity $news */
+
 /* TITRE ET DESCRIPTION */
-Website::setTitle(ThemeModel::getInstance()->fetchConfigValue('news_title') . ' - ' . $news->getTitle());
-Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_description'));
+Website::setTitle($news->getTitle());
+Website::setDescription($news->getDescription());
 ?>
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img data-cmw-attr="src:home-hero:hero_img_bg" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">

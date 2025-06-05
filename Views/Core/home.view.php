@@ -6,44 +6,39 @@ use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
-/* Check installed package */
 use CMW\Controller\Core\PackageController;
-/* NEWS BASIC NEED */
 use CMW\Model\News\NewsModel;
 
 if (PackageController::isInstalled('News')) {
     $newsLists = new newsModel;
-    $newsList = $newsLists->getSomeNews(ThemeModel::getInstance()->fetchConfigValue('news_number_display'));
+    $newsList = $newsLists->getSomeNews(ThemeModel::getInstance()->fetchConfigValue('home-news','news_number_display'));
 }
 
-/* CONTACT BASIC NEDD */
-use CMW\Model\Contact\ContactModel;
-
 /* TITRE ET DESCRIPTION */
-Website::setTitle(ThemeModel::getInstance()->getInstance()->fetchConfigValue('home_title'));
+Website::setTitle(Website::getWebsiteName());
 Website::setDescription(Website::getWebsiteDescription());
 ?>
 <!-- HERO -->
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img src="" data-cmw-attr="src:home-hero:hero_img_bg" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-40 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
-                <p class="font-medium mb-2 text-blue-600 uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('hero_title') ?></p>
+                <p class="font-medium mb-2 text-blue-600 uppercase" data-cmw="home-hero:hero_title"></p>
                 <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= Website::getWebsiteName() ?></h1>
-                <p class="font-light mb-6 text-xl"><?= ThemeModel::getInstance()->fetchConfigValue('hero_description') ?></p>
-                <a href="<?= ThemeModel::getInstance()->fetchConfigValue('hero_button_link') ?>" class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none"><?= ThemeModel::getInstance()->fetchConfigValue('hero_button_text') ?></a>
+                <p class="font-light mb-6 text-xl" data-cmw="home-hero:hero_description"></p>
+                <a data-cmw-attr="href:home-hero:hero_button_link" data-cmw="home-hero:hero_button_text" class="hidden md:inline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none"></a>
             </div>
         </div>
     </div>
 </section>
-<?php if (ThemeModel::getInstance()->fetchConfigValue('feature_section_active')): ?>
+<div data-cmw-visible="home-feature:feature_section_active">
 <!-- Fonctionnalités -->
-<section class="py-8">
+<section  class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('feature_section_title') ?></h2>
+            <h2 data-cmw="home-feature:feature_section_title" class="font-semibold text-2xl uppercase"></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
@@ -51,45 +46,45 @@ Website::setDescription(Website::getWebsiteDescription());
         <div class="flex flex-wrap -mx-4  justify-center">
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= ThemeModel::getInstance()->fetchImageLink('feature_img_1') ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
+                    <img data-cmw-attr="src:home-feature:feature_img_1" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
                     <div>
-                        <h3 class="text-center  font-bold text-2xl text-gray-900"><?= ThemeModel::getInstance()->fetchConfigValue('feature_title_1') ?></h3>
-                        <p class="mt-2 mb-4"><?= ThemeModel::getInstance()->fetchConfigValue('feature_description_1') ?></p>
+                        <h3 data-cmw="home-feature:feature_title_1" class="text-center font-bold text-2xl text-gray-900"></h3>
+                        <p data-cmw="home-feature:feature_description_1" class="mt-2 mb-4"></p>
                     </div>
                 </div>
             </div>
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= ThemeModel::getInstance()->fetchImageLink('feature_img_2') ?>" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
+                    <img data-cmw-attr="src:home-feature:feature_img_2" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
                     <div>
-                        <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::getInstance()->fetchConfigValue('feature_title_2') ?></h3>
-                        <p class="mt-2 mb-4"><?= ThemeModel::getInstance()->fetchConfigValue('feature_description_2') ?></p>
+                        <h3 data-cmw="home-feature:feature_title_2" class="text-center font-bold text-2xl text-gray-900"></h3>
+                        <p data-cmw="home-feature:feature_description_2" class="mt-2 mb-4"></p>
                     </div>
                 </div>
             </div>
             <div class="p-4 w-full md:w-6/12 lg:w-4/12">
                 <div class="bg-gray-100 p-4">
-                    <img src="<?= ThemeModel::getInstance()->fetchImageLink('feature_img_3') ?>" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
+                    <img data-cmw-attr="src:home-feature:feature_img_3" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
                     <div>
-                        <h3 class="text-center font-bold text-2xl text-gray-900"><?= ThemeModel::getInstance()->fetchConfigValue('feature_title_3') ?></h3>
-                            <p class="mt-2 mb-4"><?= ThemeModel::getInstance()->fetchConfigValue('feature_description_3') ?></p>
+                        <h3 data-cmw="home-feature:feature_title_3" class="text-center font-bold text-2xl text-gray-900"></h3>
+                        <p data-cmw="home-feature:feature_description_3" class="mt-2 mb-4"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<?php endif; ?>
+</div>
 
 
 <!-- News -->
 <?php if (PackageController::isInstalled('News')): ?>
-<?php if (ThemeModel::getInstance()->fetchConfigValue('news_section_active')): ?>
+<div data-cmw-visible="home-news:news_section_active">
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('news_section_title') ?></h2>
+            <h2 data-cmw="home-news:news_section_title" class="font-semibold text-2xl uppercase"></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
@@ -118,14 +113,14 @@ Website::setDescription(Website::getWebsiteDescription());
                             <div class="cursor-pointer">
             <?php if ($news->isLikesStatus()): ?>
                                 <span data-tooltip-target="<?php if ($news->getLikes()->userCanLike()) { echo 'tooltip-liked'; } else { echo 'tooltip-like'; } ?>">
-                                <span class="text-base"><?= $news->getLikes()->getTotal() ?>                                 
+                                <span class="text-base"><?= $news->getLikes()->getTotal() ?>
                                     <?php if ($news->getLikes()->userCanLike()): ?>
                                     <a href="#"><i class="fa-solid fa-heart"></i></a>
                                     <div id="tooltip-liked" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
                                         <?php if (UsersController::isUserLogged()) { echo 'Vous aimez déjà !'; } else { echo 'Connectez-vous pour aimé !'; } ?>
                                         <div class="tooltip-arrow" data-popper-arrow></div>
                                     </div>
-                                    <?php else: ?> 
+                                    <?php else: ?>
                                     <a href="<?= $news->getLikes()->getSendLike() ?>"><i class="fa-regular fa-heart"></i></a>
                                     <div id="tooltip-like" role="tooltip" class="hidden lg:inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
                                         Merci pour votre soutien !
@@ -139,101 +134,73 @@ Website::setDescription(Website::getWebsiteDescription());
                         </div>
                     </div>
                 </div>
-        <?php endforeach; ?>      
+        <?php endforeach; ?>
         </div>
     </div>
 </section>
+</div>
 <?php endif; ?>
-<?php else: ?>
-    <?php if (UsersController::isAdminLogged()): ?>
-        <section class="py-8">
-            <div class="container mx-auto px-4 relative">
-                <div id="alert-additional-content-4" class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800" role="alert">
-                    <div class="flex items-center">
-                        <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        <span class="sr-only">Info</span>
-                        <h3 class="text-lg font-medium">Vous n'utilisez pas le package News</h3>
-                    </div>
-                    <div class="mt-2 mb-4 text-sm">
-                        Le thème Wipe prend en charge le package News, pour le moment vous ne l'utilisez pas, installez le si vous voulez en bénéficier.<br>Seuls les administrateurs voient ce message !
-                    </div>
-                    <div class="flex">
-                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin" target="_blank" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
-                            <p><i class="fa-solid fa-download"></i> Installer le package</p>
-                        </a>
-                        <button type="button" class="text-yellow-800 bg-transparent border border-yellow-800 hover:bg-yellow-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-yellow-300 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-gray-800 dark:focus:ring-yellow-800" data-dismiss-target="#alert-additional-content-4" aria-label="Close">
-                            <p><i class="fa-solid fa-eye-slash"></i> Masquer</p>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    <?php endif; ?>
-<?php endif; ?>
-
 
 <!-- Personnalisé 1 -->
-<?php if (ThemeModel::getInstance()->fetchConfigValue('custom_section_active_1')): ?>
+<div data-cmw-visible="home-custom:custom_section_active_1">
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_1') ?></h2>
+            <h2 data-cmw="home-custom:custom_section_title_1" class="font-semibold text-2xl uppercase"></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
     <div class="container my-8 mx-2 xl:mx-72 relative">
-        <div class="px-4">
-            <?= ThemeModel::getInstance()->fetchConfigValue('custom_section_content_1') ?>
+        <div class="px-4" data-cmw="home-custom:custom_section_content_1">
+
         </div>
     </div>
 </section>
-<?php endif; ?>
+</div>
 
 <!-- Personnalisé 2 -->
-<?php if (ThemeModel::getInstance()->fetchConfigValue('custom_section_active_2')): ?>
+<div data-cmw-visible="home-custom:custom_section_active_2">
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_2') ?></h2>
+            <h2 data-cmw="home-custom:custom_section_title_2" class="font-semibold text-2xl uppercase"></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
     <div class="container my-8 mx-2 xl:mx-72 relative">
-        <div class="px-4">
-            <?= ThemeModel::getInstance()->fetchConfigValue('custom_section_content_2') ?>
+        <div class="px-4" data-cmw="home-custom:custom_section_content_2">
         </div>
     </div>
 </section>
-<?php endif; ?>
+</div>
 
 <!-- Personnalisé 3 -->
-<?php if (ThemeModel::getInstance()->fetchConfigValue('custom_section_active_3')): ?>
+<div data-cmw-visible="home-custom:custom_section_active_3">
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_3') ?></h2>
+            <h2 data-cmw="home-custom:custom_section_title_3" class="font-semibold text-2xl uppercase"></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
     <div class="container my-8 mx-2 xl:mx-72 relative">
-        <div class="px-4">
-            <?= ThemeModel::getInstance()->fetchConfigValue('custom_section_content_3') ?>
+        <div class="px-4" data-cmw="home-custom:custom_section_content_3">
         </div>
     </div>
 </section>
-<?php endif; ?>
+</div>
 
 <!-- Contact -->
 <?php if (PackageController::isInstalled('Contact')): ?>
-<?php if (ThemeModel::getInstance()->fetchConfigValue('contact_section_active')): ?>
+<div data-cmw-visible="home-contact:contact_section_active">
 <section class="py-8">
     <div class="flex flex-no-wrap justify-center items-center py-4">
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         <div class="px-10 w-auto">
-            <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('contact_section_title') ?></h2>
+            <h2 class="font-semibold text-2xl uppercase" data-cmw="home-contact:contact_section_title"></h2>
         </div>
         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
     </div>
@@ -280,49 +247,23 @@ Website::setDescription(Website::getWebsiteDescription());
         </form>
     </div>
 </section>
-<?php endif; ?>
-<?php else: ?>
-    <?php if (UsersController::isAdminLogged()): ?>
-        <section class="py-8">
-            <div class="container mx-auto px-4 relative">
-                <div id="alert-additional-content-5" class="p-4 mb-4 text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800" role="alert">
-                    <div class="flex items-center">
-                        <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                        <span class="sr-only">Info</span>
-                        <h3 class="text-lg font-medium">Vous n'utilisez pas le package Contact</h3>
-                    </div>
-                    <div class="mt-2 mb-4 text-sm">
-                        Le thème Wipe prend en charge le package Contact, pour le moment vous ne l'utilisez pas, installez le si vous voulez en bénéficier.<br>Seuls les administrateurs voient ce message !
-                    </div>
-                    <div class="flex">
-                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>cmw-admin" target="_blank" type="button" class="text-white bg-yellow-800 hover:bg-yellow-900 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 text-center inline-flex items-center dark:bg-yellow-300 dark:text-gray-800 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">
-                            <p><i class="fa-solid fa-download"></i> Installer le package</p>
-                        </a>
-                        <button type="button" class="text-yellow-800 bg-transparent border border-yellow-800 hover:bg-yellow-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-yellow-300 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-gray-800 dark:focus:ring-yellow-800"
-                                data-dismiss-target="#alert-additional-content-5" aria-label="Close">
-                            <p><i class="fa-solid fa-eye-slash"></i> Masquer</p>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    <?php endif; ?>
+</div>
 <?php endif; ?>
 
 <?php if (PackageController::isInstalled('Newsletter')): ?>
-    <?php if (ThemeModel::getInstance()->fetchConfigValue('newsletter_section_active')): ?>
+    <div data-cmw-visible="home-newsletter:newsletter_section_active">
         <section class="py-8">
         <div class="flex flex-no-wrap justify-center items-center py-4">
             <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
             <div class="px-10 w-auto">
-                <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_title') ?></h2>
+                <h2 data-cmw="home-newsletter:newsletter_section_title" class="font-semibold text-2xl uppercase"></h2>
             </div>
             <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
         </div>
             <div class="container mx-auto px-4 xl:px-72">
                 <form action="newsletter" method="post" class="rounded-md shadow-lg p-8">
                     <?php SecurityManager::getInstance()->insertHiddenToken() ?>
-                    <?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_description') ?>
+                    <p data-cmw="home-newsletter:newsletter_section_description"></p>
                     <div class="relative mt-4">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                             <i class="fa-regular fa-envelope"></i>
@@ -331,12 +272,11 @@ Website::setDescription(Website::getWebsiteDescription());
                     </div>
                     <?php SecurityController::getPublicData(); ?>
                     <div class="text-center mt-4">
-                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none" type="submit">
-                            <?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_button') ?>
+                        <button data-cmw="home-newsletter:newsletter_section_button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 focus:outline-none" type="submit">
                         </button>
                     </div>
                 </form>
             </div>
         </section>
-    <?php endif; ?>
+    </div>
 <?php endif; ?>

@@ -14,7 +14,7 @@ Website::setDescription('Inscrivez-vous');
 
 <section class="bg-gray-800 relative text-white">
     <!--PROD DEFINIR LA SOURCE-->
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
+    <img data-cmw-attr="src:home-hero:hero_img_bg"
          class="absolute h-full inset-0 object-center object-cover w-full"
          alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
@@ -26,7 +26,7 @@ Website::setDescription('Inscrivez-vous');
     </div>
 </section>
 
-<?php if (ThemeModel::getInstance()->fetchConfigValue('header_allow_register_button')): ?>
+<?php if (ThemeModel::getInstance()->fetchConfigValue('global', 'header_allow_register_button')): ?>
     <div class="mx-auto relative p-4 w-full max-w-md h-full md:h-auto mb-6 mt-6">
         <div class="relative bg-white rounded-lg shadow">
             <div class="py-6 px-6 lg:px-8">
@@ -99,9 +99,7 @@ Website::setDescription('Inscrivez-vous');
 <?php else: ?>
     <div class="mx-auto relative p-4 w-full max-w-md h-full md:h-auto mb-6 mt-6">
         <div class="relative bg-white rounded-lg shadow">
-            <div class="py-6 px-6 lg:px-8">
-                <?= ThemeModel::getInstance()->fetchConfigValue('global_no_register_message') ?>
-            </div>
+            <div class="py-6 px-6 lg:px-8" data-cmw="global:global_no_register_message"></div>
         </div>
     </div>
 <?php endif; ?>

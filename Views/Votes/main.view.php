@@ -1,11 +1,7 @@
 <?php
 
-use CMW\Controller\Core\ThemeController;
 use CMW\Controller\Users\UsersController;
 use CMW\Manager\Env\EnvManager;
-use CMW\Manager\Theme\ThemeManager;
-use CMW\Model\Core\ThemeModel;
-use CMW\Model\Users\UsersModel;
 use CMW\Model\Votes\VotesConfigModel;
 use CMW\Utils\Website;
 
@@ -14,11 +10,11 @@ Website::setTitle('Votez');
 Website::setDescription("Votez, obtenez des points de vote et plein d'autres cadeaux!");
 ?>
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+    <img data-cmw-attr="src:home-hero:hero_img_bg" class="absolute h-full inset-0 object-center object-cover w-full" alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
-                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl"><?= ThemeModel::getInstance()->fetchConfigValue('votes_page_title') ?></h1>
+                <h1 class="font-extrabold mb-4 text-2xl md:text-6xl" data-cmw="votes:votes_page_title" ></h1>
             </div>
         </div>
     </div>
@@ -30,7 +26,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             <div class="flex flex-no-wrap justify-center items-center py-4">
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                 <div class="px-10 w-auto">
-                    <h2 class="font-semibold text-2xl uppercase"><?= ThemeModel::getInstance()->fetchConfigValue('votes_participate_title') ?></h2>
+                    <h2 class="font-semibold text-2xl uppercase" data-cmw="votes:votes_participate_title"></h2>
                 </div>
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
             </div>
@@ -136,8 +132,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             </div>
         </div>
     </div>
-    <?php if (ThemeModel::getInstance()->fetchConfigValue('votes_display_global')): ?>
-    <div class="md:px-16 xl:px-28 2xl:px-48 mt-4">
+    <div data-cmw-visible="votes:votes_display_global" class="md:px-16 xl:px-28 2xl:px-48 mt-4">
         <div class="container mx-auto rounded-md shadow-lg p-8">
             <div class="flex flex-no-wrap justify-center items-center py-4">
                 <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
@@ -205,5 +200,4 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             </div>
         </div>
     </div>
-    <?php endif; ?>
 </section>

@@ -29,10 +29,12 @@ Website::setTitle('Forum');
 Website::setDescription('Lisez les sujets et les réponses de la communauté');
 $i = 0;
 ?>
+
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
+    <img data-cmw-attr="src:home-hero:hero_img_bg"
          class="absolute h-full inset-0 object-center object-cover w-full"
          alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
+
     <div class="container mx-auto px-4 py-12 relative">
         <div class="flex flex-wrap -mx-4">
             <div class="mx-auto px-4 text-center w-full lg:w-8/12">
@@ -67,7 +69,7 @@ $i = 0;
                 <li class="inline-flex items-center">
                     <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>forum"
                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                        <?= ThemeModel::getInstance()->fetchConfigValue('forum_breadcrumb_home') ?>
+                        <?= ThemeModel::getInstance()->fetchConfigValue('forum', 'forum_breadcrumb_home') ?>
                     </a>
                 </li>
                 <li>

@@ -2,7 +2,6 @@
 
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
-use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 /* @var CMW\Model\Shop\Category\ShopCategoriesModel $categoryModel */
@@ -19,7 +18,7 @@ Website::setDescription('Découvrez la boutique !');
 ?>
 
 <section class="bg-gray-800 relative text-white">
-    <img src="<?= ThemeModel::getInstance()->fetchImageLink('hero_img_bg') ?>"
+    <img data-cmw-attr="src:home-hero:hero_img_bg"
          class="absolute h-full inset-0 object-center object-cover w-full"
          alt="Vous devez upload bg.webp depuis votre panel !" width="1080" height="720"/>
     <div class="container mx-auto px-4 py-12 relative">
