@@ -11,6 +11,10 @@ use CMW\Utils\Website;
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Model\Shop\Setting\ShopSettingsModel $allowReviews */
 /* @var CMW\Entity\Shop\Categories\ShopCategoryEntity|null $thisCat */
+/* @var int $maxPages */
+/* @var int $currentPage */
+/* @var string $currentSort */
+/* @var string $baseShopUrl */
 
 Website::setTitle('Boutique');
 Website::setDescription('Découvrez la boutique !');
@@ -70,6 +74,15 @@ Website::setDescription('Découvrez la boutique !');
                     </div>
                 </form>
             </div>
+            <form method="get" action="<?= $baseShopUrl ?>" id="sortForm" style="display:flex; align-items: center; gap: 5px">
+                <input type="hidden" name="p" value="<?= $currentPage ?>">
+                <label for="sort">Trier par :</label>
+                <select class="block pr-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" name="sort" id="sort" onchange="document.getElementById('sortForm').submit()">
+                    <option value="pertinence" <?= $currentSort === 'pertinence' ? 'selected' : '' ?>>Pertinence</option>
+                    <option value="ascendingPrice" <?= $currentSort === 'ascendingPrice' ? 'selected' : '' ?>>Prix croissant</option>
+                    <option value="descendingPrice" <?= $currentSort === 'descendingPrice' ? 'selected' : '' ?>>Prix décroissant</option>
+                </select>
+            </form>
         </div>
 
         <div class="py-4 flex flex-wrap">
@@ -195,6 +208,45 @@ Website::setDescription('Découvrez la boutique !');
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
+        </div>
+        <div class="flex justify-center mt-4">
+            <?php
+            $disablePrev = $currentPage <= 1;
+            $disableNext = $currentPage >= $maxPages;
+
+            $buttonClass = 'mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300';
+            $disabledClass = 'opacity-50 cursor-not-allowed pointer-events-none';
+            ?>
+
+            <!-- Première page -->
+            <a href="<?= !$disablePrev ? $baseShopUrl . '?p=1&sort=' . $currentSort : '#' ?>"
+               class="<?= $buttonClass . ($disablePrev ? ' ' . $disabledClass : '') ?>"
+               title="Première page">
+                <i class="fa-solid fa-angles-left"></i>
+            </a>
+
+            <!-- Page précédente -->
+            <a href="<?= !$disablePrev ? $baseShopUrl . '?p=' . ($currentPage - 1) . '&sort=' . $currentSort : '#' ?>"
+               class="<?= $buttonClass . ($disablePrev ? ' ' . $disabledClass : '') ?>">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+
+            <!-- Page actuelle -->
+            <p class="mr-2 font-bold text-lg"><?= $currentPage ?> / <?= $maxPages ?></p>
+
+            <!-- Page suivante -->
+            <a href="<?= !$disableNext ? $baseShopUrl . '?p=' . ($currentPage + 1) . '&sort=' . $currentSort : '#' ?>"
+               class="<?= $buttonClass . ($disableNext ? ' ' . $disabledClass : '') ?>">
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <!-- Dernière page -->
+            <a href="<?= !$disableNext ? $baseShopUrl . '?p=' . $maxPages . '&sort=' . $currentSort : '#' ?>"
+               class="<?= $buttonClass . ($disableNext ? ' ' . $disabledClass : '') ?>"
+               title="Dernière page">
+                <i class="fa-solid fa-angles-right"></i>
+            </a>
+
         </div>
     </div>
 </section>
