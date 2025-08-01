@@ -7,9 +7,10 @@ use CMW\Utils\Website;
 /* @var CMW\Entity\Shop\Carts\ShopCartItemEntity[] $cartContent */
 /* @var CMW\Entity\Shop\Deliveries\ShopDeliveryUserAddressEntity $selectedAddress */
 /* @var CMW\Entity\Shop\Shippings\ShopShippingEntity $shippingMethod */
-/* @var \CMW\Interface\Shop\IPaymentMethod[] $paymentMethods */
+/* @var \CMW\Interface\Shop\IPaymentMethodV2[] $paymentMethods */
 /* @var \CMW\Model\Shop\Image\ShopImagesModel $defaultImage */
 /* @var \CMW\Entity\Shop\Discounts\ShopDiscountEntity [] $appliedCartDiscounts*/
+/* @var bool $isVirtualOnly */
 
 Website::setTitle("Boutique - Tunnel de commande");
 Website::setDescription("Méthode de paiement");
@@ -32,6 +33,7 @@ Website::setDescription("Méthode de paiement");
 <section class="px-2 md:px-24 xl:px-48 2xl:px-72 py-6">
     <div class="lg:grid lg:grid-cols-3 gap-6">
         <div class="col-span-2 mt-4 lg:mt-0">
+            <?php if (!$isVirtualOnly && $selectedAddress): ?>
                 <div class="container mx-auto rounded-md shadow-lg p-4 h-fit">
                     <div class="flex flex-no-wrap justify-center items-center py-4">
                         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
@@ -40,18 +42,18 @@ Website::setDescription("Méthode de paiement");
                         </div>
                         <div class="bg-gray-500 flex-grow h-px max-w-sm"></div>
                     </div>
-                    <div class="flex flex-wrap justify-center">
-                        <div class="shadow p-2 w-1/2 text-center">
-                            <?= $selectedAddress->getLabel() ?><br>
-                            <b><?= $selectedAddress->getFirstName() . " " . $selectedAddress->getLastName() ?></b> <?= $selectedAddress->getPhone() ?>
-                            <br>
-                            <?= $selectedAddress->getLine1() ?><br>
-                            <?= $selectedAddress->getLine2() ?>
-                            <?= $selectedAddress->getPostalCode() . " " . $selectedAddress->getCity() ?><br>
-                            <?= $selectedAddress->getFormattedCountry() ?>
+                        <div class="flex flex-wrap justify-center">
+                                <div class="shadow p-2 w-1/2 text-center">
+                                    <b><?= $selectedAddress->getLabel() ?></b><br>
+                                    <b><?= $selectedAddress->getFirstName() . ' ' . $selectedAddress->getLastName() ?></b> <?= $selectedAddress->getPhone() ?><br>
+                                    <?= $selectedAddress->getLine1() ?><br>
+                                    <?= $selectedAddress->getLine2() ?>
+                                    <?= $selectedAddress->getPostalCode() . ' ' . $selectedAddress->getCity() ?><br>
+                                    <?= $selectedAddress->getFormattedCountry() ?>
+                                </div>
                         </div>
-                    </div>
                 </div>
+            <?php endif; ?>
                 <form id="payment" action="command/finalize" method="post">
                     <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                     <div class="container mx-auto rounded-md shadow-lg p-4 h-fit mt-4">
@@ -145,13 +147,15 @@ Website::setDescription("Méthode de paiement");
                     <?php endforeach; ?>
                 <?php endif; ?>
 
-                <?php if (!is_null($shippingMethod)): ?>
-                <h4 class="text-center mt-4">Livraison</h4>
-                <div class="flex flex-wrap justify-between">
-                    <span><?= $shippingMethod->getName() ?></span>
-                    <span><b><?= $shippingMethod->getPriceFormatted() ?></b></span>
-                </div>
+                <?php if (!$isVirtualOnly && !is_null($shippingMethod)): ?>
+                    <h4 class="text-center mt-4">Livraison</h4>
+                    <div class="flex flex-wrap justify-between">
+                        <span><?= $shippingMethod->getName() ?></span>
+                        <span><b><?= $shippingMethod->getPriceFormatted() ?></b></span>
+                    </div>
                 <?php endif; ?>
+
+
                 <h4 class="text-center mt-4">Total</h4>
                 <h4 id="total" class="text-center font-bold" data-total="<?= $cart->getTotalPriceComplete() ?>">
                     <?php

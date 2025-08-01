@@ -5,7 +5,7 @@ use CMW\Utils\Website;
 
 /* @var IPriceTypeMethod $token */
 /* @var \CMW\Entity\Shopextendedtoken\ShopExtendedTokenHistoryEntity[] $tokenHistory */
-/* @var \CMW\Interface\Shop\IPaymentMethod $paymentToken */
+/* @var \CMW\Interface\Shop\IPaymentMethodV2 $paymentToken */
 
 Website::setTitle('Boutique - ' . $token->name());
 Website::setDescription('Gérez vos ' . $token->name());
