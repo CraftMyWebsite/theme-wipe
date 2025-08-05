@@ -49,7 +49,7 @@ Website::setDescription("Venez découvrir l'article !");
                 <?php if ($getImagesItem): ?>
                     <?php if ($v !== 1): ?>
                         <div id="indicators-carousel" class="relative w-full" data-carousel="static">
-                            <!-- Carousel wrapper -->
+                        <!-- Carousel wrapper -->
                             <div class="relative h-56 overflow-hidden rounded-lg md:h-48">
                                 <!-- Item 1 -->
                                 <?php $x = 0;
@@ -100,13 +100,14 @@ Website::setDescription("Venez découvrir l'article !");
 
                     <?php else: ?>
                         <?php foreach ($imagesItem->getShopImagesByItem($item->getId()) as $imageUrl): ?>
-                            <img class="mx-auto h-48"
-                                 src="<?= $imageUrl->getImageUrl() ?>">
+                            <img class="mx-auto h-48 solo-img-variant"
+                                 src="<?= $imageUrl->getImageUrl() ?>" data-default-image="<?= $imageUrl->getImageUrl() ?>">
                         <?php endforeach; ?>
                     <?php endif; ?>
                 <?php else: ?>
-                    <img class="mx-auto h-48"
-                         src="<?= $defaultImage ?>">
+                    <img class="mx-auto h-48 solo-img-variant"
+                         src="<?= $defaultImage ?>"
+                         data-default-image="<?= $defaultImage ?>">
                 <?php endif; ?>
             </div>
             <div class="col-span-4 h-fit">
@@ -139,9 +140,10 @@ Website::setDescription("Venez découvrir l'article !");
                                 <div class="my-2">
                                     <?= $itemVariant->getName() ?> :
                                 </div>
-                                <select name="selected_variantes[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1">
+                                <select name="selected_variantes[]" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1">
+                                    <option value="" selected>Veuillez choisir...</option>
                                     <?php foreach ($variantValuesModel->getShopItemVariantValueByVariantId($itemVariant->getId()) as $variantValue): ?>
-                                        <option value="<?= $variantValue->getId() ?>"><?= $variantValue->getValue() ?></option>
+                                        <option data-image="<?= $variantValue->getImageLink() ?>" value="<?= $variantValue->getId() ?>"><?= $variantValue->getValue() ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -261,3 +263,50 @@ Website::setDescription("Venez découvrir l'article !");
 
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const carousel = document.querySelector('#indicators-carousel');
+        const carouselWrapper = carousel?.querySelector('.relative.h-56');
+        const carouselIndicators = carousel?.querySelector('.absolute.z-30');
+        const soloImg = document.querySelector('.solo-img-variant');
+        const originalCarouselHTML = carousel?.innerHTML;
+
+        document.querySelectorAll('select[name="selected_variantes[]"]').forEach(select => {
+            select.addEventListener('change', function () {
+                const selectedOption = this.options[this.selectedIndex];
+                const image = selectedOption.dataset.image;
+
+                // Cas : aucune sélection (valeur vide) → restauration état initial
+                if (selectedOption.value === "") {
+                    if (carousel && originalCarouselHTML) {
+                        carousel.innerHTML = originalCarouselHTML;
+                    }
+                    if (soloImg) {
+                        soloImg.src = soloImg.dataset.defaultImage;
+                    }
+                    return;
+                }
+
+                // Cas : variante sans image → ne rien faire
+                if (!image) {
+                    return;
+                }
+
+                // Cas : variante avec image → remplacement
+                if (carouselWrapper && carouselIndicators) {
+                    carouselWrapper.innerHTML = `
+                    <div class="shop-carousel-item-698757845 active" data-carousel-item>
+                        <img src="${image}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Variante">
+                    </div>
+                `;
+                    carouselIndicators.innerHTML = '';
+                }
+
+                if (soloImg) {
+                    soloImg.src = image;
+                }
+            });
+        });
+    });
+</script>
