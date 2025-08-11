@@ -56,17 +56,18 @@ Website::setDescription('Découvrez la boutique !');
                 </select>
             </div>
             <div class="flex hidden xl:block">
-                <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>shop/search" method="post">
-                    <?php SecurityManager::getInstance()->insertHiddenToken() ?>
+                <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>shop/search" method="get">
                     <div class="relative w-full lg:w-96">
                         <input name="for" type="search" id="search-dropdown"
                                class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-100 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                               placeholder="Rechercher" required>
+                               placeholder="Rechercher" required
+                               value="<?= isset($searchFor) ? htmlspecialchars($searchFor) : (isset($_GET['for']) ? htmlspecialchars($_GET['for']) : '') ?>">
+                        <input type="hidden" name="p" value="1">
+                        <input type="hidden" name="sort" value="<?= $currentSort ?? 'pertinence' ?>">
                         <button type="submit"
                                 class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                             <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor"
-                                 viewBox="0 0 24 24"
-                                 xmlns="http://www.w3.org/2000/svg">
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
@@ -209,44 +210,39 @@ Website::setDescription('Découvrez la boutique !');
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
+        <?php
+        $disablePrev = $currentPage <= 1;
+        $disableNext = $currentPage >= $maxPages;
+
+        $buttonClass   = 'mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300';
+        $disabledClass = 'opacity-50 cursor-not-allowed pointer-events-none';
+        ?>
+
         <div class="flex justify-center mt-4">
-            <?php
-            $disablePrev = $currentPage <= 1;
-            $disableNext = $currentPage >= $maxPages;
-
-            $buttonClass = 'mr-2 p-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300';
-            $disabledClass = 'opacity-50 cursor-not-allowed pointer-events-none';
-            ?>
-
             <!-- Première page -->
-            <a href="<?= !$disablePrev ? $baseShopUrl . '?p=1&sort=' . $currentSort : '#' ?>"
+            <a href="<?= !$disablePrev ? $baseShopUrl . '?p=1&sort=' . $currentSort . $extraQuery : '#' ?>"
                class="<?= $buttonClass . ($disablePrev ? ' ' . $disabledClass : '') ?>"
                title="Première page">
                 <i class="fa-solid fa-angles-left"></i>
             </a>
-
             <!-- Page précédente -->
-            <a href="<?= !$disablePrev ? $baseShopUrl . '?p=' . ($currentPage - 1) . '&sort=' . $currentSort : '#' ?>"
+            <a href="<?= !$disablePrev ? $baseShopUrl . '?p=' . ($currentPage - 1) . '&sort=' . $currentSort . $extraQuery : '#' ?>"
                class="<?= $buttonClass . ($disablePrev ? ' ' . $disabledClass : '') ?>">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
-
             <!-- Page actuelle -->
             <p class="mr-2 font-bold text-lg"><?= $currentPage ?> / <?= $maxPages ?></p>
-
             <!-- Page suivante -->
-            <a href="<?= !$disableNext ? $baseShopUrl . '?p=' . ($currentPage + 1) . '&sort=' . $currentSort : '#' ?>"
+            <a href="<?= !$disableNext ? $baseShopUrl . '?p=' . ($currentPage + 1) . '&sort=' . $currentSort . $extraQuery : '#' ?>"
                class="<?= $buttonClass . ($disableNext ? ' ' . $disabledClass : '') ?>">
                 <i class="fa-solid fa-arrow-right"></i>
             </a>
-
             <!-- Dernière page -->
-            <a href="<?= !$disableNext ? $baseShopUrl . '?p=' . $maxPages . '&sort=' . $currentSort : '#' ?>"
+            <a href="<?= !$disableNext ? $baseShopUrl . '?p=' . $maxPages . '&sort=' . $currentSort . $extraQuery : '#' ?>"
                class="<?= $buttonClass . ($disableNext ? ' ' . $disabledClass : '') ?>"
                title="Dernière page">
                 <i class="fa-solid fa-angles-right"></i>
             </a>
-
         </div>
     </div>
 </section>
