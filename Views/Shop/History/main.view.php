@@ -41,9 +41,9 @@ Website::setDescription('Consultation de vos achats');
                         </div>
                         <div class="font-medium">Commandé le : <span style="color: #5a8cde"><?= $order->getCreated() ?></span></div>
                     </div>
+                    <?= $order->getBeautifulStatus(); ?>
                     <div class="flex flex-wrap justify-between items-center mb-2">
                         <div >
-                            <p>Statut : <b><?= $order->getPublicStatus() ?></b></p>
                             <?php if ($order->getShippingMethod()): ?>
                                 <p>Éxpédition : <?= $order->getShippingMethod()->getName() ?> (<?= $order->getShippingMethod()->getPriceFormatted() ?>)</p>
                             <?php endif; ?>
