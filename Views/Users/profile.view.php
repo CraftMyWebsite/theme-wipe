@@ -129,7 +129,7 @@ Website::setDescription('Éditez votre profil');
     </div>
     <div class="pt-2 pb-6 text-center">
         <p class="mb-2">Nous sommes triste de vous voir partir !</p>
-        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>profile/delete/<?= $user->getId() ?>" class="mb-4 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Supprimer mon compte</a>
+        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>account/delete/<?= $user->getId() ?>" class="mb-4 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Supprimer mon compte</a>
     </div>
 </div>
 
